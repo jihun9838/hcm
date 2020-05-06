@@ -7,19 +7,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:controller="com.midas.taa.TAAController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="OwnBP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.midas.taa.own.OwnTAAController">
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
    </padding>
    <top>
-      <VBox prefHeight="271.0" prefWidth="980.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="175.0" prefWidth="980.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label minHeight="23.0" minWidth="72.0" text="연간 연차 내역">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Pane prefHeight="75.0" prefWidth="980.0" />
             <HBox prefHeight="23.0" prefWidth="980.0" spacing="10.0">
                <children>
                   <Label minHeight="23.0" minWidth="72.0" text="월간 근태 내역">
@@ -33,12 +27,12 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <DatePicker prefWidth="150.0" />
+                  <DatePicker fx:id="TAADatePicker" prefWidth="150.0" />
                   <Pane prefHeight="23.0" prefWidth="50.0" />
                   <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="65.0" text="조회" />
                </children>
             </HBox>
-            <Pane prefHeight="75.0" prefWidth="980.0" />
+            <Pane prefHeight="95.0" prefWidth="980.0" />
             <HBox prefHeight="24.0" prefWidth="980.0" spacing="10.0">
                <children>
                   <Pane prefHeight="35.0" prefWidth="380.0" />
@@ -123,6 +117,9 @@
       </VBox>
    </top>
    <center>
-      <Pane prefHeight="300.0" prefWidth="980.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="CalPane" prefHeight="422.0" prefWidth="980.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="-10.0" />
+         </BorderPane.margin></Pane>
    </center>
 </BorderPane>

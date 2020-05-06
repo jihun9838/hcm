@@ -149,5 +149,116 @@ public class MainController extends Controller implements Initializable{
 		Parent scene= comServ.AddScene("/com/midas/taa/HolidayModify.fxml");
 		borderPane.setCenter(scene);
 	}
+	
+	
+	
+	//TAA Manager
+	public void SetCalendarView(Event e) {
+		BorderPane borderPane = (BorderPane)getScene(e);
+		Parent root = comServ.AddScene("/com/midas/taa/SetCalendar.fxml");
+		borderPane.setCenter(root);
+	}
+
+	public void TAAReportView(Event e) {
+		BorderPane borderPane = (BorderPane)getScene(e);
+		Parent root = comServ.AddScene("/com/midas/taa/TAAReport.fxml");
+		borderPane.setCenter(root);
+	}
+
+	public void MonthTAAView(Event e) {
+		BorderPane borderPane = (BorderPane)getScene(e);
+		root = comServ.AddScene("/com/midas/taa/MonthTAA.fxml");
+
+		Parent form = root;
+		String [] departItems= {"부서1", "부서2", "부서3", "부서4", "부서5"};
+		String [] sortItems= {"사원번호", "이름"};
+		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
+		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
+
+		borderPane.setCenter(root);
+	}
+
+	public void PersonalTAAView(Event e) {
+		BorderPane borderPane = (BorderPane)getScene(e);
+		root = comServ.AddScene("/com/midas/taa/PersonalTAA.fxml");
+		
+		Parent form = root;
+		String [] departItems= {"부서1", "부서2", "부서3", "부서4", "부서5"};
+		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
+		
+		borderPane.setCenter(root);
+	}
+
+	public void TAAListView(Event e) {
+		BorderPane borderPane = (BorderPane)getScene(e);
+		root = comServ.AddScene("/com/midas/taa/TAAList.fxml");
+
+		Parent form = root;
+		String [] departItems= {"부서1", "부서2", "부서3", "부서4", "부서5"};
+		String [] sortItems= {"사원번호", "이름"};
+		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
+		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
+
+		borderPane.setCenter(root);
+	}
+
+	public void HolidayApprovalView(Event e) {
+		BorderPane borderPane = (BorderPane)getScene(e);
+		root = comServ.AddScene("/com/midas/taa/HolidayApproval.fxml");
+		
+		Parent form = root;
+		String [] departItems= {"부서1", "부서2", "부서3", "부서4", "부서5"};
+		String [] sortItems= {"사원번호", "이름"};
+		String [] approvalItems = {"승인", "미승인", "반려"};
+		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
+		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
+		comServ.AddComboBox(form, Arrays.asList(approvalItems), "#cmbApproval");
+		
+		borderPane.setCenter(root);
+	}
+
+	public void HolidayModifyView(Event e) {
+		BorderPane borderPane = (BorderPane)getScene(e);
+		root = comServ.AddScene("/com/midas/taa/HolidayModify.fxml");
+		borderPane.setCenter(root);
+	}
+	
+	//TAA Employee
+	public void OwnTAAView(Event e) {
+		BorderPane borderPane = (BorderPane)getScene(e);
+		root = comServ.AddScene("/com/midas/taa/own/OwnTAA.fxml");
+		borderPane.setCenter(root);
+	}
+	
+	public void OwnAskHolidayView(Event e) {
+		BorderPane borderPane = (BorderPane)getScene(e);
+		root = comServ.AddScene("/com/midas/taa/own/OwnAskHoliday.fxml");
+		
+		Parent form = root;
+		String [] FullHalfItems= {"전일", "반일"};
+		comServ.AddComboBox(form, Arrays.asList(FullHalfItems), "#cmbFullHalf");
+		
+		borderPane.setCenter(root);
+		
+		Scene scene = ((Parent)e.getSource()).getScene();
+		List<EmployeeHoliday2> OwnHolidayList = dbServ.SelectTable("EmployeeHoliday", "WHERE id = \"200401\""); //로그인 한 사람의 아이디
+		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
+	}
+	
+	public void OwnModifyHolidayView(Event e) {
+		BorderPane borderPane = (BorderPane)getScene(e);
+		root = comServ.AddScene("/com/midas/taa/own/OwnModifyHoliday.fxml");
+		
+		String [] TypeItems= {"연차", "출장", "조퇴", "결근", "지각", "출근"};
+		
+		borderPane.setCenter(root);
+		
+	}
+	
+	
+	
+	
+	
+	
 
 }

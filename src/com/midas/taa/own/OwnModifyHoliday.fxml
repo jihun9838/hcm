@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:controller="com.midas.taa.TAAController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="com.midas.taa.own.OwnModifyHolidayController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -25,7 +25,7 @@
             <Pane prefHeight="75.0" prefWidth="200.0" />
             <HBox prefHeight="23.0" prefWidth="289.0" spacing="10.0">
                <children>
-                  <Label minHeight="23.0" minWidth="72.0" text="연차 신청 내역">
+                  <Label minHeight="23.0" minWidth="72.0" text="연차 수정 내역">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -50,7 +50,7 @@
             </VBox>
             <HBox prefHeight="23.0" prefWidth="289.0">
                <children>
-                  <Label minHeight="23.0" minWidth="72.0" text="연차 신청">
+                  <Label minHeight="23.0" minWidth="72.0" text="수정 신청">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -62,14 +62,49 @@
             </HBox>
             <HBox prefHeight="23.0" prefWidth="980.0" spacing="10.0">
                <children>
-                  <Label prefHeight="23.0" text="신청일">
+                  <Label prefHeight="23.0" text="기존일">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                   <DatePicker />
+                  <Label prefHeight="23.0" text="~">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="23.0" text="종료일">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="23.0" text="2020.05.04">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="23.0" text="연차">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="23.0" text="1일">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="23.0" prefWidth="111.0" />
+                  <Label prefHeight="23.0" text="수정종류">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                   <ChoiceBox prefHeight="23.0" prefWidth="163.0" />
-                  <Label prefHeight="23.0" text="연차기간">
+               </children>
+            </HBox>
+            <HBox prefHeight="23.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="23.0" text="수정일">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -81,33 +116,12 @@
                      </font>
                   </Label>
                   <DatePicker />
-                  <Label prefHeight="23.0" prefWidth="60.0" text="기간 :">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="23.0" prefWidth="50.0" text="   0일">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="23.0" prefWidth="200.0" spacing="10.0">
-               <children>
-                  <Label prefHeight="23.0" text="휴가구분">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <ChoiceBox prefHeight="23.0" prefWidth="100.0" />
-                  <Label prefHeight="23.0" text="사유입력">
+                  <Label prefHeight="23.0" text="수정사유">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                   <TextField prefHeight="23.0" prefWidth="300.0" />
-                  <Pane prefHeight="23.0" prefWidth="320.0" />
                   <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="65.0" text="신청" />
                </children>
             </HBox>
