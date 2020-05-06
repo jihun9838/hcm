@@ -1,10 +1,10 @@
 package com.midas;
 
 import java.net.URL;
-import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
-import com.midas.db.Employee;
 import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
 
@@ -170,8 +170,8 @@ public class MainController extends Controller implements Initializable{
 		root = comServ.AddScene("/com/midas/taa/MonthTAA.fxml");
 
 		Parent form = root;
-		String [] departItems= {"부서1", "부서2", "부서3", "부서4", "부서5"};
-		String [] sortItems= {"사원번호", "이름"};
+		String [] departItems= {"遺��꽌1", "遺��꽌2", "遺��꽌3", "遺��꽌4", "遺��꽌5"};
+		String [] sortItems= {"�궗�썝踰덊샇", "�씠由�"};
 		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
 		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
 
@@ -183,7 +183,7 @@ public class MainController extends Controller implements Initializable{
 		root = comServ.AddScene("/com/midas/taa/PersonalTAA.fxml");
 		
 		Parent form = root;
-		String [] departItems= {"부서1", "부서2", "부서3", "부서4", "부서5"};
+		String [] departItems= {"遺��꽌1", "遺��꽌2", "遺��꽌3", "遺��꽌4", "遺��꽌5"};
 		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
 		
 		borderPane.setCenter(root);
@@ -194,8 +194,8 @@ public class MainController extends Controller implements Initializable{
 		root = comServ.AddScene("/com/midas/taa/TAAList.fxml");
 
 		Parent form = root;
-		String [] departItems= {"부서1", "부서2", "부서3", "부서4", "부서5"};
-		String [] sortItems= {"사원번호", "이름"};
+		String [] departItems= {"遺��꽌1", "遺��꽌2", "遺��꽌3", "遺��꽌4", "遺��꽌5"};
+		String [] sortItems= {"�궗�썝踰덊샇", "�씠由�"};
 		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
 		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
 
@@ -207,9 +207,9 @@ public class MainController extends Controller implements Initializable{
 		root = comServ.AddScene("/com/midas/taa/HolidayApproval.fxml");
 		
 		Parent form = root;
-		String [] departItems= {"부서1", "부서2", "부서3", "부서4", "부서5"};
-		String [] sortItems= {"사원번호", "이름"};
-		String [] approvalItems = {"승인", "미승인", "반려"};
+		String [] departItems= {"遺��꽌1", "遺��꽌2", "遺��꽌3", "遺��꽌4", "遺��꽌5"};
+		String [] sortItems= {"�궗�썝踰덊샇", "�씠由�"};
+		String [] approvalItems = {"�듅�씤", "誘몄듅�씤", "諛섎젮"};
 		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
 		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
 		comServ.AddComboBox(form, Arrays.asList(approvalItems), "#cmbApproval");
@@ -235,13 +235,13 @@ public class MainController extends Controller implements Initializable{
 		root = comServ.AddScene("/com/midas/taa/own/OwnAskHoliday.fxml");
 		
 		Parent form = root;
-		String [] FullHalfItems= {"전일", "반일"};
+		String [] FullHalfItems= {"�쟾�씪", "諛섏씪"};
 		comServ.AddComboBox(form, Arrays.asList(FullHalfItems), "#cmbFullHalf");
 		
 		borderPane.setCenter(root);
 		
 		Scene scene = ((Parent)e.getSource()).getScene();
-		List<EmployeeHoliday2> OwnHolidayList = dbServ.SelectTable("EmployeeHoliday", "WHERE id = \"200401\""); //로그인 한 사람의 아이디
+		List<EmployeeHoliday2> OwnHolidayList = dbServ.SelectTable("EmployeeHoliday", "WHERE id = \"200401\""); //濡쒓렇�씤 �븳 �궗�엺�쓽 �븘�씠�뵒
 		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
 	}
 	
@@ -249,7 +249,7 @@ public class MainController extends Controller implements Initializable{
 		BorderPane borderPane = (BorderPane)getScene(e);
 		root = comServ.AddScene("/com/midas/taa/own/OwnModifyHoliday.fxml");
 		
-		String [] TypeItems= {"연차", "출장", "조퇴", "결근", "지각", "출근"};
+		String [] TypeItems= {"�뿰李�", "異쒖옣", "議고눜", "寃곌렐", "吏�媛�", "異쒓렐"};
 		
 		borderPane.setCenter(root);
 		

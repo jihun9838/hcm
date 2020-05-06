@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.midas.Controller;
-import com.midas.db.EmployeeHoliday2;
 import com.midas.db.HolidayRequest;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
@@ -25,26 +24,26 @@ public class HolidayApprovalController extends Controller implements Initializab
 	private DBService dbServ;
 	private CommonService comServ;
 	@FXML DatePicker ApprovalDatePicker;
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		ApprovalDatePicker.setValue(LocalDate.now());
 		dbServ = new DBServiceImpl();
 		comServ = new CommonServiceImpl();
-		
+
 	}
 
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
-		
+
 	}
-	
+
 	public void HoliAppTableShow(ActionEvent e) {
 		Scene scene = ((Parent)e.getSource()).getScene();
 		List<HolidayRequest> HoliAppList = dbServ.SelectTable("HolidayRequest", "");
 		comServ.ShowTableViewByList(scene, "#HoliAppTable", HoliAppList);
-	
+
 	}
 
 }

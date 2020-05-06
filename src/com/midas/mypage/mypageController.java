@@ -1,16 +1,17 @@
-package mypage;
+package com.midas.mypage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.midas.mainpage.Member;
+import com.midas.mainpage.data.IMembershipManage;
+import com.midas.mainpage.data.IMembershipManageImpl;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import mainpage.Member;
-import mainpage.data.IMembershipManage;
-import mainpage.data.IMembershipManageImpl;
 
 public class mypageController implements Initializable{
 

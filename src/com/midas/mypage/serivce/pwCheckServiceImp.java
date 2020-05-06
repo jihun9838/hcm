@@ -1,4 +1,4 @@
-package mypage.Service;
+package com.midas.mypage.serivce;
 
 import javafx.scene.Parent;
 
