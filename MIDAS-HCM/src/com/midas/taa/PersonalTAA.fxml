@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="com.midas.taa.TAAController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label minHeight="23.0" minWidth="72.0" text="개인 근태  내역">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Pane prefHeight="75.0" prefWidth="980.0" />
+            <HBox prefHeight="24.0" prefWidth="980.0" spacing="10.0">
+               <children>
+                  <Pane prefHeight="35.0" prefWidth="380.0" />
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/1.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="36.0" text="출근">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/2.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" text="지각">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/6.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" text="휴가">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/3.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" text="출장">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/4.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" text="조퇴">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/5.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" text="결근">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Pane prefHeight="368.0" prefWidth="980.0" />
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+   </center>
+   <top>
+      <VBox prefHeight="23.0" prefWidth="980.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="33.0" prefWidth="980.0" spacing="10.0">
+               <children>
+                  <Label minHeight="23.0" minWidth="72.0" text="근무년월">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <DatePicker prefWidth="150.0" />
+                  <Pane prefHeight="23.0" prefWidth="50.0" />
+                  <Label minWidth="39.0" prefHeight="23.0" prefWidth="53.0" text="부서">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox prefHeight="23.0" prefWidth="100.0" />
+                  <Pane prefHeight="23.0" prefWidth="50.0" />
+                  <HBox prefHeight="23.0" prefWidth="490.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="23.0" text="사원번호">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="23.0" prefWidth="150.0" />
+                        <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="65.0" text="조회" />
+                        <Label prefHeight="23.0" prefWidth="90.0" text="고양이">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="65.0" text="검색" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>

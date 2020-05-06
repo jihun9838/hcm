@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="com.midas.taa.TAAController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <top>
+      <VBox prefHeight="271.0" prefWidth="980.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label minHeight="23.0" minWidth="72.0" text="연간 연차 내역">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="75.0" prefWidth="980.0" />
+            <HBox prefHeight="23.0" prefWidth="980.0" spacing="10.0">
+               <children>
+                  <Label minHeight="23.0" minWidth="72.0" text="월간 근태 내역">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="23.0" prefWidth="474.0" />
+                  <Label minHeight="23.0" minWidth="72.0" text="근무년월">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <DatePicker prefWidth="150.0" />
+                  <Pane prefHeight="23.0" prefWidth="50.0" />
+                  <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="65.0" text="조회" />
+               </children>
+            </HBox>
+            <Pane prefHeight="75.0" prefWidth="980.0" />
+            <HBox prefHeight="24.0" prefWidth="980.0" spacing="10.0">
+               <children>
+                  <Pane prefHeight="35.0" prefWidth="380.0" />
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/1.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="36.0" text="출근">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/2.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" text="지각">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/6.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" text="휴가">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/3.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" text="출장">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/4.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" text="조퇴">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../문서/img/5.JPG" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" text="결근">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <Pane prefHeight="300.0" prefWidth="980.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

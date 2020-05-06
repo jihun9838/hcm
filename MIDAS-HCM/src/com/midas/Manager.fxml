@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Accordion fx:controller="com.midas.MainController" prefHeight="620.0" prefWidth="260.0" style="-fx-border-color: #D9E5FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >   <panes>
+      <TitledPane fx:id="MMYPAGE" animated="false" layoutX="10.0" layoutY="56.0" style="-fx-border-color: #D9E5FF;" text="내 정보">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="MChangeInfoLbl" text="정보 수정">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </content>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TitledPane>
+      <TitledPane fx:id="MTAA" animated="false" style="-fx-border-color: #D9E5FF;" text="근태 관리">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="holidayLbl" onMouseClicked="#SetCalendarView" text="휴일 설정">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="taaReportLbl" onMouseClicked="#TAAReportView" text="근태 리포트">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="taaMgmtLbl" onMouseClicked="#MonthTAAView" text="월간 근태 내역">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="taaMgmtLbl1" onMouseClicked="#PersonalTAAView" text="개인 근태 내역">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="taaMgmtLbl11" onMouseClicked="#TAAListView" text="연차 내역">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="taaMgmtLbl111" onMouseClicked="#HolidayApprovalView" text="연차 승인">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="taaMgmtLbl1111" onMouseClicked="#HolidayModifyView" text="근태/연차 수정 승인">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </content>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TitledPane>
+      <TitledPane fx:id="MSALARY" animated="false" layoutX="5.0" layoutY="33.0" style="-fx-border-color: #D9E5FF;" text="급여 관리">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="salaryMgmtLbl" onMouseClicked="#SalaryMgmtView" text="급여 관리">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="salaryReportLbl" onMouseClicked="#SalaryReportView" text="급여 리포트">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </content>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TitledPane>
+      <TitledPane fx:id="HR" animated="false" style="-fx-border-color: #D9E5FF;" text="인사 관리">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="hrMgmtLbl" text="인사 관리">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </content>
+         <font>
+            <Font size="24.0" />
+         </font>
+      </TitledPane>
+   </panes>
+</Accordion>
