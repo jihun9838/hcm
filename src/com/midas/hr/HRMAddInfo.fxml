@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:controller="MIDAS.AddController" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="50.0" left="50.0" right="50.0" />
+   </padding>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="520.0" prefWidth="152.0" spacing="20.0" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <ImageView fx:id="employee_picture" fitHeight="160.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER" />
+            <VBox alignment="CENTER" prefHeight="0.0" prefWidth="152.0">
+               <children>
+                  <TextField fx:id="add_img" promptText="파일명.확장자" />
+                  <Label text="사진추가">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Pane prefHeight="217.0" prefWidth="152.0" />
+            <Button fx:id="employee_add" mnemonicParsing="false" onAction="#InfoSave" prefHeight="30.0" prefWidth="100.0" text="저장" textAlignment="CENTER">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="18.0" prefWidth="65.0" text="사원번호*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="add_num" prefHeight="28.0" prefWidth="204.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Pane prefHeight="100.0" prefWidth="68.0" />
+                  <Label prefWidth="65.0" text="사원구분*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="add_category" prefHeight="29.0" prefWidth="172.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label prefWidth="65.0" text="이름*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="add_name" prefHeight="28.0" prefWidth="204.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Pane prefHeight="100.0" prefWidth="68.0" />
+                  <Label prefWidth="65.0" text="ID*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="add_id" prefHeight="28.0" prefWidth="204.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label prefWidth="65.0" text="주민번호*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="219.0">
+                     <children>
+                        <TextField fx:id="add_birth" prefHeight="28.0" prefWidth="102.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="14.0" text="-">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="add_gender" prefHeight="28.0" prefWidth="102.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </PasswordField>
+                     </children>
+                  </HBox>
+                  <Pane prefHeight="58.0" prefWidth="51.0" />
+                  <Label prefHeight="18.0" prefWidth="65.0" text="PW*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="add_pw" prefHeight="28.0" prefWidth="204.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label prefWidth="65.0" text="부서*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="add_department" prefHeight="28.0" prefWidth="204.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Pane prefHeight="100.0" prefWidth="68.0" />
+                  <Label prefWidth="65.0" text="직급*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="add_position" prefHeight="29.0" prefWidth="172.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label prefWidth="65.0" text="근무지*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="add_place" prefHeight="28.0" prefWidth="204.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Pane prefHeight="100.0" prefWidth="68.0" />
+                  <Label prefWidth="65.0" text="연봉">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="add_salary" prefHeight="28.0" prefWidth="174.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label text="만원">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label prefWidth="65.0" text="휴대전화*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="add_phone" prefHeight="28.0" prefWidth="204.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Pane prefHeight="100.0" prefWidth="68.0" />
+                  <Label prefWidth="65.0" text="이메일">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="add_email" prefHeight="28.0" prefWidth="204.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label prefWidth="65.0" text="주소*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="add_address" prefHeight="28.0" prefWidth="570.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label prefWidth="65.0" text="최종학력*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="add_education" prefHeight="29.0" prefWidth="172.0" />
+                  <Pane prefHeight="100.0" prefWidth="68.0" />
+                  <Label prefWidth="65.0" text="입사일자*">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="add_join" editable="false" prefHeight="29.0" prefWidth="172.0" />
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="30.0" left="50.0" right="30.0" top="30.0" />
+         </padding>
+      </VBox>
+   </center>
+   <top>
+      <BorderPane prefHeight="47.0" prefWidth="920.0" BorderPane.alignment="CENTER">
+         <right>
+            <Button fx:id="add_close" mnemonicParsing="false" onAction="#CloseProc" prefHeight="23.0" prefWidth="70.0" text="닫기" BorderPane.alignment="CENTER" />
+         </right>
+         <left>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="463.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="253.0" text="사원 상세정보">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <Label text="*표시는 필수 입력 항목입니다" />
+               </children>
+            </HBox>
+         </left>
+      </BorderPane>
+   </top>
+</BorderPane>
