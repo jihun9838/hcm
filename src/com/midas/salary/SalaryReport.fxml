@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="com.midas.salary.SalaryController" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+   <center>
+      <LineChart fx:id="lineChart" title="급여 추세" BorderPane.alignment="CENTER">
+         <xAxis>
+            <CategoryAxis label="고양이" prefHeight="31.0" prefWidth="866.0" side="BOTTOM" tickLabelGap="4.0" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis forceZeroInRange="false" label="급여" lowerBound="200.0" side="LEFT" upperBound="700.0" />
+         </yAxis>
+      </LineChart>
+   </center>
+   <top>
+      <HBox prefHeight="60.0" prefWidth="1020.0" spacing="20.0">
+         <children>
+            <TextField prefHeight="77.0" prefWidth="138.0" text="이름 검색" />
+            <DatePicker prefHeight="106.0" prefWidth="163.0" />
+            <ComboBox prefHeight="110.0" prefWidth="150.0" promptText="이름 순 (콤보박스)" />
+            <ChoiceBox prefHeight="126.0" prefWidth="150.0" />
+            <Pane prefHeight="40.0" prefWidth="166.0" />
+            <Button onAction="#ShowReportProc" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="검색" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="엑셀 내보내기" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+</BorderPane>

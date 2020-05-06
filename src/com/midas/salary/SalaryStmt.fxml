@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.midas.salary.SalaryController">
+   <center>
+      <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="6월 급여 연봉 /12 만원&#10;실 수령액 연봉 / 12 - 4대 보험 만원&#10;4대 보험 : 건강보험, 국민연급, 고용보험, 산업재해&#10;&#10;지급총액 : 연봉 /12 만원&#10;공제총액 : 4대 보험&#10;실지급액 : 연봉 / 12 - 4대 보험 만원&#10;&#10;&#10;&#10;(주) 미다스 (직인)" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <HBox prefHeight="60.0" prefWidth="1020.0" spacing="20.0">
+         <children>
+            <TextField fx:id="stmtTf" prefHeight="77.0" prefWidth="138.0" text="이름 검색" />
+            <DatePicker prefHeight="106.0" prefWidth="163.0" />
+            <ComboBox prefHeight="110.0" prefWidth="150.0" promptText="이름 순 (콤보박스)" />
+            <ChoiceBox prefHeight="126.0" prefWidth="150.0" />
+            <Pane prefHeight="40.0" prefWidth="166.0" />
+            <Button onAction="#ShowStmtProc" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="검색" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="엑셀 내보내기" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+</BorderPane>
