@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="com.midas.taa.TAAController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <top>
+      <HBox prefHeight="23.0" prefWidth="980.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label minHeight="23.0" minWidth="72.0" text="근무년월">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <DatePicker prefHeight="23.0" prefWidth="150.0" />
+            <Pane prefHeight="23.0" prefWidth="50.0" />
+            <Label prefHeight="23.0" text="부서">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ChoiceBox prefHeight="23.0" prefWidth="100.0" />
+            <Pane prefHeight="23.0" prefWidth="50.0" />
+            <Label prefHeight="23.0" text="검색어">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ChoiceBox prefWidth="100.0" />
+            <TextField />
+            <Pane prefHeight="23.0" prefWidth="50.0" />
+            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="65.0" text="검색" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label minHeight="20.0" minWidth="72.0" prefHeight="23.0" text="월간 근태  내역">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ListView prefHeight="512.0" prefWidth="980.0" />
+         </children>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>

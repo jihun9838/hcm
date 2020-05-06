@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="com.midas.MainController" fx:id="canvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="midasLbl" prefHeight="100.0" prefWidth="261.0" text="  MIDAS-HCM" textAlignment="CENTER" textFill="#070c94">
+               <font>
+                  <Font name="Gadugi" size="38.0" />
+               </font>
+            </Label>
+            <Label fx:id="homepageLbl" prefHeight="100.0" prefWidth="170.0" text="Homepage">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="helloLbl" alignment="CENTER" prefHeight="81.0" prefWidth="515.0" text="홍길동님 안녕하세요!" textFill="#484848">
+               <font>
+                  <Font name="Sitka Banner" size="21.0" />
+               </font>
+               <padding>
+                  <Insets left="300.0" top="20.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+            <Button fx:id="logoutBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #D9E5FF;" text="로그아웃">
+               <HBox.margin>
+                  <Insets left="55.0" top="30.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="commuteBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #D9E5FF;" text="출근">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" top="30.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
