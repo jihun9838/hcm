@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:controller="com.midas.mainpage.SigninController" prefHeight="517.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="52.0" layoutY="33.0" text="사원번호" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="signEmployeeTxt" layoutX="138.0" layoutY="30.0" prefHeight="28.0" prefWidth="155.0" />
+      <Label layoutX="316.0" layoutY="33.0" text="입사시 알려드린 사원번호를 입력하세요." textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="signNameTxt" layoutX="138.0" layoutY="84.0" prefHeight="28.0" prefWidth="155.0" />
+      <Label layoutX="52.0" layoutY="87.0" text="이름" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="52.0" layoutY="150.0" text="비밀번호" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="signIdTxt" layoutX="455.0" layoutY="84.0" prefHeight="28.0" prefWidth="155.0" />
+      <Label layoutX="369.0" layoutY="87.0" text="아이디" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="369.0" layoutY="136.0" text="비밀번호" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="387.0" layoutY="161.0" text="확인" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="idCheckBtn" layoutX="624.0" layoutY="77.0" mnemonicParsing="false" onAction="#idCheckBtnProc" prefHeight="39.0" prefWidth="66.0" text="중복확인" />
+      <Label layoutX="52.0" layoutY="209.0" text="주민번호" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="SignBirthTxt" layoutX="138.0" layoutY="206.0" prefHeight="28.0" prefWidth="72.0" />
+      <PasswordField fx:id="signSecretTxt" layoutX="237.0" layoutY="206.0" prefHeight="28.0" prefWidth="72.0" />
+      <Label layoutX="216.0" layoutY="212.0" prefHeight="15.0" prefWidth="13.0" text=" -" />
+      <Label layoutX="369.0" layoutY="209.0" text="전화번호" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="signPhoneNumTxt" layoutX="455.0" layoutY="206.0" prefHeight="28.0" prefWidth="155.0" />
+      <Label layoutX="455.0" layoutY="234.0" text="( - 없이 입력해주세요. )" />
+      <Label layoutX="52.0" layoutY="280.0" text="주소" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="signAddressTxt" layoutX="138.0" layoutY="276.0" prefHeight="28.0" prefWidth="478.0" />
+      <Label layoutX="52.0" layoutY="332.0" text="부서" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="SignDepartmemtCombobox" layoutX="139.0" layoutY="329.0" prefHeight="28.0" prefWidth="155.0"  promptText="부서 선택" />
+      <Label layoutX="369.0" layoutY="332.0" text="이메일" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="signEmailTxt" layoutX="455.0" layoutY="329.0" prefHeight="28.0" prefWidth="155.0" />
+      <Label layoutX="52.0" layoutY="390.0" text="입사날짜" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="SignJoindate" layoutX="141.0" layoutY="386.0" prefHeight="28.0" prefWidth="155.0" promptText="입사날짜 선택"/>
+      <ComboBox fx:id="signFinalEduCombobox" layoutX="456.0" layoutY="387.0" prefHeight="28.0" prefWidth="155.0"  promptText="최종학력 선택" />
+      <Label layoutX="369.0" layoutY="390.0" text="최종학력" textFill="#080354">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="signinBtn" disable="true" layoutX="274.0" layoutY="448.0" mnemonicParsing="false" onAction="#signinBtnProc" prefHeight="46.0" prefWidth="155.0" text="회원가입" />
+      <PasswordField fx:id="signPwTxt" layoutX="138.0" layoutY="147.0" prefHeight="28.0" prefWidth="155.0" />
+      <PasswordField fx:id="signPwOKTxt" layoutX="456.0" layoutY="143.0" prefHeight="28.0" prefWidth="155.0" />
+   </children>
+</AnchorPane>
