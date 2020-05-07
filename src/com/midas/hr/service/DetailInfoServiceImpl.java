@@ -52,10 +52,10 @@ public class DetailInfoServiceImpl implements DetailInfoService {
 		Employee_email.setText(employee.getEmail());
 		Employee_address.setText(employee.getAddress());
 		if(employee.getImage() == null || employee.getImage().length() == 0) {
-			employee_picture.setImage(new Image("/MIDAS/image/기본사진.png"));
+			employee_picture.setImage(new Image("/com/midas/image/기본사진.png"));
 		}
 		else {
-			employee_picture.setImage(new Image("/MIDAS/image/" + employee.getImage()));
+			employee_picture.setImage(new Image("/com/midas/image/" + employee.getImage()));
 		}
 		Employee_join.setValue(LOCAL_DATE(employee.getJoin()));
 		Employee_category.setValue(employee.getCategory());

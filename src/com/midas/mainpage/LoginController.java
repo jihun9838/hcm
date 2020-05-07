@@ -65,11 +65,9 @@ public class LoginController extends Controller implements Initializable{
 		loginServ = new LoginserviceImp();
 		homeServ = new HompageServiceImp();
 
-//		loginBtn.setOnAction(e->{			
-//			loginBtnProc();
-//		});
 
-		loginBtn.setDisable(true);
+
+		//loginBtn.setDisable(true);
 
 		loginIdTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
 			disableButton();
@@ -81,6 +79,7 @@ public class LoginController extends Controller implements Initializable{
 
 		loginIdTxt.setOnAction(e->loginPwTxt.requestFocus());
 		loginPwTxt.setOnAction(e->loginBtn.requestFocus());
+		loginBtn.setOnAction(e->loginBtnProc(e));
 	}
 
 	private void disableButton() {

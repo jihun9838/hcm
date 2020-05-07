@@ -74,7 +74,8 @@ public class Employee {
 		this.remainHoliday = new SimpleStringProperty(remainHoliday);
 		this.value = new StringProperty[]{
 				num(), id(), pw(), name(), birth(), socialNum(), category(), salary(), department(),
-				position(), place(), phone(), join(), email(), education(), address(), image()};
+				position(), place(), phone(), join(), email(), education(), address(), image(),
+				availableHoliday(), usedHoliday(), remainHoliday()};
 	}
 
 	public Employee(String num, String name) {

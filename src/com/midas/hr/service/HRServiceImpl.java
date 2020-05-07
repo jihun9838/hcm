@@ -11,14 +11,14 @@ public class HRServiceImpl implements HRService{
 	public Parent OpenDetailForm() {
 		CommonService comServ = new CommonServiceImpl();
 		Stage membershipForm = new Stage();
-		return comServ.showWindow(membershipForm, "../HRMDetailInfo.fxml");
+		return comServ.showWindow(membershipForm, "/com/midas/hr/HRMDetailInfo.fxml");
 	}
 
 	@Override
 	public Parent OpenAddForm() {
 		CommonService comServ = new CommonServiceImpl();
 		Stage membershipForm = new Stage();
-		return comServ.showWindow(membershipForm, "../HRMAddInfo.fxml");
+		return comServ.showWindow(membershipForm, "/com/midas/hr/HRMAddInfo.fxml");
 	}
 
 }

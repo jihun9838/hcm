@@ -145,10 +145,10 @@ public class DetailController extends Controller implements Initializable{
 		Employee_education.setValue(employee.getEducation());
 		Employee_join.setValue(detail.LOCAL_DATE(employee.getJoin()));
 		if(employee.getImage() == null || employee.getImage().length() == 0)	{
-			employee_picture.setImage(new Image("/MIDAS/image/기본사진.png"));
+			employee_picture.setImage(new Image("/com/midas/image/기본사진.png"));
 		}
 		else {
-			employee_picture.setImage(new Image("/MIDAS/image/" + employee.getImage()));
+			employee_picture.setImage(new Image("/com/midas/image/" + employee.getImage()));
 		}
 		edit_img.setText(employee.getImage());
 	}
@@ -238,7 +238,7 @@ public class DetailController extends Controller implements Initializable{
 			employee.setImage(null);
 		}
 		else {
-			employee.setImage("/MIDAS/image/" + edit_img.getText());
+			employee.setImage("/com/midas/image/" + edit_img.getText());
 		}
 		employee.setJoin(Employee_join.getValue().toString());
 		employee.setCategory(Employee_category.getValue());
