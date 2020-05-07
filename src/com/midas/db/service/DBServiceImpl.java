@@ -305,28 +305,17 @@ public class DBServiceImpl implements DBService{
 				while(rs.next()) {
 					HolidayRequest holidayRequest = new HolidayRequest();
 
-					holidayRequest.setNum(rs.getString("사원번호"));
+
 					holidayRequest.setId(rs.getString("id"));
-					//				holidayRequest.setPw(rs.getString("pw"));
-					//				holidayRequest.setName(rs.getString("이름"));
-					//				holidayRequest.setBirth(rs.getString("생년월일"));
-					//				holidayRequest.setGender(rs.getString("주민번호뒷자리"));
-					//				holidayRequest.setCategory(rs.getString("사원구분"));
-					//				holidayRequest.setSalary(rs.getString("연봉"));
-					//				holidayRequest.setDepartment(rs.getString("부서"));
-					//				holidayRequest.setPosition(rs.getString("직급"));
-					//				holidayRequest.setPlace(rs.getString("근무지"));
-					//				holidayRequest.setPhone(rs.getString("전화번호"));
-					//				holidayRequest.setJoin(rs.getString("입사일자"));
-					//				holidayRequest.setEmail(rs.getString("이메일"));
-					//				holidayRequest.setEducation(rs.getString("최종학력"));
-					//				holidayRequest.setAddress(rs.getString("주소"));
-					//				holidayRequest.setImage(rs.getString("사진url"));
-					holidayRequest.setIdx(rs.getString("idx"));
-					holidayRequest.setStart(rs.getString("start"));
-					holidayRequest.setEnd(rs.getString("end"));
-					holidayRequest.setDays(rs.getString("days"));
-					holidayRequest.setText(rs.getString("text"));
+					holidayRequest.setName(rs.getString("name"));
+					holidayRequest.setDepartment(rs.getString("department"));
+					holidayRequest.setAvailableDay(rs.getString("availableDay"));
+					holidayRequest.setRequestDay(rs.getString("requestDay"));
+					holidayRequest.setStartDay(rs.getString("startDay"));
+					holidayRequest.setEndDay(rs.getString("endDay"));
+					holidayRequest.setPeriodDay(rs.getString("periodDay"));
+					holidayRequest.setReason(rs.getString("reason"));
+					holidayRequest.setApproval(rs.getString("approval"));
 
 					list.add(holidayRequest);
 				}
@@ -626,6 +615,7 @@ public class DBServiceImpl implements DBService{
 
 		return false;
 	}
+	
 	@Override
 	public boolean EditInfo(String num, Employee employee) {
 		String sql = "UPDATE Employee " +
@@ -993,5 +983,85 @@ public class DBServiceImpl implements DBService{
 		}
 		return false;	
 	}
+	
+	//TAA
+	@Override
+	public boolean SaveHolidayRequest(HolidayRequest holidayRequest) {
+		String sql = "INSERT INTO HolidayRequest (id,name,department,availableDay,requestDay,startDay,endDay,periodDay,reason,approval)" + 
+				"VALUES (?,?,?,?,?,?,?,?,?,?)";
 
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			
+			pStmt.setString(1, holidayRequest.getId());
+			pStmt.setString(2, holidayRequest.getName());
+			pStmt.setString(3, holidayRequest.getDepartment());
+			pStmt.setString(4, holidayRequest.getAvailableDay());
+			pStmt.setString(5, holidayRequest.getRequestDay());
+			pStmt.setString(6, holidayRequest.getStartDay());
+			pStmt.setString(7, holidayRequest.getEndDay());
+			pStmt.setString(8, holidayRequest.getPeriodDay());
+			pStmt.setString(9, holidayRequest.getReason());
+			pStmt.setString(10, holidayRequest.getApproval());
+
+			pStmt.executeUpdate();
+			pStmt.close();
+			conn.close();
+
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+	@Override
+	public List<Employee> SelectTableHoliday(String whereOption){
+				
+				String sql = "SELECT " +
+							"\"사원번호\", \"이름\", \"부서\", \"입사일자\", \"총연차\", \"사용연차\", \"잔여연차\" "+
+							"FROM Employee";
+
+				//SELECT "사원번호", "이름", "부서", "입사일자", "총연차", "사용연차", "잔여연차" FROM Employee;
+
+				if(!whereOption.isEmpty()) {
+					sql +="\n" + whereOption;
+				}
+				List<Employee> list = new ArrayList<>();
+
+				try {
+					PreparedStatement pStmt = conn.prepareStatement(sql);
+					ResultSet rs = pStmt.executeQuery();
+		
+			while(rs.next()) {
+				Employee emp = new Employee();
+
+				emp.setNum(rs.getString("사원번호"));
+				emp.setName(rs.getString("이름"));
+				emp.setDepartment(rs.getString("부서"));
+				emp.setJoin(rs.getString("입사일자"));
+				emp.setAvailableDay(rs.getInt("총연차"));
+				emp.setUsedDay(rs.getInt("사용연차"));
+				emp.setRemainDay(rs.getInt("잔여연차"));
+
+				list.add(emp);
+			}
+						
+
+		//stmt.close();
+		pStmt.close();
+		rs.close();
+		//conn.close();
+
+		return list;
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	System.out.println("ERROR : SelectTableHoliday");
+	return null;
+	}
 }

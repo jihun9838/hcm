@@ -3,6 +3,7 @@ package com.midas.db.service;
 import java.util.List;
 
 import com.midas.db.Employee;
+import com.midas.db.HolidayRequest;
 
 public interface DBService {
 
@@ -44,7 +45,13 @@ public interface DBService {
 	public String [] homepage(String id);
 	public boolean infopwCheck(String id);
 	public Employee getMember(String num);
-
+	
+	//JeongSoo
+	public boolean SaveHolidayRequest(HolidayRequest holidayRequest);
+	public List<Employee> SelectTableHoliday(String whereOption);
+	
+	
+	
 	/*
 	 * public List<EmployeeHoliday> getEmployeeHolidayList();
 	public List<SalaryResult> getSalaryResultList();
