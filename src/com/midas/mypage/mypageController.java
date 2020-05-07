@@ -3,18 +3,21 @@ package com.midas.mypage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.midas.mainpage.Member;
-import com.midas.mainpage.data.IMembershipManage;
-import com.midas.mainpage.data.IMembershipManageImpl;
+import com.midas.Controller;
+import com.midas.db.Employee;
+import com.midas.db.service.DBService;
+import com.midas.db.service.DBServiceImpl;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class mypageController implements Initializable{
+public class mypageController extends Controller implements Initializable{
 
+	Parent root;
 	@FXML private TextField nameTxt;
 	@FXML private TextField phoneNumTxt;
 	@FXML private TextField addressTxt;
@@ -30,30 +33,38 @@ public class mypageController implements Initializable{
 	@FXML private TextField newPwTxt;
 	@FXML private TextField newPwOKTxt;
 
-	private IMembershipManage memManage;
+	private DBService dbServ;
+	
+	@Override
+	public void setRoot(Parent root) {
+		// TODO Auto-generated method stub
+		this.root = root;
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		dbServ = new DBServiceImpl();
 
 	}
 
 	public void modifyBtnProc() {
 
 	}
+	
 	public void setInfo(String num) {
-		memManage = new IMembershipManageImpl();
-		Member member = memManage.getMember(num);
+		Employee emp = dbServ.getEmployee(num);
 
-		phoneNumTxt.setText(member.getPhoneNum());
-		nameTxt.setText(member.getName());
-		birthLbl.setText(member.getBirth());
-		departmemtLbl.setText(member.getDepartment());
-		emailTxt.setText(member.getEmail());
-		addressTxt.setText(member.getAddress());
-		positionLbl.setText(member.getPosition());
-		finalEduLbl.setText(member.getFinalEdu());
-		employeeLbl.setText(member.getEmployeeNum());
-		joinDateLbl.setText(member.getSignJoindate());
+		phoneNumTxt.setText(emp.getPhone());
+		nameTxt.setText(emp.getName());
+		birthLbl.setText(emp.getBirth());
+		departmemtLbl.setText(emp.getDepartment());
+		emailTxt.setText(emp.getEmail());
+		addressTxt.setText(emp.getAddress());
+		positionLbl.setText(emp.getPosition());
+		finalEduLbl.setText(emp.getEducation());
+		employeeLbl.setText(emp.getNum());
+		joinDateLbl.setText(emp.getJoin());
 
 		/*
 		 * if(member.getimage() == null || member.getimage().length() == 0) {
@@ -63,4 +74,6 @@ public class mypageController implements Initializable{
 		 */
 		//if 등록한 사진이 없을 땐 기본사진  else 등록한 사진이 있을 때는 등록된 사진 출력
 	}
+
+
 }

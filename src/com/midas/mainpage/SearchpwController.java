@@ -1,23 +1,33 @@
-package mainpage;
+package com.midas.mainpage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.midas.Controller;
+import com.midas.db.service.DBService;
+import com.midas.db.service.DBServiceImpl;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import mainpage.data.IMembershipManage;
-import mainpage.data.IMembershipManageImpl;
 
-public class searchpwController implements Initializable{
+public class SearchpwController extends Controller implements Initializable{
 
+	Parent root;
 	@FXML private TextField pwSearchNameTxt;
 	@FXML private TextField pwSearchIdTxt;
 	@FXML private TextField pwSearchNumTxt;
 	@FXML private Button pwSerchBtn;
 
-	private IMembershipManage imemManage = new IMembershipManageImpl();
+	private DBService dbServ = new DBServiceImpl();
+	
+	@Override
+	public void setRoot(Parent root) {
+		// TODO Auto-generated method stub
+		this.root = root;
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -32,6 +42,6 @@ public class searchpwController implements Initializable{
 		String PhoneNum = pwSearchNumTxt.getText();
 		String id = pwSearchIdTxt.getText();
 
-		imemManage.searchPW(name, id, PhoneNum);
+		dbServ.searchPW(name, id, PhoneNum);
 	}
 }

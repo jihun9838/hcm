@@ -1,7 +1,7 @@
-package mainpage.Service;
+package com.midas.mainpage.service;
 
-import mainpage.Member;
+import com.midas.db.Employee;
 
 public interface SearchService {
-	public boolean MembershipProc(Member member);
+	public boolean MembershipProc(Employee emp);
 }

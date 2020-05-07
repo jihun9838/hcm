@@ -1,14 +1,17 @@
-package MIDAS;
+package com.midas.hr;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import MIDAS.Service.AddInfoService;
-import MIDAS.Service.AddInfoServiceImpl;
-import MIDAS.Service.CommonService;
-import MIDAS.Service.CommonServiceImpl;
+import com.midas.Controller;
+import com.midas.db.Employee;
+import com.midas.hr.service.AddInfoService;
+import com.midas.hr.service.AddInfoServiceImpl;
+import com.midas.service.CommonService;
+import com.midas.service.CommonServiceImpl;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,7 +25,7 @@ public class AddController extends Controller implements Initializable{
 	@FXML private TextField add_name;
 	@FXML private TextField add_id;
 	@FXML private TextField add_pw;
-	@FXML private TextField add_birth;
+	@FXML private TextField add_birth;	
 	@FXML private TextField add_gender;
 	@FXML private TextField add_department;
 	@FXML private TextField add_place;
@@ -44,31 +47,31 @@ public class AddController extends Controller implements Initializable{
 	final private int BIRTH = 6;
 	final private int GENDER = 7;
 	private Parent root;
-	
+
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {		
 		comServ = new CommonServiceImpl();
-		
+
 		add_category.getItems().addAll(CATEGORY);
 		add_position.getItems().addAll(POSITION);
 		add_education.getItems().addAll(EDUCATION);
-		
+
 		add_birth.textProperty().addListener((obs, oldTxt, newTxt)->{
 			txtLimit(add_birth, BIRTH);
 			checkEscapeText(add_birth);
 		});
-		
+
 		add_gender.textProperty().addListener((obs, oldTxt, newTxt)->{
 			txtLimit(add_gender, GENDER);
 			checkEscapeText(add_gender);
 		});
 	}
-	
+
 	public void InfoSave(ActionEvent event) {
 		AddInfoService add = new AddInfoServiceImpl();
 		Employee employee = new Employee();
@@ -76,50 +79,50 @@ public class AddController extends Controller implements Initializable{
 		String []comboFldIdArr = COMBOFLDLST;
 		Map<String, TextField> txtFldMap = comServ.getTextFieldInfo(root, txtFldIdArr);
 		Map<String, ComboBox<String>> comboFldMap = comServ.getComboBoxInfo(root, comboFldIdArr);
-		
+
 		if(comServ.isEmptyTxt(txtFldMap, txtFldIdArr) || comServ.isEmptyCombo(comboFldMap, comboFldIdArr)) {
 			comServ.ErrorMsg("사원추가 알람", "사원추가 실패", "필수 입력 칸이 비어있습니다.");
 			return ;
 		}
-		
-		employee.setnum(add_num.getText());
-		employee.setname(add_name.getText());
-		employee.setid(add_id.getText());
-		employee.setpw(add_pw.getText());
-		employee.setbirth(add_birth.getText());
-		employee.setgender(add_gender.getText());
-		employee.setdepartment(add_department.getText());
-		employee.setplace(add_place.getText());
-		employee.setsalary(add_salary.getText());
-		employee.setphone(add_phone.getText());
-		employee.setemail(add_email.getText());
-		employee.setaddress(add_address.getText());
+
+		employee.setNum(add_num.getText());
+		employee.setName(add_name.getText());
+		employee.setId(add_id.getText());
+		employee.setPw(add_pw.getText());
+		employee.setBirth(add_birth.getText());
+		employee.setSocialNum(add_gender.getText());
+		employee.setDepartment(add_department.getText());
+		employee.setPlace(add_place.getText());
+		employee.setSalary(add_salary.getText());
+		employee.setPhone(add_phone.getText());
+		employee.setEmail(add_email.getText());
+		employee.setAddress(add_address.getText());
 		if(!add_img.getText().isEmpty()) {
-		employee.setimage("/MIDAS/image/" + add_img.getText());
+			employee.setImage("/MIDAS/image/" + add_img.getText());
 		}
 		if(add_join.getValue() == null || add_join.getValue().toString().length() == 0)	{
 			add_join.setValue(LocalDate.now());
 		}
-		employee.setjoin(add_join.getValue().toString());
-		employee.setcategory(add_category.getValue());
-		employee.setposition(add_position.getValue());
-		employee.seteducation(add_education.getValue());
-		
+		employee.setJoin(add_join.getValue().toString());
+		employee.setCategory(add_category.getValue());
+		employee.setPosition(add_position.getValue());
+		employee.setEducation(add_education.getValue());
+
 		if(add.SaveInfo(employee)) {
 			CloseProc(event);
 		}
 	}
-	
+
 	public void CloseProc(ActionEvent event) {
 		comServ.WindowClose(event);
 	}
-	
+
 	private void txtLimit(TextField txt, int limit) {
 		if(txt.getLength() >= limit) {
 			txt.setText(txt.getText().substring(0, limit));
 		}
 	}
-	
+
 	private void checkEscapeText(TextField txt) {			//입력글자 제한
 		txt.setText(txt.getText().replaceAll("[^0-9_]", ""));
 	}

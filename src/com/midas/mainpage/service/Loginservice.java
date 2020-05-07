@@ -1,4 +1,4 @@
-package mainpage.Service;
+package com.midas.mainpage.service;
 
 import javafx.scene.Parent;
 

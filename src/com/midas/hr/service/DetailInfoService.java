@@ -1,8 +1,8 @@
-package MIDAS.Service;
-
+package com.midas.hr.service;
 import java.time.LocalDate;
 
-import MIDAS.Employee;
+import com.midas.db.Employee;
+
 import javafx.scene.Parent;
 
 public interface DetailInfoService {

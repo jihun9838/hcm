@@ -1,16 +1,16 @@
-package mainpage.Service;
+package com.midas.mainpage.service;
 
-import mainpage.Member;
-import mainpage.data.IMembershipManage;
-import mainpage.data.IMembershipManageImpl;
+import com.midas.db.Employee;
+import com.midas.db.service.DBService;
+import com.midas.db.service.DBServiceImpl;
 
 public class SearchServiceImp implements SearchService{
-	private IMembershipManage imemManage = new IMembershipManageImpl();
+	private DBService dbServ = new DBServiceImpl();
 	
 	@Override
-	public boolean MembershipProc(Member member) {
+	public boolean MembershipProc(Employee emp) {
 		// TODO Auto-generated method stub
-		return imemManage.MembershipProc(member);
+		return dbServ.MembershipProc(emp);
 	}
 
 	

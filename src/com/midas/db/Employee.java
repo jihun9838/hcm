@@ -1,11 +1,5 @@
 package com.midas.db;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -15,7 +9,7 @@ public class Employee {
 	private SimpleStringProperty pw;
 	private SimpleStringProperty name;
 	private SimpleStringProperty birth;
-	private SimpleStringProperty gender;
+	private SimpleStringProperty socialNum;
 	private SimpleStringProperty category;
 	private SimpleStringProperty salary;
 	private SimpleStringProperty department;
@@ -28,16 +22,18 @@ public class Employee {
 	private SimpleStringProperty address;
 	private SimpleStringProperty image;
 	//
-	private SimpleStringProperty holiday;
+	private SimpleStringProperty availableHoliday;
+	private SimpleStringProperty usedHoliday;
+	private SimpleStringProperty remainHoliday;
 	private StringProperty[] value;
-	
+
 	public Employee() {
 		this.num = new SimpleStringProperty();
 		this.id = new SimpleStringProperty();
 		this.pw = new SimpleStringProperty();
 		this.name = new SimpleStringProperty();
 		this.birth = new SimpleStringProperty();
-		this.gender = new SimpleStringProperty();
+		this.socialNum = new SimpleStringProperty();
 		this.category = new SimpleStringProperty();
 		this.salary = new SimpleStringProperty();
 		this.department = new SimpleStringProperty();
@@ -49,17 +45,19 @@ public class Employee {
 		this.education = new SimpleStringProperty();
 		this.address = new SimpleStringProperty();
 		this.image = new SimpleStringProperty();
-		this.holiday = new SimpleStringProperty();
-		this.value = new StringProperty[18];
+		this.availableHoliday = new SimpleStringProperty();
+		this.usedHoliday = new SimpleStringProperty();
+		this.remainHoliday = new SimpleStringProperty();
+		this.value = new StringProperty[20];
 	}
-	
-	public Employee(String num, String id, String pw, String name, String birth, String gender, String category, String salay, String department, String position, String place, String phone, String join, String email, String education, String adrress, String image, String holiday) {
+
+	public Employee(String num, String id, String pw, String name, String birth, String gender, String category, String salay, String department, String position, String place, String phone, String join, String email, String education, String adrress, String image, String availableHoliday, String usedHoliday, String remainHoliday) {
 		this.num = new SimpleStringProperty(num);
 		this.id = new SimpleStringProperty(id);
 		this.pw = new SimpleStringProperty(pw);
 		this.name = new SimpleStringProperty(name);
 		this.birth = new SimpleStringProperty(birth);
-		this.gender = new SimpleStringProperty(gender);
+		this.socialNum = new SimpleStringProperty(gender);
 		this.category = new SimpleStringProperty(category);
 		this.salary = new SimpleStringProperty(salay);
 		this.department = new SimpleStringProperty(department);
@@ -71,11 +69,32 @@ public class Employee {
 		this.education = new SimpleStringProperty(education);
 		this.address = new SimpleStringProperty(adrress);
 		this.image = new SimpleStringProperty(image);
-		this.holiday = new SimpleStringProperty(holiday);
+		this.availableHoliday = new SimpleStringProperty(availableHoliday);
+		this.usedHoliday = new SimpleStringProperty(usedHoliday);
+		this.remainHoliday = new SimpleStringProperty(remainHoliday);
 		this.value = new StringProperty[]{
-			num(), id(), pw(), name(), birth(), gender(), category(), salary(), department(),
-			position(), place(), phone(), join(), email(), education(), address(), image()};
+				num(), id(), pw(), name(), birth(), socialNum(), category(), salary(), department(),
+				position(), place(), phone(), join(), email(), education(), address(), image()};
 	}
+
+	public Employee(String num, String name) {
+		this.num = new SimpleStringProperty(num);
+		this.name = new SimpleStringProperty(name);
+	}
+
+	public Employee(String num, String name, String category, String department, String position, String place, String phone, String join, String email, String education) {
+		this.num = new SimpleStringProperty(num);
+		this.name = new SimpleStringProperty(name);
+		this.category = new SimpleStringProperty(category);
+		this.department = new SimpleStringProperty(department);
+		this.position = new SimpleStringProperty(position);
+		this.place = new SimpleStringProperty(place);
+		this.phone = new SimpleStringProperty(phone);
+		this.join = new SimpleStringProperty(join);
+		this.email = new SimpleStringProperty(email);
+		this.education = new SimpleStringProperty(education);
+	}
+
 
 	public String getNum() {
 		return num.get();
@@ -122,14 +141,14 @@ public class Employee {
 	public StringProperty birth() {
 		return birth;
 	}
-	public String getGender() {
-		return gender.get();
+	public String getSocialNum() {
+		return socialNum.get();
 	}
-	public void setGender(String gender) {
-		this.gender.set(gender);
+	public void setSocialNum(String socialNum) {
+		this.socialNum.set(socialNum);
 	}
-	public StringProperty gender() {
-		return gender;
+	public StringProperty socialNum() {
+		return socialNum;
 	}
 	public String getCategory() {
 		return category.get();
@@ -230,15 +249,37 @@ public class Employee {
 	public StringProperty image() {
 		return image;
 	}
-	public String getHoliday() {
-		return holiday.get();
+	public String getAvailableHoliday() {
+		return availableHoliday.get();
 	}
-	public void setHoliday(String holiday) {
-		this.holiday.set(holiday);
+	public void setAvailableHoliday(String availableHoliday) {
+		this.availableHoliday.set(availableHoliday);
 	}
-	public StringProperty holiday() {
-		return holiday;
+	public StringProperty availableHoliday() {
+		return availableHoliday;
 	}
+	public String getUsedHoliday() {
+		return usedHoliday.get();
+	}
+	public void setUsedHoliday(String usedHoliday) {
+		this.usedHoliday.set(usedHoliday);
+	}
+	public StringProperty usedHoliday() {
+		return usedHoliday;
+	}
+	public String getRemainHoliday() {
+		return remainHoliday.get();
+	}
+	public void setRemainHoliday(String remainHoliday) {
+		this.remainHoliday.set(remainHoliday);
+	}
+	public StringProperty remainHoliday() {
+		return remainHoliday;
+	}
+	
+	
+	
+	
 	public StringProperty[] getValue() {
 		return value;
 	}

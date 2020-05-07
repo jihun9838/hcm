@@ -1,13 +1,14 @@
-package mainpage.Service;
+package com.midas.mainpage.service;
 
 
 import java.util.Map;
-import mainpage.Member;
+
+import com.midas.db.Employee;
+
 
 public interface MembershipService {
 	public boolean comparePW(String pw, String pwOk);
 
-	
-	public boolean MembershipProc(Member member);
+	public boolean MembershipProc(Employee employee);
 	public Map<String,String> getMember();
 }

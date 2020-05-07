@@ -1,15 +1,15 @@
-package MIDAS.Service;
+package com.midas.hr.service;
 
-import MIDAS.Employee;
-import MIDAS.Data.DataManage;
-import MIDAS.Data.DataManageImpl;
+import com.midas.db.Employee;
+import com.midas.db.service.DBService;
+import com.midas.db.service.DBServiceImpl;
 
 public class AddInfoServiceImpl implements AddInfoService {
 
 	@Override
 	public boolean SaveInfo(Employee employee) {
-		DataManage dataManage = new DataManageImpl();
-		return dataManage.SaveInfo(employee);
+		DBService dbServ = new DBServiceImpl();
+		return dbServ.SaveInfo(employee);
 	}
 
 }

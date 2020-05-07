@@ -1,49 +1,73 @@
-package mainpage;
+package com.midas.mainpage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.midas.Controller;
+import com.midas.db.service.DBService;
+import com.midas.db.service.DBServiceImpl;
+import com.midas.mainpage.service.HompageService;
+import com.midas.mainpage.service.HompageServiceImp;
+import com.midas.mainpage.service.Loginservice;
+import com.midas.mainpage.service.LoginserviceImp;
+import com.midas.service.CommonService;
+import com.midas.service.CommonServiceImpl;
+
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import mainpage.Service.CommonService;
-import mainpage.Service.CommonServiceImpl;
-import mainpage.Service.HompageService;
-import mainpage.Service.HompageServiceImp;
-import mainpage.Service.Loginservice;
-import mainpage.Service.LoginserviceImp;
-import mainpage.Service.MembershipService;
-import mainpage.Service.MembershipServiceImpl;
-import mainpage.data.IMembershipManage;
-import mainpage.data.IMembershipManageImpl;
 
-public class LoginController implements Initializable{
+public class LoginController extends Controller implements Initializable{
 
 	private Parent root;
 	private Loginservice loginServ;
 	private CommonService comServ;
-	private IMembershipManage imemManage;
+	private DBService dbServ;
 	private HompageService homeServ;
-	
+
 	@FXML private Button loginBtn;
 	@FXML private TextField loginIdTxt;
 	@FXML private TextField loginPwTxt;
 
+	// HomePage.fxml
+	@FXML private Label IDLbl;
+	@FXML private Label helloLbl;
+	@FXML private Button logoutBtn;
+	@FXML private Button commuteBtn;
+	
+	@Override
+	public void setRoot(Parent root) {
+		root = this.root;
+	}
+	
+	private Parent getScene(ActionEvent e) {
+		Parent btnObj = (Parent)e.getSource();
+		return btnObj.getScene().getRoot();
+	}
+
+	private Parent getScene(Event e) {
+		Parent btnObj = (Parent)e.getSource();
+		return btnObj.getScene().getRoot();
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		comServ = new CommonServiceImpl();
-		imemManage = new IMembershipManageImpl();
+		dbServ = new DBServiceImpl();
 		loginServ = new LoginserviceImp();
 		homeServ = new HompageServiceImp();
-		
-		loginBtn.setOnAction(e->{			
-			loginBtnProc();
-		});
+
+//		loginBtn.setOnAction(e->{			
+//			loginBtnProc();
+//		});
 
 		loginBtn.setDisable(true);
 
@@ -69,19 +93,19 @@ public class LoginController implements Initializable{
 		else loginBtn.setDisable(true);		
 	}
 
-	public Parent loginBtnProc() {
+	public Parent loginBtnProc(ActionEvent e) {
 		String id = loginIdTxt.getText();
 		String pw = loginPwTxt.getText();
 
-		if(imemManage.LoginProc(id, pw)) {
-			CommonService comServ = new CommonServiceImpl();
-			Stage signinForm = new Stage();
-			Parent form = comServ.showWindow(signinForm, "/mainpage/Homepagevisible.fxml");
+		if(dbServ.LoginProc(id, pw)) {
+			// Parent form = comServ.showWindow(signinForm, "/mainpage/Homepagevisible.fxml");
 			
-			homeServ.Lbl(form, id);
+			BorderPane borderPane = (BorderPane)getScene(e);
+//			Parent scene = comServ.AddScene("/com/midas/Employee.fxml");
+			Parent scene = comServ.AddScene("/com/midas/Manager.fxml");
+			borderPane.setLeft(scene);
 			
-			
-		
+			//homeServ.Lbl(form, id);
 		}
 		else
 		{
@@ -92,25 +116,19 @@ public class LoginController implements Initializable{
 	}
 
 	public void searchIdBtnProc() {
-		CommonService comServ = new CommonServiceImpl();
-		Stage signinForm = new Stage();
-		comServ.showWindow(signinForm, "/mainpage/searchid.fxml");
+		Stage s = new Stage();
+		comServ.showWindow(s, "/com/midas/mainpage/searchid.fxml");
 	}
 
 	public void searchPwBtnProc() {
-		CommonService comServ = new CommonServiceImpl();
-		Stage signinForm = new Stage();
-		comServ.showWindow(signinForm, "/mainpage/searchpw.fxml");	
+		Stage s = new Stage();
+		comServ.showWindow(s, "/com/midas/mainpage/searchpw.fxml");	
 	}
 
 	public void SignBtnProc() {	
-		CommonService comServ = new CommonServiceImpl();
-		Stage signinForm = new Stage();
-		comServ.showWindow(signinForm, "/mainpage/signin.fxml");		
+		Stage s = new Stage();
+		comServ.showWindow(s, "/com/midas/mainpage/signin.fxml");		
+	}
 
-	}
-	public void setRoot(Parent root) {
-		root = this.root;
-	}
 
 }

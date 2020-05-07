@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox  fx:controller="mainpage.searchpwController" prefHeight="405.0" prefWidth="513.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="com.midas.mainpage.SearchpwController" prefHeight="405.0" prefWidth="513.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="76.0" prefWidth="560.0">
          <children>

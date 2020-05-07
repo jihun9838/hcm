@@ -1,23 +1,22 @@
-package mainpage.Service;
+package com.midas.mainpage.service;
+
+import com.midas.db.service.DBService;
+import com.midas.db.service.DBServiceImpl;
 
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import mainpage.Member;
-import mainpage.data.IMembershipManage;
-import mainpage.data.IMembershipManageImpl;
 
 public class LoginserviceImp implements Loginservice{
-	private IMembershipManage membershipManager = new IMembershipManageImpl();
+	private DBService dbServ = new DBServiceImpl();
 
 	@Override
 	public boolean loginProc(Parent root) {
 		TextField loginidTxt = (TextField)root.lookup("#loginIdTxt");
 		TextField loginpwTxt = (TextField)root.lookup("#loginPwTxt");
-		
-		IMembershipManage membershipManager = new IMembershipManageImpl();
-		
-		if(membershipManager.LoginProc(loginidTxt.getText(), loginpwTxt.getText())==true)
+
+		DBService dbServ = new DBServiceImpl();
+
+		if(dbServ.LoginProc(loginidTxt.getText(), loginpwTxt.getText())==true)
 			return true;
 		return false;
 	}
@@ -25,7 +24,7 @@ public class LoginserviceImp implements Loginservice{
 
 	@Override
 	public String[] homeProc(String id) {
-		return membershipManager.homepage(id);
+		return dbServ.homepage(id);
 	}
 }
 

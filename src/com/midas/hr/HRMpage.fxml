@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:controller="MIDAS.HRMController" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="com.midas.hr.HRController" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <TableView fx:id="employee_table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <columns>

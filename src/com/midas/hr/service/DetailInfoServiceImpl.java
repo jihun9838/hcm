@@ -1,18 +1,15 @@
-package MIDAS.Service;
+package com.midas.hr.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import MIDAS.Employee;
-import MIDAS.Data.DataManage;
-import MIDAS.Data.DataManageImpl;
-import javafx.fxml.FXML;
+import com.midas.db.Employee;
+import com.midas.db.service.DBService;
+import com.midas.db.service.DBServiceImpl;
+
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,52 +36,52 @@ public class DetailInfoServiceImpl implements DetailInfoService {
 		ComboBox<String> Employee_category = (ComboBox)form.lookup("#Employee_category");
 		ComboBox<String> Employee_position = (ComboBox)form.lookup("#Employee_position");
 		ComboBox<String> Employee_education = (ComboBox)form.lookup("#Employee_education");
-		
+
 		Employee employee = getEmployee(num);
-		
-		Employee_num.setText(employee.getnum());
-		Employee_name.setText(employee.getname());
-		Employee_id.setText(employee.getid());
-		Employee_birthday.setText(employee.getbirth());
-		Employee_birth.setText(employee.getbirth());
-		Employee_gender.setText(employee.getgender().substring(0, 1));
-		Employee_department.setText(employee.getdepartment());
-		Employee_place.setText(employee.getplace());
-		Employee_salary.setText(employee.getsalary());
-		Employee_phone.setText(employee.getphone());
-		Employee_email.setText(employee.getemail());
-		Employee_address.setText(employee.getaddress());
-		if(employee.getimage() == null || employee.getimage().length() == 0) {
+
+		Employee_num.setText(employee.getNum());
+		Employee_name.setText(employee.getName());
+		Employee_id.setText(employee.getId());
+		Employee_birthday.setText(employee.getBirth());
+		Employee_birth.setText(employee.getBirth());
+		Employee_gender.setText(employee.getSocialNum().substring(0, 1));
+		Employee_department.setText(employee.getDepartment());
+		Employee_place.setText(employee.getPlace());
+		Employee_salary.setText(employee.getSalary());
+		Employee_phone.setText(employee.getPhone());
+		Employee_email.setText(employee.getEmail());
+		Employee_address.setText(employee.getAddress());
+		if(employee.getImage() == null || employee.getImage().length() == 0) {
 			employee_picture.setImage(new Image("/MIDAS/image/기본사진.png"));
 		}
 		else {
-			employee_picture.setImage(new Image("/MIDAS/image/" + employee.getimage()));
+			employee_picture.setImage(new Image("/MIDAS/image/" + employee.getImage()));
 		}
-		Employee_join.setValue(LOCAL_DATE(employee.getjoin()));
-		Employee_category.setValue(employee.getcategory());
-		Employee_position.setValue(employee.getposition());
-		Employee_education.setValue(employee.geteducation());
-		edit_img.setText(employee.getimage());
-		
+		Employee_join.setValue(LOCAL_DATE(employee.getJoin()));
+		Employee_category.setValue(employee.getCategory());
+		Employee_position.setValue(employee.getPosition());
+		Employee_education.setValue(employee.getEducation());
+		edit_img.setText(employee.getImage());
+
 	}
-	
+
 	public LocalDate LOCAL_DATE (String dateString){
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	    LocalDate localDate = LocalDate.parse(dateString, formatter);
-	    return localDate;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.parse(dateString, formatter);
+		return localDate;
 	}
 
 	@Override
 	public Employee getEmployee(String num) {
-		DataManage dataManage = new DataManageImpl();
-		return dataManage.getEmployee(num);
+		DBService dbServ = new DBServiceImpl();
+		return dbServ.getEmployee(num);
 	}
 
 	@Override
 	public boolean EditInfo(String num, Employee employee) {
-		DataManage dataManage = new DataManageImpl();
-		return dataManage.EditInfo(num, employee);
+		DBService dbServ = new DBServiceImpl();
+		return dbServ.EditInfo(num, employee);
 	}
 
-	
+
 }
