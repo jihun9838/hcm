@@ -1,4 +1,4 @@
-package com.midas.db.service;import java.io.FileOutputStream;import java.io.IOException;import java.sql.Connection;import java.sql.DriverManager;import java.sql.ResultSet;import java.sql.SQLException;import java.sql.Statement;import org.apache.poi.xssf.usermodel.XSSFSheet;import org.apache.poi.xssf.usermodel.XSSFWorkbook;import sun.security.ec.ECDSASignature.Raw;
+package com.midas.db.service;import java.io.FileOutputStream;import java.io.IOException;import java.sql.Connection;import java.sql.DriverManager;import java.sql.ResultSet;import java.sql.SQLException;import java.sql.Statement;import org.apache.poi.xssf.streaming.SXSSFSheet;import org.apache.poi.xssf.usermodel.XSSFCell;import org.apache.poi.xssf.usermodel.XSSFSheet;import org.apache.poi.xssf.usermodel.XSSFWorkbook;import com.sun.rowset.internal.Row;import javafx.scene.control.Cell;
 
 /**
  * A simple Java program that exports data from database to Excel file.
@@ -33,7 +33,7 @@ public class DB2ExcelExporter {
 			ResultSet result = statement.executeQuery(sql);
 
 			XSSFWorkbook workbook = new XSSFWorkbook();
-			XSSFSheet sheet = workbook.createSheet("Reviews");
+			SXSSFSheet sheet = workbook.createSheet("Reviews");
 			//			HSSFWorkbook workbook = new HSSFWorkbook();
 			//			HSSFSheet sheet = workbook.createSheet("Reviews");
 
@@ -58,9 +58,9 @@ public class DB2ExcelExporter {
 
 	private void writeHeaderLine(XSSFSheet sheet) {
 
-		Row headerRow = sheet.createRow(0);
+		SXSSFSheet headerRow = sheet.createRow(0);
 
-		Cell headerCell = headerRow.createCell(0);
+		XSSFCell headerCell = headerRow.createCell(0);
 		headerCell.setCellValue("num");
 
 		headerCell = headerRow.createCell(1);
