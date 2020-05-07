@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.midas.Controller;
 import com.midas.MainController;
@@ -26,6 +27,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
@@ -43,7 +45,6 @@ public class CommonServiceImpl implements CommonService{
 		Parent root = (Parent)event.getSource();
 		Stage stage = (Stage) root.getScene().getWindow();
 		stage.close();
-		tableView.lookup("#id");
 	}
 
 	@Override
@@ -254,6 +255,21 @@ public class CommonServiceImpl implements CommonService{
 		ErrorMsg("error", "error Header", ContentTxt);
 	}
 
+	@Override
+	public boolean ConfirmMsg(String title, String headerStr, String ContentTxt) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(headerStr);
+		alert.setContentText(ContentTxt);
+		
+		Optional<ButtonType> result =  alert.showAndWait();
+		if(result.get() == ButtonType.OK) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 
 	@Override

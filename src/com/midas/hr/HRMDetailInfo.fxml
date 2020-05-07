@@ -250,9 +250,6 @@
    </center>
    <top>
       <BorderPane prefHeight="47.0" prefWidth="920.0" BorderPane.alignment="CENTER">
-         <right>
-            <Button fx:id="Employee_close" mnemonicParsing="false" onAction="#CloseProc" prefHeight="23.0" prefWidth="70.0" text="닫기" BorderPane.alignment="CENTER" />
-         </right>
          <left>
             <Label alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="280.0" text="사원 상세정보" BorderPane.alignment="CENTER">
                <font>
@@ -260,6 +257,14 @@
                </font>
             </Label>
          </left>
+         <right>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="Employee_delete" mnemonicParsing="false" onAction="#DeleteProc" prefHeight="23.0" prefWidth="70.0" text="삭제" />
+                  <Button fx:id="Employee_close" mnemonicParsing="false" prefHeight="23.0" prefWidth="70.0" text="닫기" />
+               </children>
+            </HBox>
+         </right>
       </BorderPane>
    </top>
 </BorderPane>
