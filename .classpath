@@ -7,5 +7,8 @@
 	<classpathentry kind="lib" path="C:/Users/Ktc User/source/hcm/src/poi-ooxml-4.1.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Ktc User/source/hcm/src/poi-ooxml-schemas-4.1.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Ktc User/source/hcm/src/xmlbeans-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ktc User/source/hcm/src/poi-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ktc User/source/hcm/src/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ktc User/source/hcm/src/commons-compress-1.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
