@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:controller="com.midas.taa.TAAController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="com.midas.taa.PersonalTAAController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -120,14 +120,14 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <DatePicker prefWidth="150.0" />
-                  <Pane prefHeight="23.0" prefWidth="50.0" />
+                  <DatePicker fx:id="PersonalDatePicker" prefWidth="150.0" />
+                  <Pane prefHeight="23.0" prefWidth="40.0" />
                   <Label minWidth="39.0" prefHeight="23.0" prefWidth="53.0" text="부서">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ChoiceBox prefHeight="23.0" prefWidth="100.0" />
+                  <ComboBox fx:id="cmbDepart" prefHeight="23.0" prefWidth="100.0" promptText="부서 전체"/>
                   <Pane prefHeight="23.0" prefWidth="50.0" />
                   <HBox prefHeight="23.0" prefWidth="490.0" spacing="10.0">
                      <children>

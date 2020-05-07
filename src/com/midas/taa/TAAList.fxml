@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:controller="com.midas.taa.TAAController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="com.midas.taa.TAAListController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -19,7 +19,7 @@
                   <Font size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Label>
             <ListView prefHeight="518.0" prefWidth="980.0" />
@@ -36,21 +36,21 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <DatePicker prefHeight="23.0" prefWidth="150.0" />
+                  <DatePicker fx:id="TAADatePicker" prefHeight="23.0" prefWidth="150.0" />
                   <Pane prefHeight="23.0" prefWidth="50.0" />
                   <Label prefHeight="23.0" text="부서">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ChoiceBox prefWidth="100.0" />
+                  <ComboBox fx:id="cmbDepart" prefWidth="100.0" promptText="부서 전체"/> 
                   <Pane prefHeight="23.0" prefWidth="50.0" />
                   <Label prefHeight="23.0" text="검색어">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ChoiceBox prefWidth="150.0" />
+                  <ComboBox fx:id="cmbSort" prefWidth="150.0" promptText="전체"/>
                   <TextField />
                   <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="65.0" text="검색" />
                </children>
