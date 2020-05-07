@@ -3,33 +3,57 @@ package com.midas.db.service;
 import java.util.List;
 
 import com.midas.db.Employee;
-import com.midas.db.EmployeeHoliday;
-import com.midas.db.HolidayRequest;
-import com.midas.db.SalaryResult;
-import com.midas.db.TAA;
-import com.midas.db.TAAResult;
 
 public interface DBService {
-	//회원 가입 시 개인 정보를 DB에 저장
-	public boolean MembershipProc(Employee emp);
-	//ID와 PW로 개인 인증
-	public int LoginProc(String id, String pw);
-
 
 	// db controller
 	public List<Employee> getEmployeeList();
-	public Employee getEmployee(String id);
+	public Employee getEmployeeById(String id);
 	public void addEmployee(Employee emp);
 	public void deleteEmployee(String id);
 	public void editEmployee(String id);
 	//public boolean hasId(String id);
 
+<<<<<<< HEAD:src/com/midas/db/service/DBService.java
 	public List getDataFromListById(List list, String id);
 	
 	public void CreateTable(String table);
 	public void InsertTable(String table);
 	public void UpdateTable(String table);
 	public List SelectTable(String table, String whereOption);
+=======
+	public List getDataFromListById(List list, String id, String whereOption);
+
+	public void CreateTable(String table);
+	public void InsertTable(String table);
+	public void UpdateTable(String table);
+	public List SelectTable(String table, String option);
+
+
+
+	// YOU
+	public Employee getEmployee(String num);
+	public List<Employee> getEmployeelst(int i);
+	public List<Employee> getEmployeeSearch(String attribute, String txt, int i);
+	public boolean SaveInfo(Employee employee);
+	public boolean EditInfo(String num, Employee employee);
+
+
+
+
+	// Eunji
+	public boolean MembershipProc(Employee employee);	// 회원가입시 개인정보를 DB에 저장
+	public boolean LoginProc(String id, String pw);	// ID와 PW로 개인인증
+	public List<Employee> getMember();
+	public boolean idcheck(String id);
+
+	public boolean searchID(String name, String PhoneNum);
+	public boolean searchPW(String name, String id, String PhoneNum);
+	public String [] homepage(String id);
+	public boolean infopwCheck(String id);
+	public Employee getMember(String num);
+
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7:MIDAS-HCM/src/com/midas/db/service/DBService.java
 	/*
 	 * public List<EmployeeHoliday> getEmployeeHolidayList();
 	public List<SalaryResult> getSalaryResultList();

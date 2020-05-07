@@ -6,13 +6,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<<<<<<< HEAD
 <Accordion prefHeight="620.0" prefWidth="260.0" style="-fx-border-color: #D9E5FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.midas.MainController">
+=======
+<Accordion fx:controller="com.midas.MainController" prefHeight="620.0" prefWidth="260.0" style="-fx-border-color: #D9E5FF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
    <panes>
       <TitledPane fx:id="EMYPAGE" animated="false" layoutX="10.0" layoutY="56.0" style="-fx-border-color: #D9E5FF;" text="내 정보">
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="EChangeInfoLbl" text="정보 수정">
+                  <Label fx:id="EChangeInfoLbl" onMouseClicked="#MyPageView" text="정보 수정">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -28,7 +32,11 @@
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+<<<<<<< HEAD
                   <Label fx:id="taaRqstLbl" onMouseClicked="#OwnTAAView" prefHeight="28.0" prefWidth="235.0" text="근태/연차 내역">
+=======
+                  <Label fx:id="taaRqstLbl" prefHeight="28.0" prefWidth="235.0" text="근태/연차 내역">
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -36,7 +44,11 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Label>
+<<<<<<< HEAD
                   <Label fx:id="holidayRqstLbl" onMouseClicked="#OwnAskHolidayView" prefHeight="28.0" prefWidth="235.0" text="연차 신청">
+=======
+                  <Label fx:id="holidayRqstLbl" prefHeight="28.0" prefWidth="235.0" text="연차 신청">
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -44,7 +56,11 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Label>
+<<<<<<< HEAD
                   <Label fx:id="taaLstLbl" onMouseClicked="#OwnModifyHolidayView" prefHeight="28.0" prefWidth="235.0" text="근태/연차 수정 신청">
+=======
+                  <Label fx:id="taaLstLbl" prefHeight="28.0" prefWidth="235.0" text="근태/연차 수정 신청">
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -66,7 +82,11 @@
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
+<<<<<<< HEAD
                   <Label fx:id="salaryStmtLbl" text="급여 명세서">
+=======
+                  <Label fx:id="salaryStmtLbl" onMouseClicked="#SalaryStmtView" text="급여 명세서">
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
                      <font>
                         <Font size="23.0" />
                      </font>

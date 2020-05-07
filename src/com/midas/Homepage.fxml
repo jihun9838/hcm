@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
 <?import javafx.scene.chart.*?>
+=======
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:controller="com.midas.MainController" fx:id="canvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<<<<<<< HEAD
+<BorderPane fx:id="canvas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+=======
+<BorderPane fx:id="canvas" fx:controller="com.midas.MainController" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -16,7 +23,11 @@
                   <Font name="Gadugi" size="38.0" />
                </font>
             </Label>
+<<<<<<< HEAD
             <Label fx:id="homepageLbl" prefHeight="100.0" prefWidth="170.0" text="Homepage">
+=======
+            <Label fx:id="homepageLbl"  prefHeight="100.0" prefWidth="170.0" text="Homepage">
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
                <font>
                   <Font size="20.0" />
                </font>
@@ -24,18 +35,35 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Label>
-            <Label fx:id="helloLbl" alignment="CENTER" prefHeight="81.0" prefWidth="515.0" text="홍길동님 안녕하세요!" textFill="#484848">
+<<<<<<< HEAD
+            <Label alignment="CENTER" prefHeight="81.0" prefWidth="515.0" text="홍길동님 안녕하세요!" textFill="#484848">
+=======
+            <Label fx:id="IDLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="아이디" textFill="#484848" visible="false">
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
                <font>
                   <Font name="Sitka Banner" size="21.0" />
                </font>
                <padding>
+<<<<<<< HEAD
                   <Insets left="300.0" top="20.0" />
+=======
+                  <Insets top="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="helloLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="홍길동님 안녕하세요!" textFill="#484848" visible="false">
+               <font>
+                  <Font name="Sitka Banner" size="21.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
                </padding>
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
             </Label>
-            <Button fx:id="logoutBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #D9E5FF;" text="로그아웃">
+<<<<<<< HEAD
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #D9E5FF;" text="로그아웃">
                <HBox.margin>
                   <Insets left="55.0" top="30.0" />
                </HBox.margin>
@@ -43,13 +71,30 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="commuteBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #D9E5FF;" text="출근">
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #D9E5FF;" text="출근">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" top="30.0" />
                </HBox.margin>
                <font>
                   <Font size="14.0" />
                </font>
+=======
+            <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#logoutBtnProc" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #D9E5FF;" text="로그아웃" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="55.0" top="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="commuteBtn" mnemonicParsing="false" onAction="#commuteBtnProc" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #D9E5FF;" text="출근" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" top="30.0" />
+               </HBox.margin>
+>>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
             </Button>
          </children>
       </HBox>
