@@ -9,13 +9,10 @@ import java.util.Map;
 import com.midas.Controller;
 import com.midas.MainController;
 import com.midas.db.Employee;
+import com.midas.db.SalaryResult;
 import com.midas.db.service.DB2ExcelExporter;
-<<<<<<< HEAD:src/com/midas/service/CommonServiceImpl.java
-import com.midas.taa.CalendarController;
-=======
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7:MIDAS-HCM/src/com/midas/service/CommonServiceImpl.java
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,29 +21,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
-<<<<<<< HEAD:src/com/midas/service/CommonServiceImpl.java
-=======
 import javafx.scene.control.Alert.AlertType;
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7:MIDAS-HCM/src/com/midas/service/CommonServiceImpl.java
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class CommonServiceImpl implements CommonService{
 
-	private CalendarController calCon;
+public class CommonServiceImpl implements CommonService{
 	@FXML TableView<Employee> tableView;
 
-<<<<<<< HEAD:src/com/midas/service/CommonServiceImpl.java
-=======
 
 
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7:MIDAS-HCM/src/com/midas/service/CommonServiceImpl.java
 	@Override
 	public void WindowClose(ActionEvent event) {
 		Parent root = (Parent)event.getSource();
@@ -66,12 +57,8 @@ public class CommonServiceImpl implements CommonService{
 			e.printStackTrace();
 		}
 
-<<<<<<< HEAD:src/com/midas/service/CommonServiceImpl.java
-		MainController ctrler = loader.getController();
-=======
 		// ?
 		Controller ctrler = loader.getController();
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7:MIDAS-HCM/src/com/midas/service/CommonServiceImpl.java
 		ctrler.setRoot(root);
 
 		s.show();
@@ -114,48 +101,15 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-<<<<<<< HEAD:src/com/midas/service/CommonServiceImpl.java
-	public BorderPane AddScene2(String formPath) {
-=======
 	public Parent AddScene2(String formPath, Parent parent) {
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7:MIDAS-HCM/src/com/midas/service/CommonServiceImpl.java
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(formPath));
-		BorderPane root = null;
+		Parent root = parent;
 		try {
 			root = loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return root;
-	}
-	
-	@Override
-	public void AddComboBox(Parent form, List<String> items, String comboFxid) {
-		ComboBox<String> 	cmbAge = (ComboBox<String>)form.lookup(comboFxid);
-
-		if(cmbAge!=null) {
-			for(String item : items)
-				cmbAge.getItems().add(item);
-		}
-	}
-
-	@Override
-	public boolean isComboBox(Parent membershipForm, String comboFxid) {
-		ComboBox<String> 	cmbAge = (ComboBox<String>)membershipForm.lookup(comboFxid);
-
-		if(cmbAge==null) return false;
-		else if(cmbAge.getValue()==null) {
-			cmbAge.requestFocus();
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public String getComboBoxString(Parent membershipForm, String comboFxid) {
-		ComboBox<String> cmbAge = (ComboBox<String>)membershipForm.lookup(comboFxid);
-		if(cmbAge==null) return "";
-		return cmbAge.getValue().toString();
 	}
 
 
@@ -304,38 +258,23 @@ public class CommonServiceImpl implements CommonService{
 
 	@Override
 	public void ExportExcel() {
-		// TODO Auto-generated method stub
+		// DB2ExcelExporter exporter = new DB2ExcelExporter(); 
 		new DB2ExcelExporter();
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void ShowTableViewByList(Scene scene, String id, List list) {
-<<<<<<< HEAD:src/com/midas/service/CommonServiceImpl.java
-=======
 		TableView<?> tableView = (TableView)scene.lookup(id);
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7:MIDAS-HCM/src/com/midas/service/CommonServiceImpl.java
 
 		ObservableList tableList = FXCollections.observableArrayList();
 
 		tableList.addAll(list);
-<<<<<<< HEAD:src/com/midas/service/CommonServiceImpl.java
-		TableView<?> tableView = ((TableView)scene.lookup(id));
-=======
 
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7:MIDAS-HCM/src/com/midas/service/CommonServiceImpl.java
 		tableView.setItems(tableList);
-		tableView.requestFocus();
-		tableView.getSelectionModel().select(0);
-		tableView.getFocusModel().focus(0);
 	}
 
 	@Override
-<<<<<<< HEAD:src/com/midas/service/CommonServiceImpl.java
-	public void ShowLineChart(Parent root, LineChart lineChart) {
-		// TODO Auto-generated method stub
-
-=======
 	public void ShowLineChartByList(Scene scene, String _id, List _list) {
 		LineChart<String, Number> lineChart = (LineChart)scene.lookup(_id);
 		lineChart.getData().clear();
@@ -425,35 +364,34 @@ public class CommonServiceImpl implements CommonService{
 		////		//borderPane.setLeft(empMenuScene);
 		////		borderPane.setLeft(manMenuScene);
 		////		borderPane.setCenter(s);		
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7:MIDAS-HCM/src/com/midas/service/CommonServiceImpl.java
 	}
 
 
 	@Override
 	public int CalculateRequestedHoliday(LocalDate d1, LocalDate d2) {
 
-		//      LocalDate ld = null;
-		//      // datePicker data
-		//      LocalDate date = ld.now();
-		//      int m1 = Integer.valueOf(date.toString().substring(0, 4));
-		//      int w1 = Integer.valueOf(date.toString().substring(5, 5 + 2));
-		//      int d1 = Integer.valueOf(date.toString().substring(8, 8 + 2));
-		//      
-		//      System.out.println(m1);
-		//      System.out.println(w1);
-		//      System.out.println(d1);
-		//      
-		//      int m1 = Integer.valueOf(date.substring(0, 4));
-		//      int w1 = Integer.valueOf(date.substring(5, 5 + 2));
-		//      int d1 = Integer.valueOf(date.substring(8, 8 + 2));
-		//      
-		//      // 날짜 날짜 사이
+		//		LocalDate ld = null;
+		//		// datePicker data
+		//		LocalDate date = ld.now();
+		//		int m1 = Integer.valueOf(date.toString().substring(0, 4));
+		//		int w1 = Integer.valueOf(date.toString().substring(5, 5 + 2));
+		//		int d1 = Integer.valueOf(date.toString().substring(8, 8 + 2));
+		//		
+		//		System.out.println(m1);
+		//		System.out.println(w1);
+		//		System.out.println(d1);
+		//		
+		//		int m1 = Integer.valueOf(date.substring(0, 4));
+		//		int w1 = Integer.valueOf(date.substring(5, 5 + 2));
+		//		int d1 = Integer.valueOf(date.substring(8, 8 + 2));
+		//		
+		//		// 날짜 날짜 사이
 
 
 		/*
 		 * String date = "2019-11-12T 12:30:54";
-	         LocalDateTime localdatetime = LocalDateTime.parse(date);
-	      // 결과 : parse 성공
+			LocalDateTime localdatetime = LocalDateTime.parse(date);
+		// 결과 : parse 성공
 		 */
 
 		long days = d2.toEpochDay() - d1.toEpochDay() + 1;
@@ -471,13 +409,6 @@ public class CommonServiceImpl implements CommonService{
 		return requestHoliday;
 	}
 
-<<<<<<< HEAD:src/com/midas/service/CommonServiceImpl.java
-	// var implementation
-	@Override
-	public String CheckClassType(Object o) {
-
-		String className = o.getClass().getName();
-=======
 
 
 	// var implementation
@@ -485,7 +416,6 @@ public class CommonServiceImpl implements CommonService{
 	public String CheckClassType(List o) {
 
 		String className = o.get(0).getClass().getName();
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7:MIDAS-HCM/src/com/midas/service/CommonServiceImpl.java
 
 		if(className.contains("TAAResult")) 		return "TAAResult";
 		if(className.contains("TAA")) 				return "TAA";
@@ -496,5 +426,6 @@ public class CommonServiceImpl implements CommonService{
 
 		return className;
 	}
+
 
 }

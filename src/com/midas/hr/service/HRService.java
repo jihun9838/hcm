@@ -1,5 +1,8 @@
 package com.midas.hr.service;
 
-public interface HRService {
+import javafx.scene.Parent;
 
+public interface HRService {
+	public Parent OpenDetailForm();
+	public Parent OpenAddForm();
 }

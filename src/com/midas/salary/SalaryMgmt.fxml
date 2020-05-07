@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.cell.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 
-<BorderPane prefHeight="620.0" prefWidth="1020.0"
-	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="com.midas.salary.SalaryController">
+<BorderPane prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.midas.salary.SalaryController">
 	<bottom>
-		<Pagination prefHeight="60.0" prefWidth="1020.0"
-			BorderPane.alignment="CENTER" />
+		<Pagination prefHeight="60.0" prefWidth="1020.0" BorderPane.alignment="CENTER" />
 	</bottom>
 	<top>
 		<HBox prefHeight="60.0" prefWidth="1020.0" spacing="20.0">
 			<children>
-				<TextField prefHeight="77.0" prefWidth="138.0"
-					text="이름 검색" />
-				<DatePicker prefHeight="106.0" prefWidth="163.0" />
-				<ComboBox prefHeight="110.0" prefWidth="150.0"
-					promptText="이름 순 (콤보박스)" />
-				<ChoiceBox prefHeight="126.0" prefWidth="150.0" />
+				<TextField fx:id="salaryMgmtNameTextField" prefHeight="77.0" prefWidth="138.0" promptText="이름 검색" />
+				<DatePicker fx:id="salaryMgmtDatePicker" prefHeight="106.0" prefWidth="163.0" />
+				<ComboBox fx:id="salaryMgmtComboBox" prefHeight="110.0" prefWidth="150.0" promptText="이름 순 (콤보박스)" />
+				<ChoiceBox fx:id="salaryMgmtChoiceBox" prefHeight="126.0" prefWidth="150.0" />
 				<Pane prefHeight="40.0" prefWidth="163.0" />
-				<Button mnemonicParsing="false" onAction="#ShowTableProc"
-					prefHeight="40.0" prefWidth="120.0" text="검색" />
-				<Button mnemonicParsing="false" prefHeight="40.0"
-					prefWidth="120.0" text="엑셀 내보내기" />
+				<Button mnemonicParsing="false" onAction="#ShowTableProc" prefHeight="40.0" prefWidth="120.0" text="검색" />
+				<Button mnemonicParsing="false" onAction="#SalaryMgmtExportToExcel" prefHeight="40.0" prefWidth="120.0" text="엑셀 내보내기" />
 			</children>
 			<padding>
 				<Insets bottom="10.0" top="10.0" />
@@ -37,8 +31,7 @@
 		</HBox>
 	</top>
 	<center>      
-		<TableView fx:id="salaryMgmtTableView" prefHeight="200.0"
-			prefWidth="200.0" BorderPane.alignment="CENTER">
+		<TableView fx:id="salaryMgmtTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 			<columns>
 				<TableColumn id="num" prefWidth="75.0" text="사번">
 					<cellValueFactory>

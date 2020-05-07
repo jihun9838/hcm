@@ -14,14 +14,6 @@ public interface DBService {
 	public void editEmployee(String id);
 	//public boolean hasId(String id);
 
-<<<<<<< HEAD:src/com/midas/db/service/DBService.java
-	public List getDataFromListById(List list, String id);
-	
-	public void CreateTable(String table);
-	public void InsertTable(String table);
-	public void UpdateTable(String table);
-	public List SelectTable(String table, String whereOption);
-=======
 	public List getDataFromListById(List list, String id, String whereOption);
 
 	public void CreateTable(String table);
@@ -53,7 +45,6 @@ public interface DBService {
 	public boolean infopwCheck(String id);
 	public Employee getMember(String num);
 
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7:MIDAS-HCM/src/com/midas/db/service/DBService.java
 	/*
 	 * public List<EmployeeHoliday> getEmployeeHolidayList();
 	public List<SalaryResult> getSalaryResultList();
@@ -61,7 +52,6 @@ public interface DBService {
 	public List<TAAResult> getTAAResult();
 	public List<HolidayRequest> getHolidayRequest();
 	 */
-	
-	public boolean SaveHolidayRequest(HolidayRequest holidayRequest);
+
 
 }

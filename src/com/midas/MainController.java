@@ -6,15 +6,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.midas.db.EmployeeHoliday2;
-<<<<<<< HEAD
-import com.midas.db.HolidayRequest;
-import com.midas.db.service.DBService;
-import com.midas.db.service.DBServiceImpl;
-import com.midas.service.CommonService;
-import com.midas.service.CommonServiceImpl;
-
-
-=======
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
 import com.midas.mainpage.service.HompageService;
@@ -24,24 +15,12 @@ import com.midas.mainpage.service.LoginserviceImp;
 import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
 
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-<<<<<<< HEAD
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-
-public class MainController extends Controller implements Initializable{
-
-	private CommonService comServ;;
-	private DBService dbServ;
-	private Parent root;
-	@FXML Pane calendarPane;
-=======
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -78,7 +57,6 @@ public class MainController extends Controller implements Initializable{
 		Parent btnObj = (Parent)e.getSource();
 		return btnObj.getScene().getRoot();
 	}
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 
 	@Override
 	public void setRoot(Parent root) {
@@ -89,24 +67,6 @@ public class MainController extends Controller implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		comServ = new CommonServiceImpl();
 		dbServ = new DBServiceImpl();
-<<<<<<< HEAD
-	}
-
-	private Parent getScene(ActionEvent e) {
-		Parent btnObj = (Parent)e.getSource();
-		return btnObj.getScene().getRoot();
-	}
-
-	private Parent getScene(Event e) {
-		Parent btnObj = (Parent)e.getSource();
-		return btnObj.getScene().getRoot();
-	}
-
-	public void HomepageView(ActionEvent e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene("/com/midas/Homepage.fxml");
-		borderPane.setCenter(root);
-=======
 		loginServ = new LoginserviceImp();
 		homeServ = new HompageServiceImp();
 
@@ -144,52 +104,16 @@ public class MainController extends Controller implements Initializable{
 		BorderPane borderPane = (BorderPane)getScene(e);
 		Parent scene = comServ.AddScene("/com/midas/Homepage.fxml");
 		borderPane.setCenter(scene);
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 	}
 
 	public void EmployeeMenuView(ActionEvent e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-<<<<<<< HEAD
-		root = comServ.AddScene("/com/midas/Employee.fxml");
-		borderPane.setLeft(root);
-=======
 		Parent scene = comServ.AddScene("/com/midas/Employee.fxml");
 		borderPane.setLeft(scene);
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 	}
 
 	public void ManagerMenuView(ActionEvent e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-<<<<<<< HEAD
-		root = comServ.AddScene("/com/midas/Manager.fxml");
-		borderPane.setLeft(root);
-	}
-
-
-	//Salary
-	public void SalaryMgmtView(Event e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene("/com/midas/SalaryMgmt.fxml");
-		borderPane.setCenter(root);
-	}
-
-	public void SalaryReportView(Event e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene2("/com/midas/SalaryReport.fxml");
-		borderPane.setCenter(root);
-	}
-
-	public void SalaryStmtView(ActionEvent e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene("/com/midas/SalaryStmt.fxml");
-		borderPane.setCenter(root);
-	}
-
-	//	public void ViewTableProc(ActionEvent e) {
-	//		SalaryController sc = new SalaryController();
-	//		sc.ViewTableProc(e);
-	//	}
-=======
 		Parent scene = comServ.AddScene("/com/midas/Manager.fxml");
 		borderPane.setLeft(scene);
 	}
@@ -253,7 +177,6 @@ public class MainController extends Controller implements Initializable{
 
 
 
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 
 	//TAA Manager
 	public void SetCalendarView(Event e) {
@@ -273,13 +196,8 @@ public class MainController extends Controller implements Initializable{
 		root = comServ.AddScene("/com/midas/taa/MonthTAA.fxml");
 
 		Parent form = root;
-<<<<<<< HEAD
-		String [] departItems= {"ºÎ¼­1", "ºÎ¼­2", "ºÎ¼­3", "ºÎ¼­4", "ºÎ¼­5"};
-		String [] sortItems= {"»ç¿ø¹øÈ£", "ÀÌ¸§"};
-=======
 		String [] departItems= {"éºï¿½ï¿½ê½Œ1", "éºï¿½ï¿½ê½Œ2", "éºï¿½ï¿½ê½Œ3", "éºï¿½ï¿½ê½Œ4", "éºï¿½ï¿½ê½Œ5"};
 		String [] sortItems= {"ï¿½ê¶—ï¿½ìè¸°ëŠìƒ‡", "ï¿½ì” ç”±ï¿½"};
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
 		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
 
@@ -289,19 +207,11 @@ public class MainController extends Controller implements Initializable{
 	public void PersonalTAAView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
 		root = comServ.AddScene("/com/midas/taa/PersonalTAA.fxml");
-<<<<<<< HEAD
-		
-		Parent form = root;
-		String [] departItems= {"ºÎ¼­1", "ºÎ¼­2", "ºÎ¼­3", "ºÎ¼­4", "ºÎ¼­5"};
-		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
-		
-=======
 
 		Parent form = root;
 		String [] departItems= {"éºï¿½ï¿½ê½Œ1", "éºï¿½ï¿½ê½Œ2", "éºï¿½ï¿½ê½Œ3", "éºï¿½ï¿½ê½Œ4", "éºï¿½ï¿½ê½Œ5"};
 		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
 
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 		borderPane.setCenter(root);
 	}
 
@@ -310,13 +220,8 @@ public class MainController extends Controller implements Initializable{
 		root = comServ.AddScene("/com/midas/taa/TAAList.fxml");
 
 		Parent form = root;
-<<<<<<< HEAD
-		String [] departItems= {"ºÎ¼­1", "ºÎ¼­2", "ºÎ¼­3", "ºÎ¼­4", "ºÎ¼­5"};
-		String [] sortItems= {"»ç¿ø¹øÈ£", "ÀÌ¸§"};
-=======
 		String [] departItems= {"éºï¿½ï¿½ê½Œ1", "éºï¿½ï¿½ê½Œ2", "éºï¿½ï¿½ê½Œ3", "éºï¿½ï¿½ê½Œ4", "éºï¿½ï¿½ê½Œ5"};
 		String [] sortItems= {"ï¿½ê¶—ï¿½ìè¸°ëŠìƒ‡", "ï¿½ì” ç”±ï¿½"};
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
 		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
 
@@ -326,17 +231,6 @@ public class MainController extends Controller implements Initializable{
 	public void HolidayApprovalView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
 		root = comServ.AddScene("/com/midas/taa/HolidayApproval.fxml");
-<<<<<<< HEAD
-		
-		Parent form = root;
-		String [] departItems= {"ºÎ¼­1", "ºÎ¼­2", "ºÎ¼­3", "ºÎ¼­4", "ºÎ¼­5"};
-		String [] sortItems= {"»ç¿ø¹øÈ£", "ÀÌ¸§"};
-		String [] approvalItems = {"½ÂÀÎ", "¹Ì½ÂÀÎ", "¹Ý·Á"};
-		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
-		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
-		comServ.AddComboBox(form, Arrays.asList(approvalItems), "#cmbApproval");
-		
-=======
 
 		Parent form = root;
 		String [] departItems= {"éºï¿½ï¿½ê½Œ1", "éºï¿½ï¿½ê½Œ2", "éºï¿½ï¿½ê½Œ3", "éºï¿½ï¿½ê½Œ4", "éºï¿½ï¿½ê½Œ5"};
@@ -346,7 +240,6 @@ public class MainController extends Controller implements Initializable{
 		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
 		comServ.AddComboBox(form, Arrays.asList(approvalItems), "#cmbApproval");
 
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 		borderPane.setCenter(root);
 	}
 
@@ -355,47 +248,13 @@ public class MainController extends Controller implements Initializable{
 		root = comServ.AddScene("/com/midas/taa/HolidayModify.fxml");
 		borderPane.setCenter(root);
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 	//TAA Employee
 	public void OwnTAAView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
 		root = comServ.AddScene("/com/midas/taa/own/OwnTAA.fxml");
 		borderPane.setCenter(root);
 	}
-<<<<<<< HEAD
-	
-	public void OwnAskHolidayView(Event e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene("/com/midas/taa/own/OwnAskHoliday.fxml");
-		
-		Parent form = root;
-		String [] FullHalfItems= {"ÀüÀÏ", "¹ÝÀÏ"};
-		comServ.AddComboBox(form, Arrays.asList(FullHalfItems), "#cmbFullHalf");
-		
-		borderPane.setCenter(root);
-		
-		Scene scene = ((Parent)e.getSource()).getScene();
-		List<EmployeeHoliday2> OwnHolidayList = dbServ.SelectTable("EmployeeHoliday", "WHERE id = \"200401\""); //·Î±×ÀÎ ÇÑ »ç¶÷ÀÇ ¾ÆÀÌµð
-		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
-	}
-	
-	public void OwnModifyHolidayView(Event e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene("/com/midas/taa/own/OwnModifyHoliday.fxml");
-		
-		String [] TypeItems= {"¿¬Â÷", "ÃâÀå", "Á¶Åð", "°á±Ù", "Áö°¢", "Ãâ±Ù"};
-		
-		borderPane.setCenter(root);
-		
-	}
-	
-	
-	
-=======
 
 	public void OwnAskHolidayView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
@@ -437,7 +296,6 @@ public class MainController extends Controller implements Initializable{
 	}
 
 
->>>>>>> 3029ffae3305dedca3f7b741d8ef0663cecb91b7
 	
 
 

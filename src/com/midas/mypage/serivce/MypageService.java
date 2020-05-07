@@ -1,4 +1,4 @@
-package com.midas.mypage.service;
+package com.midas.mypage.serivce;
 
 public interface MypageService {
 
