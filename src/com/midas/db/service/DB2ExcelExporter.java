@@ -1,4 +1,20 @@
-package com.midas.db.service;//package com.midas.db;//import java.io.FileOutputStream;//import java.io.IOException;//import java.sql.Connection;//import java.sql.DriverManager;//import java.sql.ResultSet;//import java.sql.SQLException;//import java.sql.Statement;//import java.sql.Timestamp;////import org.apache.poi.ss.usermodel.Cell;//import org.apache.poi.ss.usermodel.CellStyle;//import org.apache.poi.ss.usermodel.CreationHelper;//import org.apache.poi.ss.usermodel.Row;//import org.apache.poi.xssf.usermodel.XSSFSheet;//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+package com.midas.db.service;
+//package com.midas.db;
+//import java.io.FileOutputStream;
+//import java.io.IOException;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
+//import java.sql.Statement;
+//import java.sql.Timestamp;
+//
+//import org.apache.poi.ss.usermodel.Cell;
+//import org.apache.poi.ss.usermodel.CellStyle;
+//import org.apache.poi.ss.usermodel.CreationHelper;
+//import org.apache.poi.ss.usermodel.Row;
+//import org.apache.poi.xssf.usermodel.XSSFSheet;
+//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 //
 ///**
 // * A simple Java program that exports data from database to Excel file.
@@ -18,7 +34,13 @@ public class DB2ExcelExporter {
 //		//		
 //		//		final String sql = 
 //		//				"SELECT * FROM student";
-//		//		//		try {//			Class.forName("org.sqlite.JDBC");//		} catch (ClassNotFoundException e1) {//			// TODO Auto-generated catch block//			e1.printStackTrace();//		}
+//		//		
+//		try {
+//			Class.forName("org.sqlite.JDBC");
+//		} catch (ClassNotFoundException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 //		String jdbcURL = "jdbc:sqlite:C:/자바취업반/MIDAS_Project.db";
 //		//        String username = "root";
 //		//        String password = "password";

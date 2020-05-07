@@ -22,7 +22,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 
 public class SalaryController extends Controller implements Initializable{
 
