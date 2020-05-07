@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.midas.db.SalaryResult;
 
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
