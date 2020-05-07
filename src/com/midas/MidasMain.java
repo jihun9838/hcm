@@ -16,7 +16,7 @@ public class MidasMain extends Application{
 		CommonService comServ = new CommonServiceImpl();
 		
 		BorderPane borderPane = (BorderPane)comServ.AddScene("/com/midas/Homepage.fxml");
-		
+		System.out.println("Homepage");
 		// if(dbServ.getEmployee(id).getCategory() == 1)
 		//Parent empMenuScene = comServ.AddScene("/com/midas/Employee.fxml");
 		// else
@@ -25,6 +25,7 @@ public class MidasMain extends Application{
 		//Parent s = comServ.AddScene("/com/midas/salary/SalaryMgmt.fxml");
 
 		Parent ss = comServ.AddScene("/com/midas/mainpage/login.fxml");
+		System.out.println("logingpage");
 		
 		
 

@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="canvas" fx:controller="com.midas.MainController" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="com.midas.MainController" fx:id="canvas" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -15,7 +15,7 @@
                   <Font name="Gadugi" size="38.0" />
                </font>
             </Label>
-            <Label fx:id="homepageLbl"  prefHeight="100.0" prefWidth="170.0" text="Homepage">
+            <Label fx:id="homepageLbl" prefHeight="100.0" prefWidth="170.0" text="Homepage">
                <font>
                   <Font size="20.0" />
                </font>
@@ -23,7 +23,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Label>
-            <Label fx:id="IDLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="아이디" textFill="#484848" visible="false">
+            <Label fx:id="IDLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="아이디" textFill="#484848">
                <font>
                   <Font name="Sitka Banner" size="21.0" />
                </font>
@@ -31,7 +31,7 @@
                   <Insets top="20.0" />
                </padding>
             </Label>
-            <Label fx:id="helloLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="홍길동님 안녕하세요!" textFill="#484848" visible="false">
+            <Label fx:id="helloLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="홍길동님 안녕하세요!" textFill="#484848">
                <font>
                   <Font name="Sitka Banner" size="21.0" />
                </font>
