@@ -60,7 +60,7 @@ public class SalaryController extends Controller implements Initializable{
 	}
 
 	public void SalaryMgmtExportToExcel(ActionEvent e) {
-		
+		// ¿©±â¸¦ ¹Ù²ãºÃ¾î¿ä ~
 	}
 	
 	public void ShowReportProc(ActionEvent e) {
