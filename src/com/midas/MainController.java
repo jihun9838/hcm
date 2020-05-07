@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.midas.db.service.DBService;
+import com.midas.db.service.DBServiceImpl;
 import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
 
@@ -19,7 +21,8 @@ public class MainController extends Controller implements Initializable{
 
 	private Parent root;
 	private CommonService comServ;
-
+	private DBService dbServ;
+	
 	private Scene getScene3(Event e) {
 		Parent btnObj = (Parent)e.getSource();
 		return btnObj.getScene();
@@ -44,6 +47,7 @@ public class MainController extends Controller implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		comServ = new CommonServiceImpl();
+		dbServ = new DBServiceImpl();
 		
 		
 //		LocalDate date1 = LocalDate.of(2020, 4, 27);
@@ -100,57 +104,57 @@ public class MainController extends Controller implements Initializable{
 
 
 
-
-
-	// TAA
-	public void SetCalendarView(Event e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/taa/SetCalendar.fxml");
-		borderPane.setCenter(scene);
-
-		BorderPane bp = (BorderPane)borderPane.getCenter();
-		Parent scene3 = comServ.AddScene("/com/midas/taa/TAAReport.fxml");
-		bp.setCenter(scene3);
-
-	}
-
-	public void TAAReportView(Event e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/taa/TAAReport.fxml");
-		borderPane.setCenter(scene);
-	}
-
-	public void MonthTAAView(Event e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/taa/MonthTAA.fxml");
-		borderPane.setCenter(scene);
-	}
-
-	public void PersonalTAAView(Event e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/taa/PersonalTAA.fxml");
-		borderPane.setCenter(scene);
-	}
-
-	public void TAAListView(Event e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/taa/TAAList.fxml");
-		borderPane.setCenter(scene);
-	}
-
-	public void HolidayApprovalView(Event e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/taa/HolidayApproval.fxml");
-		borderPane.setCenter(scene);
-	}
-
-	public void HolidayModifyView(Event e) {
-		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent scene= comServ.AddScene("/com/midas/taa/HolidayModify.fxml");
-		borderPane.setCenter(scene);
-	}
-	
-	
+//
+//
+//	// TAA
+//	public void SetCalendarView(Event e) {
+//		BorderPane borderPane = (BorderPane)getScene(e);
+//		Parent scene = comServ.AddScene("/com/midas/taa/SetCalendar.fxml");
+//		borderPane.setCenter(scene);
+//
+//		BorderPane bp = (BorderPane)borderPane.getCenter();
+//		Parent scene3 = comServ.AddScene("/com/midas/taa/TAAReport.fxml");
+//		bp.setCenter(scene3);
+//
+//	}
+//
+//	public void TAAReportView(Event e) {
+//		BorderPane borderPane = (BorderPane)getScene(e);
+//		Parent scene = comServ.AddScene("/com/midas/taa/TAAReport.fxml");
+//		borderPane.setCenter(scene);
+//	}
+//
+//	public void MonthTAAView(Event e) {
+//		BorderPane borderPane = (BorderPane)getScene(e);
+//		Parent scene = comServ.AddScene("/com/midas/taa/MonthTAA.fxml");
+//		borderPane.setCenter(scene);
+//	}
+//
+//	public void PersonalTAAView(Event e) {
+//		BorderPane borderPane = (BorderPane)getScene(e);
+//		Parent scene = comServ.AddScene("/com/midas/taa/PersonalTAA.fxml");
+//		borderPane.setCenter(scene);
+//	}
+//
+//	public void TAAListView(Event e) {
+//		BorderPane borderPane = (BorderPane)getScene(e);
+//		Parent scene = comServ.AddScene("/com/midas/taa/TAAList.fxml");
+//		borderPane.setCenter(scene);
+//	}
+//
+//	public void HolidayApprovalView(Event e) {
+//		BorderPane borderPane = (BorderPane)getScene(e);
+//		Parent scene = comServ.AddScene("/com/midas/taa/HolidayApproval.fxml");
+//		borderPane.setCenter(scene);
+//	}
+//
+//	public void HolidayModifyView(Event e) {
+//		BorderPane borderPane = (BorderPane)getScene(e);
+//		Parent scene= comServ.AddScene("/com/midas/taa/HolidayModify.fxml");
+//		borderPane.setCenter(scene);
+//	}
+//	
+//	
 	
 	//TAA Manager
 	public void SetCalendarView(Event e) {

@@ -25,11 +25,10 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 
@@ -101,7 +100,7 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-	public Parent AddScene(String formPath, Parent parent) {
+	public Parent AddScene2(String formPath, Parent parent) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(formPath));
 		Parent root = parent;
 		try {
@@ -112,6 +111,35 @@ public class CommonServiceImpl implements CommonService{
 		return root;
 	}
 
+
+	@Override
+	public void AddComboBox(Parent form, List<String> items, String comboFxid) {
+		ComboBox<String> 	cmbAge = (ComboBox<String>)form.lookup(comboFxid);
+
+		if(cmbAge!=null) {
+			for(String item : items)
+				cmbAge.getItems().add(item);
+		}
+	}
+
+	@Override
+	public boolean isComboBox(Parent membershipForm, String comboFxid) {
+		ComboBox<String> 	cmbAge = (ComboBox<String>)membershipForm.lookup(comboFxid);
+
+		if(cmbAge==null) return false;
+		else if(cmbAge.getValue()==null) {
+			cmbAge.requestFocus();
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String getComboBoxString(Parent membershipForm, String comboFxid) {
+		ComboBox<String> cmbAge = (ComboBox<String>)membershipForm.lookup(comboFxid);
+		if(cmbAge==null) return "";
+		return cmbAge.getValue().toString();
+	}
 
 
 	@Override
