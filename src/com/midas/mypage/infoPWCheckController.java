@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import com.midas.Controller;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
+import com.midas.mainpage.service.HompageService;
+import com.midas.mainpage.service.HompageServiceImp;
 import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
 
@@ -26,7 +28,7 @@ public class infoPWCheckController extends Controller implements Initializable{
 	@FXML private Button pwCheckBtn;
 	private CommonService comServ;
 	private DBService dbServ;
-	
+	private HompageService homServ;
 	@Override
 	public void setRoot(Parent root) {
 		// TODO Auto-generated method stub
@@ -42,6 +44,7 @@ public class infoPWCheckController extends Controller implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		comServ = new CommonServiceImpl();
 		dbServ = new DBServiceImpl();
+		homServ = new HompageServiceImp();
 		
 //		pwCheckBtn.setOnAction(e->{			
 //			pwCheckBtnProc();
@@ -54,12 +57,12 @@ public class infoPWCheckController extends Controller implements Initializable{
 	}
 
 	public void pwCheckBtnProc(ActionEvent e) {
+		DBService dbServ = new DBServiceImpl();
 		String pw = infoPwTxt.getText();
-		
-		System.out.println(pw);
+		String id = homServ.getUserLabel(getScene(e));
 		
 		//if(dbServ.infopwCheck(pw)) {
-		if(pw.contentEquals("1234")) {
+		if(dbServ.infopwCheck(id, pw)) {
 //			commomServ.showWindow(s, "/mypage/mypage");
 			
 			BorderPane borderPane = (BorderPane)getScene(e);
@@ -68,7 +71,7 @@ public class infoPWCheckController extends Controller implements Initializable{
 			
 		}
 		else {
-			comServ.ErrorMsg("내정보 확인", "비밀번호가 다릅니다.", "비밀번호를 확인해주세요");
+			//comServ.ErrorMsg("내정보 확인", "비밀번호가 다릅니다.", "비밀번호를 확인해주세요");
 			infoPwTxt.clear();
 		}
 		

@@ -57,6 +57,7 @@ public class MainController extends Controller implements Initializable{
 		Parent btnObj = (Parent)e.getSource();
 		return btnObj.getScene().getRoot();
 	}
+	
 
 	@Override
 	public void setRoot(Parent root) {
@@ -123,16 +124,24 @@ public class MainController extends Controller implements Initializable{
 	
 	
 	public void logoutBtnProc(ActionEvent e) {
-		comServ.ErrorMsg("濡쒓렇�븘�썐", "濡쒓렇�븘�썐 �맗�땲�떎.", "濡쒓렇�븘�썐�씠 �떎�뻾�맗�땲�떎.");
+		comServ.ErrorMsg("로그아웃", "로그아웃 됩니다.", "로그아웃이 실행됩니다.");
 		comServ.WindowClose(e);
 	}
 
 	public void commuteBtnProc(ActionEvent e) {
-		System.out.println("異쒓렐");
+		if(commuteBtn.getText().equals("출근")) {
+			comServ.ErrorMsg("출/퇴근", "출근입니다.", "출근하였습니다.\n오늘하루도 화이팅~!");
+			commuteBtn.setText("퇴근");
+		}
+
+		else if(commuteBtn.getText().equals("퇴근")) {
+			comServ.ErrorMsg("출/퇴근", "퇴근입니다.", "퇴근하였습니다.\n오늘하루도 고생하셨습니다!");
+			commuteBtn.setText("출근");
+		}				
 	}
 
 	public void Lbl(Parent root, String id) {
-		homeServ.Lbl(root, id);
+		homeServ.setUserLabel(root, id);
 	}
 	
 	

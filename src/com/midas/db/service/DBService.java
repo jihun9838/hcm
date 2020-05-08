@@ -43,12 +43,13 @@ public interface DBService {
 	public boolean searchID(String name, String PhoneNum);
 	public boolean searchPW(String name, String id, String PhoneNum);
 	public String [] homepage(String id);
-	public boolean infopwCheck(String id);
+	public boolean infopwCheck(String id, String pw);
 	public Employee getMember(String num);
 
 	//JeongSoo
 	public boolean SaveHolidayRequest(HolidayRequest holidayRequest);
 	public List<Employee> SelectTableHoliday(String whereOption);
+	
 
 	/*
 	 * public List<EmployeeHoliday> getEmployeeHolidayList();

@@ -659,8 +659,8 @@ public class DBServiceImpl implements DBService{
 
 	@Override
 	public boolean MembershipProc(Employee employee) {
-		String sql = "INSERT INTO Employee (사원번호,id,pw,이름,생년월일,주민번호뒷자리,부서,전화번호,입사일자,이메일,최종학력,주소)"
-				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO Employee (사원번호,id,pw,이름,생년월일,주민번호뒷자리,부서,전화번호,입사일자,이메일,최종학력,주소,총연차,사용연차,잔여연차,사원구분,직급,근무지)"
+				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,26,0,26,'사원','사원','본사')";
 		// 회원가입
 
 		try {
@@ -683,17 +683,19 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.close();
 			conn.close();
-
+			return true;
+			
 		} catch (SQLException e) {
-			return false;
+			e.printStackTrace();
 		}
-		return true;	// 정보 입력 잘되면 회원가입 성공
+		return false;	// 정보 입력 잘되면 회원가입 성공
 	}
 
 	@Override
 	public boolean LoginProc(String id, String pw) {
 		String sql = "SELECT count(*) FROM Employee WHERE id=? AND pw=?";
 		// 로그인
+		//boolean rtn = false;
 		ResultSet rs;
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -710,12 +712,13 @@ public class DBServiceImpl implements DBService{
 				else return false;
 			}
 			pStmt.close();
+			rs.close();
 			conn.close();
 
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}	
-		return false;
+		return true;
 
 	}
 
@@ -747,7 +750,7 @@ public class DBServiceImpl implements DBService{
 				lstEmp.add(emp);
 			}
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 			return null;
 		}
 		return lstEmp;
@@ -757,7 +760,7 @@ public class DBServiceImpl implements DBService{
 		Parent root = null;
 		String sql = "SELECT count(*) FROM Employee WHERE id = ?";
 		CommonService comServ = new CommonServiceImpl();
-
+		boolean rtn = false;
 		ResultSet rs;
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -770,20 +773,21 @@ public class DBServiceImpl implements DBService{
 				int i = rs.getInt("count(*)");
 				if(i==0) {
 					comServ.ErrorMsg("아이디 확인","중복된 아이디가 없습니다.","중복된 아이디가 없습니다. 사용가능 합니다.");
-					return true;
+					rtn =  true;
 				}
 				else {
 					comServ.ErrorMsg("아이디 확인", "중복된 아이디가 있습니다.","중복된 아이디입니다. 다시 입력해주세요.");
-					return false;
+					rtn = false;
 				}
 			}
 			pStmt.close();
+			rs.close();
 			conn.close();
 
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}
-		return false;	
+		return rtn;	
 
 	}
 
@@ -791,6 +795,7 @@ public class DBServiceImpl implements DBService{
 	public boolean searchID(String name, String PhoneNum) {
 		String sql = "SELECT  count(*),id FROM Employee WHERE 이름=? AND 전화번호 = ?";
 		CommonService comServ = new CommonServiceImpl();
+		boolean rtn = false;
 
 		ResultSet rs;
 		try {
@@ -809,20 +814,21 @@ public class DBServiceImpl implements DBService{
 				String i = rs.getString("id");
 				if(i!=null) {
 					comServ.ErrorMsg("아이디 찾기","입력하신 정보의 아이디가 있습니다.","아이디는 "+i+" 입니다.");
-					return false;
+					rtn = false;
 				}
 				else {
 					comServ.ErrorMsg("아이디 찾기", "입력한 정보를 확인해주세요.","아이디가 없습니다.");		
-					return true;
+					rtn = true;
 				}
 			}
 			pStmt.close();
+			rs.close();
 			conn.close();
 
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}
-		return false;	
+		return rtn;	
 	}
 
 
@@ -830,7 +836,8 @@ public class DBServiceImpl implements DBService{
 	public boolean searchPW(String name,String id, String PhoneNum) {
 		String sql = "SELECT  count(*), pw FROM Employee WHERE 이름=? AND id = ? AND 전화번호 = ? ";
 		CommonService comServ = new CommonServiceImpl();
-
+		boolean rtn = false;
+		
 		ResultSet rs;
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -847,20 +854,21 @@ public class DBServiceImpl implements DBService{
 				String i = rs.getString("pw");
 				if(i!=null) {
 					comServ.ErrorMsg("비밀번호 찾기","입력하신 정보의 비밀번호가 있습니다.","비밀번호는 "+i+" 입니다.");
-					return false;
+					rtn = false;
 				}
 				else {
 					comServ.ErrorMsg("비밀번호 찾기", "입력한 정보를 확인해주세요.","비밀번호를 찾을 수 없습니다.");
-					return true;
+					rtn = true;
 				}
 			}
 			pStmt.close();
+			rs.close();
 			conn.close();
 
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}
-		return false;	
+		return rtn;	
 	}
 	@Override
 	public Employee getMember(String num) {
@@ -915,7 +923,7 @@ public class DBServiceImpl implements DBService{
 	@Override
 	public String [] homepage(String id) {
 		String sql = "SELECT id, 이름  FROM Employee WHERE id=?";
-		CommonService comServ = new CommonServiceImpl();
+		//CommonService comServ = new CommonServiceImpl();
 		String [] idName = new String[2];			
 
 		ResultSet rs;
@@ -932,49 +940,54 @@ public class DBServiceImpl implements DBService{
 			}
 
 			pStmt.close();
+			rs.close();
 			conn.close();
-			return idName;
+			//return idName;
 
 		} catch (SQLException e) {
-
+			e.printStackTrace();
+			return null;
 		}
-		return null;	
+		
+		return idName;	
 	}
 
 	@Override
-	public boolean infopwCheck(String id) {
+	public boolean infopwCheck(String id, String pw) {
 		System.out.println("infopwCheck(" + id + ") ");
 		String sql = "SELECT count(*) FROM Employee WHERE id=? AND pw=?";
 		CommonService comServ = new CommonServiceImpl();	
 
+		boolean rtn = false; 
 		ResultSet rs;
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			pStmt.setString(1, id);
+			pStmt.setString(2, pw);
 
 			rs = pStmt.executeQuery();
 
 			while(rs.next()) {
-				int i = rs.getInt("pw");
+				int i = rs.getInt("count(*)");
 				if(i==1) {
-					System.out.println("sss");
-					return false;
+					rtn = true;
 				}
 				else {
 					comServ.ErrorMsg("내 정보 확인", "비밀번호가 틀렸습니다.","비밀번호를 확인해주세요");
-					return true;
+					rtn = false;
 				}
 			}
 
 			pStmt.close();
+			rs.close();
 			conn.close();
 
 
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}
-		return false;	
+		return rtn;	
 	}
 	
 	//TAA

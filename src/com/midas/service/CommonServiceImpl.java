@@ -111,7 +111,20 @@ public class CommonServiceImpl implements CommonService{
 		}
 		return root;
 	}
-
+	
+	@Override
+	public Parent AddScene3(String formPath) {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(formPath));
+		Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Controller ctrler = loader.getController();
+		ctrler.setRoot(root);
+		return root;
+	}
 
 
 

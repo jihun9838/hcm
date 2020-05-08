@@ -6,9 +6,8 @@ import javafx.scene.control.Label;
 public class HompageServiceImp implements HompageService{
 
 	private Loginservice loginServ = new LoginserviceImp();
-
 	@Override
-	public void Lbl(Parent root, String id) {
+	public void setUserLabel(Parent root, String id) {
 	
 		Label idlbl = (Label)root.lookup("#IDLbl");
 		Label hellolbl = (Label)root.lookup("#helloLbl");
@@ -18,5 +17,13 @@ public class HompageServiceImp implements HompageService{
 		hellolbl.setText(home[1]+"¥‘ æ»≥Á«œººø‰.");
 		
 	}
+	@Override
+	public String getUserLabel(Parent root) {
+		//Label idlbl = (Label)root.lookup("#IDLbl");		
+		//return idlbl.getText();
+		
+		return ((Label)root.lookup("#IDLbl")).getText();
+	}
 
+	
 }
