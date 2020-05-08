@@ -1,5 +1,6 @@
 package MIDAS;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -21,6 +22,9 @@ public class Employee {
 	private SimpleStringProperty education;
 	private SimpleStringProperty address;
 	private SimpleStringProperty image;
+	private SimpleIntegerProperty availableDay;
+	private SimpleIntegerProperty usedDay;
+	private SimpleIntegerProperty remainDay;
 	
 	public Employee() {
 		this.num = new SimpleStringProperty();
@@ -229,5 +233,23 @@ public class Employee {
 	}
 	public StringProperty image() {
 		return image;
+	}
+	public int getAvailableDay() {
+		return availableDay.get();
+	}
+	public void setAvailableDay(int availableDay) {
+		this.availableDay.set(availableDay);;
+	}
+	public int getUsedDay() {
+		return usedDay.get();
+	}
+	public void setUsedDay(int usedDay) {
+		this.usedDay.set(usedDay);;
+	}
+	public int getRemainDay() {
+		return remainDay.get();
+	}
+	public void setRemainDay(int remainDay) {
+		this.remainDay.set(remainDay);;
 	}
 }

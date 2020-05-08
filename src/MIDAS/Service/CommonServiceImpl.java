@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import MIDAS.Controller;
 import MIDAS.Employee;
@@ -16,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
@@ -114,6 +116,22 @@ public class CommonServiceImpl implements CommonService {
 	}
 	
 	@Override
+	public boolean ConfirmMsg(String title, String headerStr, String ContentTxt) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(headerStr);
+		alert.setContentText(ContentTxt);
+		
+		Optional<ButtonType> result =  alert.showAndWait();
+		if(result.get() == ButtonType.OK) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	@Override
 	public void ErrorMsg(String title, String headerStr, String ContentTxt) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(title);
@@ -131,5 +149,4 @@ public class CommonServiceImpl implements CommonService {
 	public void ErrorMsg(String ContentTxt) {
 		ErrorMsg("error", "error Header", ContentTxt);
 	}
-
 }

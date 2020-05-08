@@ -26,4 +26,6 @@ public interface CommonService {
 	public void ErrorMsg(String title, String headerStr, String ContentTxt);
 	public void ErrorMsg(String headerStr, String ContentTxt);
 	public void ErrorMsg(String ContentTxt);
+	
+	public boolean ConfirmMsg(String title, String headerStr, String ContentTxt);
 }

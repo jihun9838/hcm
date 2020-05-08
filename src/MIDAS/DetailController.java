@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import MIDAS.Data.DataManage;
+import MIDAS.Data.DataManageImpl;
 import MIDAS.Service.CommonService;
 import MIDAS.Service.CommonServiceImpl;
 import MIDAS.Service.DetailInfoService;
@@ -26,6 +28,7 @@ import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class DetailController extends Controller implements Initializable{
 	@FXML private TableView<Employee> employee_simple_table;
@@ -235,7 +238,7 @@ public class DetailController extends Controller implements Initializable{
 			employee.setimage(null);
 		}
 		else {
-			employee.setimage("/MIDAS/image/" + edit_img.getText());
+			employee.setimage(edit_img.getText());
 		}
 		employee.setjoin(Employee_join.getValue().toString());
 		employee.setcategory(Employee_category.getValue());
@@ -251,9 +254,9 @@ public class DetailController extends Controller implements Initializable{
 		setInfo(selectedEmployee);
 	}
 	
-	public void CloseProc(ActionEvent event) {
-		comServ = new CommonServiceImpl();
-		comServ.WindowClose(event);
+	public void DeleteProc() {
+		detail = new DetailInfoServiceImpl();
+		detail.DeleteProc(root);
 	}
 	
 	private void txtLimit(TextField txt) {

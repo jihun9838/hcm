@@ -13,7 +13,7 @@ import MIDAS.Employee;
 
 public class DataManageImpl implements DataManage {
 	private final static String DRIVER = "org.sqlite.JDBC";
-	private final static String DB = "jdbc:sqlite:C:/유동관 자바취업반/프로젝트MIDAS/MIDAS_Project.db";
+	private final static String DB = "jdbc:sqlite:src/MIDAS_Project.db";
 	Connection conn;
 	public DataManageImpl() {
 		try {
@@ -30,7 +30,7 @@ public class DataManageImpl implements DataManage {
 	@Override
 	public Employee getEmployee(String num) {
 		String sql = "SELECT * " + 
-				"FROM Member " +
+				"FROM Employee " +
 				"WHERE 사원번호 like '%" + num + "%'";
 	
 		try {
@@ -80,7 +80,7 @@ public class DataManageImpl implements DataManage {
 	public List<Employee> getEmployeelst(int i) {
 		List<Employee> lstEmployee = new ArrayList<Employee>();
 		String sql = "SELECT * " + 
-					"FROM Member";
+					"FROM Employee";
 		
 		try {
 			Statement stmt = conn.createStatement();
@@ -114,7 +114,7 @@ public class DataManageImpl implements DataManage {
 	public List<Employee> getEmployeeSearch(String attribute, String txt, int i) {
 		List<Employee> lstEmployee = new ArrayList<Employee>();
 		String sql = "SELECT * " + 
-					"FROM Member " +
+					"FROM Employee " +
 					"WHERE " + attribute + " like '%" + txt + "%'";
 		
 		try {
@@ -201,8 +201,8 @@ public class DataManageImpl implements DataManage {
 	}
 	@Override
 	public boolean SaveInfo(Employee employee) {
-		String sql = "INSERT INTO Member (사원번호,id,pw,이름,생년월일,주민번호뒷자리,부서,전화번호,입사일자,이메일,최종학력,주소,사원구분,연봉,직급,근무지,사진url) " + 
-					"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO Employee (사원번호,id,pw,이름,생년월일,주민번호뒷자리,부서,전화번호,입사일자,이메일,최종학력,주소,사원구분,연봉,직급,근무지,사진url,총연차,사용연차,잔여연차) " + 
+					"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -224,6 +224,9 @@ public class DataManageImpl implements DataManage {
 	        pStmt.setString(15, employee.getposition());
 	        pStmt.setString(16, employee.getplace());
 	        pStmt.setString(17, employee.getimage());
+	        pStmt.setInt(18, 26);
+	        pStmt.setInt(19, 0);
+	        pStmt.setInt(20, 26);
 	        
 			
 			pStmt.executeUpdate();
@@ -241,7 +244,7 @@ public class DataManageImpl implements DataManage {
 	}
 	@Override
 	public boolean EditInfo(String num, Employee employee) {
-		String sql = "UPDATE Member " +
+		String sql = "UPDATE Employee " +
 					"SET 사원번호 = ?,id = ?,이름 = ?,생년월일 = ?,부서 = ?,전화번호 = ?,입사일자 = ?,이메일 = ?,최종학력 = ?,주소 = ?,사원구분 = ?,연봉 = ?,직급 = ?,근무지 = ?,사진url = ? " + 
 					"WHERE 사원번호 = " + num;
 
@@ -277,6 +280,27 @@ public class DataManageImpl implements DataManage {
 	}
 	
 	return false;
+	}
+	
+	@Override
+	public boolean DeleteInfo(String num) {
+		String sql = "DELETE FROM Employee " + 
+				"WHERE 사원번호 = " + num;
+	
+		try {
+			Statement stmt = conn.createStatement();
+			
+			stmt.executeUpdate(sql);
+			
+			stmt.close();
+			conn.close();
+			
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	

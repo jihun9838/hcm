@@ -95,7 +95,7 @@ public class AddController extends Controller implements Initializable{
 		employee.setemail(add_email.getText());
 		employee.setaddress(add_address.getText());
 		if(!add_img.getText().isEmpty()) {
-		employee.setimage("/MIDAS/image/" + add_img.getText());
+			employee.setimage("/MIDAS/image/" + add_img.getText());
 		}
 		if(add_join.getValue() == null || add_join.getValue().toString().length() == 0)	{
 			add_join.setValue(LocalDate.now());

@@ -86,5 +86,23 @@ public class DetailInfoServiceImpl implements DetailInfoService {
 		return dataManage.EditInfo(num, employee);
 	}
 
+	@Override
+	public boolean DeleteProc(Parent form) {
+		CommonService comServ = new CommonServiceImpl();
+		TextField Employee_num = (TextField)form.lookup("#Employee_num");
+		
+		if(comServ.ConfirmMsg("삭제 경고", "사원 정보 삭제", "삭제 하시겠습니까?")) {
+			DataManage dataManage = new DataManageImpl();
+			if(dataManage.DeleteInfo(Employee_num.getText())) {
+				comServ.ErrorMsg("삭제 알림", "사원 정보 삭제", "사원 정보가 삭제되었습니다.");
+				return true;
+			}
+			else {
+				comServ.ErrorMsg("삭제 알림", "사원 정보 삭제", "사원 정보 삭제에 실패했습니다.");
+				return false;
+			}
+		}
+		return false;
+	}
 	
 }
