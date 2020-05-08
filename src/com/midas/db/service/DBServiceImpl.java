@@ -305,28 +305,17 @@ public class DBServiceImpl implements DBService{
 				while(rs.next()) {
 					HolidayRequest holidayRequest = new HolidayRequest();
 
-					holidayRequest.setNum(rs.getString("사원번호"));
+
 					holidayRequest.setId(rs.getString("id"));
-					//				holidayRequest.setPw(rs.getString("pw"));
-					//				holidayRequest.setName(rs.getString("이름"));
-					//				holidayRequest.setBirth(rs.getString("생년월일"));
-					//				holidayRequest.setGender(rs.getString("주민번호뒷자리"));
-					//				holidayRequest.setCategory(rs.getString("사원구분"));
-					//				holidayRequest.setSalary(rs.getString("연봉"));
-					//				holidayRequest.setDepartment(rs.getString("부서"));
-					//				holidayRequest.setPosition(rs.getString("직급"));
-					//				holidayRequest.setPlace(rs.getString("근무지"));
-					//				holidayRequest.setPhone(rs.getString("전화번호"));
-					//				holidayRequest.setJoin(rs.getString("입사일자"));
-					//				holidayRequest.setEmail(rs.getString("이메일"));
-					//				holidayRequest.setEducation(rs.getString("최종학력"));
-					//				holidayRequest.setAddress(rs.getString("주소"));
-					//				holidayRequest.setImage(rs.getString("사진url"));
-					holidayRequest.setIdx(rs.getString("idx"));
-					holidayRequest.setStart(rs.getString("start"));
-					holidayRequest.setEnd(rs.getString("end"));
-					holidayRequest.setDays(rs.getString("days"));
-					holidayRequest.setText(rs.getString("text"));
+					holidayRequest.setName(rs.getString("name"));
+					holidayRequest.setDepartment(rs.getString("department"));
+					holidayRequest.setAvailableDay(rs.getString("availableDay"));
+					holidayRequest.setRequestDay(rs.getString("requestDay"));
+					holidayRequest.setStartDay(rs.getString("startDay"));
+					holidayRequest.setEndDay(rs.getString("endDay"));
+					holidayRequest.setPeriodDay(rs.getString("periodDay"));
+					holidayRequest.setReason(rs.getString("reason"));
+					holidayRequest.setApproval(rs.getString("approval"));
 
 					list.add(holidayRequest);
 				}
@@ -626,6 +615,7 @@ public class DBServiceImpl implements DBService{
 
 		return false;
 	}
+	
 	@Override
 	public boolean EditInfo(String num, Employee employee) {
 		String sql = "UPDATE Employee " +
@@ -993,36 +983,29 @@ public class DBServiceImpl implements DBService{
 		}
 		return false;	
 	}
-
-
+	
+	//TAA
 	@Override
-	public boolean EditInfo(String num, Employee employee) {
-		String sql = "UPDATE Employee " +
-				"SET 사원번호 = ?,id = ?,이름 = ?,생년월일 = ?,부서 = ?,전화번호 = ?,입사일자 = ?,이메일 = ?,최종학력 = ?,주소 = ?,사원구분 = ?,연봉 = ?,직급 = ?,근무지 = ?,사진url = ? " + 
-				"WHERE 사원번호 = " + num;
+	public boolean SaveHolidayRequest(HolidayRequest holidayRequest) {
+		String sql = "INSERT INTO HolidayRequest (id,name,department,availableDay,requestDay,startDay,endDay,periodDay,reason,approval)" + 
+				"VALUES (?,?,?,?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			pStmt.setString(1, employee.getNum());
-			pStmt.setString(2, employee.getId());
-			pStmt.setString(3, employee.getName());
-			pStmt.setString(4, employee.getBirth());
-			pStmt.setString(5, employee.getDepartment());
-			pStmt.setString(6, employee.getPhone());
-			pStmt.setString(7, employee.getJoin());
-			pStmt.setString(8, employee.getEmail());
-			pStmt.setString(9, employee.getEducation());
-			pStmt.setString(10, employee.getAddress());
-			pStmt.setString(11, employee.getCategory());
-			pStmt.setString(12, employee.getSalary());
-			pStmt.setString(13, employee.getPosition());
-			pStmt.setString(14, employee.getPlace());
-			pStmt.setString(15, employee.getImage());
-
+			
+			
+			pStmt.setString(1, holidayRequest.getId());
+			pStmt.setString(2, holidayRequest.getName());
+			pStmt.setString(3, holidayRequest.getDepartment());
+			pStmt.setString(4, holidayRequest.getAvailableDay());
+			pStmt.setString(5, holidayRequest.getRequestDay());
+			pStmt.setString(6, holidayRequest.getStartDay());
+			pStmt.setString(7, holidayRequest.getEndDay());
+			pStmt.setString(8, holidayRequest.getPeriodDay());
+			pStmt.setString(9, holidayRequest.getReason());
+			pStmt.setString(10, holidayRequest.getApproval());
 
 			pStmt.executeUpdate();
-
 			pStmt.close();
 			conn.close();
 
@@ -1034,333 +1017,51 @@ public class DBServiceImpl implements DBService{
 
 		return false;
 	}
-
-
-
-
-
-
-
-
-
 	@Override
-	public boolean MembershipProc(Employee employee) {
-		String sql = "INSERT INTO Employee (사원번호,id,pw,이름,생년월일,주민번호뒷자리,부서,전화번호,입사일자,이메일,최종학력,주소)"
-				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-		// 회원가입
+	public List<Employee> SelectTableHoliday(String whereOption){
+				
+				String sql = "SELECT " +
+							"\"사원번호\", \"이름\", \"부서\", \"입사일자\", \"총연차\", \"사용연차\", \"잔여연차\" "+
+							"FROM Employee";
 
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+				//SELECT "사원번호", "이름", "부서", "입사일자", "총연차", "사용연차", "잔여연차" FROM Employee;
 
-			pStmt.setString(1, employee.getNum());
-			pStmt.setString(2, employee.getId());
-			pStmt.setString(3, employee.getPw());
-			pStmt.setString(4, employee.getName());
-			pStmt.setString(5, employee.getBirth());
-			pStmt.setString(6, employee.getSocialNum());
-			pStmt.setString(7, employee.getDepartment());
-			pStmt.setString(8, employee.getPhone());
-			pStmt.setString(9, employee.getJoin());
-			pStmt.setString(10, employee.getEmail());
-			pStmt.setString(11, employee.getEducation());
-			pStmt.setString(12, employee.getAddress());
+				if(!whereOption.isEmpty()) {
+					sql +="\n" + whereOption;
+				}
+				List<Employee> list = new ArrayList<>();
 
-			pStmt.executeUpdate();
-
-			pStmt.close();
-			conn.close();
-
-		} catch (SQLException e) {
-			return false;
-		}
-		return true;	// 정보 입력 잘되면 회원가입 성공
-	}
-
-	@Override
-	public boolean LoginProc(String id, String pw) {
-		String sql = "SELECT count(*) FROM Employee WHERE id=? AND pw=?";
-		// 로그인
-		ResultSet rs;
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			pStmt.setString(1, id);
-			pStmt.setString(2, pw);
-
-			rs = pStmt.executeQuery();
-
-			while(rs.next()) {	//다음 행이 있으면 이 반복문을 이어가렴
-				int i = rs.getInt("count(*)");
-				if(i==1)
-					return true;
-				else return false;
-			}
-			pStmt.close();
-			conn.close();
-
-		} catch (SQLException e) {
-
-		}	
-		return false;
-
-	}
-
-	@Override
-	public List<Employee> getMember() {
-		String sql = "SELECT * FROM Employee";
-		List<Employee> lstEmp = new ArrayList<Employee>();
-
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-			ResultSet rs = pStmt.executeQuery();
-
-			while (rs.next()) {
+				try {
+					PreparedStatement pStmt = conn.prepareStatement(sql);
+					ResultSet rs = pStmt.executeQuery();
+		
+			while(rs.next()) {
 				Employee emp = new Employee();
 
 				emp.setNum(rs.getString("사원번호"));
-				emp.setId(rs.getString("id"));
-				emp.setPw(rs.getString("pw"));
 				emp.setName(rs.getString("이름"));
-				emp.setBirth(rs.getString("생년월일"));
-				emp.setSocialNum(rs.getString("주민번호뒷자리"));
 				emp.setDepartment(rs.getString("부서"));
-				emp.setPhone(rs.getString("전화번호"));
 				emp.setJoin(rs.getString("입사일자"));
-				emp.setEmail(rs.getString("이메일"));
-				emp.setEducation(rs.getString("최종학력"));
-				emp.setAddress(rs.getString("주소"));
+				emp.setAvailableHoliday(rs.getString("총연차"));
+				emp.setUsedHoliday(rs.getString("사용연차"));
+				emp.setRemainHoliday(rs.getString("잔여연차"));
 
-				lstEmp.add(emp);
+				list.add(emp);
 			}
-		} catch (SQLException e) {
+						
 
-			return null;
-		}
-		return lstEmp;
+		//stmt.close();
+		pStmt.close();
+		rs.close();
+		//conn.close();
+
+		return list;
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
-	@Override
-	public boolean idcheck(String id) {
-		Parent root = null;
-		String sql = "SELECT count(*) FROM Employee WHERE id = ?";
-		CommonService comServ = new CommonServiceImpl();
-
-		ResultSet rs;
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			pStmt.setString(1, id);
-
-			rs = pStmt.executeQuery();
-
-			while(rs.next()) {
-				int i = rs.getInt("count(*)");
-				if(i==0) {
-					comServ.ErrorMsg("아이디 확인","중복된 아이디가 없습니다.","중복된 아이디가 없습니다. 사용가능 합니다.");
-					return true;
-				}
-				else {
-					comServ.ErrorMsg("아이디 확인", "중복된 아이디가 있습니다.","중복된 아이디입니다. 다시 입력해주세요.");
-					return false;
-				}
-			}
-			pStmt.close();
-			conn.close();
-
-		} catch (SQLException e) {
-
-		}
-		return false;	
-
+	System.out.println("ERROR : SelectTableHoliday");
+	return null;
 	}
-
-	@Override
-	public boolean searchID(String name, String PhoneNum) {
-		String sql = "SELECT  count(*),id FROM Employee WHERE 이름=? AND 전화번호 = ?";
-		CommonService comServ = new CommonServiceImpl();
-
-		ResultSet rs;
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			pStmt.setString(1, name);
-			pStmt.setString(2, PhoneNum);
-
-			rs = pStmt.executeQuery();
-
-			Employee member = new Employee();
-			member.setId(rs.getString("id"));
-
-			while(rs.next()) {
-
-				String i = rs.getString("id");
-				if(i!=null) {
-					comServ.ErrorMsg("아이디 찾기","입력하신 정보의 아이디가 있습니다.","아이디는 "+i+" 입니다.");
-					return false;
-				}
-				else {
-					comServ.ErrorMsg("아이디 찾기", "입력한 정보를 확인해주세요.","아이디가 없습니다.");		
-					return true;
-				}
-			}
-			pStmt.close();
-			conn.close();
-
-		} catch (SQLException e) {
-
-		}
-		return false;	
-	}
-
-
-	@Override
-	public boolean searchPW(String name,String id, String PhoneNum) {
-		String sql = "SELECT  count(*), pw FROM Employee WHERE 이름=? AND id = ? AND 전화번호 = ? ";
-		CommonService comServ = new CommonServiceImpl();
-
-		ResultSet rs;
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			pStmt.setString(1, name);
-			pStmt.setString(2, id);
-			pStmt.setString(3, PhoneNum);
-
-			rs = pStmt.executeQuery();
-
-			Employee member = new Employee();
-			member.setPw(rs.getString("pw"));
-			while(rs.next()) {
-				String i = rs.getString("pw");
-				if(i!=null) {
-					comServ.ErrorMsg("비밀번호 찾기","입력하신 정보의 비밀번호가 있습니다.","비밀번호는 "+i+" 입니다.");
-					return false;
-				}
-				else {
-					comServ.ErrorMsg("비밀번호 찾기", "입력한 정보를 확인해주세요.","비밀번호를 찾을 수 없습니다.");
-					return true;
-				}
-			}
-			pStmt.close();
-			conn.close();
-
-		} catch (SQLException e) {
-
-		}
-		return false;	
-	}
-	@Override
-	public Employee getMember(String num) {
-		String sql = "SELECT * " + 
-				"FROM Employee " +
-				"WHERE 사원번호 like '%" + num + "%'";
-
-		try {
-			Statement stmt = conn.createStatement();
-
-			ResultSet rs = stmt.executeQuery(sql);
-
-			if(rs.next()) {
-				Employee member = new Employee();
-
-				member.setNum(rs.getString("사원번호"));
-				member.setId(rs.getString("id"));
-				member.setPw(rs.getString("pw"));
-				member.setName(rs.getString("이름"));
-				member.setBirth(rs.getString("생년월일"));
-				member.setSocialNum(rs.getString("주민번호뒷자리"));
-				//member.setCategory(rs.getString("사원구분"));
-				//member.setSalary(rs.getString("연봉"));
-				member.setDepartment(rs.getString("부서"));
-				member.setPosition(rs.getString("직급"));
-				member.setPlace(rs.getString("근무지"));
-				member.setPhone(rs.getString("전화번호"));
-				member.setJoin(rs.getString("입사일자"));
-				member.setEmail(rs.getString("이메일"));
-				member.setEducation(rs.getString("최종학력"));
-				member.setAddress(rs.getString("주소"));
-				//member.setImage(rs.getString("사진url"));
-
-				stmt.close();
-				rs.close();
-				conn.close();
-
-				return member;
-			}
-
-			stmt.close();
-			rs.close();
-			conn.close();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-	@Override
-	public String [] homepage(String id) {
-		String sql = "SELECT id, 이름  FROM Employee WHERE id=?";
-		CommonService comServ = new CommonServiceImpl();
-		String [] idName = new String[2];			
-
-		ResultSet rs;
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			pStmt.setString(1, id);
-
-			rs = pStmt.executeQuery();
-
-			while(rs.next()) {
-				idName[0] = rs.getString("id");
-				idName[1] = rs.getString("이름");
-			}
-
-			pStmt.close();
-			conn.close();
-			return idName;
-
-		} catch (SQLException e) {
-
-		}
-		return null;	
-	}
-
-	@Override
-	public boolean infopwCheck(String id) {
-		System.out.println("infopwCheck(" + id + ") ");
-		String sql = "SELECT count(*) FROM Employee WHERE id=? AND pw=?";
-		CommonService comServ = new CommonServiceImpl();	
-
-		ResultSet rs;
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			pStmt.setString(1, id);
-
-			rs = pStmt.executeQuery();
-
-			while(rs.next()) {
-				int i = rs.getInt("pw");
-				if(i==1) {
-					System.out.println("sss");
-					return false;
-				}
-				else {
-					comServ.ErrorMsg("내 정보 확인", "비밀번호가 틀렸습니다.","비밀번호를 확인해주세요");
-					return true;
-				}
-			}
-
-			pStmt.close();
-			conn.close();
-
-
-		} catch (SQLException e) {
-
-		}
-		return false;	
-	}
-
 }
