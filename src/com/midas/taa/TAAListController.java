@@ -33,8 +33,7 @@ public class TAAListController extends Controller implements Initializable {
 	@FXML private TextField searchTf;
 	
 	@FXML private TableView<Employee> HolidayTable;
-	@FXML private TableColumn<Employee, String> numColumn, nameColumn, departmentColumn, joinColumn;
-	@FXML private TableColumn<Employee, Integer> availableDayColumn, usedDayColumn, remainDayColumn;
+	@FXML private TableColumn<Employee, String> numColumn, nameColumn, departmentColumn, joinColumn, availableDayColumn, usedDayColumn, remainDayColumn;
 	
 	private Parent root;
 	private CommonService comServ;
@@ -92,7 +91,7 @@ public class TAAListController extends Controller implements Initializable {
 	      ObservableList tableList = FXCollections.observableArrayList();
 	      
 	      for(Employee e : employeelst) {
-	         tableList.add(new Employee(e.getNum(), e.getName(), e.getDepartment(), e.getJoin(), e.getAvailableDay(), e.getUsedDay(), e.getRemainDay()));
+	         tableList.add(new Employee(e.getNum(), e.getName(), e.getDepartment(), e.getJoin(), e.getAvailableHoliday(), e.getUsedHoliday(), e.getRemainHoliday()));
 	      }
 	      
 	      numColumn.setCellValueFactory(cellData -> cellData.getValue().num());
@@ -110,15 +109,15 @@ public class TAAListController extends Controller implements Initializable {
 	      joinColumn.setStyle("-fx-alignment: CENTER;");
 	      
 	      
-	      availableDayColumn.setCellValueFactory(cellData -> cellData.getValue().availableDay().asObject());  //인티저 타입은 asObject
+	      availableDayColumn.setCellValueFactory(cellData -> cellData.getValue().usedHoliday());  //인티저 타입은 asObject
 	      availableDayColumn.setStyle("-fx-alignment: CENTER;");
 	      
 	      
-	      usedDayColumn.setCellValueFactory(cellData -> cellData.getValue().usedDay().asObject());
+	      usedDayColumn.setCellValueFactory(cellData -> cellData.getValue().usedHoliday());
 	      usedDayColumn.setStyle("-fx-alignment: CENTER;");
 	      
 	      
-	      remainDayColumn.setCellValueFactory(cellData -> cellData.getValue().remainDay().asObject());
+	      remainDayColumn.setCellValueFactory(cellData -> cellData.getValue().remainHoliday());
 	      remainDayColumn.setStyle("-fx-alignment: CENTER;");
 	      
 	      

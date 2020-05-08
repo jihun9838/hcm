@@ -1042,9 +1042,9 @@ public class DBServiceImpl implements DBService{
 				emp.setName(rs.getString("이름"));
 				emp.setDepartment(rs.getString("부서"));
 				emp.setJoin(rs.getString("입사일자"));
-				emp.setAvailableDay(rs.getInt("총연차"));
-				emp.setUsedDay(rs.getInt("사용연차"));
-				emp.setRemainDay(rs.getInt("잔여연차"));
+				emp.setAvailableHoliday(rs.getString("총연차"));
+				emp.setUsedHoliday(rs.getString("사용연차"));
+				emp.setRemainHoliday(rs.getString("잔여연차"));
 
 				list.add(emp);
 			}

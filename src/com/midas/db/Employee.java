@@ -28,9 +28,6 @@ public class Employee {
 	private SimpleStringProperty usedHoliday;
 	private SimpleStringProperty remainHoliday;
 	private StringProperty[] value;
-	private SimpleIntegerProperty availableDay;
-	private SimpleIntegerProperty usedDay;
-	private SimpleIntegerProperty remainDay;
 
 	public Employee() {
 		this.num = new SimpleStringProperty();
@@ -54,9 +51,6 @@ public class Employee {
 		this.usedHoliday = new SimpleStringProperty();
 		this.remainHoliday = new SimpleStringProperty();
 		this.value = new StringProperty[20];
-		this.availableDay = new SimpleIntegerProperty();
-		this.usedDay = new SimpleIntegerProperty();
-		this.remainDay = new SimpleIntegerProperty();
 	}
 
 	public Employee(String num, String id, String pw, String name, String birth, String gender, String category, String salay, String department, String position, String place, String phone, String join, String email, String education, String adrress, String image, String availableHoliday, String usedHoliday, String remainHoliday) {
@@ -104,14 +98,14 @@ public class Employee {
 		this.education = new SimpleStringProperty(education);
 	}
 	
-	public Employee(String num, String name, String department, String join, Integer availableDay, Integer usedDay, Integer remainDay) { //TAA 연차
+	public Employee(String num, String name, String department, String join, String availableHoliday, String usedHoliday, String remainHoliday) { //TAA 연차
 		this.num = new SimpleStringProperty(num);
 		this.name = new SimpleStringProperty(name);
 		this.department = new SimpleStringProperty(department);
 		this.join = new SimpleStringProperty(join);
-		this.availableDay = new SimpleIntegerProperty(availableDay);
-		this.usedDay = new SimpleIntegerProperty(usedDay);
-		this.remainDay = new SimpleIntegerProperty(remainDay);
+		this.availableHoliday = new SimpleStringProperty(availableHoliday);
+		this.usedHoliday = new SimpleStringProperty(usedHoliday);
+		this.remainHoliday = new SimpleStringProperty(remainHoliday);
 	}
 
 
@@ -301,33 +295,5 @@ public class Employee {
 	
 	public StringProperty[] getValue() {
 		return value;
-	}
-	
-	public Integer getAvailableDay() {
-		return availableDay.get();
-	}
-	public void setAvailableDay(Integer availableDay) {
-		this.availableDay.set(availableDay);
-	}
-	public IntegerProperty availableDay() {
-		return availableDay;
-	}   
-	public Integer getUsedDay() {
-		return usedDay.get();
-	}
-	public void setUsedDay(Integer usedDay) {
-		this.usedDay.set(usedDay);
-	}
-	public IntegerProperty usedDay() {
-		return usedDay;
-	}   
-	public Integer getRemainDay() {
-		return remainDay.get();
-	}
-	public void setRemainDay(Integer remainDay) {
-		this.remainDay.set(remainDay);
-	}
-	public IntegerProperty remainDay() {
-		return remainDay;
 	}
 }
