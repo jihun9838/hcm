@@ -16,16 +16,16 @@ public class MidasMain extends Application{
 		CommonService comServ = new CommonServiceImpl();
 		
 		BorderPane borderPane = (BorderPane)comServ.AddScene("/com/midas/Homepage.fxml");
-		System.out.println("Homepage");
+//		System.out.println("Homepage");
 		// if(dbServ.getEmployee(id).getCategory() == 1)
-		//Parent empMenuScene = comServ.AddScene("/com/midas/Employee.fxml");
+		Parent empMenuScene = comServ.AddScene("/com/midas/Employee.fxml");
 		// else
-		//Parent manMenuScene = comServ.AddScene("/com/midas/Manager.fxml");
+		Parent manMenuScene = comServ.AddScene("/com/midas/Manager.fxml");
 		
 		//Parent s = comServ.AddScene("/com/midas/salary/SalaryMgmt.fxml");
 
-		Parent ss = comServ.AddScene("/com/midas/mainpage/login.fxml");
-		System.out.println("logingpage");
+//		Parent ss = comServ.AddScene("/com/midas/mainpage/login.fxml");
+//		System.out.println("logingpage");
 		
 		
 
@@ -34,10 +34,10 @@ public class MidasMain extends Application{
 		// thrid test
 
 		
-		//borderPane.setLeft(empMenuScene);
+		borderPane.setLeft(empMenuScene);
 		//borderPane.setLeft(manMenuScene);
-//		borderPane.setCenter(s);
-		borderPane.setCenter(ss);
+		//borderPane.setCenter(s);
+//		borderPane.setCenter(ss);
 		primaryStage.setScene(new Scene(borderPane));
 		primaryStage.setTitle("MIDAS-HCM");
 		primaryStage.setResizable(false);

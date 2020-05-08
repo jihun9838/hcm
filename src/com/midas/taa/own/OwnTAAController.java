@@ -26,7 +26,6 @@ public class OwnTAAController extends Controller implements Initializable {
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
-		
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.midas.db.EmployeeHoliday2;
+import com.midas.db.Employee;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
 import com.midas.mainpage.service.HompageService;
@@ -15,6 +15,7 @@ import com.midas.mainpage.service.LoginserviceImp;
 import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
 
+
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -23,7 +24,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
 public class MainController extends Controller implements Initializable{
@@ -268,7 +268,7 @@ public class MainController extends Controller implements Initializable{
 		borderPane.setCenter(root);
 
 		Scene scene = ((Parent)e.getSource()).getScene();
-		List<EmployeeHoliday2> OwnHolidayList = dbServ.SelectTable("EmployeeHoliday", "WHERE id = \"200401\""); //로그인 한 사람의 아이디
+		List<Employee> OwnHolidayList = dbServ.SelectTable("Employee", "WHERE id = \"200401\""); //로그인 한 사람의 아이디
 		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
 	}
 
@@ -279,15 +279,9 @@ public class MainController extends Controller implements Initializable{
 		String [] TypeItems= {"연차", "출장", "조퇴", "결근", "지각", "출근"};
 
 		borderPane.setCenter(root);
-
 	}
-
-
-
-
-
-
-
+	
+	
 
 	//HR
 	public void HRPageView(Event e) {
@@ -295,9 +289,4 @@ public class MainController extends Controller implements Initializable{
 		root = comServ.AddScene("/com/midas/hr/HRMpage.fxml");
 		borderPane.setCenter(root);
 	}
-
-
-	
-
-
 }
