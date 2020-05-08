@@ -58,6 +58,7 @@ public class HRMController extends Controller implements Initializable{
 		employee_attribute.getItems().addAll(ATTRIBUTE);
 		employee_attribute.setValue("사원번호");
 		
+		employee_search_txt.setOnAction(e->employeeSearch());
 	}
 	
 	private void setTableView(List<Employee> employeelst) {
