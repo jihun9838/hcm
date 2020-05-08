@@ -104,6 +104,10 @@ public class LoginController extends Controller implements Initializable{
 			Parent scene = comServ.AddScene("/com/midas/Manager.fxml");
 			borderPane.setLeft(scene);
 			
+			Label lbl = (Label)getScene(e).lookup("#IDLbl");
+			lbl.setVisible(true);
+			lbl.setText(id);
+			
 			//homeServ.Lbl(form, id);
 		}
 		else

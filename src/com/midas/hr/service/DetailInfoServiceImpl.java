@@ -86,7 +86,7 @@ public class DetailInfoServiceImpl implements DetailInfoService {
 	}
 
 	@Override
-	public void DeleteProc(Parent form) {
+	public boolean DeleteProc(Parent form) {
 		CommonService comServ = new CommonServiceImpl();
 		TextField Employee_num = (TextField)form.lookup("#Employee_num");
 		
@@ -94,11 +94,14 @@ public class DetailInfoServiceImpl implements DetailInfoService {
 			DBService dbServ = new DBServiceImpl();
 			if(dbServ.DeleteInfo(Employee_num.getText())) {
 				comServ.ErrorMsg("삭제 알림", "사원 정보 삭제", "사원 정보가 삭제되었습니다.");
+				return true;
 			}
 			else {
 				comServ.ErrorMsg("삭제 알림", "사원 정보 삭제", "사원 정보 삭제에 실패했습니다.");
+				return false;
 			}
 		}
+		return false;
 	}
 
 }

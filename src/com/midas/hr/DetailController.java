@@ -240,7 +240,7 @@ public class DetailController extends Controller implements Initializable{
 			employee.setImage(null);
 		}
 		else {
-			employee.setImage("/com/midas/image/" + edit_img.getText());
+			employee.setImage(edit_img.getText());
 		}
 		employee.setJoin(Employee_join.getValue().toString());
 		employee.setCategory(Employee_category.getValue());

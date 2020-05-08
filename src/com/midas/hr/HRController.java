@@ -131,10 +131,11 @@ public class HRController extends Controller implements Initializable{
 						setTableView(employeelst);
 					});
 					Employee_delete.setOnAction(event->{
-						detail.DeleteProc(form);
-						comServ.WindowClose(event);
-						List<Employee> employeelst = comServ.getEmployeeSearch(employee_attribute.getValue(), employee_search_txt.getText(), BIGLIST);
-						setTableView(employeelst);
+						if(detail.DeleteProc(form)) {
+							comServ.WindowClose(event);
+							List<Employee> employeelst = comServ.getEmployeeSearch(employee_attribute.getValue(), employee_search_txt.getText(), BIGLIST);
+							setTableView(employeelst);
+						}
 					});
 					stage.setOnCloseRequest(event->{
 						List<Employee> employeelst = comServ.getEmployeeSearch(employee_attribute.getValue(), employee_search_txt.getText(), BIGLIST);
@@ -166,5 +167,10 @@ public class HRController extends Controller implements Initializable{
 		hrmserv = new HRServiceImpl();
 		hrmserv.OpenAddForm();
 
+		Stage stage = (Stage)root.getScene().getWindow();
+		stage.focusedProperty().addListener((prop, oldNode, newNode) -> {
+			List<Employee> employeelst = comServ.getEmployeeSearch(employee_attribute.getValue(), employee_search_txt.getText(), BIGLIST);
+			setTableView(employeelst);
+		});
 	}
 }
