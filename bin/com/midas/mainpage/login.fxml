@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="620.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.midas.mainpage.LoginController">
+   <children>
+      <Label layoutX="330.0" layoutY="190.0" prefHeight="36.0" prefWidth="143.0" text="아이디">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="loginIdTxt" layoutX="473.0" layoutY="182.0" prefHeight="53.0" prefWidth="265.0" text="pig">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <Label layoutX="330.0" layoutY="289.0" prefHeight="36.0" prefWidth="143.0" text="비밀번호">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="loginBtn" disable="true" layoutX="821.0" layoutY="190.0" mnemonicParsing="false" onAction="#loginBtnProc" prefHeight="136.0" prefWidth="129.0" text="LogIn">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="loginPwTxt" layoutX="473.0" layoutY="281.0" prefHeight="53.0" prefWidth="265.0" text="1234">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </PasswordField>
+      <Button fx:id="searchIdBtn" layoutX="330.0" layoutY="394.0" mnemonicParsing="false" onAction="#searchIdBtnProc" prefHeight="45.0" prefWidth="163.0" text="아이디 찾기">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="searchPwBtn" layoutX="559.0" layoutY="394.0" mnemonicParsing="false" onAction="#searchPwBtnProc" prefHeight="45.0" prefWidth="163.0" text="비밀번호 찾기">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="SignBtn" layoutX="787.0" layoutY="394.0" mnemonicParsing="false" onAction="#SignBtnProc" prefHeight="45.0" prefWidth="163.0" text="회원가입">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

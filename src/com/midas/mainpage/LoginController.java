@@ -16,6 +16,7 @@ import com.midas.service.CommonServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -95,10 +96,19 @@ public class LoginController extends Controller implements Initializable{
 	public Parent loginBtnProc(ActionEvent e) {
 		String id = loginIdTxt.getText();
 		String pw = loginPwTxt.getText();
-
+		System.out.println("asdasdasdasdasdas");
+		System.out.println(id);
+		System.out.println(pw);
+		
+		
 		if(dbServ.LoginProc(id, pw)) {
 			// Parent form = comServ.showWindow(signinForm, "/mainpage/Homepagevisible.fxml");
+			Label lb = (Label)getScene(e).lookup("#IDLbl");
+			lb.setText("hg");
+			System.out.println(lb.getText());
 			
+//			try {
+//			    parent = (Parent)fxmlLoader.load(getFxmlStream("tasklist.fxml"));
 			BorderPane borderPane = (BorderPane)getScene(e);
 //			Parent scene = comServ.AddScene("/com/midas/Employee.fxml");
 			Parent scene = comServ.AddScene("/com/midas/Manager.fxml");

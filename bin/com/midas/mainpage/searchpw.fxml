@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:controller="com.midas.mainpage.SearchpwController" prefHeight="405.0" prefWidth="513.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="76.0" prefWidth="560.0">
+         <children>
+            <Label text="이름">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="60.0" top="12.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="pwSearchNameTxt" prefHeight="40.0" prefWidth="208.0">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="98.0" top="10.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="89.0" prefWidth="473.0">
+         <children>
+            <Label text="아이디">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="59.0" top="12.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="pwSearchIdTxt" prefHeight="40.0" prefWidth="208.0">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="70.0" top="10.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="79.0" prefWidth="473.0">
+         <children>
+            <Label text="전화번호">
+               <font>
+                  <Font size="29.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="59.0" top="12.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="pwSearchNumTxt" prefHeight="40.0" prefWidth="208.0">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="41.0" top="10.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
+         </VBox.margin>
+      </HBox>
+      <Button fx:id="pwSerchBtn" mnemonicParsing="false" onAction="#pwSerchBtnProc" prefHeight="48.0" prefWidth="141.0" text="비밀번호 찾기">
+         <VBox.margin>
+            <Insets bottom="20.0" left="180.0" />
+         </VBox.margin>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>
