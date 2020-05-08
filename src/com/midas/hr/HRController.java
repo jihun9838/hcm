@@ -1,6 +1,8 @@
 package com.midas.hr;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -68,7 +70,8 @@ public class HRController extends Controller implements Initializable{
 
 	private void setTableView(List<Employee> employeelst) {
 		ObservableList tableList = FXCollections.observableArrayList();
-
+		List<Integer> l = new ArrayList<Integer>(Arrays.asList("2","3","5"));
+		tableList.add(l);
 		for(Employee e : employeelst) {
 			tableList.add(new Employee(e.getNum(), e.getName(), e.getCategory(), e.getDepartment(),
 					e.getPosition(), e.getPlace(), e.getPhone(), e.getJoin(), e.getEmail(),
