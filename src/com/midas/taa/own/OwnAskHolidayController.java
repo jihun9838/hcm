@@ -1,16 +1,12 @@
 package com.midas.taa.own;
 
 import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.midas.Controller;
-import com.midas.db.EmployeeHoliday2;
 import com.midas.db.HolidayRequest;
-import com.midas.db.SalaryResult;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
 import com.midas.service.CommonService;
@@ -18,7 +14,6 @@ import com.midas.service.CommonServiceImpl;
 import com.midas.taa.service.TAAService;
 import com.midas.taa.service.TAAServiceImpl;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,7 +50,7 @@ public class OwnAskHolidayController extends Controller implements Initializable
 	
 	public void SearchMyHolidayTable(ActionEvent e) {
 		Scene scene = ((Parent)e.getSource()).getScene();
-		List<HolidayRequest> OwnHolidayAskList = dbServ.SelectTable("HolidayRequest", "WHERE id = \"200401\"");
+		List<HolidayRequest> OwnHolidayAskList = dbServ.SelectTable("HolidayRequest", "WHERE id = \"200401\""); //로그인 된 사람 id
 		comServ.ShowTableViewByList(scene, "#OwnAskTable", OwnHolidayAskList);
 	}
 
@@ -156,9 +151,9 @@ public class OwnAskHolidayController extends Controller implements Initializable
 			
 
 			HolidayRequest hr = new HolidayRequest();
-			hr.setId("20190901");  //로그인 했을때 아이디
-			hr.setName("박정수"); //이름
-			hr.setDepartment("개발"); //부서
+			hr.setId("200401");  //로그인 했을때 아이디
+			hr.setName("강아지"); //이름
+			hr.setDepartment("회계"); //부서
 			hr.setAvailableDay("26"); //인 사람의 남은 연가
 			
 			hr.setRequestDay(String.valueOf(LocalDate.now()));
