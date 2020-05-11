@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.midas.Controller;
-import com.midas.MainController;
 import com.midas.db.Employee;
 import com.midas.db.SalaryResult;
 import com.midas.db.service.DB2ExcelExporter;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
+import com.midas.mainpage.service.Loginservice;
+import com.midas.mainpage.service.LoginserviceImp;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,15 +29,36 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 
 public class CommonServiceImpl implements CommonService{
 	@FXML TableView<Employee> tableView;
 
-
+	@Override
+	public void setUserLabel(Parent root, String id) {
+		Loginservice loginServ = new LoginserviceImp();
+		Label idlbl = (Label)root.lookup("#IDLbl");
+		Label hellolbl = (Label)root.lookup("#helloLbl");
+		
+		String [] home = loginServ.homeProc(id);
+		idlbl.setText(home[0]);
+		hellolbl.setText(home[1]+"¥‘ æ»≥Á«œººø‰.");
+	}
+	
+	@Override
+	public String getUserLabel(Parent root) {
+		System.out.println(root + "======");
+		System.out.println(root.getParent());
+		System.out.println(root.getParent().getParent());
+		return ((Label)root.getParent().lookup("#IDLbl")).getText();
+//		return ((Label)root.lookup("#IDLbl")).getText();
+	}
 
 	@Override
 	public void WindowClose(ActionEvent event) {
@@ -113,16 +135,18 @@ public class CommonServiceImpl implements CommonService{
 	}
 	
 	@Override
-	public Parent AddScene3(String formPath) {
+	public Parent AddSceneWithController(String formPath) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(formPath));
 		Parent root = null;
 		try {
 			root = loader.load();
+			System.out.println("11111" + root);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		Controller ctrler = loader.getController();
 		ctrler.setRoot(root);
+		System.out.println("22222" + root);
 		return root;
 	}
 

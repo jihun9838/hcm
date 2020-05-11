@@ -1,5 +1,7 @@
 package com.midas.mypage.serivce;
 
-public interface MypageService {
+import com.midas.db.Employee;
 
+public interface MypageService {
+	public Employee getEmployee(String id);
 }

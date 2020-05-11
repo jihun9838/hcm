@@ -149,8 +149,9 @@ public class MainController extends Controller implements Initializable{
 	
 	public void MyPageView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/mypage/infoPwCheck.fxml");
-		borderPane.setCenter(scene);
+		root = comServ.AddSceneWithController("/com/midas/mypage/infoPwCheck.fxml");
+		borderPane.setCenter(root);
+		System.out.println("RRRRRRRRRRRRRRRRRR " + root);
 	}
 	
 	

@@ -871,10 +871,10 @@ public class DBServiceImpl implements DBService{
 		return rtn;	
 	}
 	@Override
-	public Employee getMember(String num) {
+	public Employee getMember(String id) {
 		String sql = "SELECT * " + 
 				"FROM Employee " +
-				"WHERE 사원번호 like '%" + num + "%'";
+				"WHERE id like '" + id + "'";
 
 		try {
 			Statement stmt = conn.createStatement();
@@ -919,6 +919,36 @@ public class DBServiceImpl implements DBService{
 		}
 
 		return null;
+	}
+	
+	@Override
+	public boolean mypage(String id, Employee employee) {
+		String sql = "UPDATE Member " +
+				"SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ?, pw = ?" + 
+				"WHERE id = '" + id +"'";
+		System.out.println();
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+		
+			pStmt.setString(1, employee.getName());				
+			pStmt.setString(2, employee.getPhone());				
+			pStmt.setString(3, employee.getEmail());				
+			pStmt.setString(4, employee.getAddress());
+			pStmt.setString(5, employee.getPw());
+			
+			pStmt.executeUpdate();
+
+			pStmt.close();
+			conn.close();
+
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
 	}
 	@Override
 	public String [] homepage(String id) {
