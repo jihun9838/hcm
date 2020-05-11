@@ -14,6 +14,10 @@ public class HompageServiceImp implements HompageService{
 		Label hellolbl = (Label)root.lookup("#helloLbl");
 		
 		String [] home = loginServ.homeProc(id);
+		
+		idlbl.setVisible(true);
+		hellolbl.setVisible(true);
+		
 		idlbl.setText(home[0]);
 		hellolbl.setText(home[1]+"¥‘ æ»≥Á«œººø‰.");
 		

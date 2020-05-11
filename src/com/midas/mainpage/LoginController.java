@@ -98,15 +98,25 @@ public class LoginController extends Controller implements Initializable{
 
 		if(dbServ.LoginProc(id, pw)) {
 			// Parent form = comServ.showWindow(signinForm, "/mainpage/Homepagevisible.fxml");
-			
+			homeServ.Lbl(getScene(e), id);
 			BorderPane borderPane = (BorderPane)getScene(e);
 //			Parent scene = comServ.AddScene("/com/midas/Employee.fxml");
 			Parent scene = comServ.AddScene("/com/midas/Manager.fxml");
 			borderPane.setLeft(scene);
 			
-			Label lbl = (Label)getScene(e).lookup("#IDLbl");
-			lbl.setVisible(true);
-			lbl.setText(id);
+			Button logout = (Button)getScene(e).lookup("#logoutBtn");
+			Button commute = (Button)getScene(e).lookup("#commuteBtn");
+			logout.setVisible(true);
+			commute.setVisible(true);
+			
+			commute.setOnAction(event->{
+				if("출근".contentEquals(commute.getText())) {
+					commute.setText("퇴근");
+				}
+				else {
+					commute.setText("출근");
+				}
+			});
 			
 			//homeServ.Lbl(form, id);
 		}

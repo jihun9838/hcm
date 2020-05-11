@@ -96,6 +96,7 @@ public class DetailController extends Controller implements Initializable{
 			txtLimit(Employee_birthday);
 			checkEscapeText(Employee_birthday);
 			Employee_birth.setText(newTxt);
+			txtLimit(Employee_birth);
 		});
 
 	}
