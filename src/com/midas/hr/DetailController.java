@@ -183,6 +183,7 @@ public class DetailController extends Controller implements Initializable{
 			employee_editbtn.setText("정보수정");
 			EditProc();
 			setTableView();
+			setInfo(selectedEmployee);
 		}
 	}
 
