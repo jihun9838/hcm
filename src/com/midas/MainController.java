@@ -5,11 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.midas.db.EmployeeHoliday2;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
-import com.midas.mainpage.service.HompageService;
-import com.midas.mainpage.service.HompageServiceImp;
 import com.midas.mainpage.service.Loginservice;
 import com.midas.mainpage.service.LoginserviceImp;
 import com.midas.service.CommonService;
@@ -23,7 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
 public class MainController extends Controller implements Initializable{
@@ -33,7 +29,6 @@ public class MainController extends Controller implements Initializable{
 	private DBService dbServ;
 
 	private Loginservice loginServ;
-	private HompageService homeServ;
 
 
 //	@FXML private Button loginBtn;
@@ -68,7 +63,6 @@ public class MainController extends Controller implements Initializable{
 		comServ = new CommonServiceImpl();
 		dbServ = new DBServiceImpl();
 		loginServ = new LoginserviceImp();
-		homeServ = new HompageServiceImp();
 
 
 
@@ -132,7 +126,7 @@ public class MainController extends Controller implements Initializable{
 	}
 
 	public void Lbl(Parent root, String id) {
-		homeServ.Lbl(root, id);
+		comServ.Lbl(root, id);
 	}
 	
 	

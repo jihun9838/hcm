@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.midas.db.Employee;
-import com.midas.db.EmployeeHoliday;
 import com.midas.db.HolidayRequest;
 import com.midas.db.SalaryResult;
 import com.midas.db.TAA;
@@ -153,12 +152,6 @@ public class DBServiceImpl implements DBService{
 		if(comServ.CheckClassType(list).equals("Employee")) {
 			List<Employee> _list = list;
 			for(Employee o : _list) 
-				if(id.equals(o.getId())) 
-					newList.add(o);
-		}
-		if(comServ.CheckClassType(list).equals("EmployeeHoliday")) {
-			List<EmployeeHoliday> _list = list;
-			for(EmployeeHoliday o : _list) 
 				if(id.equals(o.getId())) 
 					newList.add(o);
 		}

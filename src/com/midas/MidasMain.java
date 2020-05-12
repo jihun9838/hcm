@@ -25,13 +25,6 @@ public class MidasMain extends Application{
 		//Parent s = comServ.AddScene("/com/midas/salary/SalaryMgmt.fxml");
 
 		Parent ss = comServ.AddScene("/com/midas/mainpage/login.fxml");
-		System.out.println("logingpage");
-		
-		
-
-		// modifiy and merge test
-		// second test
-		// thrid test
 
 		
 		//borderPane.setLeft(empMenuScene);

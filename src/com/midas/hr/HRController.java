@@ -70,8 +70,6 @@ public class HRController extends Controller implements Initializable{
 
 	private void setTableView(List<Employee> employeelst) {
 		ObservableList tableList = FXCollections.observableArrayList();
-		List<Integer> l = new ArrayList<Integer>(Arrays.asList("2","3","5"));
-		tableList.add(l);
 		for(Employee e : employeelst) {
 			tableList.add(new Employee(e.getNum(), e.getName(), e.getCategory(), e.getDepartment(),
 					e.getPosition(), e.getPlace(), e.getPhone(), e.getJoin(), e.getEmail(),
