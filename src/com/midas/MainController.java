@@ -1,11 +1,14 @@
 package com.midas;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.midas.db.Commute;
 import com.midas.db.Employee;
 import com.midas.db.HolidayRequest;
 import com.midas.db.service.DBService;
@@ -98,7 +101,29 @@ public class MainController extends Controller implements Initializable{
 	}
 
 	public void commuteBtnProc(ActionEvent e) {
-		System.out.println("출근");
+		DBService dbServ = new DBServiceImpl();
+		String num = IDLbl.getText();
+		Commute commute = new Commute();
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		String timeStr = sdf.format(cal.getTime());
+		
+		if(commuteBtn.getText().contentEquals("출근")) {
+			dbServ.SaveCommute(commute, num, "출근", timeStr);
+			//dbServ.SaveCommute(commute);
+			System.out.println(timeStr);
+			comServ.ErrorMsg("출/퇴근", "출근입니다.", "출근하였습니다.\n오늘하루도 화이팅입니다!");
+			commuteBtn.setText("퇴근");
+		}
+
+		else if(commuteBtn.getText().contentEquals("퇴근")) {		
+			if(comServ.ConfirmMsg("출/퇴근", "퇴근입니다.", "퇴근하시겠습니까?")) {
+				dbServ.SaveCommute(commute, num, "퇴근", timeStr);
+				comServ.ErrorMsg("출/퇴근", "퇴근입니다.", "퇴근하였습니다.\n오늘하루도 고생하셨습니다!");
+				commuteBtn.setText("출근");
+			}
+			else {}
+		}				
 	}
 
 	public void Lbl(Parent root, String id) {
@@ -110,8 +135,8 @@ public class MainController extends Controller implements Initializable{
 
 	public void MyPageView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/mypage/infoPwCheck.fxml");
-		borderPane.setCenter(scene);
+		root = comServ.AddSceneWithController("/com/midas/mypage/infoPwCheck.fxml");
+		borderPane.setCenter(root);
 	}
 
 

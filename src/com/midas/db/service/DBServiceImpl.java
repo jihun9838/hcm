@@ -885,6 +885,7 @@ public class DBServiceImpl implements DBService{
 		}
 		return false;	
 	}
+	
 	@Override
 	public Employee getMember(String num) {
 		String sql = "SELECT * " + 
@@ -937,7 +938,7 @@ public class DBServiceImpl implements DBService{
 	}
 	@Override
 	public String [] homepage(String id) {
-		String sql = "SELECT id, 이름  FROM Employee WHERE id=?";
+		String sql = "SELECT 사원번호, 이름  FROM Employee WHERE id=?";
 		CommonService comServ = new CommonServiceImpl();
 		String [] idName = new String[2];			
 
@@ -950,7 +951,7 @@ public class DBServiceImpl implements DBService{
 			rs = pStmt.executeQuery();
 
 			while(rs.next()) {
-				idName[0] = rs.getString("id");
+				idName[0] = rs.getString("사원번호");
 				idName[1] = rs.getString("이름");
 			}
 
@@ -967,7 +968,7 @@ public class DBServiceImpl implements DBService{
 	@Override
 	public boolean infopwCheck(String id, String pw) {
 		System.out.println("infopwCheck(" + id + ") ");
-		String sql = "SELECT count(*) FROM Employee WHERE id=? AND pw=?";
+		String sql = "SELECT count(*) FROM Employee WHERE 사원번호=? AND pw=?";
 		CommonService comServ = new CommonServiceImpl();	
 
 		boolean rtn = false; 
@@ -1007,7 +1008,7 @@ public class DBServiceImpl implements DBService{
 	public boolean mypage(String id, Employee employee) {
 		String sql = "UPDATE Employee " +
 				"SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ?, pw = ?" + 
-				"WHERE id = '" + id +"'";
+				"WHERE 사원번호 = '" + id +"'";
 		System.out.println();
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);

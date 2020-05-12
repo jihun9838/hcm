@@ -39,6 +39,13 @@ import javafx.stage.Stage;
 public class CommonServiceImpl implements CommonService{
 	//@FXML TableView<Employee> tableView;
 
+	private String num;
+	public String getNum(){
+		return this.num;
+	}
+	public void setNum(String num){
+		this.num = num;
+	}
 
 	@Override
 	public void setUserLabel(Parent root, String id) {

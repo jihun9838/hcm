@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 import com.midas.Controller;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
-import com.midas.mainpage.service.HompageService;
-import com.midas.mainpage.service.HompageServiceImp;
 import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
 
@@ -18,7 +16,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 
 public class infoPWCheckController extends Controller implements Initializable{

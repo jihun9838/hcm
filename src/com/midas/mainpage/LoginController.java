@@ -96,26 +96,20 @@ public class LoginController extends Controller implements Initializable{
 		
 		
 		if(loginServ.loginProc(root)) {
-			// Parent form = comServ.showWindow(signinForm, "/mainpage/Homepagevisible.fxml");
-			//Label lb = (Label)getScene(e).lookup("#IDLbl");
-			//Label lbl = (Label)getScene(e).lookup("#helloLbl");
 			comServ.setUserLabel(getScene(e), id);
 			Button logoutBtn = (Button)getScene(e).lookup("#logoutBtn");
 			Button commuteBtn = (Button)getScene(e).lookup("#commuteBtn");
 			logoutBtn.setVisible(true);
 			commuteBtn.setVisible(true);
-			//System.out.println(lb.getText());
-			//System.out.println(homeServ.getLabel(getScene(e)));
-//			try {
-//			    parent = (Parent)fxmlLoader.load(getFxmlStream("tasklist.fxml"));
+			
 			BorderPane borderPane = (BorderPane)getScene(e);
+			
 //			Parent scene = comServ.AddScene("/com/midas/Employee.fxml");
 			Parent scene = comServ.AddScene("/com/midas/Manager.fxml");
 			borderPane.setLeft(scene);
-			//homeServ.Lbl(form, id);
+			
 		}
-		else
-		{
+		else{
 			comServ.ErrorMsg("로그인", "로그인  실패", "아이디와 비밀번호를 확인해주세요.");
 			loginIdTxt.requestFocus();
 		}

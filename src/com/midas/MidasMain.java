@@ -4,7 +4,6 @@ import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -24,7 +23,7 @@ public class MidasMain extends Application{
 		
 		//Parent s = comServ.AddScene("/com/midas/salary/SalaryMgmt.fxml");
 
-		Parent ss = comServ.AddScene("/com/midas/mainpage/login.fxml");
+		Parent ss = comServ.AddSceneWithController("/com/midas/mainpage/login.fxml");
 
 		
 		//borderPane.setLeft(empMenuScene);
