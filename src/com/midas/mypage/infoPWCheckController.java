@@ -62,7 +62,7 @@ public class infoPWCheckController extends Controller implements Initializable{
 		
 		//if(dbServ.infopwCheck(pw)) {
 		if(dbServ.infopwCheck(id, pw)) {
-//			commomServ.showWindow(s, "/mypage/mypage");
+			//commomServ.showWindow(s, "/mypage/mypage");
 			
 			BorderPane borderPane = (BorderPane)getScene(e);
 			Parent scene = comServ.AddSceneWithController("/com/midas/mypage/mypage.fxml");
