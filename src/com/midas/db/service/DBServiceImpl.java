@@ -965,39 +965,72 @@ public class DBServiceImpl implements DBService{
 	}
 
 	@Override
-	public boolean infopwCheck(String id) {
+	public boolean infopwCheck(String id, String pw) {
 		System.out.println("infopwCheck(" + id + ") ");
 		String sql = "SELECT count(*) FROM Employee WHERE id=? AND pw=?";
 		CommonService comServ = new CommonServiceImpl();	
 
+		boolean rtn = false; 
 		ResultSet rs;
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			pStmt.setString(1, id);
+			pStmt.setString(2, pw);
 
 			rs = pStmt.executeQuery();
 
 			while(rs.next()) {
-				int i = rs.getInt("pw");
+				int i = rs.getInt("count(*)");
 				if(i==1) {
-					System.out.println("sss");
-					return false;
+					rtn = true;
 				}
 				else {
 					comServ.ErrorMsg("내 정보 확인", "비밀번호가 틀렸습니다.","비밀번호를 확인해주세요");
-					return true;
+					rtn = false;
 				}
 			}
 
 			pStmt.close();
+			rs.close();
 			conn.close();
 
 
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}
-		return false;	
+		return rtn;	
+	}
+	
+
+	@Override
+	public boolean mypage(String id, Employee employee) {
+		String sql = "UPDATE Employee " +
+				"SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ?, pw = ?" + 
+				"WHERE id = '" + id +"'";
+		System.out.println();
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+		
+			pStmt.setString(1, employee.getName());				
+			pStmt.setString(2, employee.getPhone());				
+			pStmt.setString(3, employee.getEmail());				
+			pStmt.setString(4, employee.getAddress());
+			pStmt.setString(5, employee.getPw());
+			
+			pStmt.executeUpdate();
+
+			pStmt.close();
+			conn.close();
+
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return false;
 	}
 
 	

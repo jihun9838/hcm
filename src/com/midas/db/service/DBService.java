@@ -44,9 +44,9 @@ public interface DBService {
 	public boolean searchID(String name, String PhoneNum);
 	public boolean searchPW(String name, String id, String PhoneNum);
 	public String [] homepage(String id);
-	public boolean infopwCheck(String id);
 	public Employee getMember(String num);
-
+	public boolean infopwCheck(String id, String pw);
+	public boolean mypage(String id, Employee employee);
 	
 	
 	//jspark
@@ -62,6 +62,9 @@ public interface DBService {
 	public boolean updateEmployeeHolidayDe2(String whereOption, String periodDay);
 	public boolean SaveCommute(Commute commute);
 	public void SaveCommute(Commute commute, String loginNum, String Sortation, String timeStr);
+	
+	
+	
 	/*
 	 * public List<EmployeeHoliday> getEmployeeHolidayList();
 	public List<SalaryResult> getSalaryResultList();
