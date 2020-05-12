@@ -7,17 +7,17 @@ import java.util.List;
 import java.util.Map;
 
 import com.midas.Controller;
-import com.midas.MainController;
 import com.midas.db.Employee;
 import com.midas.db.SalaryResult;
 import com.midas.db.service.DB2ExcelExporter;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
+import com.midas.mainpage.service.Loginservice;
+import com.midas.mainpage.service.LoginserviceImp;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,22 +28,42 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
 public class CommonServiceImpl implements CommonService{
-	@FXML TableView<Employee> tableView;
+	//@FXML TableView<Employee> tableView;
 
 
+	@Override
+	public void setUserLabel(Parent root, String id) {
+		Loginservice loginServ = new LoginserviceImp();
+		Label idlbl = (Label)root.lookup("#IDLbl");
+		Label hellolbl = (Label)root.lookup("#helloLbl");
+		
+		String [] home = loginServ.homeProc(id);
+		idlbl.setText(home[0]);
+		hellolbl.setText(home[1]+"¥‘ æ»≥Á«œººø‰.");
+	}
+	
+	@Override
+	public String getUserLabel(Parent root) {
+		System.out.println(root + "======");
+		System.out.println(root.getParent());
+		System.out.println(root.getParent().getParent());
+		return ((Label)root.getParent().lookup("#IDLbl")).getText();
+//		return ((Label)root.lookup("#IDLbl")).getText();
+	}
 
 	@Override
 	public void WindowClose(ActionEvent event) {
 		Parent root = (Parent)event.getSource();
 		Stage stage = (Stage) root.getScene().getWindow();
 		stage.close();
-		tableView.lookup("#id");
+		//tableView.lookup("#id");
 	}
 
 	@Override

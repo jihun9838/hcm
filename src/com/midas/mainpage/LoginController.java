@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 import com.midas.Controller;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
-import com.midas.mainpage.service.HompageService;
-import com.midas.mainpage.service.HompageServiceImp;
 import com.midas.mainpage.service.Loginservice;
 import com.midas.mainpage.service.LoginserviceImp;
 import com.midas.service.CommonService;
@@ -31,7 +29,6 @@ public class LoginController extends Controller implements Initializable{
 	private Loginservice loginServ;
 	private CommonService comServ;
 	private DBService dbServ;
-	private HompageService homeServ;
 
 	@FXML private Button loginBtn;
 	@FXML private TextField loginIdTxt;
@@ -64,7 +61,6 @@ public class LoginController extends Controller implements Initializable{
 		comServ = new CommonServiceImpl();
 		dbServ = new DBServiceImpl();
 		loginServ = new LoginserviceImp();
-		homeServ = new HompageServiceImp();
 
 
 

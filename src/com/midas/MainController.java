@@ -126,7 +126,7 @@ public class MainController extends Controller implements Initializable{
 	}
 
 	public void Lbl(Parent root, String id) {
-		comServ.Lbl(root, id);
+		comServ.setUserLabel(root, id);
 	}
 	
 	
