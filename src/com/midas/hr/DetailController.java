@@ -265,18 +265,9 @@ public class DetailController extends Controller implements Initializable{
 	}
 	
 	public void DeleteProc(ActionEvent event) {
-		comServ = new CommonServiceImpl();
-		
-		if(comServ.ConfirmMsg("삭제 경고", "사원 정보 삭제", "삭제 하시겠습니까?")) {
-			DBService dataManage = new DBServiceImpl();
-			if(dataManage.DeleteInfo(Employee_num.getText())) {
-				comServ.ErrorMsg("삭제 알림", "사원 정보 삭제", "사원 정보가 삭제되었습니다.");
-				CloseProc(event);
-			}
-			else {
-				comServ.ErrorMsg("삭제 알림", "사원 정보 삭제", "사원 정보 삭제에 실패했습니다.");
-			}
-		}
+		if(detail.DeleteProc(root)) {
+	         CloseProc(event);
+	      }
 	}
 
 	public void CloseProc(ActionEvent event) {
