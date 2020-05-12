@@ -65,10 +65,12 @@ public class AddController extends Controller implements Initializable{
 			txtLimit(add_birth, BIRTH);
 			checkEscapeText(add_birth);
 		});
-
 		add_gender.textProperty().addListener((obs, oldTxt, newTxt)->{
 			txtLimit(add_gender, GENDER);
 			checkEscapeText(add_gender);
+		});
+		add_num.textProperty().addListener((obs, oldTxt, newTxt)->{
+			checkEscapeText(add_num);
 		});
 	}
 
