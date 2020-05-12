@@ -99,6 +99,9 @@ public class DetailController extends Controller implements Initializable{
 			txtLimit(Employee_birth);
 		});
 
+		Employee_num.textProperty().addListener((obs, oldTxt, newTxt)->{
+			checkEscapeText(Employee_num);
+		});
 	}
 
 	private void setTableView() {

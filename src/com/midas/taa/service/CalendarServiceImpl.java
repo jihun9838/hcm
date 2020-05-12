@@ -45,8 +45,8 @@ public class CalendarServiceImpl implements CalendarService{
 					DatePicker dp = (DatePicker) s.getScene().getRoot().lookup("#setCalendarDatePicker");
 					Label lbl = ((Label)((Parent)e.getSource()).getScene().getRoot().lookup("#setCalendarHolidayLbl"));
 					
-					System.out.println(dp.getValue());
-					System.out.println(lbl.getText());
+					//System.out.println(dp.getValue());
+					//System.out.println(lbl.getText());
 //					lbl.setText(dp.getValue().toString());
 				});
 				allCalendarDays.add(ap);

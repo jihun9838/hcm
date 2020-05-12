@@ -48,6 +48,7 @@ public class HolidayApprovalController extends Controller implements Initializab
 		cmbSort.getItems().addAll(ATTRIBUTE);
 		cmbSort.setValue("사원번호");
 	}
+	
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
@@ -60,6 +61,7 @@ public class HolidayApprovalController extends Controller implements Initializab
 		List<HolidayRequest> requestList = dbServ.SelectHolidayApprovalSearch(attribute, txt);
 		comServ.ShowTableViewByList(scene, "#HoliAppTableView", requestList);
 	}
+	
 	public void approvalBtn(ActionEvent e) {
 		String attribute = cmbSort.getValue();
 		String txt = searchTf.getText();
@@ -86,6 +88,7 @@ public class HolidayApprovalController extends Controller implements Initializab
 			comServ.ErrorMsg("반려 휴가가 재승인되었습니다.");
 		}
 	}
+	
 	public void declineBtn(ActionEvent e) {
 		String attribute = cmbSort.getValue();
 		String txt = searchTf.getText();

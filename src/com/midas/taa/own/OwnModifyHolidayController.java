@@ -34,8 +34,8 @@ public class OwnModifyHolidayController extends Controller implements Initializa
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
-		
 	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		comServ = new CommonServiceImpl();
@@ -46,10 +46,12 @@ public class OwnModifyHolidayController extends Controller implements Initializa
 		year = LocalDate.now().getYear();
 		month = LocalDate.now().getMonthValue();
 	}
+	
 	public void checkAskDate(ActionEvent e) {
 		year = AskDatePicker.getValue().getYear();
 		month = AskDatePicker.getValue().getMonthValue();
 	}
+	
 	public void SearchMyHolidayTable(ActionEvent e) {
 		Scene scene = ((Parent)e.getSource()).getScene();
 		String requestYearMonth = Integer.toString(year)+"-0"+Integer.toString(month);
@@ -57,7 +59,6 @@ public class OwnModifyHolidayController extends Controller implements Initializa
 		"AND "+ "\"요청일\""+" like '%" + requestYearMonth + "%'");
 		//로그인 된 사람 id
 		comServ.ShowTableViewByList(scene, "#OwnAskTable", OwnHolidayAskList);
-
 	}
 	
 	

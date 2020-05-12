@@ -13,6 +13,5 @@ public class FullCalendarController extends Controller {
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
-		
 	}
 }

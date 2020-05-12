@@ -36,10 +36,12 @@ public class OwnAskHolidayController extends Controller implements Initializable
 	@FXML private ComboBox<String> cmbFullHalf;
 	@FXML private TextField reasonTf;
 	private int year, month;
+	
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
 	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		comServ = new CommonServiceImpl();

@@ -36,10 +36,6 @@ public class MainController extends Controller implements Initializable{
 	private Loginservice loginServ;
 	private CalendarService calServ;
 
-//	@FXML private Button loginBtn;
-//	@FXML private TextField loginIdTxt;
-//	@FXML private TextField loginPwTxt;
-
 
 	// HomePage.fxml
 	@FXML private Label IDLbl;
@@ -69,36 +65,11 @@ public class MainController extends Controller implements Initializable{
 		dbServ = new DBServiceImpl();
 		loginServ = new LoginserviceImp();
 		calServ = new CalendarServiceImpl();
-
-
-
-
-
-		//		
-		//		loginBtn.setOnAction(e->{			
-		//			loginBtnProc();
-		//		});
-		//
-		//		loginBtn.setDisable(true);
-		//
-		//		loginIdTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
-		//			disableButton();
-		//
-		//		});
-		//		loginPwTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
-		//			disableButton();
-		//		});
-		//
-		//		loginIdTxt.setOnAction(e->loginPwTxt.requestFocus());
-		//		loginPwTxt.setOnAction(e->loginBtn.requestFocus());
-		//		
-		
-		
-
 	}
 
 
 
+	// Homepage
 	public void HomepageView(ActionEvent e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
 		Parent scene = comServ.AddScene("/com/midas/Homepage.fxml");
@@ -119,8 +90,8 @@ public class MainController extends Controller implements Initializable{
 
 
 
-	
-	
+
+
 	public void logoutBtnProc(ActionEvent e) {
 		comServ.ErrorMsg("로그아웃", "로그아웃 됩니다.", "로그아웃이 실행됩니다.");
 		comServ.WindowClose(e);
@@ -133,17 +104,17 @@ public class MainController extends Controller implements Initializable{
 	public void Lbl(Parent root, String id) {
 		comServ.setUserLabel(root, id);
 	}
-	
-	
-	
-	
+
+
+
+
 	public void MyPageView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
 		Parent scene = comServ.AddScene("/com/midas/mypage/infoPwCheck.fxml");
 		borderPane.setCenter(scene);
 	}
-	
-	
+
+
 
 
 
@@ -174,29 +145,27 @@ public class MainController extends Controller implements Initializable{
 
 
 
+	
+	
+	
+	
 
 
 	//TAA Manager
 	public void SetCalendarView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
 		root = comServ.AddSceneWithController("/com/midas/taa/SetCalendar.fxml");
-		
 		borderPane.setCenter(root);
-		
+
 		BorderPane pane = (BorderPane)borderPane.getCenter();
 		pane.setCenter(calServ.getView());
-		
 		DatePicker dp = (DatePicker)root.lookup("#setCalendarDatePicker");
 		dp.setValue(LocalDate.now());
-		
-
-		
 	}
 
 	public void TAAReportView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
 		Parent root = comServ.AddScene("/com/midas/taa/TAAReport.fxml");
-//		root = comServ.AddSceneWithController("/com/midas/taa/TAAReport.fxml");
 		borderPane.setCenter(root);
 	}
 
@@ -236,7 +205,7 @@ public class MainController extends Controller implements Initializable{
 		root = comServ.AddScene("/com/midas/taa/HolidayApproval.fxml");
 		Parent form = root;
 		borderPane.setCenter(root);
-		
+
 		Scene scene = ((Parent)e.getSource()).getScene();
 		List<HolidayRequest> requestList = dbServ.SelectTable("HolidayRequest", "");
 		comServ.ShowTableViewByList(scene, "#HoliAppTableView", requestList);
@@ -248,6 +217,10 @@ public class MainController extends Controller implements Initializable{
 		borderPane.setCenter(root);
 	}
 
+	
+	
+	
+	
 	//TAA Employee
 	public void OwnTAAView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
@@ -277,12 +250,12 @@ public class MainController extends Controller implements Initializable{
 		String [] TypeItems= {"연차", "출장", "조퇴", "결근", "지각", "출근"};
 
 		borderPane.setCenter(root);
-		
+
 		Scene scene = ((Parent)e.getSource()).getScene();
 		List<Employee> OwnHolidayList = dbServ.SelectTableHoliday("WHERE 사원번호 = \"200401\""); //로그인 한 사람의 아이디
 		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
 	}
-	
+
 
 
 
@@ -297,7 +270,7 @@ public class MainController extends Controller implements Initializable{
 	}
 
 
-	
+
 
 
 }

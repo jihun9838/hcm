@@ -35,7 +35,6 @@ public class SetCalendarHolidayController extends Controller implements Initiali
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
-		
 	}
 	
 	public void SaveHolidayProc(ActionEvent e) {

@@ -36,7 +36,6 @@ public class CalendarController extends Controller implements Initializable{
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
-		
 	}
 	
 	@Override

@@ -10,7 +10,6 @@ public class Commute {
 	private SimpleStringProperty time;
 	private StringProperty[] value;
 
-
 	public Commute() {
 		this.num = new SimpleStringProperty();
 		this.sortation = new SimpleStringProperty();

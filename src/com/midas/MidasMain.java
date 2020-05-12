@@ -15,7 +15,7 @@ public class MidasMain extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		CommonService comServ = new CommonServiceImpl();
 		
-		BorderPane borderPane = (BorderPane)comServ.AddScene("/com/midas/Homepage.fxml");
+		BorderPane borderPane = (BorderPane)comServ.AddSceneWithController("/com/midas/Homepage.fxml");
 		System.out.println("Homepage");
 		// if(dbServ.getEmployee(id).getCategory() == 1)
 		//Parent empMenuScene = comServ.AddScene("/com/midas/Employee.fxml");
