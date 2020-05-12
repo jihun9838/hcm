@@ -49,4 +49,7 @@ public interface CommonService {
 	public int CalculateRequestedHoliday(LocalDate d1, LocalDate d2);
 	
 	public String CheckClassType(List o);
+	
+	public boolean idcheck(String id);
+	public boolean numcheck(String num);
 }

@@ -40,6 +40,7 @@ public interface DBService {
 	public boolean LoginProc(String id, String pw);	// ID와 PW로 개인인증
 	public List<Employee> getMember();
 	public boolean idcheck(String id);
+	public boolean numcheck(String num);
 
 	public boolean searchID(String name, String PhoneNum);
 	public boolean searchPW(String name, String id, String PhoneNum);

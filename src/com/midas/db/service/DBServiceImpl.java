@@ -792,11 +792,41 @@ public class DBServiceImpl implements DBService{
 			while(rs.next()) {
 				int i = rs.getInt("count(*)");
 				if(i==0) {
-					comServ.ErrorMsg("아이디 확인","중복된 아이디가 없습니다.","중복된 아이디가 없습니다. 사용가능 합니다.");
 					return true;
 				}
 				else {
-					comServ.ErrorMsg("아이디 확인", "중복된 아이디가 있습니다.","중복된 아이디입니다. 다시 입력해주세요.");
+					return false;
+				}
+			}
+			pStmt.close();
+			conn.close();
+
+		} catch (SQLException e) {
+
+		}
+		return false;	
+
+	}
+	@Override
+	public boolean numcheck(String num) {
+		Parent root = null;
+		String sql = "SELECT count(*) FROM Employee WHERE 사원번호 = ?";
+		CommonService comServ = new CommonServiceImpl();
+
+		ResultSet rs;
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, num);
+
+			rs = pStmt.executeQuery();
+
+			while(rs.next()) {
+				int i = rs.getInt("count(*)");
+				if(i==0) {
+					return true;
+				}
+				else {
 					return false;
 				}
 			}

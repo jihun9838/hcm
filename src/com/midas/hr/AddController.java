@@ -88,32 +88,36 @@ public class AddController extends Controller implements Initializable{
 			comServ.ErrorMsg("사원추가 알람", "사원추가 실패", "필수 입력 칸이 비어있습니다.");
 			return ;
 		}
-
-		employee.setNum(add_num.getText());
-		employee.setName(add_name.getText());
-		employee.setId(add_id.getText());
-		employee.setPw(add_pw.getText());
-		employee.setBirth(add_birth.getText());
-		employee.setSocialNum(add_gender.getText());
-		employee.setDepartment(add_department.getText());
-		employee.setPlace(add_place.getText());
-		employee.setSalary(add_salary.getText());
-		employee.setPhone(add_phone.getText());
-		employee.setEmail(add_email.getText());
-		employee.setAddress(add_address.getText());
-		if(!add_img.getText().isEmpty()) {
-			employee.setImage("/com/midas/image/" + add_img.getText());
+		if(comServ.idcheck(add_id.getText()) && comServ.numcheck(add_num.getText())) {
+			employee.setNum(add_num.getText());
+			employee.setName(add_name.getText());
+			employee.setId(add_id.getText());
+			employee.setPw(add_pw.getText());
+			employee.setBirth(add_birth.getText());
+			employee.setSocialNum(add_gender.getText());
+			employee.setDepartment(add_department.getText());
+			employee.setPlace(add_place.getText());
+			employee.setSalary(add_salary.getText());
+			employee.setPhone(add_phone.getText());
+			employee.setEmail(add_email.getText());
+			employee.setAddress(add_address.getText());
+			if(!add_img.getText().isEmpty()) {
+				employee.setImage("/com/midas/image/" + add_img.getText());
+			}
+			if(add_join.getValue() == null || add_join.getValue().toString().length() == 0)	{
+				add_join.setValue(LocalDate.now());
+			}
+			employee.setJoin(add_join.getValue().toString());
+			employee.setCategory(add_category.getValue());
+			employee.setPosition(add_position.getValue());
+			employee.setEducation(add_education.getValue());
+	
+			if(add.SaveInfo(employee)) {
+				CloseProc(event);
+			}
 		}
-		if(add_join.getValue() == null || add_join.getValue().toString().length() == 0)	{
-			add_join.setValue(LocalDate.now());
-		}
-		employee.setJoin(add_join.getValue().toString());
-		employee.setCategory(add_category.getValue());
-		employee.setPosition(add_position.getValue());
-		employee.setEducation(add_education.getValue());
-
-		if(add.SaveInfo(employee)) {
-			CloseProc(event);
+		else {
+			comServ.ErrorMsg("사원추가 알람", "사원추가 실패", "사원번호 또는 아이디가 이미 존재합니다.");
 		}
 	}
 

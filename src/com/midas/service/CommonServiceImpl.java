@@ -489,5 +489,15 @@ public class CommonServiceImpl implements CommonService{
 		return className;
 	}
 
+	@Override
+	public boolean idcheck(String id) {
+		DBService dbServ = new DBServiceImpl();
+		return dbServ.idcheck(id);
+	}
 
+	@Override
+	public boolean numcheck(String num) {
+		DBService dbServ = new DBServiceImpl();
+		return dbServ.numcheck(num);
+	}
 }
