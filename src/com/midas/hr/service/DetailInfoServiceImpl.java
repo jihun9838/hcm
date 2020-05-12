@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 import com.midas.db.Employee;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
+import com.midas.service.CommonService;
+import com.midas.service.CommonServiceImpl;
 
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
@@ -36,6 +38,7 @@ public class DetailInfoServiceImpl implements DetailInfoService {
 		ComboBox<String> Employee_category = (ComboBox)form.lookup("#Employee_category");
 		ComboBox<String> Employee_position = (ComboBox)form.lookup("#Employee_position");
 		ComboBox<String> Employee_education = (ComboBox)form.lookup("#Employee_education");
+		CommonService comServ = new CommonServiceImpl();
 
 		Employee employee = getEmployee(num);
 
@@ -83,5 +86,23 @@ public class DetailInfoServiceImpl implements DetailInfoService {
 		return dbServ.EditInfo(num, employee);
 	}
 
+	@Override
+	public boolean DeleteProc(Parent form) {
+		CommonService comServ = new CommonServiceImpl();
+		TextField Employee_num = (TextField)form.lookup("#Employee_num");
+		
+		if(comServ.ConfirmMsg("삭제 경고", "사원 정보 삭제", "삭제 하시겠습니까?")) {
+			DBService dbServ = new DBServiceImpl();
+			if(dbServ.DeleteInfo(Employee_num.getText())) {
+				comServ.ErrorMsg("삭제 알림", "사원 정보 삭제", "사원 정보가 삭제되었습니다.");
+				return true;
+			}
+			else {
+				comServ.ErrorMsg("삭제 알림", "사원 정보 삭제", "사원 정보 삭제에 실패했습니다.");
+				return false;
+			}
+		}
+		return false;
+	}
 
 }

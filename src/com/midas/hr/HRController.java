@@ -1,8 +1,6 @@
 package com.midas.hr;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -26,6 +24,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class HRController extends Controller implements Initializable{
 	@FXML private TableView<Employee> employee_table;
@@ -66,10 +65,12 @@ public class HRController extends Controller implements Initializable{
 		employee_attribute.getItems().addAll(ATTRIBUTE);
 		employee_attribute.setValue("사원번호");
 
+		employee_search_txt.setOnAction(e->employeeSearch());
 	}
 
 	private void setTableView(List<Employee> employeelst) {
 		ObservableList tableList = FXCollections.observableArrayList();
+
 		for(Employee e : employeelst) {
 			tableList.add(new Employee(e.getNum(), e.getName(), e.getCategory(), e.getDepartment(),
 					e.getPosition(), e.getPlace(), e.getPhone(), e.getJoin(), e.getEmail(),
@@ -121,6 +122,26 @@ public class HRController extends Controller implements Initializable{
 					Parent form = hrmserv.OpenDetailForm();
 
 					detail.setInfo(form, employeeNum);
+					Stage stage = (Stage)form.getScene().getWindow();
+					Button Employee_close = (Button)form.lookup("#Employee_close");
+					Button Employee_delete = (Button)form.lookup("#Employee_delete");
+					Employee_close.setOnAction(event->{
+						comServ.WindowClose(event);
+						
+						List<Employee> employeelst = comServ.getEmployeeSearch(employee_attribute.getValue(), employee_search_txt.getText(), BIGLIST);
+						setTableView(employeelst);
+					});
+					Employee_delete.setOnAction(event->{
+						if(detail.DeleteProc(form)) {
+							comServ.WindowClose(event);
+							List<Employee> employeelst = comServ.getEmployeeSearch(employee_attribute.getValue(), employee_search_txt.getText(), BIGLIST);
+							setTableView(employeelst);
+						}
+					});
+					stage.setOnCloseRequest(event->{
+						List<Employee> employeelst = comServ.getEmployeeSearch(employee_attribute.getValue(), employee_search_txt.getText(), BIGLIST);
+						setTableView(employeelst);
+					});
 				});
 				if(empty) {
 					setGraphic(null);
@@ -141,12 +162,16 @@ public class HRController extends Controller implements Initializable{
 		comServ = new CommonServiceImpl();
 
 		List<Employee> employeelst = comServ.getEmployeeSearch(attribute, txt, BIGLIST);
-
 		setTableView(employeelst);
 	}
 	public void employeeAdd() {
 		hrmserv = new HRServiceImpl();
 		hrmserv.OpenAddForm();
 
+		Stage stage = (Stage)root.getScene().getWindow();
+		stage.focusedProperty().addListener((prop, oldNode, newNode) -> {
+			List<Employee> employeelst = comServ.getEmployeeSearch(employee_attribute.getValue(), employee_search_txt.getText(), BIGLIST);
+			setTableView(employeelst);
+		});
 	}
 }
