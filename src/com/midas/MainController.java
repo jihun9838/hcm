@@ -37,7 +37,7 @@ public class MainController extends Controller implements Initializable{
 	private CalendarService calServ;
 
 
-	// HomePage.fxml
+	// Homepage.fxml
 	@FXML private Label IDLbl;
 	@FXML private Label helloLbl;
 	@FXML private Button logoutBtn;

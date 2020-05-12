@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 import com.midas.Controller;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
-import com.midas.mainpage.service.HompageService;
-import com.midas.mainpage.service.HompageServiceImp;
 import com.midas.mainpage.service.Loginservice;
 import com.midas.mainpage.service.LoginserviceImp;
 import com.midas.service.CommonService;
@@ -16,7 +14,6 @@ import com.midas.service.CommonServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -31,7 +28,6 @@ public class LoginController extends Controller implements Initializable{
 	private Loginservice loginServ;
 	private CommonService comServ;
 	private DBService dbServ;
-	private HompageService homeServ;
 
 	@FXML private Button loginBtn;
 	@FXML private TextField loginIdTxt;
@@ -64,8 +60,6 @@ public class LoginController extends Controller implements Initializable{
 		comServ = new CommonServiceImpl();
 		dbServ = new DBServiceImpl();
 		loginServ = new LoginserviceImp();
-		homeServ = new HompageServiceImp();
-
 
 
 		//loginBtn.setDisable(true);
@@ -105,7 +99,7 @@ public class LoginController extends Controller implements Initializable{
 			// Parent form = comServ.showWindow(signinForm, "/mainpage/Homepagevisible.fxml");
 			//Label lb = (Label)getScene(e).lookup("#IDLbl");
 			//Label lbl = (Label)getScene(e).lookup("#helloLbl");
-			homeServ.setUserLabel(getScene(e), id);
+			comServ.setUserLabel(getScene(e), id);
 			Button logoutBtn = (Button)getScene(e).lookup("#logoutBtn");
 			Button commuteBtn = (Button)getScene(e).lookup("#commuteBtn");
 			logoutBtn.setVisible(true);
