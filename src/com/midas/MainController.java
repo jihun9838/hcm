@@ -153,6 +153,7 @@ public class MainController extends Controller implements Initializable{
 		BorderPane borderPane = (BorderPane)getScene(e);
 		Parent scene = comServ.AddScene("/com/midas/salary/SalaryMgmt.fxml");
 		borderPane.setCenter(scene);
+		//System.out.println(IDLbl.getText());
 	}
 
 	public void SalaryReportView(Event e) {

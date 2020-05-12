@@ -16,9 +16,8 @@ public class MidasMain extends Application{
 		
 		BorderPane borderPane = (BorderPane)comServ.AddSceneWithController("/com/midas/Homepage.fxml");
 		System.out.println("Homepage");
-		// if(dbServ.getEmployee(id).getCategory() == 1)
+		
 		//Parent empMenuScene = comServ.AddScene("/com/midas/Employee.fxml");
-		// else
 		//Parent manMenuScene = comServ.AddScene("/com/midas/Manager.fxml");
 		
 		//Parent s = comServ.AddScene("/com/midas/salary/SalaryMgmt.fxml");

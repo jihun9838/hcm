@@ -47,8 +47,8 @@ public class mypageController extends Controller implements Initializable{
 	public void setRoot(Parent root) {
 		// TODO Auto-generated method stub
 		this.root = root;
-		System.out.println(root);
-		setInfo();
+//		System.out.println(root);
+//		setInfo();
 	}
 	
 	@Override
@@ -64,7 +64,7 @@ public class mypageController extends Controller implements Initializable{
 		newPwOKTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
 		});
 		//System.out.println(root);
-		//setInfo();
+//		setInfo();
 	}
 
 	public void modifyBtnProc(ActionEvent e) {
@@ -106,33 +106,33 @@ public class mypageController extends Controller implements Initializable{
 		}
 	}
 	
-	public void setInfo() {
-		dbServ = new DBServiceImpl();
-		System.out.println("SetINFO");
-		//String id = comServ.getUserLabel(root);
-		//System.out.println("USER ID : " + id);
-		//Employee emp = myServ.getEmployee(id);
-		Employee emp = myServ.getEmployee("cat");
-
-		phoneNumTxt.setText(emp.getPhone());
-		nameTxt.setText(emp.getName());
-		birthLbl.setText(emp.getBirth());
-		departmemtLbl.setText(emp.getDepartment());
-		emailTxt.setText(emp.getEmail());
-		addressTxt.setText(emp.getAddress());
-		positionLbl.setText(emp.getPosition());
-		finalEduLbl.setText(emp.getEducation());
-		employeeLbl.setText(emp.getNum());
-		joinDateLbl.setText(emp.getJoin());
-
-		/*
-		 * if(member.getimage() == null || member.getimage().length() == 0) {
-		 * employee_picture.setImage(new Image("/MIDAS/image/기본사진.png")); } else {
-		 * employee_picture.setImage(new
-		 * Image(getClass().getResource(member.getimage()).toString())); }
-		 */
-		//if 등록한 사진이 없을 땐 기본사진  else 등록한 사진이 있을 때는 등록된 사진 출력
-	}
+//	public void setInfo() {
+//		dbServ = new DBServiceImpl();
+//		System.out.println("SetINFO");
+//		//String id = comServ.getUserLabel(root);
+//		//System.out.println("USER ID : " + id);
+//		//Employee emp = myServ.getEmployee(id);
+//		Employee emp = myServ.getEmployee("cat");
+//
+//		phoneNumTxt.setText(emp.getPhone());
+//		nameTxt.setText(emp.getName());
+//		birthLbl.setText(emp.getBirth());
+//		departmemtLbl.setText(emp.getDepartment());
+//		emailTxt.setText(emp.getEmail());
+//		addressTxt.setText(emp.getAddress());
+//		positionLbl.setText(emp.getPosition());
+//		finalEduLbl.setText(emp.getEducation());
+//		employeeLbl.setText(emp.getNum());
+//		joinDateLbl.setText(emp.getJoin());
+//
+//		/*
+//		 * if(member.getimage() == null || member.getimage().length() == 0) {
+//		 * employee_picture.setImage(new Image("/MIDAS/image/기본사진.png")); } else {
+//		 * employee_picture.setImage(new
+//		 * Image(getClass().getResource(member.getimage()).toString())); }
+//		 */
+//		//if 등록한 사진이 없을 땐 기본사진  else 등록한 사진이 있을 때는 등록된 사진 출력
+//	}
 
 
 }

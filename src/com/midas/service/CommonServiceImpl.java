@@ -60,10 +60,14 @@ public class CommonServiceImpl implements CommonService{
 
 	@Override
 	public String getUserLabel(Parent root) {
+		Parent loop = root;
 		System.out.println(root + "======");
 		System.out.println(root.getParent());
-		System.out.println(root.getParent().getParent());
-		return ((Label)root.getParent().lookup("#IDLbl")).getText();
+		
+		while(loop.getParent() != null)	loop = loop.getParent();
+		
+		System.out.println(((Label)loop.lookup("#IDLbl")).getText());
+		return ((Label)loop.lookup("#IDLbl")).getText();
 	}
 
 	@Override
@@ -129,7 +133,7 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-	public Parent AddScene2(String formPath, Parent parent) {
+	public Parent AddSceneWithControllerOnRoot(String formPath, Parent parent) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(formPath));
 		Parent root = parent;
 		try {
@@ -137,6 +141,8 @@ public class CommonServiceImpl implements CommonService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Controller ctrler = loader.getController();
+		ctrler.setRoot(root);
 		return root;
 	}
 

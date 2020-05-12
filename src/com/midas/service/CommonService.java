@@ -21,7 +21,7 @@ public interface CommonService {
 	public Parent showWindow(Stage s, String formPath);
 	public Parent showWindow(Stage s, String formPath, Parent parent);
 	public Parent AddScene(String formPath);
-	public Parent AddScene2(String formPath, Parent parent);
+	public Parent AddSceneWithControllerOnRoot(String formPath, Parent parent);
 	public Parent AddSceneWithController(String formPath);
 	
 	public Map<String, TextField> getTextFieldInfo(Parent membershipForm, String [] txtFldIdArr);

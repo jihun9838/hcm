@@ -62,19 +62,20 @@ public class LoginController extends Controller implements Initializable{
 		loginServ = new LoginserviceImp();
 
 
-		//loginBtn.setDisable(true);
-
-		loginIdTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
-			disableButton();
-
-		});
-		loginPwTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
-			disableButton();
-		});
 
 		loginIdTxt.setOnAction(e->loginPwTxt.requestFocus());
 		loginPwTxt.setOnAction(e->loginBtn.requestFocus());
-		loginBtn.setOnAction(e->loginBtnProc(e));
+		
+		//loginBtn.setDisable(true);
+
+			loginIdTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
+				disableButton();
+
+			});
+			loginPwTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
+				disableButton();
+			});
+		
 	}
 
 	private void disableButton() {
@@ -90,9 +91,8 @@ public class LoginController extends Controller implements Initializable{
 	public Parent loginBtnProc(ActionEvent e) {
 		String id = loginIdTxt.getText();
 		String pw = loginPwTxt.getText();
-		System.out.println("asdasdasdasdasdas");
-		System.out.println(id);
-		System.out.println(pw);
+		System.out.println("ID : " + id);
+		System.out.println("PW : " + pw);
 		
 		
 		if(loginServ.loginProc(root)) {
@@ -105,9 +105,10 @@ public class LoginController extends Controller implements Initializable{
 			BorderPane borderPane = (BorderPane)getScene(e);
 			
 //			Parent scene = comServ.AddScene("/com/midas/Employee.fxml");
-			Parent scene = comServ.AddScene("/com/midas/Manager.fxml");
+			Parent scene = comServ.AddSceneWithControllerOnRoot("/com/midas/Manager.fxml", root);
 			borderPane.setLeft(scene);
 			
+			comServ.getUserLabel(root);
 		}
 		else{
 			comServ.ErrorMsg("로그인", "로그인  실패", "아이디와 비밀번호를 확인해주세요.");
