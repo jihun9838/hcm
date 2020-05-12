@@ -2,280 +2,163 @@ package com.midas.db;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Button;
 
 public class HolidayRequest {
-	private SimpleStringProperty num;
-	private SimpleStringProperty id;
-//	private SimpleStringProperty pw;
-//	private SimpleStringProperty name;
-//	private SimpleStringProperty birth;
-//	private SimpleStringProperty gender;
-//	private SimpleStringProperty category;
-//	private SimpleStringProperty salary;
-//	private SimpleStringProperty department;
-//	private SimpleStringProperty position;
-//	private SimpleStringProperty place;
-//	private SimpleStringProperty phone;
-//	private SimpleStringProperty join;
-//	private SimpleStringProperty email;
-//	private SimpleStringProperty education;
-//	private SimpleStringProperty address;
-//	private SimpleStringProperty image;
-	//
-	private SimpleStringProperty idx;
-	private SimpleStringProperty start;
-	private SimpleStringProperty end;
-	private SimpleStringProperty days;
-	private SimpleStringProperty text;
-	
-	
-	
-	public HolidayRequest() {
-		this.num = new SimpleStringProperty();
-		this.id = new SimpleStringProperty();
-//		this.pw = new SimpleStringProperty();
-//		this.name = new SimpleStringProperty();
-//		this.birth = new SimpleStringProperty();
-//		this.gender = new SimpleStringProperty();
-//		this.category = new SimpleStringProperty();
-//		this.salary = new SimpleStringProperty();
-//		this.department = new SimpleStringProperty();
-//		this.position = new SimpleStringProperty();
-//		this.place = new SimpleStringProperty();
-//		this.phone = new SimpleStringProperty();
-//		this.join = new SimpleStringProperty();
-//		this.email = new SimpleStringProperty();
-//		this.education = new SimpleStringProperty();
-//		this.address = new SimpleStringProperty();
-//		this.image = new SimpleStringProperty();
-		this.idx = new SimpleStringProperty();
-		this.start = new SimpleStringProperty();
-		this.end = new SimpleStringProperty();
-		this.days = new SimpleStringProperty();
-		this.text = new SimpleStringProperty();
-	}
-	
-	public HolidayRequest(String num, String id, String idx, String start, String end, String days, String text) {
-		this.num = new SimpleStringProperty(num);
-		this.id = new SimpleStringProperty(id);
-//		this.pw = new SimpleStringProperty(pw);
-//		this.name = new SimpleStringProperty(name);
-//		this.birth = new SimpleStringProperty(birth);
-//		this.gender = new SimpleStringProperty(gender);
-//		this.category = new SimpleStringProperty(category);
-//		this.salary = new SimpleStringProperty(salay);
-//		this.department = new SimpleStringProperty(department);
-//		this.position = new SimpleStringProperty(position);
-//		this.place = new SimpleStringProperty(place);
-//		this.phone = new SimpleStringProperty(phone);
-//		this.join = new SimpleStringProperty(join);
-//		this.email = new SimpleStringProperty(email);
-//		this.education = new SimpleStringProperty(education);
-//		this.address = new SimpleStringProperty(adrress);
-//		this.image = new SimpleStringProperty(image);
-		this.idx = new SimpleStringProperty(idx);
-		this.start = new SimpleStringProperty(start);
-		this.end = new SimpleStringProperty(end);
-		this.days = new SimpleStringProperty(days);
-		this.text = new SimpleStringProperty(text);
-	}
+   private SimpleStringProperty id;
+   private SimpleStringProperty name;
+   private SimpleStringProperty department;
+   private SimpleStringProperty availableDay;
+   private SimpleStringProperty requestDay;
+   private SimpleStringProperty startDay;
+   private SimpleStringProperty endDay;
+   private SimpleStringProperty periodDay;
+   private SimpleStringProperty reason;
+   private SimpleStringProperty approval;
+   private Button approvalBtn;
+   private Button declineBtn;
+   
+   public HolidayRequest() {
+      this.id = new SimpleStringProperty();
+      this.name = new SimpleStringProperty();
+      this.department = new SimpleStringProperty();
+      this.availableDay = new SimpleStringProperty();
+      this.requestDay = new SimpleStringProperty();
+      this.startDay = new SimpleStringProperty();
+      this.endDay = new SimpleStringProperty();
+      this.periodDay = new SimpleStringProperty();
+      this.reason = new SimpleStringProperty();
+      this.approval = new SimpleStringProperty();
+      this.approvalBtn = new Button();
+      this.declineBtn = new Button();
+   }
+   
+   public HolidayRequest(String id, String name, String department, String availableDay, String requestDay, String startDay, String endDay, String periodDay, String reason, String approval, Button approvalBtn, Button declineBtn) {
+      this.id = new SimpleStringProperty(id);
+      this.name = new SimpleStringProperty(name);
+      this.department = new SimpleStringProperty(department);
+      this.availableDay = new SimpleStringProperty(availableDay);
+      this.requestDay = new SimpleStringProperty(requestDay);
+      this.startDay = new SimpleStringProperty(startDay);
+      this.endDay = new SimpleStringProperty(endDay);
+      this.periodDay = new SimpleStringProperty(periodDay);
+      this.reason = new SimpleStringProperty(reason);
+      this.approval = new SimpleStringProperty(approval);
+      this.approvalBtn = approvalBtn;
+      this.declineBtn = declineBtn;
+   }
 
-	public String getNum() {
-		return num.get();
-	}
-	public void setNum(String num) {
-		this.num.set(num);
-	}
-	public StringProperty num() {
-		return num;
-	}
-	public String getId() {
-		return id.get();
-	}
-	public void setId(String id) {
-		this.id.set(id);
-	}
-	public StringProperty id() {
-		return id;
-	}
-//	public String getPw() {
-//		return pw.get();
-//	}
-//	public void setPw(String pw) {
-//		this.pw.set(pw);
-//	}
-//	public StringProperty pw() {
-//		return pw;
-//	}
-//	public String getName() {
-//		return name.get();
-//	}
-//	public void setName(String name) {
-//		this.name.set(name);
-//	}
-//	public StringProperty name() {
-//		return name;
-//	}
-//	public String getBirth() {
-//		return birth.get();
-//	}
-//	public void setBirth(String birth) {
-//		this.birth.set(birth);
-//	}
-//	public StringProperty birth() {
-//		return birth;
-//	}
-//	public String getGender() {
-//		return gender.get();
-//	}
-//	public void setGender(String gender) {
-//		this.gender.set(gender);
-//	}
-//	public StringProperty gender() {
-//		return gender;
-//	}
-//	public String getCategory() {
-//		return category.get();
-//	}
-//	public void setCategory(String category) {
-//		this.category.set(category);
-//	}
-//	public StringProperty category() {
-//		return category;
-//	}
-//	public String getSalary() {
-//		return salary.get();
-//	}
-//	public void setSalary(String salary) {
-//		this.salary.set(salary);
-//	}
-//	public StringProperty salary() {
-//		return salary;
-//	}
-//	public String getDepartment() {
-//		return department.get();
-//	}
-//	public void setDepartment(String department) {
-//		this.department.set(department);
-//	}
-//	public StringProperty department() {
-//		return department;
-//	}
-//	public String getPosition() {
-//		return position.get();
-//	}
-//	public void setPosition(String position) {
-//		this.position.set(position);
-//	}
-//	public StringProperty position() {
-//		return position;
-//	}
-//	public String getPlace() {
-//		return place.get();
-//	}
-//	public void setPlace(String place) {
-//		this.place.set(place);
-//	}
-//	public StringProperty place() {
-//		return place;
-//	}
-//	public String getPhone() {
-//		return phone.get();
-//	}
-//	public void setPhone(String phone) {
-//		this.phone.set(phone);
-//	}
-//	public StringProperty phone() {
-//		return phone;
-//	}
-//	public String getJoin() {
-//		return join.get();
-//	}
-//	public void setJoin(String join) {
-//		this.join.set(join);
-//	}
-//	public StringProperty join() {
-//		return join;
-//	}
-//	public String getEmail() {
-//		return email.get();
-//	}
-//	public void setEmail(String email) {
-//		this.email.set(email);
-//	}
-//	public StringProperty email() {
-//		return email;
-//	}
-//	public String getEducation() {
-//		return education.get();
-//	}
-//	public void setEducation(String education) {
-//		this.education.set(education);
-//	}
-//	public StringProperty education() {
-//		return education;
-//	}
-//	public String getAddress() {
-//		return address.get();
-//	}
-//	public void setAddress(String adrress) {
-//		this.address.set(adrress);
-//	}
-//	public StringProperty address() {
-//		return address;
-//	}
-//	public String getImage() {
-//		return image.get();
-//	}
-//	public void setImage(String image) {
-//		this.image.set(image);
-//	}
-//	public StringProperty Image() {
-//		return image;
-//	}
-	public String getIdx() {
-		return idx.get();
-	}
-	public void setIdx(String idx) {
-		this.idx.set(idx);
-	}
-	public StringProperty idx() {
-		return idx;
-	}
-	public String getStart() {
-		return start.get();
-	}
-	public void setStart(String start) {
-		this.start.set(start);
-	}
-	public StringProperty start() {
-		return idx;
-	}
-	public String getEnd() {
-		return end.get();
-	}
-	public void setEnd(String end) {
-		this.end.set(end);
-	}
-	public StringProperty end() {
-		return end;
-	}
-	public String getDays() {
-		return days.get();
-	}
-	public void setDays(String days) {
-		this.days.set(days);
-	}
-	public StringProperty days() {
-		return days;
-	}
-	public String getText() {
-		return text.get();
-	}
-	public void setText(String text) {
-		this.text.set(text);
-	}
-	public StringProperty Text() {
-		return text;
-	}
+   public String getId() {
+      return id.get();
+   }
+   public void setId(String id) {
+      this.id.set(id);
+   }
+   public StringProperty id() {
+      return id;
+   }
+   
+   public String getName() {
+      return name.get();
+   }
+   public void setName(String name) {
+      this.name.set(name);
+   }
+   public StringProperty name() {
+      return name;
+   }
+   
+   public String getDepartment() {
+      return department.get();
+   }
+   public void setDepartment(String department) {
+      this.department.set(department);
+   }
+   public StringProperty department() {
+      return department;
+   }
+   
+   public String getAvailableDay() {
+      return availableDay.get();
+   }
+   public void setAvailableDay(String availableDay) {
+      this.availableDay.set(availableDay);
+   }
+   public StringProperty availableDay() {
+      return availableDay;
+   }
+   
+   public String getRequestDay() {
+      return requestDay.get();
+   }
+   public void setRequestDay(String requestDay) {
+      this.requestDay.set(requestDay);
+   }
+   public StringProperty requestDay() {
+      return requestDay;
+   }
+   
+   public String getStartDay() {
+      return startDay.get();
+   }
+   public void setStartDay(String startDay) {
+      this.startDay.set(startDay);
+   }
+   public StringProperty startDay() {
+      return startDay;
+   }
+   
+   public String getEndDay() {
+      return endDay.get();
+   }
+   public void setEndDay(String endDay) {
+      this.endDay.set(endDay);
+   }
+   public StringProperty endDay() {
+      return endDay;
+   }
+   
+   public String getPeriodDay() {
+      return periodDay.get();
+   }
+   public void setPeriodDay(String periodDay) {
+      this.periodDay.set(periodDay);
+   }
+   public StringProperty periodDay() {
+      return periodDay;
+   }
+   
+   public String getReason() {
+      return reason.get();
+   }
+   public void setReason(String reason) {
+      this.reason.set(reason);
+   }
+   public StringProperty reason() {
+      return reason;
+   }
+   
+   public String getApproval() {
+      return approval.get();
+   }
+   public void setApproval(String approval) {
+      this.approval.set(approval);
+   }
+   public StringProperty approval() {
+      return approval;
+   }
+   
+   public Button getApprovalBtn() {
+      return approvalBtn;
+   }
+   public void setApprovalBtn(Button approvalBtn) {
+      this.approvalBtn = approvalBtn;
+   }
+
+   public Button getDeclineBtn() {
+      return declineBtn;
+   }
+   public void setDeclineBtn(Button declineBtn) {
+      this.declineBtn = declineBtn;
+   }
 }
