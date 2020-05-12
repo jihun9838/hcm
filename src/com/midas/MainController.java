@@ -292,7 +292,7 @@ public class MainController extends Controller implements Initializable{
 	//HR
 	public void HRPageView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene("/com/midas/hr/HRMpage.fxml");
+		root = comServ.AddSceneWithController("/com/midas/hr/HRMpage.fxml");
 		borderPane.setCenter(root);
 	}
 

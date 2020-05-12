@@ -31,7 +31,7 @@ public interface DBService {
 	public List<Employee> getEmployeeSearch(String attribute, String txt, int i);
 	public boolean SaveInfo(Employee employee);
 	public boolean EditInfo(String num, Employee employee);
-
+	public boolean DeleteInfo(String num);
 
 
 

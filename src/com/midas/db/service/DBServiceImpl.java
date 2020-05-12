@@ -652,6 +652,26 @@ public class DBServiceImpl implements DBService{
 		return false;
 	}
 
+	@Override
+	public boolean DeleteInfo(String num) {
+		String sql = "DELETE FROM Employee " + 
+				"WHERE 사원번호 = " + num;
+	
+		try {
+			Statement stmt = conn.createStatement();
+			
+			stmt.executeUpdate(sql);
+			
+			stmt.close();
+			conn.close();
+			
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 
 
