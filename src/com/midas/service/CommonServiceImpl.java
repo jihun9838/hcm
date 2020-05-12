@@ -43,19 +43,18 @@ public class CommonServiceImpl implements CommonService{
 		Loginservice loginServ = new LoginserviceImp();
 		Label idlbl = (Label)root.lookup("#IDLbl");
 		Label hellolbl = (Label)root.lookup("#helloLbl");
-		
+
 		String [] home = loginServ.homeProc(id);
 		idlbl.setText(home[0]);
 		hellolbl.setText(home[1]+"¥‘ æ»≥Á«œººø‰.");
 	}
-	
+
 	@Override
 	public String getUserLabel(Parent root) {
 		System.out.println(root + "======");
 		System.out.println(root.getParent());
 		System.out.println(root.getParent().getParent());
 		return ((Label)root.getParent().lookup("#IDLbl")).getText();
-//		return ((Label)root.lookup("#IDLbl")).getText();
 	}
 
 	@Override
@@ -131,7 +130,7 @@ public class CommonServiceImpl implements CommonService{
 		}
 		return root;
 	}
-	
+
 	@Override
 	public Parent AddSceneWithController(String formPath) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(formPath));
