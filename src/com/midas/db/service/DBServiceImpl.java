@@ -6,9 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.midas.db.Commute;
 import com.midas.db.Employee;
 import com.midas.db.HolidayRequest;
 import com.midas.db.SalaryResult;
@@ -294,36 +296,27 @@ public class DBServiceImpl implements DBService{
 			}
 
 
+
 			if(table.equals("HolidayRequest")) {
 				while(rs.next()) {
 					HolidayRequest holidayRequest = new HolidayRequest();
 
-					holidayRequest.setNum(rs.getString("사원번호"));
-					holidayRequest.setId(rs.getString("id"));
-					//				holidayRequest.setPw(rs.getString("pw"));
-					//				holidayRequest.setName(rs.getString("이름"));
-					//				holidayRequest.setBirth(rs.getString("생년월일"));
-					//				holidayRequest.setGender(rs.getString("주민번호뒷자리"));
-					//				holidayRequest.setCategory(rs.getString("사원구분"));
-					//				holidayRequest.setSalary(rs.getString("연봉"));
-					//				holidayRequest.setDepartment(rs.getString("부서"));
-					//				holidayRequest.setPosition(rs.getString("직급"));
-					//				holidayRequest.setPlace(rs.getString("근무지"));
-					//				holidayRequest.setPhone(rs.getString("전화번호"));
-					//				holidayRequest.setJoin(rs.getString("입사일자"));
-					//				holidayRequest.setEmail(rs.getString("이메일"));
-					//				holidayRequest.setEducation(rs.getString("최종학력"));
-					//				holidayRequest.setAddress(rs.getString("주소"));
-					//				holidayRequest.setImage(rs.getString("사진url"));
-					holidayRequest.setIdx(rs.getString("idx"));
-					holidayRequest.setStart(rs.getString("start"));
-					holidayRequest.setEnd(rs.getString("end"));
-					holidayRequest.setDays(rs.getString("days"));
-					holidayRequest.setText(rs.getString("text"));
+
+					holidayRequest.setId(rs.getString("사원번호"));
+					holidayRequest.setName(rs.getString("이름"));
+					holidayRequest.setDepartment(rs.getString("부서"));
+					holidayRequest.setAvailableDay(rs.getString("잔여연차"));
+					holidayRequest.setRequestDay(rs.getString("요청일"));
+					holidayRequest.setStartDay(rs.getString("시작일"));
+					holidayRequest.setEndDay(rs.getString("종료일"));
+					holidayRequest.setPeriodDay(rs.getString("기간"));
+					holidayRequest.setReason(rs.getString("사유"));
+					holidayRequest.setApproval(rs.getString("승인여부"));
 
 					list.add(holidayRequest);
 				}
 			}
+
 
 
 			if(table.equals("TAAResult")) {

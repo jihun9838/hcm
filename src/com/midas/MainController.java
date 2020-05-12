@@ -31,9 +31,8 @@ public class MainController extends Controller implements Initializable{
 	private Parent root;
 	private CommonService comServ;
 	private DBService dbServ;
-
 	private Loginservice loginServ;
-
+	private CalendarService calServ;
 
 //	@FXML private Button loginBtn;
 //	@FXML private TextField loginIdTxt;
@@ -67,7 +66,7 @@ public class MainController extends Controller implements Initializable{
 		comServ = new CommonServiceImpl();
 		dbServ = new DBServiceImpl();
 		loginServ = new LoginserviceImp();
-
+		calServ = new CalenderSerivceImpl();
 
 
 
