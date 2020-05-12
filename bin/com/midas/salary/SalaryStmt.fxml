@@ -12,7 +12,7 @@
    <top>
       <HBox prefHeight="60.0" prefWidth="1020.0" spacing="20.0">
          <children>
-            <DatePicker fx:id="SalaryStmtDatePicker" prefHeight="106.0" prefWidth="163.0" />
+            <DatePicker fx:id="salaryStmtDatePicker" prefHeight="106.0" prefWidth="163.0" />
             <Pane prefHeight="40.0" prefWidth="560.0" />
             <Button mnemonicParsing="false" onAction="#ShowStmtProc" prefHeight="40.0" prefWidth="120.0" text="검색" />
             <Button mnemonicParsing="false" onAction="#SalaryStmtExportToExcel" prefHeight="40.0" prefWidth="120.0" text="엑셀 내보내기" />

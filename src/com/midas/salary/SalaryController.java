@@ -1,7 +1,6 @@
 package com.midas.salary;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +8,7 @@ import java.util.ResourceBundle;
 
 import com.midas.Controller;
 import com.midas.db.SalaryResult;
+import com.midas.db.service.DB2ExcelExporter;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
 import com.midas.salary.service.SalaryService;
@@ -33,18 +33,25 @@ public class SalaryController extends Controller implements Initializable{
 	private DBService dbServ;
 	private SalaryService salServ;
 	
+	//salaryMgmt.fxml
 	@FXML private TextField salaryMgmtNameTextField;
 	@FXML private ComboBox salaryMgmtComboBox;
 	@FXML private ChoiceBox salaryMgmtChoiceBox;
 	@FXML private DatePicker salaryMgmtDatePicker;
 	
+	//salaryReport.fxml
 	@FXML private TextField salaryReportNameTextField;
 	@FXML private ComboBox salaryReportComboBox;
 	@FXML private ChoiceBox salaryReportChoiceBox;
 	@FXML private DatePicker salaryReportDatePicker;
 	
+	//salaryStmt.fxml
+	@FXML private DatePicker salaryStmtDatePicker;
 	
+	
+	private List<SalaryResult> salaryResultList;
 	private Map<String, String> m;
+	
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
@@ -76,7 +83,7 @@ public class SalaryController extends Controller implements Initializable{
 		Scene scene = ((Parent)e.getSource()).getScene();
 		String option = "";
 		
-		List<SalaryResult> salaryResultList = null;
+		salaryResultList = null;
 		
 		if(salaryMgmtNameTextField.getText().length() > 0) {
 			option += "WHERE " + m.get(salaryMgmtComboBox.getValue()) + " like '%" + salaryMgmtNameTextField.getText() + "%'";
@@ -87,14 +94,14 @@ public class SalaryController extends Controller implements Initializable{
 	}
 
 	public void SalaryMgmtExportToExcel(ActionEvent e) {
-		
+		new DB2ExcelExporter().export(salaryResultList);
 	}
 	
 	public void ShowReportProc(ActionEvent e) {
 		Scene scene = ((Parent)e.getSource()).getScene();
 		String option = "";
 		
-		List<SalaryResult> salaryResultList = null;
+		salaryResultList = null;
 		
 		if(salaryReportNameTextField.getText().length() > 0) {
 			option += "WHERE " + m.get(salaryReportComboBox.getValue()) + " like '%" + salaryReportNameTextField.getText() + "%'";
@@ -105,13 +112,14 @@ public class SalaryController extends Controller implements Initializable{
 	}
 
 	public void SalaryReportExportToExcel() {
-		
+		new DB2ExcelExporter().export(salaryResultList);
 	}
 	
 	public void ShowStmtProc(ActionEvent e) {
 		Scene scene = ((Parent)e.getSource()).getScene();
 		
-		String option = "WHERE id = \"cat\" AND month = 4";
+		String option = "WHERE id = '" + comServ.getUserLabel(root) + "' ";
+		option += "AND month = '" + salaryStmtDatePicker.getValue().getMonth().toString() + "'";
 		
 //		LocalDate date; // = comServ.getDatePickerInfo(root, "#salaryStmtDatePicker");
 //		
@@ -136,6 +144,6 @@ public class SalaryController extends Controller implements Initializable{
 	}
 	
 	public void SalaryStmtExportToExcel() {
-		
+		//new DB2ExcelExporter().export(salaryResultList);
 	}
 }
