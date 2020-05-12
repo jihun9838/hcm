@@ -4,11 +4,17 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 
+import com.midas.service.CommonServiceImpl;
+
+import javafx.scene.Parent;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class CalendarServiceImpl implements CalendarService{
 	private ArrayList<CalendarAnchorPaneNode> allCalendarDays = new ArrayList<>(35);
@@ -32,6 +38,17 @@ public class CalendarServiceImpl implements CalendarService{
 				CalendarAnchorPaneNode ap = new CalendarAnchorPaneNode();
 				ap.setPrefSize(200,200);
 				calendar.add(ap,j,i);
+				ap.setOnMouseClicked(e->{
+					Stage s = new Stage();
+					new CommonServiceImpl().showWindow(s, "/com/midas/taa/SetCalendarHoliday.fxml");
+					
+					DatePicker dp = (DatePicker) s.getScene().getRoot().lookup("#setCalendarDatePicker");
+					Label lbl = ((Label)((Parent)e.getSource()).getScene().getRoot().lookup("#setCalendarHolidayLbl"));
+					
+					System.out.println(dp.getValue());
+					System.out.println(lbl.getText());
+//					lbl.setText(dp.getValue().toString());
+				});
 				allCalendarDays.add(ap);
 			}
 		}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.cell.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
@@ -41,7 +42,7 @@
 				<ComboBox fx:id="cmbSort" prefWidth="100.0" promptText="전체" />
 				<TextField />
 				<Pane prefHeight="23.0" prefWidth="50.0" />
-				<Button mnemonicParsing="false" prefHeight="23.0"
+				<Button onAction="#monthSearch" mnemonicParsing="false" prefHeight="23.0"
 					prefWidth="65.0" text="검색" />
 			</children>
 			<BorderPane.margin>
@@ -62,7 +63,9 @@
 						<Insets top="10.0" />
 					</VBox.margin>
 				</Label>
-				<ListView prefHeight="512.0" prefWidth="980.0" />
+				<TableView fx:id="MonthTAATable" prefHeight="512.0"
+					prefWidth="980.0">
+				</TableView>
 			</children>
 			<BorderPane.margin>
 				<Insets top="10.0" />

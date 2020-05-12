@@ -7,19 +7,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:controller="com.midas.taa.PersonalTAAController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="PerBP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="com.midas.taa.PersonalTAAController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Label minHeight="23.0" minWidth="72.0" text="개인 근태  내역">
                <font>
                   <Font size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets />
                </VBox.margin>
             </Label>
             <Pane prefHeight="75.0" prefWidth="980.0" />
@@ -103,11 +104,8 @@
                   </Label>
                </children>
             </HBox>
-            <Pane prefHeight="368.0" prefWidth="980.0" />
+            <Pane fx:id="CalPane" prefHeight="368.0" prefWidth="980.0" />
          </children>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
       </VBox>
    </center>
    <top>
@@ -127,7 +125,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cmbDepart" prefHeight="23.0" prefWidth="100.0" promptText="부서 전체"/>
+                  <ComboBox fx:id="cmbDepart" prefHeight="23.0" prefWidth="100.0" promptText="부서 전체" />
                   <Pane prefHeight="23.0" prefWidth="50.0" />
                   <HBox prefHeight="23.0" prefWidth="490.0" spacing="10.0">
                      <children>

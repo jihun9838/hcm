@@ -987,4 +987,360 @@ public class DBServiceImpl implements DBService{
 		return false;	
 	}
 
+	
+	
+	
+	
+	
+	
+
+	//TAA
+	@Override
+	public boolean SaveHolidayRequest(HolidayRequest holidayRequest) {
+		System.out.println("SaveHolidayRequest : " + holidayRequest.getId());
+		String sql = "INSERT INTO HolidayRequest "+
+				"(\"사원번호\", \"이름\", \"부서\", \"잔여연차\", \"요청일\", \"시작일\" , \"종료일\", \"기간\", \"사유\", \"승인여부\")" + 
+				"VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+
+			pStmt.setString(1, holidayRequest.getId());
+			pStmt.setString(2, holidayRequest.getName());
+			pStmt.setString(3, holidayRequest.getDepartment());
+			pStmt.setString(4, holidayRequest.getAvailableDay());
+			pStmt.setString(5, holidayRequest.getRequestDay());
+			pStmt.setString(6, holidayRequest.getStartDay());
+			pStmt.setString(7, holidayRequest.getEndDay());
+			pStmt.setString(8, holidayRequest.getPeriodDay());
+			pStmt.setString(9, holidayRequest.getReason());
+			pStmt.setString(10, holidayRequest.getApproval());
+
+			pStmt.executeUpdate();
+			pStmt.close();
+			//	conn.close();
+
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("SaveHolidayRequest : DONE");
+		return false;
+	}
+
+	@Override
+	public List<Employee> SelectTableHoliday(String attribute, String txt, int i){
+		List<Employee> lstEmployee = new ArrayList<Employee>();
+
+		String sql = "SELECT " +
+				"\"사원번호\", \"이름\", \"부서\", \"입사일자\", \"총연차\", \"사용연차\", \"잔여연차\" "+
+				"FROM Employee " +
+				"WHERE " + attribute + " like '%" + txt + "%'";
+
+		//SELECT "사원번호", "이름", "부서", "입사일자", "총연차", "사용연차", "잔여연차" FROM Employee;
+
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			ResultSet rs = pStmt.executeQuery();
+
+			while(rs.next()) {
+				Employee emp = new Employee();
+
+				if(i==1)
+					AllTAAlst(rs, emp);
+				//				if(i==2)
+				//					BigTAAlst(rs, emp);
+
+				lstEmployee.add(emp);
+			}
+
+
+			//stmt.close();
+			pStmt.close();
+			rs.close();
+			//conn.close();
+
+			return lstEmployee;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("ERROR : SelectTableHoliday");
+		return null;
+	}
+	private Employee AllTAAlst(ResultSet rs, Employee emp) {
+		try {
+			emp.setNum(rs.getString("사원번호"));
+			emp.setName(rs.getString("이름"));
+			emp.setDepartment(rs.getString("부서"));
+			emp.setJoin(rs.getString("입사일자"));
+			emp.setAvailableHoliday(rs.getString("총연차"));
+			emp.setUsedHoliday(rs.getString("사용연차"));
+			emp.setRemainHoliday(rs.getString("잔여연차"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return emp;
+	}
+
+
+	@Override
+	public List<Employee> SelectTableHoliday(String whereOption){
+
+		String sql = "SELECT " +
+				"\"사원번호\", \"이름\", \"부서\", \"입사일자\", \"총연차\", \"사용연차\", \"잔여연차\" "+
+				"FROM Employee";
+
+		//SELECT "사원번호", "이름", "부서", "입사일자", "총연차", "사용연차", "잔여연차" FROM Employee;
+
+		if(!whereOption.isEmpty()) {
+			sql +="\n" + whereOption;
+		}
+		List<Employee> list = new ArrayList<>();
+
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			ResultSet rs = pStmt.executeQuery();
+
+			while(rs.next()) {
+				Employee emp = new Employee();
+
+				emp.setNum(rs.getString("사원번호"));
+				emp.setName(rs.getString("이름"));
+				emp.setDepartment(rs.getString("부서"));
+				emp.setJoin(rs.getString("입사일자"));
+				emp.setAvailableHoliday(rs.getString("총연차"));
+				emp.setUsedHoliday(rs.getString("사용연차"));
+				emp.setRemainHoliday(rs.getString("잔여연차"));
+
+				list.add(emp);
+			}
+
+
+			//stmt.close();
+			pStmt.close();
+			rs.close();
+			//conn.close();
+
+			return list;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("ERROR : SelectTableHoliday");
+		return null;
+	}
+	@Override
+	public List<HolidayRequest> SelectHolidayApprovalSearch(String attribute, String txt) {
+		List<HolidayRequest> requestList = new ArrayList<HolidayRequest>();
+		String sql = "SELECT * " + 
+				"FROM HolidayRequest " +
+				"WHERE " + attribute + " like '%" + txt + "%'";
+
+		try {
+			Statement stmt = conn.createStatement();
+
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while(rs.next()) {
+				HolidayRequest holidayRequest = new HolidayRequest();
+
+
+				holidayRequest.setId(rs.getString("사원번호"));
+				holidayRequest.setName(rs.getString("이름"));
+				holidayRequest.setDepartment(rs.getString("부서"));
+				holidayRequest.setAvailableDay(rs.getString("잔여연차"));
+				holidayRequest.setRequestDay(rs.getString("요청일"));
+				holidayRequest.setStartDay(rs.getString("시작일"));
+				holidayRequest.setEndDay(rs.getString("종료일"));
+				holidayRequest.setPeriodDay(rs.getString("기간"));
+				holidayRequest.setReason(rs.getString("사유"));
+				holidayRequest.setApproval(rs.getString("승인여부"));
+
+				requestList.add(holidayRequest);
+			}
+
+			stmt.close();
+			rs.close();
+			//			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return requestList;
+	}
+	@Override
+	public boolean updateApprovalHoliday(String whereOption) {
+		String UPDATESQL = "UPDATE HolidayRequest "+
+				"SET "+
+				"승인여부="+
+				"\"승인\"";
+		if(!whereOption.isEmpty()) {
+			UPDATESQL +="\n" + whereOption;
+		}
+		//UPDATE HolidayRequest SET approval="승인" WHERE ROWID=1;
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
+
+			pStmt.executeUpdate();
+			pStmt.close();
+			System.out.println("\n승인완료");
+			return true;
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("\n실패");
+		return false;
+	}
+	@Override
+	public boolean updateEmployeeHoliday(String whereOption, String periodDay) {
+		String UPDATESQL = "UPDATE Employee "+
+				"SET "+
+				"\"사용연차\""+ "=" +
+				" \"사용연차\"" + "+" + periodDay +"\n" + whereOption;
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
+
+			pStmt.executeUpdate();
+			pStmt.close();
+			System.out.println("\n승인완료");
+			return true;
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("\n실패");
+		return false;
+	}
+	@Override
+	public boolean updateEmployeeHoliday2(String whereOption, String periodDay) {
+		String UPDATESQL = 	"UPDATE Employee "+
+				"SET "+
+				"\"잔여연차\""+ "=" +
+				" \"잔여연차\"" + "-" + periodDay +"\n" + whereOption +";";
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
+
+			pStmt.executeUpdate();
+			pStmt.close();
+			System.out.println("\n승인완료");
+			return true;
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("\n실패");
+		return false;
+	}
+	@Override
+	public boolean updateDeclineHoliday(String whereOption) {
+		String UPDATESQL = "UPDATE HolidayRequest "+
+				"SET "+
+				"승인여부="+
+				"\"반려\"";
+		if(!whereOption.isEmpty()) {
+			UPDATESQL +="\n" + whereOption;
+		}
+		//UPDATE HolidayRequest SET approval="승인" WHERE ROWID=1;
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
+
+			pStmt.executeUpdate();
+			pStmt.close();
+			System.out.println("\n반려완료");
+			return true;
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("\n실패");
+		return false;
+	}
+	@Override
+	public boolean updateEmployeeHolidayDe(String whereOption, String periodDay) {
+		String UPDATESQL = "UPDATE Employee "+
+				"SET "+
+				"\"사용연차\""+ "=" +
+				" \"사용연차\"" + "-" + periodDay +"\n" + whereOption;
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
+
+			pStmt.executeUpdate();
+			pStmt.close();
+			System.out.println("\n승인완료");
+			return true;
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("\n실패");
+		return false;
+	}
+	@Override
+	public boolean updateEmployeeHolidayDe2(String whereOption, String periodDay) {
+		String UPDATESQL = 	"UPDATE Employee "+
+				"SET "+
+				"\"잔여연차\""+ "=" +
+				" \"잔여연차\"" + "+" + periodDay +"\n" + whereOption +";";
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
+
+			pStmt.executeUpdate();
+			pStmt.close();
+			System.out.println("\n승인완료");
+			return true;
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("\n실패");
+		return false;
+	}
+	
+	@Override
+	public boolean SaveCommute(Commute commute) {
+		String sql = "INSERT INTO Commute (사원번호,구분,날짜,시간) " + 
+				"VALUES (?,?,?,?)";
+
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, commute.getNum());
+			pStmt.setString(2, commute.getSortation());
+			pStmt.setString(3, commute.getDate());
+			pStmt.setString(4, commute.getTime());
+			
+			pStmt.executeUpdate();
+			pStmt.close();
+
+		} catch (SQLException e) {
+			return false;
+		}
+		return true;
+	}
+	
+	@Override
+	public void SaveCommute(Commute commute, String loginNum, String Sortation, String timeStr) {
+		commute.setNum(loginNum); //로그인 한 사람 사원번호
+		commute.setSortation(Sortation); //출근 버튼이 눌렸으므로 출근
+		commute.setDate(LocalDate.now().toString()); //출퇴근일 : 오늘
+		commute.setTime(timeStr); //현재 시간
+		SaveCommute(commute);
+	}
+	
 }

@@ -28,11 +28,9 @@ public class CalendarAnchorPaneNode extends AnchorPane {
 		super(children);
 		comServ = new CommonServiceImpl();
 		Stage s = new Stage();
-		// Add action handler for mouse clicked
-		this.setOnMouseClicked(e ->{
-			System.out.println("This pane's date is: " + date);
-			//comServ.showWindow(s, "../SetCalendarHoliday.fxml", /*부모없는놈임여기*/);
-		});
+//		this.setOnMouseClicked(e ->{
+//			System.out.println("This pane's date is: " + date);
+//		});
 	}
 
 	public LocalDate getDate() {

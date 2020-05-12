@@ -1,16 +1,13 @@
 package com.midas.taa.own;
 
 import java.net.URL;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.midas.Controller;
-import com.midas.db.EmployeeHoliday2;
+import com.midas.db.Employee;
 import com.midas.db.HolidayRequest;
-import com.midas.db.SalaryResult;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
 import com.midas.service.CommonService;
@@ -18,7 +15,6 @@ import com.midas.service.CommonServiceImpl;
 import com.midas.taa.service.TAAService;
 import com.midas.taa.service.TAAServiceImpl;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,6 +35,7 @@ public class OwnAskHolidayController extends Controller implements Initializable
 	@FXML private DatePicker AskDatePicker, StartDatePicker, EndDatePicker;
 	@FXML private ComboBox<String> cmbFullHalf;
 	@FXML private TextField reasonTf;
+	private int year, month;
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
@@ -50,13 +47,24 @@ public class OwnAskHolidayController extends Controller implements Initializable
 		dbServ = new DBServiceImpl();
 		AskDatePicker.setPromptText(LocalDate.now().getYear()+"."+LocalDate.now().getMonthValue());
 		todayLbl.setText(LocalDate.now().toString());
+		year = LocalDate.now().getYear();
+		month = LocalDate.now().getMonthValue();
+	}
+	
+	public void checkAskDate(ActionEvent e) {
+		year = AskDatePicker.getValue().getYear();
+		month = AskDatePicker.getValue().getMonthValue();
 	}
 	
 	
 	public void SearchMyHolidayTable(ActionEvent e) {
 		Scene scene = ((Parent)e.getSource()).getScene();
-		List<HolidayRequest> OwnHolidayAskList = dbServ.SelectTable("HolidayRequest", "WHERE id = \"200401\"");
+		String requestYearMonth = Integer.toString(year)+"-0"+Integer.toString(month);
+		List<HolidayRequest> OwnHolidayAskList = dbServ.SelectTable("HolidayRequest", "WHERE " +"\"사원번호\"" + "=" + "\"200401\""+
+		"AND "+ "\"요청일\""+" like '%" + requestYearMonth + "%'");
+		//로그인 된 사람 id
 		comServ.ShowTableViewByList(scene, "#OwnAskTable", OwnHolidayAskList);
+
 	}
 
 	public void FullAndHalfCheck(ActionEvent e) {
@@ -117,7 +125,8 @@ public class OwnAskHolidayController extends Controller implements Initializable
 
 	private boolean isCheck(ComboBox<String> cb, DatePicker startDP, DatePicker endDP) {
 		{	
-			if(cb.getValue().isEmpty()) {
+			if(cb.getValue() == null) {
+				cmbFullHalf.requestFocus();
 				System.out.println("비어 있어요");
 				return false;
 			}
@@ -134,10 +143,6 @@ public class OwnAskHolidayController extends Controller implements Initializable
 	}
 
 	public void requestHoliday(ActionEvent e) {
-		if(cmbFullHalf.getValue().isEmpty()) {
-			cmbFullHalf.requestFocus();
-			return;
-		}
 		if(!isCheck(cmbFullHalf, StartDatePicker, EndDatePicker)) {
 			return;
 		}
@@ -156,11 +161,12 @@ public class OwnAskHolidayController extends Controller implements Initializable
 			
 
 			HolidayRequest hr = new HolidayRequest();
-			hr.setId("20190901");  //로그인 했을때 아이디
-			hr.setName("박정수"); //이름
-			hr.setDepartment("개발"); //부서
-			hr.setAvailableDay("26"); //인 사람의 남은 연가
 			
+			hr.setId("200401");  //로그인 했을때 아이디
+			hr.setName("강아지"); //이름
+			hr.setDepartment("회계"); //부서
+			hr.setAvailableDay("23"); //인 사람의 남은 연가
+		
 			hr.setRequestDay(String.valueOf(LocalDate.now()));
 			hr.setStartDay(StartDatePicker.getValue().toString());
 			hr.setEndDay(EndDatePicker.getValue().toString());
@@ -188,6 +194,9 @@ public class OwnAskHolidayController extends Controller implements Initializable
 			else {
 				comServ.ErrorMsg("신청", "실패", "관리자에게 문의하세요.");
 			}
+			
+			Scene scene = ((Parent)e.getSource()).getScene();
+			
 		}
 	}
 
