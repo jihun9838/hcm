@@ -14,6 +14,8 @@ import com.midas.mainpage.service.Loginservice;
 import com.midas.mainpage.service.LoginserviceImp;
 import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
+import com.midas.taa.service.CalendarService;
+import com.midas.taa.service.CalendarServiceImpl;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -66,7 +68,7 @@ public class MainController extends Controller implements Initializable{
 		comServ = new CommonServiceImpl();
 		dbServ = new DBServiceImpl();
 		loginServ = new LoginserviceImp();
-		calServ = new CalenderSerivceImpl();
+		calServ = new CalendarServiceImpl();
 
 
 
