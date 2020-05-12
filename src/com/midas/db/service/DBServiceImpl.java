@@ -6,9 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.midas.db.Commute;
 import com.midas.db.Employee;
 import com.midas.db.HolidayRequest;
 import com.midas.db.SalaryResult;
@@ -923,7 +925,7 @@ public class DBServiceImpl implements DBService{
 	
 	@Override
 	public boolean mypage(String id, Employee employee) {
-		String sql = "UPDATE Member " +
+		String sql = "UPDATE Employee " +
 				"SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ?, pw = ?" + 
 				"WHERE id = '" + id +"'";
 		System.out.println();
@@ -952,7 +954,7 @@ public class DBServiceImpl implements DBService{
 	}
 	@Override
 	public String [] homepage(String id) {
-		String sql = "SELECT id, 이름  FROM Employee WHERE id=?";
+		String sql = "SELECT 사원번호 , 이름  FROM Employee WHERE id=?";
 		//CommonService comServ = new CommonServiceImpl();
 		String [] idName = new String[2];			
 
@@ -965,7 +967,7 @@ public class DBServiceImpl implements DBService{
 			rs = pStmt.executeQuery();
 
 			while(rs.next()) {
-				idName[0] = rs.getString("id");
+				idName[0] = rs.getString("사원번호");
 				idName[1] = rs.getString("이름");
 			}
 
@@ -1099,5 +1101,36 @@ public class DBServiceImpl implements DBService{
 	}
 	System.out.println("ERROR : SelectTableHoliday");
 	return null;
+	}
+	@Override
+	public boolean SaveCommute(Commute commute) {
+		String sql = "INSERT INTO commute (사원번호,구분,날짜,시간) " + 
+				"VALUES (?,?,?,?)";
+
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, commute.getNum());
+			pStmt.setString(2, commute.getSortation());
+			pStmt.setString(3, commute.getDate());
+			pStmt.setString(4, commute.getTime());
+			
+			pStmt.executeUpdate();
+			pStmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	@Override
+	public void SaveCommute(Commute commute, String loginNum, String Sortation, String timeStr) {
+		commute.setNum(loginNum); //로그인 한 사람 사원번호
+		commute.setSortation(Sortation); //출근 버튼이 눌렸으므로 출근
+		commute.setDate(LocalDate.now().toString()); //출퇴근일 : 오늘
+		commute.setTime(timeStr); //현재 시간
+		SaveCommute(commute);
 	}
 }

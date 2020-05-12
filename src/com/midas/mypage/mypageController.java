@@ -109,10 +109,12 @@ public class mypageController extends Controller implements Initializable{
 	}
 	
 	public void setInfo() {
+		dbServ = new DBServiceImpl();
 		System.out.println("SetINFO");
-		String id = comServ.getUserLabel(root);
-		System.out.println("USER ID : " + id);
-		Employee emp = myServ.getEmployee(id);
+		//String id = comServ.getUserLabel(root);
+		//System.out.println("USER ID : " + id);
+		//Employee emp = myServ.getEmployee(id);
+		Employee emp = myServ.getEmployee("cat");
 
 		phoneNumTxt.setText(emp.getPhone());
 		nameTxt.setText(emp.getName());

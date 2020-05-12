@@ -1,10 +1,13 @@
 package com.midas;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.midas.db.Commute;
 import com.midas.db.Employee;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
@@ -73,6 +76,67 @@ public class MainController extends Controller implements Initializable{
 
 
 
+		//////////////////////////////////////////////////////////
+		/* 출근에 대한 DB 저장 기본 내용
+		Commute com = new Commute();
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		String timeStr = sdf.format(cal.getTime());
+		com.setNum("200401"); //로그인 한 사람
+		com.setSortation("출근"); //출근 버튼이면 출근
+		com.setDate(LocalDate.now().toString()); //출퇴근일 : 오늘
+		com.setTime(timeStr);
+		com 테스트로 get 출력해보기..
+		new DBServiceImpl().SaveCommute(com);
+		 */
+
+
+
+		/*  응용 1.. 위에꺼 지워야 함
+		   버튼에 setOnAction 만들어서 테스트해본 후 DB에 잘 들어가는지 확인.
+		  데이터 베이스에 commute 테이블 중 '시간' 칼럼은 널값이 들어갈 수도 있기 때문에(응용할 수도 있어서 냅둠.)
+		  com.setTime 하기 전에 timeStr이 들어가는지 확인해본 후 작성할 것.
+		  */
+		
+		/*
+		DBService dbServ = new DBServiceImpl();  
+		Commute com = new Commute();
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		String timeStr = sdf.format(cal.getTime());  
+
+		public void GoToWorkProc(ActionEvent e){ //출근버튼 누르면
+			com.setNum("200401"); //로그인 한 사람 사원번호
+			com.setSortation("출근"); //출근 버튼이 눌렸으므로 출근
+			com.setDate(LocalDate.now().toString()); //출퇴근일 : 오늘
+			com.setTime(timeStr); //현재 시간
+			if(dbServ.SaveCommute(com)) comServ.ErrorMsg("출근완료");
+			else comServ.ErrorMsg("출근error 관리자 문의");
+		}
+		public void GetOffWorkProc(ActionEvent e){ //퇴근버튼 누르면
+			com.setNum("200401"); //로그인 한 사람 사원번호
+			com.setSortation("퇴근"); //퇴근 버튼이 눌렸으므로 퇴근
+			com.setDate(LocalDate.now().toString()); //출퇴근일 : 오늘
+			com.setTime(timeStr); //현재 시간
+			if(dbServ.SaveCommute(com)) comServ.ErrorMsg("출근완료");
+			else comServ.ErrorMsg("출근error 관리자 문의");
+		}
+		 */
+		
+		/*
+		 * //응용 2.. 위에꺼 지워야 함. DBService에 옮겨놓은 메소드로 간결하게 함. DBService dbServ = new
+		 * DBServiceImpl(); Commute commute = new Commute(); Calendar cal =
+		 * Calendar.getInstance(); SimpleDateFormat sdf = new
+		 * SimpleDateFormat("HH:mm:ss"); String timeStr = sdf.format(cal.getTime());
+		 * 
+		 * //if //public void GoToWorkProc(ActionEvent e){ //출근버튼 누르면
+		 * dbServ.SaveCommute(commute, "200401", "출근", timeStr);
+		 * comServ.ErrorMsg("출근완료", "명언"); } //public void GetOffWorkProc(ActionEvent
+		 * e){ //퇴근버튼 누르면 dbServ.SaveCommute(commute, "200401", "퇴근", timeStr);
+		 * comServ.ErrorMsg("퇴근완료", "명언"); //}
+		 */		 
+		//////////////////////////////////////////////////////////
+
 
 
 
@@ -129,14 +193,28 @@ public class MainController extends Controller implements Initializable{
 	}
 
 	public void commuteBtnProc(ActionEvent e) {
-		if(commuteBtn.getText().equals("출근")) {
-			comServ.ErrorMsg("출/퇴근", "출근입니다.", "출근하였습니다.\n오늘하루도 화이팅~!");
+		DBService dbServ = new DBServiceImpl();
+		String num = IDLbl.getText();
+		Commute commute = new Commute();
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		String timeStr = sdf.format(cal.getTime());
+		
+		if(commuteBtn.getText().contentEquals("출근")) {
+			dbServ.SaveCommute(commute, num, "출근", timeStr);
+			//dbServ.SaveCommute(commute);
+			System.out.println(timeStr);
+			comServ.ErrorMsg("출/퇴근", "출근입니다.", "출근하였습니다.\n오늘하루도 화이팅입니다!");
 			commuteBtn.setText("퇴근");
 		}
 
-		else if(commuteBtn.getText().equals("퇴근")) {
-			comServ.ErrorMsg("출/퇴근", "퇴근입니다.", "퇴근하였습니다.\n오늘하루도 고생하셨습니다!");
-			commuteBtn.setText("출근");
+		else if(commuteBtn.getText().contentEquals("퇴근")) {		
+			if(comServ.ConfirmMsg("출/퇴근", "퇴근입니다.", "퇴근하시겠습니까?")) {
+				dbServ.SaveCommute(commute, num, "퇴근", timeStr);
+				comServ.ErrorMsg("출/퇴근", "퇴근입니다.", "퇴근하였습니다.\n오늘하루도 고생하셨습니다!");
+				commuteBtn.setText("출근");
+			}
+			else {}
 		}				
 	}
 
