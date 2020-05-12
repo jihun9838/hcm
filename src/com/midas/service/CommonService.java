@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -21,7 +22,7 @@ public interface CommonService {
 	public Parent showWindow(Stage s, String formPath);
 	public Parent showWindow(Stage s, String formPath, Parent parent);
 	public Parent AddScene(String formPath);
-	public Parent AddSceneWithControllerOnRoot(String formPath, Parent parent);
+	public Parent AddScene2(String formPath, Parent parent);
 	public Parent AddSceneWithController(String formPath);
 	
 	public Map<String, TextField> getTextFieldInfo(Parent membershipForm, String [] txtFldIdArr);
@@ -40,7 +41,7 @@ public interface CommonService {
 	public void ErrorMsg(String title, String headerStr, String ContentTxt);
 	public void ErrorMsg(String headerStr, String ContentTxt);
 	public void ErrorMsg(String ContentTxt);
-	public boolean ConfirmMsg(String title, String headerStr, String ContentTxt);
+	boolean ConfirmMsg(String title, String headerStr, String ContentTxt);
 	
 	public void ExportExcel();
 	public void ShowTableViewByList(Scene scene, String id, List list);

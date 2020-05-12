@@ -2,7 +2,6 @@ package com.midas;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -10,15 +9,15 @@ import java.util.ResourceBundle;
 
 import com.midas.db.Commute;
 import com.midas.db.Employee;
-import com.midas.db.HolidayRequest;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
+import com.midas.mainpage.service.HompageService;
+import com.midas.mainpage.service.HompageServiceImp;
 import com.midas.mainpage.service.Loginservice;
 import com.midas.mainpage.service.LoginserviceImp;
 import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
-import com.midas.taa.service.CalendarService;
-import com.midas.taa.service.CalendarServiceImpl;
+
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -27,7 +26,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
@@ -36,11 +34,17 @@ public class MainController extends Controller implements Initializable{
 	private Parent root;
 	private CommonService comServ;
 	private DBService dbServ;
+
 	private Loginservice loginServ;
-	private CalendarService calServ;
+	private HompageService homeServ;
 
 
-	// Homepage.fxml
+//	@FXML private Button loginBtn;
+//	@FXML private TextField loginIdTxt;
+//	@FXML private TextField loginPwTxt;
+
+
+	// HomePage.fxml
 	@FXML private Label IDLbl;
 	@FXML private Label helloLbl;
 	@FXML private Button logoutBtn;
@@ -56,6 +60,7 @@ public class MainController extends Controller implements Initializable{
 		Parent btnObj = (Parent)e.getSource();
 		return btnObj.getScene().getRoot();
 	}
+	
 
 	@Override
 	public void setRoot(Parent root) {
@@ -67,12 +72,99 @@ public class MainController extends Controller implements Initializable{
 		comServ = new CommonServiceImpl();
 		dbServ = new DBServiceImpl();
 		loginServ = new LoginserviceImp();
-		calServ = new CalendarServiceImpl();
+		homeServ = new HompageServiceImp();
+
+
+
+		//////////////////////////////////////////////////////////
+		/* 출근에 대한 DB 저장 기본 내용
+		Commute com = new Commute();
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		String timeStr = sdf.format(cal.getTime());
+		com.setNum("200401"); //로그인 한 사람
+		com.setSortation("출근"); //출근 버튼이면 출근
+		com.setDate(LocalDate.now().toString()); //출퇴근일 : 오늘
+		com.setTime(timeStr);
+		com 테스트로 get 출력해보기..
+		new DBServiceImpl().SaveCommute(com);
+		 */
+
+
+
+		/*  응용 1.. 위에꺼 지워야 함
+		   버튼에 setOnAction 만들어서 테스트해본 후 DB에 잘 들어가는지 확인.
+		  데이터 베이스에 commute 테이블 중 '시간' 칼럼은 널값이 들어갈 수도 있기 때문에(응용할 수도 있어서 냅둠.)
+		  com.setTime 하기 전에 timeStr이 들어가는지 확인해본 후 작성할 것.
+		  */
+		
+		/*
+		DBService dbServ = new DBServiceImpl();  
+		Commute com = new Commute();
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		String timeStr = sdf.format(cal.getTime());  
+
+		public void GoToWorkProc(ActionEvent e){ //출근버튼 누르면
+			com.setNum("200401"); //로그인 한 사람 사원번호
+			com.setSortation("출근"); //출근 버튼이 눌렸으므로 출근
+			com.setDate(LocalDate.now().toString()); //출퇴근일 : 오늘
+			com.setTime(timeStr); //현재 시간
+			if(dbServ.SaveCommute(com)) comServ.ErrorMsg("출근완료");
+			else comServ.ErrorMsg("출근error 관리자 문의");
+		}
+		public void GetOffWorkProc(ActionEvent e){ //퇴근버튼 누르면
+			com.setNum("200401"); //로그인 한 사람 사원번호
+			com.setSortation("퇴근"); //퇴근 버튼이 눌렸으므로 퇴근
+			com.setDate(LocalDate.now().toString()); //출퇴근일 : 오늘
+			com.setTime(timeStr); //현재 시간
+			if(dbServ.SaveCommute(com)) comServ.ErrorMsg("출근완료");
+			else comServ.ErrorMsg("출근error 관리자 문의");
+		}
+		 */
+		
+		/*
+		 * //응용 2.. 위에꺼 지워야 함. DBService에 옮겨놓은 메소드로 간결하게 함. DBService dbServ = new
+		 * DBServiceImpl(); Commute commute = new Commute(); Calendar cal =
+		 * Calendar.getInstance(); SimpleDateFormat sdf = new
+		 * SimpleDateFormat("HH:mm:ss"); String timeStr = sdf.format(cal.getTime());
+		 * 
+		 * //if //public void GoToWorkProc(ActionEvent e){ //출근버튼 누르면
+		 * dbServ.SaveCommute(commute, "200401", "출근", timeStr);
+		 * comServ.ErrorMsg("출근완료", "명언"); } //public void GetOffWorkProc(ActionEvent
+		 * e){ //퇴근버튼 누르면 dbServ.SaveCommute(commute, "200401", "퇴근", timeStr);
+		 * comServ.ErrorMsg("퇴근완료", "명언"); //}
+		 */		 
+		//////////////////////////////////////////////////////////
+
+
+
+
+		//		
+		//		loginBtn.setOnAction(e->{			
+		//			loginBtnProc();
+		//		});
+		//
+		//		loginBtn.setDisable(true);
+		//
+		//		loginIdTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
+		//			disableButton();
+		//
+		//		});
+		//		loginPwTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
+		//			disableButton();
+		//		});
+		//
+		//		loginIdTxt.setOnAction(e->loginPwTxt.requestFocus());
+		//		loginPwTxt.setOnAction(e->loginBtn.requestFocus());
+		//		
+		
+		
+
 	}
 
 
 
-	// Homepage
 	public void HomepageView(ActionEvent e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
 		Parent scene = comServ.AddScene("/com/midas/Homepage.fxml");
@@ -93,8 +185,8 @@ public class MainController extends Controller implements Initializable{
 
 
 
-
-
+	
+	
 	public void logoutBtnProc(ActionEvent e) {
 		comServ.ErrorMsg("로그아웃", "로그아웃 됩니다.", "로그아웃이 실행됩니다.");
 		comServ.WindowClose(e);
@@ -127,19 +219,20 @@ public class MainController extends Controller implements Initializable{
 	}
 
 	public void Lbl(Parent root, String id) {
-		comServ.setUserLabel(root, id);
+		homeServ.setUserLabel(root, id);
 	}
-
-
-
-
+	
+	
+	
+	
 	public void MyPageView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
 		root = comServ.AddSceneWithController("/com/midas/mypage/infoPwCheck.fxml");
 		borderPane.setCenter(root);
+		System.out.println("RRRRRRRRRRRRRRRRRR " + root);
 	}
-
-
+	
+	
 
 
 
@@ -153,7 +246,6 @@ public class MainController extends Controller implements Initializable{
 		BorderPane borderPane = (BorderPane)getScene(e);
 		Parent scene = comServ.AddScene("/com/midas/salary/SalaryMgmt.fxml");
 		borderPane.setCenter(scene);
-		//System.out.println(IDLbl.getText());
 	}
 
 	public void SalaryReportView(Event e) {
@@ -171,22 +263,15 @@ public class MainController extends Controller implements Initializable{
 
 
 
-	
-	
-	
-	
+
+
 
 
 	//TAA Manager
 	public void SetCalendarView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddSceneWithController("/com/midas/taa/SetCalendar.fxml");
+		Parent root = comServ.AddScene("/com/midas/taa/SetCalendar.fxml");
 		borderPane.setCenter(root);
-
-		BorderPane pane = (BorderPane)borderPane.getCenter();
-		pane.setCenter(calServ.getView());
-		DatePicker dp = (DatePicker)root.lookup("#setCalendarDatePicker");
-		dp.setValue(LocalDate.now());
 	}
 
 	public void TAAReportView(Event e) {
@@ -222,19 +307,29 @@ public class MainController extends Controller implements Initializable{
 	public void TAAListView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
 		root = comServ.AddScene("/com/midas/taa/TAAList.fxml");
+
 		Parent form = root;
+		String [] departItems= {"부서 전체", "회계", "마케팅", "인사", "영업"};
+		String [] sortItems= {"전체", "사원번호", "이름"};
+		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
+		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
+
 		borderPane.setCenter(root);
 	}
 
 	public void HolidayApprovalView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
 		root = comServ.AddScene("/com/midas/taa/HolidayApproval.fxml");
-		Parent form = root;
-		borderPane.setCenter(root);
 
-		Scene scene = ((Parent)e.getSource()).getScene();
-		List<HolidayRequest> requestList = dbServ.SelectTable("HolidayRequest", "");
-		comServ.ShowTableViewByList(scene, "#HoliAppTableView", requestList);
+		Parent form = root;
+		String [] departItems= {"부서 전체", "회계", "마케팅", "인사", "영업"};
+		String [] sortItems= {"사원번호", "이름"};
+		String [] approvalItems = {"승인", "미승인", "반려"};
+		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
+		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
+		comServ.AddComboBox(form, Arrays.asList(approvalItems), "#cmbApproval");
+
+		borderPane.setCenter(root);
 	}
 
 	public void HolidayModifyView(Event e) {
@@ -243,10 +338,6 @@ public class MainController extends Controller implements Initializable{
 		borderPane.setCenter(root);
 	}
 
-	
-	
-	
-	
 	//TAA Employee
 	public void OwnTAAView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
@@ -265,7 +356,7 @@ public class MainController extends Controller implements Initializable{
 		borderPane.setCenter(root);
 
 		Scene scene = ((Parent)e.getSource()).getScene();
-		List<Employee> OwnHolidayList = dbServ.SelectTableHoliday("WHERE 사원번호 = \"200401\""); //로그인 한 사람의 아이디
+		List<Employee> OwnHolidayList = dbServ.SelectTable("Employee", "WHERE id = \"200401\""); //로그인 한 사람의 아이디
 		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
 	}
 
@@ -276,27 +367,14 @@ public class MainController extends Controller implements Initializable{
 		String [] TypeItems= {"연차", "출장", "조퇴", "결근", "지각", "출근"};
 
 		borderPane.setCenter(root);
-
-		Scene scene = ((Parent)e.getSource()).getScene();
-		List<Employee> OwnHolidayList = dbServ.SelectTableHoliday("WHERE 사원번호 = \"200401\""); //로그인 한 사람의 아이디
-		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
 	}
-
-
-
-
-
-
+	
+	
 
 	//HR
 	public void HRPageView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddSceneWithController("/com/midas/hr/HRMpage.fxml");
+		root = comServ.AddScene("/com/midas/hr/HRMpage.fxml");
 		borderPane.setCenter(root);
 	}
-
-
-
-
-
 }

@@ -22,7 +22,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="loginBtn" layoutX="821.0" layoutY="190.0" mnemonicParsing="false" onAction="#loginBtnProc" prefHeight="136.0" prefWidth="129.0" text="LogIn">
+      <Button fx:id="loginBtn" disable="true" layoutX="821.0" layoutY="190.0" mnemonicParsing="false" onAction="#loginBtnProc" prefHeight="136.0" prefWidth="129.0" text="LogIn">
          <font>
             <Font size="22.0" />
          </font>

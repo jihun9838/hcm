@@ -27,7 +27,6 @@ public class OwnTAAController extends Controller implements Initializable {
 	public void setRoot(Parent root) {
 		this.root = root;
 	}
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		calServ = new CalendarServiceImpl(YearMonth.now());

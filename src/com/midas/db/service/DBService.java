@@ -46,7 +46,7 @@ public interface DBService {
 	public String [] homepage(String id);
 	public Employee getMember(String num);
 	public boolean infopwCheck(String id, String pw);
-	public boolean mypage(String id, Employee employee);
+	public boolean mypage(String num, Employee employee, boolean n);
 	
 	
 	//jspark

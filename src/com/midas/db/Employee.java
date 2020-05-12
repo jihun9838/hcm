@@ -95,7 +95,7 @@ public class Employee {
 		this.email = new SimpleStringProperty(email);
 		this.education = new SimpleStringProperty(education);
 	}
-
+	
 	public Employee(String num, String name, String department, String join, String availableHoliday, String usedHoliday, String remainHoliday) { //TAA ¿¬Â÷
 		this.num = new SimpleStringProperty(num);
 		this.name = new SimpleStringProperty(name);
@@ -294,4 +294,5 @@ public class Employee {
 	public StringProperty[] getValue() {
 		return value;
 	}
+	
 }

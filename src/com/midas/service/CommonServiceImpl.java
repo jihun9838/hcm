@@ -19,6 +19,7 @@ import com.midas.mainpage.service.LoginserviceImp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,42 +34,34 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 
 public class CommonServiceImpl implements CommonService{
-	//@FXML TableView<Employee> tableView;
-
-	private String num;
-	public String getNum(){
-		return this.num;
-	}
-	public void setNum(String num){
-		this.num = num;
-	}
+	@FXML TableView<Employee> tableView;
 
 	@Override
 	public void setUserLabel(Parent root, String id) {
 		Loginservice loginServ = new LoginserviceImp();
 		Label idlbl = (Label)root.lookup("#IDLbl");
 		Label hellolbl = (Label)root.lookup("#helloLbl");
-
+		
 		String [] home = loginServ.homeProc(id);
 		idlbl.setText(home[0]);
 		hellolbl.setText(home[1]+"¥‘ æ»≥Á«œººø‰.");
 	}
-
+	
 	@Override
 	public String getUserLabel(Parent root) {
-		Parent loop = root;
 		System.out.println(root + "======");
 		System.out.println(root.getParent());
-		
-		while(loop.getParent() != null)	loop = loop.getParent();
-		
-		System.out.println(((Label)loop.lookup("#IDLbl")).getText());
-		return ((Label)loop.lookup("#IDLbl")).getText();
+		System.out.println(root.getParent().getParent());
+		return ((Label)root.getParent().lookup("#IDLbl")).getText();
+//		return ((Label)root.lookup("#IDLbl")).getText();
 	}
+	
 
 	@Override
 	public void WindowClose(ActionEvent event) {
@@ -133,7 +126,7 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-	public Parent AddSceneWithControllerOnRoot(String formPath, Parent parent) {
+	public Parent AddScene2(String formPath, Parent parent) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(formPath));
 		Parent root = parent;
 		try {
@@ -141,25 +134,24 @@ public class CommonServiceImpl implements CommonService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Controller ctrler = loader.getController();
-		ctrler.setRoot(root);
 		return root;
 	}
-
+	
 	@Override
 	public Parent AddSceneWithController(String formPath) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(formPath));
 		Parent root = null;
 		try {
 			root = loader.load();
+			System.out.println("11111" + root);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		Controller ctrler = loader.getController();
 		ctrler.setRoot(root);
+		System.out.println("22222" + root);
 		return root;
 	}
-
 
 
 
@@ -301,22 +293,23 @@ public class CommonServiceImpl implements CommonService{
 		// TODO Auto-generated method stub
 		ErrorMsg("error", "error Header", ContentTxt);
 	}
-	@Override
-	public boolean ConfirmMsg(String title, String headerStr, String ContentTxt) {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle(title);
-		alert.setHeaderText(headerStr);
-		alert.setContentText(ContentTxt);
-		
-		Optional<ButtonType> result =  alert.showAndWait();
-		if(result.get() == ButtonType.OK) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 
+	@Override
+	   public boolean ConfirmMsg(String title, String headerStr, String ContentTxt) {
+	      Alert alert = new Alert(AlertType.CONFIRMATION);
+	      alert.setTitle(title);
+	      alert.setHeaderText(headerStr);
+	      alert.setContentText(ContentTxt);
+	      
+	      Optional<ButtonType> result =  alert.showAndWait();
+	      if(result.get() == ButtonType.OK) {
+	         return true;
+	      }
+	      else {
+	         return false;
+	      }
+	   }
+	
 
 	@Override
 	public void ExportExcel() {

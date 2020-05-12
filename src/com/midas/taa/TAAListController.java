@@ -35,48 +35,63 @@ import javafx.scene.control.TextField;
 public class TAAListController extends Controller implements Initializable {
 
 	@FXML private DatePicker TAADatePicker;
-	@FXML private ComboBox<String> cmbSort;
+	@FXML private ComboBox<String> cmbDepart, cmbSort;
 	@FXML private TextField searchTf;
 	@FXML private TableView<Employee> HolidayTable;
 	@FXML private TableColumn<Employee, String> numColumn, nameColumn, departmentColumn, joinColumn, availableDayColumn, usedDayColumn, remainDayColumn;
-	private final static String[] ATTRIBUTE = {"사원번호", "이름", "부서", "입사일자", "총연차", "사용연차", "잔여연차"};
+	
 	private Parent root;
+	private CommonService comServ;
 	private DBService dbServ;
+	private TAAService TAAServ;
+	private String department, sort;
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		TAADatePicker.setValue(LocalDate.now());
+		comServ = new CommonServiceImpl();
 		dbServ = new DBServiceImpl();
-		
-		List<Employee> employeelst = dbServ.SelectTableHoliday("");
-		TableShow(employeelst);
-		cmbSort.getItems().addAll(ATTRIBUTE);
-		cmbSort.setValue("사원번호");
+		TAAServ = new TAAServiceImpl();
+		department = cmbDepart.getPromptText();
+		sort = cmbSort.getPromptText();
 	}
 
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
+		
 	}
 	public void PickerClicked(ActionEvent e) {
+		cmbDepart.requestFocus();
+	}
+	public void DepartClicked(ActionEvent e) {
+		department = cmbDepart.getValue();
 		cmbSort.requestFocus();
 	}
 	public void SortClicked(ActionEvent e) {
+		sort = cmbSort.getValue();
 		searchTf.requestFocus();
 	}
 	
 	public void HolidaySearch(ActionEvent e) {
+		System.out.println(department);
+		System.out.println(sort);
+		Scene scene = ((Parent)e.getSource()).getScene();
 		
-		String attribute = cmbSort.getValue();
-		String txt = searchTf.getText();
-		List<Employee> employeelst;
-		employeelst = dbServ.SelectTableHoliday(attribute, txt, 1);
-		TableShow(employeelst);
 		
-//		List<Employee> TAAList = dbServ.SelectTableHoliday("");
-//		for(int i=0; i<TAAList.size(); i++) System.out.println("");
-//		TableShow(TAAList);
+//		String whereQuerry = "";
+//		//"부서"="회계;
+//		if(!"부서 전체".contentEquals(department)) {
+//			whereQuerry = " WHERE"+
+//							" \"부서\""+
+//							"="+
+//							department;
+//		}
+		
+		
+		List<Employee> TAAList = dbServ.SelectTableHoliday("");
+		TableShow(TAAList);
 	}
 	
 	private void TableShow(List<Employee> employeelst) {
@@ -116,5 +131,44 @@ public class TAAListController extends Controller implements Initializable {
 
 		HolidayTable.setItems(tableList);
 
+
+
+
+		//	      btnColumn.setCellFactory(item -> new TableCell<Employee, String>() {
+		//	         private final Button detailBtn = new Button("상세정보");
+		//	         
+		//	         @Override
+		//	         protected void updateItem(String item, boolean empty) {
+		//	            super.updateItem(item, empty);
+		//	            setText(null);
+		//	            
+		//	            detailBtn.setOnAction(e->{
+		//	               String employeeNum = getTableView().getItems().get(getIndex()).getnum();
+		//	               hrmserv = new HRMServiceImpl();
+		//	               DetailInfoService detail = new DetailInfoServiceImpl();
+		//	               Parent form = hrmserv.OpenDetailForm();
+		//	               
+		//	               detail.setInfo(form, employeeNum);
+		//	               edit_cancel = (Button)form.lookup("#edit_cancel");
+		//	               edit_cancel.visibleProperty().addListener((obs, oldValue, newValue)->{
+		//	                  if(oldValue) {
+		//	                     List<Employee> employeelst = comServ.getEmployeeList(BIGLIST);
+		//	                     
+		//	                     setTableView(employeelst);
+		//	                  }
+		//	               });
+		//	            });
+		//	            if(empty) {
+		//	               setGraphic(null);
+		//	            }
+		//	            else {
+		//	               setGraphic(this.detailBtn);
+		//	            }
+		//	         }
+		//	      });
+		//	      btnColumn.setStyle("-fx-alignment: CENTER;");
+
 	}
+	
+	
 }

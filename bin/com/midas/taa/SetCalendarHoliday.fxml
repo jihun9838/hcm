@@ -6,8 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="com.midas.taa.SetCalendarHolidayController">
+<BorderPane fx:controller="com.midas.taa.CalendarController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -25,7 +24,7 @@ fx:controller="com.midas.taa.SetCalendarHolidayController">
             </HBox>
             <HBox prefHeight="23.0" prefWidth="295.0" spacing="10.0">
                <children>
-                  <Label fx:id="setCalendarHolidayLbl" prefHeight="23.0" text="2020-05-13">
+                  <Label prefHeight="23.0" text="2020년 4월 15일">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -53,7 +52,7 @@ fx:controller="com.midas.taa.SetCalendarHolidayController">
                      </font>
                   </Label>
                   <Pane prefHeight="23.0" prefWidth="32.0" />
-                  <ComboBox fx:id="cmbSort" prefHeight="23.0" prefWidth="200.0" promptText="종류 선택" />
+                  <ChoiceBox prefHeight="23.0" prefWidth="200.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="320.0" spacing="10.0">
@@ -63,7 +62,7 @@ fx:controller="com.midas.taa.SetCalendarHolidayController">
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="contentTf" prefHeight="102.0" prefWidth="200.0" />
+                  <TextField prefHeight="102.0" prefWidth="200.0" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -72,7 +71,7 @@ fx:controller="com.midas.taa.SetCalendarHolidayController">
             <HBox prefHeight="23.0" prefWidth="295.0">
                <children>
                   <Pane prefHeight="23.0" prefWidth="223.0" />
-                  <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#SaveHolidayProc" prefHeight="23.0" prefWidth="65.0" text="저장" />
+                  <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="65.0" text="저장" />
                </children>
             </HBox>
          </children>

@@ -7,8 +7,6 @@ import java.util.ResourceBundle;
 
 import com.midas.Controller;
 import com.midas.db.Employee;
-import com.midas.db.service.DBService;
-import com.midas.db.service.DBServiceImpl;
 import com.midas.hr.service.DetailInfoService;
 import com.midas.hr.service.DetailInfoServiceImpl;
 import com.midas.service.CommonService;
@@ -96,12 +94,8 @@ public class DetailController extends Controller implements Initializable{
 			txtLimit(Employee_birthday);
 			checkEscapeText(Employee_birthday);
 			Employee_birth.setText(newTxt);
-			txtLimit(Employee_birth);
 		});
 
-		Employee_num.textProperty().addListener((obs, oldTxt, newTxt)->{
-			checkEscapeText(Employee_num);
-		});
 	}
 
 	private void setTableView() {
@@ -186,7 +180,6 @@ public class DetailController extends Controller implements Initializable{
 			employee_editbtn.setText("정보수정");
 			EditProc();
 			setTableView();
-			setInfo(selectedEmployee);
 		}
 	}
 
@@ -245,13 +238,7 @@ public class DetailController extends Controller implements Initializable{
 			employee.setImage(null);
 		}
 		else {
-			try {
-				Image img = new Image("/com/midas/image/" + edit_img.getText());
-				employee.setImage(edit_img.getText());
-			} catch(Exception e) {
-				comServ.ErrorMsg("상세정보 알람", "사진변경 실패", "해당 사진 파일이 존재하지 않습니다.\n기본사진으로 설정됩니다.");
-				employee.setImage(null);
-			}
+			employee.setImage("/com/midas/image/" + edit_img.getText());
 		}
 		employee.setJoin(Employee_join.getValue().toString());
 		employee.setCategory(Employee_category.getValue());
@@ -265,12 +252,6 @@ public class DetailController extends Controller implements Initializable{
 		Editable(false);
 		employee_editbtn.setText("정보수정");
 		setInfo(selectedEmployee);
-	}
-	
-	public void DeleteProc(ActionEvent event) {
-		if(detail.DeleteProc(root)) {
-	         CloseProc(event);
-	      }
 	}
 
 	public void CloseProc(ActionEvent event) {
