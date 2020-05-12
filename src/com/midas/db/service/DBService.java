@@ -46,7 +46,7 @@ public interface DBService {
 	public String [] homepage(String id);
 	public boolean infopwCheck(String id, String pw);
 	public Employee getMember(String id);
-	public boolean mypage(String id, Employee employee);
+	public boolean mypage(String id, Employee employee, boolean n);
 
 	//JeongSoo
 	public boolean SaveHolidayRequest(HolidayRequest holidayRequest);

@@ -8,6 +8,8 @@ import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
 import com.midas.mainpage.service.HompageService;
 import com.midas.mainpage.service.HompageServiceImp;
+import com.midas.mypage.serivce.MypageService;
+import com.midas.mypage.serivce.MypageServiceImpl;
 import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
 
@@ -16,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -58,6 +61,7 @@ public class infoPWCheckController extends Controller implements Initializable{
 
 	public void pwCheckBtnProc(ActionEvent e) {
 		DBService dbServ = new DBServiceImpl();
+		MypageService myServ = new MypageServiceImpl();
 		String pw = infoPwTxt.getText();
 		String id = homServ.getUserLabel(getScene(e));
 		
@@ -69,6 +73,7 @@ public class infoPWCheckController extends Controller implements Initializable{
 			Parent scene = comServ.AddSceneWithController("/com/midas/mypage/mypage.fxml");
 			borderPane.setCenter(scene);
 			
+			myServ.setInfo(scene, ((Label)borderPane.lookup("#IDLbl")).getText());
 		}
 		else {
 			//comServ.ErrorMsg("내정보 확인", "비밀번호가 다릅니다.", "비밀번호를 확인해주세요");

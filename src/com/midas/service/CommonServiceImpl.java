@@ -61,6 +61,7 @@ public class CommonServiceImpl implements CommonService{
 		return ((Label)root.getParent().lookup("#IDLbl")).getText();
 //		return ((Label)root.lookup("#IDLbl")).getText();
 	}
+	
 
 	@Override
 	public void WindowClose(ActionEvent event) {

@@ -876,7 +876,7 @@ public class DBServiceImpl implements DBService{
 	public Employee getMember(String id) {
 		String sql = "SELECT * " + 
 				"FROM Employee " +
-				"WHERE id like '" + id + "'";
+				"WHERE 사원번호  like '" + id + "'";
 
 		try {
 			Statement stmt = conn.createStatement();
@@ -924,10 +924,18 @@ public class DBServiceImpl implements DBService{
 	}
 	
 	@Override
-	public boolean mypage(String id, Employee employee) {
-		String sql = "UPDATE Employee " +
-				"SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ?, pw = ?" + 
-				"WHERE id = '" + id +"'";
+	public boolean mypage(String num, Employee employee, boolean n) {
+		String sql;
+		if(n) {
+			sql = "UPDATE Employee " +
+					"SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ? " + 
+					"WHERE 사원번호 = '" + num +"'";
+		}
+		else {
+			sql = "UPDATE Employee " +
+					"SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ?, pw = ? " + 
+					"WHERE 사원번호 = '" + num +"'";
+		}
 		System.out.println();
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -937,7 +945,9 @@ public class DBServiceImpl implements DBService{
 			pStmt.setString(2, employee.getPhone());				
 			pStmt.setString(3, employee.getEmail());				
 			pStmt.setString(4, employee.getAddress());
-			pStmt.setString(5, employee.getPw());
+			if(!n) {
+				pStmt.setString(5, employee.getPw());
+			}
 			
 			pStmt.executeUpdate();
 
@@ -987,7 +997,7 @@ public class DBServiceImpl implements DBService{
 	@Override
 	public boolean infopwCheck(String id, String pw) {
 		System.out.println("infopwCheck(" + id + ") ");
-		String sql = "SELECT count(*) FROM Employee WHERE id=? AND pw=?";
+		String sql = "SELECT count(*) FROM Employee WHERE 사원번호=? AND pw=?";
 		CommonService comServ = new CommonServiceImpl();	
 
 		boolean rtn = false; 

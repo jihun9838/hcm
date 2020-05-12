@@ -48,8 +48,6 @@ public class mypageController extends Controller implements Initializable{
 	public void setRoot(Parent root) {
 		// TODO Auto-generated method stub
 		this.root = root;
-		System.out.println(root);
-		setInfo();
 	}
 	
 	@Override
@@ -87,9 +85,9 @@ public class mypageController extends Controller implements Initializable{
 			
 			dbServ = new DBServiceImpl();
 			employee.setPw(newPwTxt.getText());
-			dbServ.mypage("cat", employee);
+			dbServ.mypage(employeeLbl.getText(), employee, false);
 			comServ.ErrorMsg("내 정보 수정","새로운 비밀번호 확인","새로운 비밀번호로 변경되었습니다.");
-			comServ.WindowClose(e);
+			//comServ.WindowClose(e);
 		}
 		else if(newPwTxt.getText().length()>0 && newPwOKTxt.getText().length()>0
 				&& !newPwTxt.getText().equals(newPwOKTxt.getText())) {		
@@ -101,40 +99,40 @@ public class mypageController extends Controller implements Initializable{
 		else if(newPwTxt.getText().length()==0 && newPwOKTxt.getText().length()==0) {
 			
 			dbServ = new DBServiceImpl();
-			dbServ.mypage("cat", employee);
+			dbServ.mypage(employeeLbl.getText(), employee, true);
 			comServ.ErrorMsg("내 정보 수정","정보수정","새로운 정보로 정보로 저장되었습니다.");
-			comServ.WindowClose(e);
+			//comServ.WindowClose(e);
 			
 		}
 	}
 	
-	public void setInfo() {
-		dbServ = new DBServiceImpl();
-		System.out.println("SetINFO");
-		//String id = comServ.getUserLabel(root);
-		//System.out.println("USER ID : " + id);
-		//Employee emp = myServ.getEmployee(id);
-		Employee emp = myServ.getEmployee("cat");
-
-		phoneNumTxt.setText(emp.getPhone());
-		nameTxt.setText(emp.getName());
-		birthLbl.setText(emp.getBirth());
-		departmemtLbl.setText(emp.getDepartment());
-		emailTxt.setText(emp.getEmail());
-		addressTxt.setText(emp.getAddress());
-		positionLbl.setText(emp.getPosition());
-		finalEduLbl.setText(emp.getEducation());
-		employeeLbl.setText(emp.getNum());
-		joinDateLbl.setText(emp.getJoin());
-
-		/*
-		 * if(member.getimage() == null || member.getimage().length() == 0) {
-		 * employee_picture.setImage(new Image("/MIDAS/image/기본사진.png")); } else {
-		 * employee_picture.setImage(new
-		 * Image(getClass().getResource(member.getimage()).toString())); }
-		 */
-		//if 등록한 사진이 없을 땐 기본사진  else 등록한 사진이 있을 때는 등록된 사진 출력
-	}
-
+	
+//	public void setInfo() {
+//		System.out.println("SetINFO");
+//		//String id = comServ.getUserLabel(root);
+//		//System.out.println("USER ID : " + id);
+//		//Employee emp = myServ.getEmployee(id);
+//		Employee emp = myServ.getEmployee("200404");
+//
+//		phoneNumTxt.setText(emp.getPhone());
+//		nameTxt.setText(emp.getName());
+//		birthLbl.setText(emp.getBirth());
+//		departmemtLbl.setText(emp.getDepartment());
+//		emailTxt.setText(emp.getEmail());
+//		addressTxt.setText(emp.getAddress());
+//		positionLbl.setText(emp.getPosition());
+//		finalEduLbl.setText(emp.getEducation());
+//		employeeLbl.setText(emp.getNum());
+//		joinDateLbl.setText(emp.getJoin());
+//
+//		/*
+//		 * if(member.getimage() == null || member.getimage().length() == 0) {
+//		 * employee_picture.setImage(new Image("/MIDAS/image/기본사진.png")); } else {
+//		 * employee_picture.setImage(new
+//		 * Image(getClass().getResource(member.getimage()).toString())); }
+//		 */
+//		//if 등록한 사진이 없을 땐 기본사진  else 등록한 사진이 있을 때는 등록된 사진 출력
+//	}
+	
 
 }
