@@ -110,6 +110,7 @@ public class MainController extends Controller implements Initializable{
 		
 		if(commuteBtn.getText().contentEquals("출근")) {
 			dbServ.SaveCommute(commute, num, "출근", timeStr);
+			System.out.println("333");
 			//dbServ.SaveCommute(commute);
 			System.out.println(timeStr);
 			comServ.ErrorMsg("출/퇴근", "출근입니다.", "출근하였습니다.\n오늘하루도 화이팅입니다!");

@@ -60,14 +60,15 @@ public class CommonServiceImpl implements CommonService{
 
 	@Override
 	public String getUserLabel(Parent root) {
-		Parent loop = root;
-		System.out.println(root + "======");
-		System.out.println(root.getParent());
-		
-		while(loop.getParent() != null)	loop = loop.getParent();
-		
-		System.out.println(((Label)loop.lookup("#IDLbl")).getText());
-		return ((Label)loop.lookup("#IDLbl")).getText();
+//		Parent loop = root;
+//		System.out.println(root + "======");
+//		System.out.println(root.getParent());
+//		
+//		while(loop.getParent() != null)	loop = loop.getParent();
+//		
+//		System.out.println(((Label)loop.lookup("#IDLbl")).getText());
+//		return ((Label)loop.lookup("#IDLbl")).getText();
+		return ((Label)root.lookup("#IDLbl")).getText();
 	}
 
 	@Override

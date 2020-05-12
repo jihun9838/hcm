@@ -105,10 +105,10 @@ public class LoginController extends Controller implements Initializable{
 			BorderPane borderPane = (BorderPane)getScene(e);
 			
 //			Parent scene = comServ.AddScene("/com/midas/Employee.fxml");
-			Parent scene = comServ.AddSceneWithControllerOnRoot("/com/midas/Manager.fxml", root);
+			Parent scene = comServ.AddSceneWithController("/com/midas/Manager.fxml");
 			borderPane.setLeft(scene);
 			
-			comServ.getUserLabel(root);
+			//comServ.getUserLabel(root);
 		}
 		else{
 			comServ.ErrorMsg("로그인", "로그인  실패", "아이디와 비밀번호를 확인해주세요.");

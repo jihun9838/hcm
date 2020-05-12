@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import com.midas.Controller;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
+import com.midas.mypage.serivce.MypageService;
+import com.midas.mypage.serivce.MypageServiceImpl;
 import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
 
@@ -14,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
@@ -53,6 +56,7 @@ public class infoPWCheckController extends Controller implements Initializable{
 
 	public void pwCheckBtnProc(ActionEvent e) {
 		DBService dbServ = new DBServiceImpl();
+		MypageService myServ = new MypageServiceImpl();
 		String pw = infoPwTxt.getText();
 		String id = comServ.getUserLabel(getScene(e));
 		
@@ -63,6 +67,8 @@ public class infoPWCheckController extends Controller implements Initializable{
 			BorderPane borderPane = (BorderPane)getScene(e);
 			Parent scene = comServ.AddSceneWithController("/com/midas/mypage/mypage.fxml");
 			borderPane.setCenter(scene);
+			
+			myServ.setInfo(scene, ((Label)borderPane.lookup("#IDLbl")).getText());
 			
 		}
 		else {

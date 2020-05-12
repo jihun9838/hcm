@@ -1035,31 +1035,43 @@ public class DBServiceImpl implements DBService{
 	
 
 	@Override
-	public boolean mypage(String id, Employee employee) {
-		String sql = "UPDATE Employee " +
-				"SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ?, pw = ?" + 
-				"WHERE 사원번호 = '" + id +"'";
-		System.out.println();
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+	public boolean mypage(String num, Employee employee, boolean n) {
+		String sql;
+	      if(n) {
+	         sql = "UPDATE Employee " +
+	               "SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ? " + 
+	               "WHERE 사원번호 = '" + num +"'";
+	      }
+	      else {
+	         sql = "UPDATE Employee " +
+	               "SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ?, pw = ? " + 
+	               "WHERE 사원번호 = '" + num +"'";
+	      }
+	      System.out.println();
+	      try {
+	         PreparedStatement pStmt = conn.prepareStatement(sql);
 
-		
-			pStmt.setString(1, employee.getName());				
-			pStmt.setString(2, employee.getPhone());				
-			pStmt.setString(3, employee.getEmail());				
-			pStmt.setString(4, employee.getAddress());
-			pStmt.setString(5, employee.getPw());
-			
-			pStmt.executeUpdate();
+	      
+	         pStmt.setString(1, employee.getName());            
+	         pStmt.setString(2, employee.getPhone());            
+	         pStmt.setString(3, employee.getEmail());            
+	         pStmt.setString(4, employee.getAddress());
+	         if(!n) {
+	            pStmt.setString(5, employee.getPw());
+	         }
+	         
+	         pStmt.executeUpdate();
 
-			pStmt.close();
-			conn.close();
+	         pStmt.close();
+	         conn.close();
 
-			return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	         return true;
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+
+
 
 		return false;
 	}
@@ -1391,7 +1403,7 @@ public class DBServiceImpl implements DBService{
 	
 	@Override
 	public boolean SaveCommute(Commute commute) {
-		String sql = "INSERT INTO Commute (사원번호,구분,날짜,시간) " + 
+		String sql = "INSERT INTO commute (사원번호,구분,날짜,시간) " + 
 				"VALUES (?,?,?,?)";
 
 		try {
@@ -1406,6 +1418,7 @@ public class DBServiceImpl implements DBService{
 			pStmt.close();
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;
