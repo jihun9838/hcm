@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.midas.db.Commute;
@@ -150,17 +152,21 @@ public class MainController extends Controller implements Initializable{
 
 	// Salary
 	public void SalaryMgmtView(Event e) {
+		comServ.setPageLabel(root, "급여 관리");
+		
 		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/salary/SalaryMgmt.fxml");
-		borderPane.setCenter(scene);
-		//System.out.println(IDLbl.getText());
+		root = comServ.AddScene("/com/midas/salary/SalaryMgmt.fxml");
+		borderPane.setCenter(root);
+
+		comServ.AddComboBox(root, Arrays.asList("사원번호", "아이디"), "#salaryMgmtComboBox");
 	}
 
 	public void SalaryReportView(Event e) {
-
 		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/salary/SalaryReport.fxml");
-		borderPane.setCenter(scene);
+		root = comServ.AddScene("/com/midas/salary/SalaryReport.fxml");
+		borderPane.setCenter(root);
+		
+		comServ.AddComboBox(root, Arrays.asList("사원번호", "아이디"), "#salaryReportComboBox");
 	}
 
 	public void SalaryStmtView(Event e) {

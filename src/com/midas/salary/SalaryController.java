@@ -1,7 +1,10 @@
 package com.midas.salary;
 
 import java.net.URL;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.midas.Controller;
@@ -22,7 +25,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 
 public class SalaryController extends Controller implements Initializable{
 
@@ -32,10 +34,17 @@ public class SalaryController extends Controller implements Initializable{
 	private SalaryService salServ;
 	
 	@FXML private TextField salaryMgmtNameTextField;
-	@FXML ComboBox salaryMgmtComboBox;
-	@FXML ChoiceBox salaryMgmtChoiceBox;
-	@FXML DatePicker salaryMgmtDatePicker;
+	@FXML private ComboBox salaryMgmtComboBox;
+	@FXML private ChoiceBox salaryMgmtChoiceBox;
+	@FXML private DatePicker salaryMgmtDatePicker;
 	
+	@FXML private TextField salaryReportNameTextField;
+	@FXML private ComboBox salaryReportComboBox;
+	@FXML private ChoiceBox salaryReportChoiceBox;
+	@FXML private DatePicker salaryReportDatePicker;
+	
+	
+	private Map<String, String> m;
 	@Override
 	public void setRoot(Parent root) {
 		this.root = root;
@@ -47,14 +56,32 @@ public class SalaryController extends Controller implements Initializable{
 		comServ = new CommonServiceImpl();
 		dbServ = new DBServiceImpl();
 		salServ = new SalaryServiceImpl();
+		
+		m = new HashMap<String, String>(){{
+			put("사원번호", "num");
+			put("아이디", "id");
+			put("이름", "name");
+			put("부서", "department");
+		}};
+		
+//		salaryMgmtComboBox.getItems().addAll(Arrays.asList("사원번호", "아이디", "부서"));
+//		salaryMgmtChoiceBox.getItems().addAll(Arrays.asList("사원번호", "아이디", "부서"));
+//		
+//		salaryReportComboBox.getItems().addAll(Arrays.asList("사원번호", "아이디", "부서"));
+//		salaryReportChoiceBox.getItems().addAll(Arrays.asList("사원번호", "아이디", "부서"));
 	}
 
 
 	public void ShowTableProc(ActionEvent e) {
 		Scene scene = ((Parent)e.getSource()).getScene();
-		
 		String option = "";
-		List<SalaryResult> salaryResultList = dbServ.SelectTable("SalaryResult", option);
+		
+		List<SalaryResult> salaryResultList = null;
+		
+		if(salaryMgmtNameTextField.getText().length() > 0) {
+			option += "WHERE " + m.get(salaryMgmtComboBox.getValue()) + " like '%" + salaryMgmtNameTextField.getText() + "%'";
+		}
+		salaryResultList = dbServ.SelectTable("SalaryResult", option);
 		
 		salServ.ShowTableViewByList(scene, "#salaryMgmtTableView", salaryResultList);
 	}
@@ -65,20 +92,16 @@ public class SalaryController extends Controller implements Initializable{
 	
 	public void ShowReportProc(ActionEvent e) {
 		Scene scene = ((Parent)e.getSource()).getScene();
-		
 		String option = "";
-		List<SalaryResult> salaryResultList = dbServ.SelectTable("SalaryResult", option);
+		
+		List<SalaryResult> salaryResultList = null;
+		
+		if(salaryReportNameTextField.getText().length() > 0) {
+			option += "WHERE " + m.get(salaryReportComboBox.getValue()) + " like '%" + salaryReportNameTextField.getText() + "%'";
+		}
+		salaryResultList = dbServ.SelectTable("SalaryResult", option);
 		
 		salServ.ShowLineChartByList(scene, "#salaryReportLineChart", salaryResultList);
-		
-		
-		//Parent sss = ((Parent)e.getSource()).getParent().getParent().getParent().getParent();
-		//TextField tf = (TextField)scene.lookup("#salaryMgmtNameTextField");
-//		Parent root = null;
-//		TextField tf1 = (TextField)root.lookup("#salaryMgmtNameTextField");
-//		
-//		tf1.setText("ㅋㅋ");
-//		System.out.println(tf1.getText());
 	}
 
 	public void SalaryReportExportToExcel() {

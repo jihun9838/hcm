@@ -20,7 +20,7 @@
    <top>
       <HBox prefHeight="60.0" prefWidth="1020.0" spacing="20.0">
          <children>
-            <TextField fx:id="salaryReportNameTextField" prefHeight="77.0" prefWidth="138.0" text="이름 검색" />
+            <TextField fx:id="salaryReportNameTextField" prefHeight="77.0" prefWidth="138.0" promptText="이름 검색" />
             <DatePicker fx:id="salaryReportDatePicker" prefHeight="106.0" prefWidth="163.0" />
             <ComboBox fx:id="salaryReportComboBox" prefHeight="110.0" prefWidth="150.0" promptText="이름 순 (콤보박스)" />
             <ChoiceBox fx:id="salaryReportChoiceBox" prefHeight="126.0" prefWidth="150.0" />

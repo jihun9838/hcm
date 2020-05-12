@@ -87,12 +87,14 @@ public class SalaryServiceImpl implements SalaryService{
 
 	@Override
 	public void ShowTableViewByList(Scene scene, String id, List list) {
+		if(list.isEmpty()) return;
 		new CommonServiceImpl().ShowTableViewByList(scene, id, list);
 	}
 
 	@Override
 	public void ShowLineChartByList(Scene scene, String id, List<SalaryResult> list) {
 		//Chart(new Stage());
+		if(list.isEmpty()) return;
 		new CommonServiceImpl().ShowLineChartByList(scene, id, list);
 	}
 

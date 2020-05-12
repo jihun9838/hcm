@@ -2,6 +2,9 @@ package com.midas.service;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,12 +42,15 @@ import javafx.stage.Stage;
 public class CommonServiceImpl implements CommonService{
 	//@FXML TableView<Employee> tableView;
 
-	private String num;
-	public String getNum(){
-		return this.num;
+	@Override
+	public Parent getSuperRoot(Parent root) {
+		while(root.getParent() != null)	root = root.getParent();
+		return root;
 	}
-	public void setNum(String num){
-		this.num = num;
+	
+	@Override
+	public String getUserLabel(Parent root) {		
+		return ((Label)getSuperRoot(root).lookup("#IDLbl")).getText();
 	}
 
 	@Override
@@ -57,19 +63,15 @@ public class CommonServiceImpl implements CommonService{
 		idlbl.setText(home[0]);
 		hellolbl.setText(home[1]+"¥‘ æ»≥Á«œººø‰.");
 	}
-
+	
 	@Override
-	public String getUserLabel(Parent root) {
-		Parent loop = root;
-		System.out.println(root + "======");
-		System.out.println(root.getParent());
-		
-		while(loop.getParent() != null)	loop = loop.getParent();
-		
-		System.out.println(((Label)loop.lookup("#IDLbl")).getText());
-		return ((Label)loop.lookup("#IDLbl")).getText();
+	public void setPageLabel(Parent root, String text) {
+		((Label)getSuperRoot(root).lookup("#homepageLbl")).setText(text);
 	}
-
+	
+	
+	
+	
 	@Override
 	public void WindowClose(ActionEvent event) {
 		Parent root = (Parent)event.getSource();
@@ -353,7 +355,13 @@ public class CommonServiceImpl implements CommonService{
 		if(CheckClassType(_list).equals("SalaryResult")) {
 			System.out.println("Checking LineChart by SalaryResult ");
 			List<SalaryResult> list = _list;
-
+			
+			Collections.sort(list, new Comparator<SalaryResult>() {
+				@Override
+				public int compare(SalaryResult o1, SalaryResult o2) {
+					return Integer.valueOf(o1.getYear() + o1.getMonth()).compareTo(Integer.valueOf(o2.getYear() + o2.getMonth()));  
+				}
+		    });
 			for(SalaryResult o : list) {
 				String id = o.getId();
 				if(!name.containsKey(id)) {
