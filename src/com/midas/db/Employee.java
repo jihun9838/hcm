@@ -96,6 +96,16 @@ public class Employee {
 		this.education = new SimpleStringProperty(education);
 	}
 
+	public Employee(String num, String name, String department, String join, String availableHoliday, String usedHoliday, String remainHoliday) { //TAA ¿¬Â÷
+		this.num = new SimpleStringProperty(num);
+		this.name = new SimpleStringProperty(name);
+		this.department = new SimpleStringProperty(department);
+		this.join = new SimpleStringProperty(join);
+		this.availableHoliday = new SimpleStringProperty(availableHoliday);
+		this.usedHoliday = new SimpleStringProperty(usedHoliday);
+		this.remainHoliday = new SimpleStringProperty(remainHoliday);
+	}
+
 
 	public String getNum() {
 		return num.get();
