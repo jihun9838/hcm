@@ -38,6 +38,7 @@ public class DetailInfoServiceImpl implements DetailInfoService {
 		ComboBox<String> Employee_category = (ComboBox)form.lookup("#Employee_category");
 		ComboBox<String> Employee_position = (ComboBox)form.lookup("#Employee_position");
 		ComboBox<String> Employee_education = (ComboBox)form.lookup("#Employee_education");
+		CommonService comServ = new CommonServiceImpl();
 
 		Employee employee = getEmployee(num);
 

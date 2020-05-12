@@ -242,7 +242,13 @@ public class DetailController extends Controller implements Initializable{
 			employee.setImage(null);
 		}
 		else {
-			employee.setImage(edit_img.getText());
+			try {
+				Image img = new Image("/com/midas/image/" + edit_img.getText());
+				employee.setImage(edit_img.getText());
+			} catch(Exception e) {
+				comServ.ErrorMsg("상세정보 알람", "사진변경 실패", "해당 사진 파일이 존재하지 않습니다.\n기본사진으로 설정됩니다.");
+				employee.setImage(null);
+			}
 		}
 		employee.setJoin(Employee_join.getValue().toString());
 		employee.setCategory(Employee_category.getValue());
