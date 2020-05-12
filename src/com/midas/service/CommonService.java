@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public interface CommonService {
-	public void setUserLabel(Parent root, String id);
+	public String setUserLabel(Parent root, String id);
 	public String getUserLabel(Parent root);
 	
 	public void WindowClose(ActionEvent event);

@@ -96,7 +96,7 @@ public class LoginController extends Controller implements Initializable{
 		
 		
 		if(loginServ.loginProc(root)) {
-			comServ.setUserLabel(getScene(e), id);
+			String category = comServ.setUserLabel(getScene(e), id);
 			Button logoutBtn = (Button)getScene(e).lookup("#logoutBtn");
 			Button commuteBtn = (Button)getScene(e).lookup("#commuteBtn");
 			logoutBtn.setVisible(true);
@@ -104,9 +104,14 @@ public class LoginController extends Controller implements Initializable{
 			
 			BorderPane borderPane = (BorderPane)getScene(e);
 			
-//			Parent scene = comServ.AddScene("/com/midas/Employee.fxml");
-			Parent scene = comServ.AddSceneWithController("/com/midas/Manager.fxml");
-			borderPane.setLeft(scene);
+			if("»ç¿ø".contentEquals(category)) {
+				Parent scene = comServ.AddSceneWithController("/com/midas/Employee.fxml");
+				borderPane.setLeft(scene);
+			}
+			else {
+				Parent scene = comServ.AddSceneWithController("/com/midas/Manager.fxml");
+				borderPane.setLeft(scene);
+			}
 			
 			//comServ.getUserLabel(root);
 		}

@@ -66,7 +66,7 @@ public class mypageController extends Controller implements Initializable{
 	}
 
 	public void modifyBtnProc(ActionEvent e) {
-		DBService dbServ;
+		DBService dbServ = new DBServiceImpl();
 		Employee employee = new Employee();
 		
 		employee.setName(nameTxt.getText());
@@ -84,7 +84,7 @@ public class mypageController extends Controller implements Initializable{
 				&& newPwTxt.getText().equals(newPwOKTxt.getText())) {	
 			dbServ = new DBServiceImpl();
 			employee.setPw(newPwTxt.getText());
-			dbServ.mypage("cat", employee, false);
+			dbServ.mypage(employeeLbl.getText(), employee, false);
 			comServ.ErrorMsg("내 정보 수정","새로운 비밀번호 확인","새로운 비밀번호로 변경되었습니다.");
 			//comServ.WindowClose(e);
 		}
@@ -97,7 +97,7 @@ public class mypageController extends Controller implements Initializable{
 		}
 		else if(newPwTxt.getText().length()==0 && newPwOKTxt.getText().length()==0) {
 			dbServ = new DBServiceImpl();
-			dbServ.mypage("cat", employee, true);
+			dbServ.mypage(employeeLbl.getText(), employee, true);
 			comServ.ErrorMsg("내 정보 수정","정보수정","새로운 정보로 정보로 저장되었습니다.");
 			//comServ.WindowClose(e);
 			

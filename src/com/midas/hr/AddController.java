@@ -74,6 +74,10 @@ public class AddController extends Controller implements Initializable{
 		add_num.textProperty().addListener((obs, oldTxt, newTxt)->{
 			checkEscapeText(add_num);
 		});
+		
+		add_phone.textProperty().addListener((obs, oldTxt, newTxt)->{
+			checkEscapeText(add_phone);
+		});
 	}
 
 	public void InfoSave(ActionEvent event) {

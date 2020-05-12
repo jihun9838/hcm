@@ -48,14 +48,21 @@ public class CommonServiceImpl implements CommonService{
 	}
 
 	@Override
-	public void setUserLabel(Parent root, String id) {
+	public String setUserLabel(Parent root, String id) {
 		Loginservice loginServ = new LoginserviceImp();
 		Label idlbl = (Label)root.lookup("#IDLbl");
 		Label hellolbl = (Label)root.lookup("#helloLbl");
 
 		String [] home = loginServ.homeProc(id);
 		idlbl.setText(home[0]);
-		hellolbl.setText(home[1]+"´Ô ¾È³çÇÏ¼¼¿ä.");
+		if("»ç¿ø".contentEquals(home[2])) {
+			hellolbl.setText(home[1]+"´Ô ¾È³çÇÏ¼¼¿ä.");
+		}
+		else {
+			hellolbl.setText("°ü¸®ÀÚ´Ô ¾È³çÇÏ¼¼¿ä.");
+		}
+		
+		return home[2];
 	}
 
 	@Override

@@ -102,6 +102,10 @@ public class DetailController extends Controller implements Initializable{
 		Employee_num.textProperty().addListener((obs, oldTxt, newTxt)->{
 			checkEscapeText(Employee_num);
 		});
+		
+		Employee_phone.textProperty().addListener((obs, oldTxt, newTxt)->{
+			checkEscapeText(Employee_phone);
+		});
 	}
 
 	private void setTableView() {
