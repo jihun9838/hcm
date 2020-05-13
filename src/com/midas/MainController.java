@@ -268,7 +268,7 @@ public class MainController extends Controller implements Initializable {
 		String num = comServ.getUserLabel(root);
 
 		Scene scene = ((Parent) e.getSource()).getScene();
-		List<Employee> OwnHolidayList = dbServ.SelectTableHoliday("WHERE 사원번호 = \""+ num + "\""); // 로그인 한 사람의 아이디
+		List<Employee> OwnHolidayList = new DBServiceImpl().SelectTableHoliday("WHERE 사원번호 = \""+ num + "\""); // 로그인 한 사람의 아이디
 		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
 	}
 

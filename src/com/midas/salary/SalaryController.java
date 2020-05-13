@@ -94,6 +94,7 @@ public class SalaryController extends Controller implements Initializable{
 
 	public void SalaryMgmtExportToExcel(ActionEvent e) {
 		new DB2ExcelExporter().export(salaryResultList);
+		comServ.ErrorMsg("¿¢¼¿·Î ³»º¸³»±â ¿Ï·á !");
 	}
 	
 	public void ShowReportProc(ActionEvent e) {
