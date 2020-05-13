@@ -157,6 +157,8 @@ public class MainController extends Controller implements Initializable {
 		borderPane.setCenter(scene);
 		
 		comServ.setPageLabel(scene, "급여 관리");
+		comServ.AddComboBox(scene, Arrays.asList("사원번호", "아이디"), "#salaryMgmtComboBox");
+		
 	}
 
 	public void SalaryReportView(Event e) {
@@ -165,6 +167,7 @@ public class MainController extends Controller implements Initializable {
 		borderPane.setCenter(scene);
 		
 		comServ.setPageLabel(scene, "급여 리포트");
+		comServ.AddComboBox(scene, Arrays.asList("사원번호", "아이디"), "#salaryReportComboBox");
 	}
 
 	public void SalaryStmtView(Event e) {
