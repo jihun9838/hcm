@@ -2,3 +2,6 @@
 /.metadata/
 /src/MIDAS_Project.db
 /bin/MIDAS_Project.db
+  
+# Compiled class file
+*.class
