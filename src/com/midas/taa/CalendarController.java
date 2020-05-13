@@ -40,11 +40,19 @@ public class CalendarController extends Controller implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		System.out.println("CalenderController.java init");
 		comServ = new CommonServiceImpl(); 
 		taaServ = new TAAServiceImpl();
 		
-//		setCalendarDatePicker.setValue(LocalDate.now());
+		
 //		calServ = new CalendarServiceImpl(YearMonth.now());
+//		calendarPane.getChildren().add(calServ.getView());
+		
+//		calServ = new CalendarServiceImpl(YearMonth.now());
+//		calBorderPane.setCenter(calServ.getView());
+//		calBorderPane.setCenter(new CalendarServiceImpl(YearMonth.now()).getView());
+		
+		
 //		calendarPane.getChildren().add(calServ.getView());
 //		comServ.AddSceneWithController("/com/midas/taa/fullCalendar.fxml");
 //		fullCalendarPane.getChildren().add(new CalendarServiceImpl(YearMonth.now()).getView());

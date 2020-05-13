@@ -164,7 +164,7 @@ public class OwnAskHolidayController extends Controller implements Initializable
 
 			HolidayRequest hr = new HolidayRequest();
 			
-			hr.setId("200401");  //로그인 했을때 아이디
+			hr.setId("200401");  //로그인 했을때 아이디                      //////////////멤버가져와서 넣기
 			hr.setName("강아지"); //이름
 			hr.setDepartment("회계"); //부서
 			hr.setAvailableDay("23"); //인 사람의 남은 연가

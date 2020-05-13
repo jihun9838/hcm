@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.midas.db.HolidayRequest;
 import com.midas.db.SalaryResult;
+import com.midas.db.TAA;
 import com.midas.service.CommonServiceImpl;
 
 import javafx.scene.Scene;
@@ -102,9 +103,5 @@ public class TAAServiceImpl implements TAAService {
 		//Chart(new Stage());
 //		new CommonServiceImpl().ShowLineChartByListTAA(scene, id, list);
 	}
-	
-	
-
-
 
 }

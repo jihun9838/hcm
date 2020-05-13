@@ -25,7 +25,7 @@ fx:controller="com.midas.taa.SetCalendarHolidayController">
             </HBox>
             <HBox prefHeight="23.0" prefWidth="295.0" spacing="10.0">
                <children>
-                  <Label fx:id="setCalendarHolidayLbl" prefHeight="23.0" text="2020-05-13">
+                  <Label fx:id="setViewHolidayLbl" prefHeight="23.0" text="2020-05-13">
                      <font>
                         <Font size="18.0" />
                      </font>

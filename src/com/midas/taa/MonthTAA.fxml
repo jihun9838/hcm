@@ -7,10 +7,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:controller="com.midas.taa.MonthTAAController"
-	maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-	minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0"
-	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0"
+	prefWidth="1020.0" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.midas.taa.MonthTAAController">
 	<padding>
 		<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
 	</padding>
@@ -25,25 +26,18 @@
 				</Label>
 				<DatePicker fx:id="MonthDatePicker" prefHeight="23.0"
 					prefWidth="150.0" />
-				<Pane prefHeight="23.0" prefWidth="50.0" />
-				<Label prefHeight="23.0" text="부서">
-					<font>
-						<Font size="18.0" />
-					</font>
-				</Label>
-				<ComboBox fx:id="cmbDepart" prefHeight="23.0"
-					prefWidth="100.0" promptText="부서 전체" />
-				<Pane prefHeight="23.0" prefWidth="50.0" />
+				<Pane prefHeight="23.0" prefWidth="220.0" />
 				<Label prefHeight="23.0" text="검색어">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Label>
-				<ComboBox fx:id="cmbSort" prefWidth="100.0" promptText="전체" />
-				<TextField />
+				<ComboBox fx:id="cmbSort" prefWidth="100.0" />
+				<TextField fx:id="searchTf" prefHeight="23.0"
+					prefWidth="200.0" />
 				<Pane prefHeight="23.0" prefWidth="50.0" />
-				<Button onAction="#monthSearch" mnemonicParsing="false" prefHeight="23.0"
-					prefWidth="65.0" text="검색" />
+				<Button mnemonicParsing="false" onAction="#monthSearchProc"
+					prefHeight="23.0" prefWidth="65.0" text="검색" />
 			</children>
 			<BorderPane.margin>
 				<Insets />
@@ -65,6 +59,45 @@
 				</Label>
 				<TableView fx:id="MonthTAATable" prefHeight="512.0"
 					prefWidth="980.0">
+					
+					<columns>
+						<TableColumn prefWidth="100.0" text="사원번호">
+							<cellValueFactory>
+								<PropertyValueFactory property="num" />
+							</cellValueFactory>
+						</TableColumn>
+
+						<TableColumn prefWidth="100.0" text="출근">
+							<cellValueFactory>
+								<PropertyValueFactory property="goToWork" />
+							</cellValueFactory>
+						</TableColumn>
+
+						<TableColumn prefWidth="100.0" text="지각">
+							<cellValueFactory>
+								<PropertyValueFactory property="lateness" />
+							</cellValueFactory>
+						</TableColumn>
+
+						<TableColumn prefWidth="100.0" text="출장">
+							<cellValueFactory>
+								<PropertyValueFactory property="businessTrip" />
+							</cellValueFactory>
+						</TableColumn>
+
+						<TableColumn prefWidth="100.0" text="조퇴">
+							<cellValueFactory>
+								<PropertyValueFactory property="earlyLeave" />
+							</cellValueFactory>
+						</TableColumn>
+
+						<TableColumn prefWidth="100.0" text="결근">
+							<cellValueFactory>
+								<PropertyValueFactory property="absence" />
+							</cellValueFactory>
+						</TableColumn>
+						
+					</columns>
 				</TableView>
 			</children>
 			<BorderPane.margin>

@@ -1,14 +1,8 @@
 package com.midas.taa.service;
 
 import java.time.LocalDate;
-
-import com.midas.service.CommonService;
-import com.midas.service.CommonServiceImpl;
-
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 
 /**
@@ -18,7 +12,6 @@ public class CalendarAnchorPaneNode extends AnchorPane {
 
 	// Date associated with this pane
 	private LocalDate date;
-	private CommonService comServ;
 
 	/**
 	 * Create a anchor pane node. Date is not assigned in the constructor.
@@ -26,11 +19,7 @@ public class CalendarAnchorPaneNode extends AnchorPane {
 	 */
 	public CalendarAnchorPaneNode(Node... children) {
 		super(children);
-		comServ = new CommonServiceImpl();
-		Stage s = new Stage();
-//		this.setOnMouseClicked(e ->{
-//			System.out.println("This pane's date is: " + date);
-//		});
+		
 	}
 
 	public LocalDate getDate() {

@@ -9,13 +9,17 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="com.midas.taa.HolidayApprovalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0"
+	prefWidth="1020.0" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.midas.taa.HolidayApprovalController">
 	<padding>
 		<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
 	</padding>
 	<center>
-		<VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+		<VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0"
+			BorderPane.alignment="CENTER">
 			<children>
 				<Label minHeight="23.0" minWidth="72.0" text="신청 내역">
 					<font>
@@ -25,7 +29,8 @@ fx:controller="com.midas.taa.HolidayApprovalController">
 						<Insets top="10.0" />
 					</VBox.margin>
 				</Label>
-				<TableView fx:id="HoliAppTableView" prefHeight="445.0" prefWidth="980.0">
+				<TableView fx:id="HoliAppTableView" prefHeight="445.0"
+					prefWidth="980.0">
 					<columns>
 
 
@@ -51,7 +56,8 @@ fx:controller="com.midas.taa.HolidayApprovalController">
 
 						<TableColumn prefWidth="65.0" text="잔여 연차">
 							<cellValueFactory>
-								<PropertyValueFactory property="availableDay" />
+								<PropertyValueFactory
+									property="availableDay" />
 							</cellValueFactory>
 						</TableColumn>
 
@@ -85,8 +91,8 @@ fx:controller="com.midas.taa.HolidayApprovalController">
 								<PropertyValueFactory property="approval" />
 							</cellValueFactory>
 						</TableColumn>
-						
-						
+
+
 
 
 
@@ -95,24 +101,34 @@ fx:controller="com.midas.taa.HolidayApprovalController">
 				<HBox prefHeight="23.0" prefWidth="980.0" spacing="10.0">
 					<children>
 						<Pane prefHeight="23.0" prefWidth="835.0" />
-						<Button mnemonicParsing="false" onAction="#declineBtn" prefHeight="23.0" prefWidth="65.0" text="반려" />
-						<Button mnemonicParsing="false" onAction="#approvalBtn" prefHeight="23.0" prefWidth="65.0" text="승인" />
+						<Button mnemonicParsing="false" onAction="#declineBtn"
+							prefHeight="23.0" prefWidth="65.0" text="반려" />
+						<Button mnemonicParsing="false" onAction="#approvalBtn"
+							prefHeight="23.0" prefWidth="65.0" text="승인" />
 					</children>
 				</HBox>
 			</children>
 		</VBox>
 	</center>
 	<top>
-		<VBox prefHeight="56.0" prefWidth="980.0" spacing="10.0" BorderPane.alignment="CENTER">
+		<VBox prefHeight="56.0" prefWidth="980.0" spacing="10.0"
+			BorderPane.alignment="CENTER">
 			<children>
 				<HBox prefHeight="23.0" prefWidth="980.0" spacing="10.0">
 					<children>
-						<Label prefHeight="23.0" text="조회 월">
+						<Label prefHeight="23.0" text="현재 연/월">
 							<font>
 								<Font size="18.0" />
 							</font>
 						</Label>
-						<DatePicker fx:id="ApprovalDatePicker" prefWidth="150.0" />
+						<Label fx:id="todayLbl" prefHeight="20.0" prefWidth="150.0"
+							style="-fx-background-color: #F3F3F3; -fx-text-fill: #0350CC;"
+							text="오늘" xmlns="http://javafx.com/javafx/8"
+							xmlns:fx="http://javafx.com/fxml/1">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
 					</children>
 				</HBox>
 				<HBox prefHeight="23.0" prefWidth="200.0" spacing="10.0">
@@ -123,9 +139,12 @@ fx:controller="com.midas.taa.HolidayApprovalController">
 							</font>
 						</Label>
 						<ComboBox fx:id="cmbSort" prefWidth="100.0" />
-						<TextField fx:id="searchTf" prefHeight="23.0" prefWidth="200.0" />
+						<TextField fx:id="searchTf" prefHeight="23.0"
+							prefWidth="200.0" />
 						<Pane prefHeight="23.0" prefWidth="225.0" />
-						<Button mnemonicParsing="false" onAction="#HoliAppTableShow" prefHeight="23.0" prefWidth="65.0" text="조회" />
+						<Button mnemonicParsing="false"
+							onAction="#HoliAppTableShow" prefHeight="23.0" prefWidth="65.0"
+							text="조회" />
 					</children>
 				</HBox>
 			</children>

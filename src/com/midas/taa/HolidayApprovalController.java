@@ -32,8 +32,7 @@ public class HolidayApprovalController extends Controller implements Initializab
 	private Parent root;
 	private DBService dbServ;
 	private CommonService comServ;
-	private TAAService TAAServ;
-	@FXML DatePicker ApprovalDatePicker;
+	@FXML Label todayLbl;
 	@FXML ComboBox<String> cmbSort;
 	@FXML TextField searchTf;
 	private final static String[] ATTRIBUTE = {"사원번호", "이름", "부서", "잔여 연차", "요청일", "시작일", "종료일", "기간", "사유", "승인여부"};
@@ -41,10 +40,9 @@ public class HolidayApprovalController extends Controller implements Initializab
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		ApprovalDatePicker.setValue(LocalDate.now());
+		todayLbl.setText(LocalDate.now().toString().substring(0, 7));
 		dbServ = new DBServiceImpl();
 		comServ = new CommonServiceImpl();
-		TAAServ = new TAAServiceImpl();
 		cmbSort.getItems().addAll(ATTRIBUTE);
 		cmbSort.setValue("사원번호");
 	}
@@ -74,6 +72,7 @@ public class HolidayApprovalController extends Controller implements Initializab
 		System.out.println(requestList.get(row-1).getApproval());
 		if("미승인".contentEquals(requestList.get(row-1).getApproval())) {
 			dbServ.updateApprovalHoliday("WHERE ROWID="+row);
+			dbServ.updateRemainHoliday("WHERE 사원번호=" +num, periodDay); //holi 임시 연차저장
 			dbServ.updateEmployeeHoliday("WHERE "+"\"사원번호\""+" = "+num, periodDay);
 			dbServ.updateEmployeeHoliday2("WHERE "+"\"사원번호\""+" = "+num, periodDay);
 			comServ.ErrorMsg("휴가가 승인되었습니다.");
@@ -83,6 +82,7 @@ public class HolidayApprovalController extends Controller implements Initializab
 		}
 		else { //반려
 			dbServ.updateApprovalHoliday("WHERE ROWID="+row);
+			dbServ.updateRemainHoliday("WHERE 사원번호=" +num, periodDay); //holi 임시 연차저장
 			dbServ.updateEmployeeHoliday("WHERE "+"\"사원번호\""+" = "+num, periodDay);
 			dbServ.updateEmployeeHoliday2("WHERE "+"\"사원번호\""+" = "+num, periodDay);
 			comServ.ErrorMsg("반려 휴가가 재승인되었습니다.");
@@ -104,6 +104,7 @@ public class HolidayApprovalController extends Controller implements Initializab
 		}
 		else if("승인".contentEquals(requestList.get(row-1).getApproval())){
 			dbServ.updateDeclineHoliday("WHERE ROWID="+row);
+			dbServ.updateRemainHolidayDe("WHERE 사원번호=" +num, periodDay); //holi 임시 연차저장
 			dbServ.updateEmployeeHolidayDe("WHERE "+"\"사원번호\""+" = "+num, periodDay);
 			dbServ.updateEmployeeHolidayDe2("WHERE "+"\"사원번호\""+" = "+num, periodDay);
 			comServ.ErrorMsg("승인이 반려되었습니다.");
