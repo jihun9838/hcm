@@ -101,7 +101,7 @@ public class SigninController extends Controller implements Initializable{
 			signinBtn();
 		});
 		signPhoneNumTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
-			checkEscapeText(signEmployeeTxt);
+			checkEscapeText(signPhoneNumTxt);
 			signinBtn();
 		});
 		signAddressTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
@@ -120,30 +120,37 @@ public class SigninController extends Controller implements Initializable{
 	}
 
 	public void signinBtnProc(ActionEvent e) {
-		DBService dbServ = new DBServiceImpl();
-		if(signPwTxt.getText().equals(signPwOKTxt.getText())) {
-
-			employee.setNum(signEmployeeTxt.getText());
-			employee.setName(signNameTxt.getText());
-			employee.setId(signIdTxt.getText());
-			employee.setPw(signPwTxt.getText());
-			employee.setBirth(SignBirthTxt.getText());
-			employee.setSocialNum(signSecretTxt.getText());
-			employee.setPhone(signPhoneNumTxt.getText());
-			employee.setAddress(signAddressTxt.getText());
-			employee.setDepartment(SignDepartmemtCombobox.getValue());
-			employee.setEmail(signEmailTxt.getText());
-			employee.setJoin(SignJoindate.getValue().toString());
-			employee.setEducation(signFinalEduCombobox.getValue());
-
-			dbServ.MembershipProc(employee);			
-			comServ.ErrorMsg("회원가입", "회원가입 성공", "회원가입이 완료 되었습니다!");
-			comServ.WindowClose(e);
+		if(comServ.numcheck(signEmployeeTxt.getText())) {
+			if(signPwTxt.getText().equals(signPwOKTxt.getText())) {
+				DBService dbServ = new DBServiceImpl();
+	
+				employee.setNum(signEmployeeTxt.getText());
+				employee.setName(signNameTxt.getText());
+				employee.setId(signIdTxt.getText());
+				employee.setPw(signPwTxt.getText());
+				employee.setBirth(SignBirthTxt.getText());
+				employee.setSocialNum(signSecretTxt.getText());
+				employee.setPhone(signPhoneNumTxt.getText());
+				employee.setAddress(signAddressTxt.getText());
+				employee.setDepartment(SignDepartmemtCombobox.getValue());
+				employee.setEmail(signEmailTxt.getText());
+				employee.setJoin(SignJoindate.getValue().toString());
+				employee.setEducation(signFinalEduCombobox.getValue());
+	
+				dbServ.MembershipProc(employee);			
+				comServ.ErrorMsg("회원가입", "회원가입 성공", "회원가입이 완료 되었습니다!");
+				comServ.WindowClose(e);
+			}
+			else {
+				comServ.ErrorMsg("회원가입", "회원가입 실패","비밀번호가 맞지않습니다. 다시 입력해주세요!");
+				signPwOKTxt.requestFocus();
+				signPwOKTxt.clear();
+			}
 		}
 		else {
-			comServ.ErrorMsg("회원가입", "회원가입 실패","비밀번호가 맞지않습니다. 다시 입력해주세요!");
-			signPwOKTxt.requestFocus();
-			signPwOKTxt.clear();
+			comServ.ErrorMsg("회원가입", "사원번호가 이미 존재합니다.", "사원번호를 다시 입력해주세요.");
+			signEmployeeTxt.requestFocus();
+			signEmployeeTxt.clear();
 		}
 	}
 
