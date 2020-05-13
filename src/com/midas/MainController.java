@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 import com.midas.db.Commute;
 import com.midas.db.Employee;
 import com.midas.db.HolidayRequest;
-import com.midas.db.TAA;
 import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
 import com.midas.mainpage.service.Loginservice;
@@ -31,7 +30,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class MainController extends Controller implements Initializable {
 
@@ -75,7 +77,10 @@ public class MainController extends Controller implements Initializable {
 
 	}
 
-	
+	// HAHA
+	public void EasterProc(Event e) {
+		comServ.OpenEasterEggForm("/com/midas/image/조롱하며나가는스폰지밥.gif");
+	}
 	
 	
 	// Homepage

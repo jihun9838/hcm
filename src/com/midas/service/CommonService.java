@@ -54,4 +54,6 @@ public interface CommonService {
 	
 	public boolean idcheck(String id);
 	public boolean numcheck(String num);
+	
+	public void OpenEasterEggForm(String url);
 }

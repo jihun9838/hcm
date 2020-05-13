@@ -35,6 +35,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
@@ -521,5 +524,13 @@ public class CommonServiceImpl implements CommonService{
 		return dbServ.numcheck(num);
 	}
 
-
+	@Override
+	public void OpenEasterEggForm(String url) {
+		Stage s = new Stage();
+		Parent root = showWindow(s, "/com/midas/HomepageFake.fxml");
+		Pane pane = new Pane(new ImageView(url));
+		pane.setTranslateX(350);
+		pane.setTranslateY(100);
+		((BorderPane)root).setCenter(pane);
+	}
 }

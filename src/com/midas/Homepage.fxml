@@ -10,7 +10,7 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="midasLbl" prefHeight="100.0" prefWidth="261.0" text="  MIDAS-HCM" textAlignment="CENTER" textFill="#070c94">
+            <Label fx:id="midasLbl" onMouseClicked="#EasterProc" prefHeight="100.0" prefWidth="261.0" text="  MIDAS-HCM" textAlignment="CENTER" textFill="#070c94">
                <font>
                   <Font name="Gadugi" size="38.0" />
                </font>
