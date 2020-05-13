@@ -257,9 +257,9 @@ public class DBServiceImpl implements DBService{
 		List list = new ArrayList<>();
 
 		try {
-//			Class.forName(DRIVER);
-//			conn = DriverManager.getConnection(DB);
-			
+			//			Class.forName(DRIVER);
+			//			conn = DriverManager.getConnection(DB);
+
 			//			Statement stmt = conn.createStatement();
 			//			ResultSet rs = stmt.executeQuery(sql);
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -659,15 +659,15 @@ public class DBServiceImpl implements DBService{
 	public boolean DeleteInfo(String num) {
 		String sql = "DELETE FROM Employee " + 
 				"WHERE 사원번호 = " + num;
-	
+
 		try {
 			Statement stmt = conn.createStatement();
-			
+
 			stmt.executeUpdate(sql);
-			
+
 			stmt.close();
 			conn.close();
-			
+
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -945,7 +945,7 @@ public class DBServiceImpl implements DBService{
 		}
 		return false;	
 	}
-	
+
 	@Override
 	public Employee getMember(String num) {
 		String sql = "SELECT * " + 
@@ -1064,56 +1064,56 @@ public class DBServiceImpl implements DBService{
 		}
 		return rtn;	
 	}
-	
+
 
 	@Override
 	public boolean mypage(String num, Employee employee, boolean n) {
 		String sql;
-	      if(n) {
-	         sql = "UPDATE Employee " +
-	               "SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ? " + 
-	               "WHERE 사원번호 = '" + num +"'";
-	      }
-	      else {
-	         sql = "UPDATE Employee " +
-	               "SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ?, pw = ? " + 
-	               "WHERE 사원번호 = '" + num +"'";
-	      }
-	      System.out.println();
-	      try {
-	         PreparedStatement pStmt = conn.prepareStatement(sql);
+		if(n) {
+			sql = "UPDATE Employee " +
+					"SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ? " + 
+					"WHERE 사원번호 = '" + num +"'";
+		}
+		else {
+			sql = "UPDATE Employee " +
+					"SET 이름 = ?,전화번호 = ?,이메일 = ?,주소 = ?, pw = ? " + 
+					"WHERE 사원번호 = '" + num +"'";
+		}
+		System.out.println();
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-	      
-	         pStmt.setString(1, employee.getName());            
-	         pStmt.setString(2, employee.getPhone());            
-	         pStmt.setString(3, employee.getEmail());            
-	         pStmt.setString(4, employee.getAddress());
-	         if(!n) {
-	            pStmt.setString(5, employee.getPw());
-	         }
-	         
-	         pStmt.executeUpdate();
 
-	         pStmt.close();
-	         conn.close();
+			pStmt.setString(1, employee.getName());            
+			pStmt.setString(2, employee.getPhone());            
+			pStmt.setString(3, employee.getEmail());            
+			pStmt.setString(4, employee.getAddress());
+			if(!n) {
+				pStmt.setString(5, employee.getPw());
+			}
 
-	         return true;
-	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }
+			pStmt.executeUpdate();
+
+			pStmt.close();
+			conn.close();
+
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 
 
 		return false;
 	}
 
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 
 	//TAA
 	@Override
@@ -1140,7 +1140,7 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
-			conn.close();
+			//	conn.close();
 
 			return true;
 		} catch (SQLException e) {
@@ -1182,7 +1182,7 @@ public class DBServiceImpl implements DBService{
 			//stmt.close();
 			pStmt.close();
 			rs.close();
-			conn.close();
+			//conn.close();
 
 			return lstEmployee;
 
@@ -1247,7 +1247,7 @@ public class DBServiceImpl implements DBService{
 			//stmt.close();
 			pStmt.close();
 			rs.close();
-			conn.close();
+			//conn.close();
 
 			return list;
 
@@ -1290,7 +1290,7 @@ public class DBServiceImpl implements DBService{
 
 			stmt.close();
 			rs.close();
-			conn.close();
+			//			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1313,7 +1313,54 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
-			conn.close();
+			System.out.println("\n승인완료");
+			return true;
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("\n실패");
+		return false;
+	}
+	@Override
+	public boolean updateRemainHoliday(String whereOption, String period) {
+		String UPDATESQL = "UPDATE HolidayRequest "+
+				"SET "+
+				"잔여연차=" + "\"잔여연차\"" + "-" + period;
+		if(!whereOption.isEmpty()) {
+			UPDATESQL +="\n" + whereOption;
+		}
+		//UPDATE HolidayRequest SET approval="승인" WHERE ROWID=1;
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
+
+			pStmt.executeUpdate();
+			pStmt.close();
+			System.out.println("\n승인완료");
+			return true;
+
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("\n실패");
+		return false;
+	}
+	@Override
+	public boolean updateRemainHolidayDe(String whereOption, String period) {
+		String UPDATESQL = "UPDATE HolidayRequest "+
+				"SET "+
+				"잔여연차=" + "\"잔여연차\"" + "+" + period;
+		if(!whereOption.isEmpty()) {
+			UPDATESQL +="\n" + whereOption;
+		}
+		//UPDATE HolidayRequest SET approval="승인" WHERE ROWID=1;
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
+
+			pStmt.executeUpdate();
+			pStmt.close();
 			System.out.println("\n승인완료");
 			return true;
 
@@ -1335,7 +1382,6 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
-			conn.close();
 			System.out.println("\n승인완료");
 			return true;
 
@@ -1357,7 +1403,6 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
-			conn.close();
 			System.out.println("\n승인완료");
 			return true;
 
@@ -1383,7 +1428,6 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
-			conn.close();
 			System.out.println("\n반려완료");
 			return true;
 
@@ -1405,7 +1449,6 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
-			conn.close();
 			System.out.println("\n승인완료");
 			return true;
 
@@ -1427,7 +1470,6 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
-			conn.close();
 			System.out.println("\n승인완료");
 			return true;
 
@@ -1438,10 +1480,10 @@ public class DBServiceImpl implements DBService{
 		System.out.println("\n실패");
 		return false;
 	}
-	
+
 	@Override
 	public boolean SaveCommute(Commute commute) {
-		String sql = "INSERT INTO commute (사원번호,구분,날짜,시간) " + 
+		String sql = "INSERT INTO Commute (사원번호,구분,날짜,시간) " + 
 				"VALUES (?,?,?,?)";
 
 		try {
@@ -1451,17 +1493,16 @@ public class DBServiceImpl implements DBService{
 			pStmt.setString(2, commute.getSortation());
 			pStmt.setString(3, commute.getDate());
 			pStmt.setString(4, commute.getTime());
-			
+
 			pStmt.executeUpdate();
 			pStmt.close();
-			conn.close();
+
 		} catch (SQLException e) {
-			e.printStackTrace();
 			return false;
 		}
 		return true;
 	}
-	
+
 	@Override
 	public void SaveCommute(Commute commute, String loginNum, String Sortation, String timeStr) {
 		commute.setNum(loginNum); //로그인 한 사람 사원번호
@@ -1470,5 +1511,126 @@ public class DBServiceImpl implements DBService{
 		commute.setTime(timeStr); //현재 시간
 		SaveCommute(commute);
 	}
-	
+
+
+	@Override
+	public boolean SaveTAA(TAA TAA) {
+		String sql = "INSERT INTO TAA (사원번호,연월,출근,지각,연차,반차,출장,조퇴,결근) " + 
+				"VALUES (?,?,?,?,?,?,?,?,?)";
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, TAA.getId());
+			pStmt.setString(2, TAA.getName());
+			pStmt.setString(3, TAA.getDepartment());
+			pStmt.setString(4, TAA.getYearMonth());
+			pStmt.setString(5, TAA.getGoToWork());
+			pStmt.setString(6, TAA.getLateness());
+			pStmt.setString(7, TAA.getBusinessTrip());
+			pStmt.setString(8, TAA.getEarlyLeave());
+			pStmt.setString(9, TAA.getAbsence());
+			pStmt.executeUpdate();
+			pStmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean UpdateTAA(TAA TAA, String whereOption) {
+		String sql = "UPDATE TAA " +
+				"SET 사원번호 = ?,이름 = ?, 부서 = ?,연월 = ?,출근 = ?,지각 = ?,연차 = ?,반차 = ?,출장 = ?,조퇴 = ?,결근 = ? ";
+		if(!whereOption.isEmpty()) {
+			sql +="\n" + whereOption;
+		}
+		try {
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, TAA.getId());
+			pStmt.setString(2, TAA.getName());
+			pStmt.setString(3, TAA.getDepartment());
+			pStmt.setString(4, TAA.getYearMonth());
+			pStmt.setString(5, TAA.getGoToWork());
+			pStmt.setString(6, TAA.getLateness());
+			pStmt.setString(7, TAA.getBusinessTrip());
+			pStmt.setString(8, TAA.getEarlyLeave());
+			pStmt.setString(9, TAA.getAbsence());
+			pStmt.executeUpdate();
+			pStmt.close();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public List<Commute> CommuteCountAllList(String yearMonth, String whereOption) {
+		List<Commute> commuteLst = new ArrayList<Commute>();
+		String sql = "SELECT " + "\"사원번호\","+ 
+				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출근\"" + " AND "+ "\"시간\"" +"<" + "\"09:00:00\"" +") THEN 1 END)," +
+				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출근\"" + " AND "+ "\"시간\"" +">=" + "\"09:00:00\"" +") THEN 1 END)," +
+				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출장\"" +") THEN 1 END)," +
+				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"조퇴\"" +") THEN 1 END)," +
+				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"결근\"" +") THEN 1 END)" + 
+				"FROM commute " +
+				"WHERE " + "\"날짜\""  + "like '%" + yearMonth + "%'";
+		if(!whereOption.isEmpty()) {
+			sql +="\n" + whereOption;
+		}
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				Commute com = new Commute();
+				com.setNum(rs.getString("사원번호"));
+				com.setGoToWork(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출근\"" + " AND "+ "\"시간\"" +"<" + "\"09:00:00\"" +") THEN 1 END)"));
+				com.setLateness(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출근\"" + " AND "+ "\"시간\"" +">=" + "\"09:00:00\"" +") THEN 1 END)"));
+				com.setBusinessTrip(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출장\"" +") THEN 1 END)"));
+				com.setEarlyLeave(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"조퇴\"" +") THEN 1 END)"));
+				com.setAbsence(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"결근\"" +") THEN 1 END)"));
+				commuteLst.add(com);
+			}
+			stmt.close();
+			rs.close();
+			return commuteLst;
+			//conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public Commute getCommute(String whereOption) {
+		String sql = "SELECT * " + 
+				"FROM commute";
+		if(!whereOption.isEmpty()) {
+			sql +="\n" + whereOption;
+		}
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				Commute commute = new Commute();
+				commute.setNum(rs.getString("사원번호"));
+				commute.setSortation(rs.getString("구분"));
+				commute.setDate(rs.getString("날짜"));
+				commute.setTime(rs.getString("시간"));
+				stmt.close();
+				rs.close();
+				return commute;
+			}
+			stmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
 }

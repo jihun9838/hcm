@@ -57,6 +57,8 @@ public interface DBService {
 	public List<Employee> SelectTableHoliday(String whereOption);
 	public List<HolidayRequest> SelectHolidayApprovalSearch(String attribute, String txt);
 	public boolean updateApprovalHoliday(String whereOption);
+	public boolean updateRemainHoliday(String whereOption, String period);
+	public boolean updateRemainHolidayDe(String whereOption, String period);
 	public boolean updateEmployeeHoliday(String whereOption, String periodDay);
 	public boolean updateEmployeeHoliday2(String whereOption, String periodDay);
 	public boolean updateDeclineHoliday(String whereOption);
@@ -64,16 +66,10 @@ public interface DBService {
 	public boolean updateEmployeeHolidayDe2(String whereOption, String periodDay);
 	public boolean SaveCommute(Commute commute);
 	public void SaveCommute(Commute commute, String loginNum, String Sortation, String timeStr);
-	
-	
-	
-	/*
-	 * public List<EmployeeHoliday> getEmployeeHolidayList();
-	public List<SalaryResult> getSalaryResultList();
-	public List<TAA> getTAA();
-	public List<TAAResult> getTAAResult();
-	public List<HolidayRequest> getHolidayRequest();
-	 */
+	public boolean SaveTAA(TAA TAA);
+	public boolean UpdateTAA(TAA TAA, String num);
+	public List<Commute> CommuteCountAllList(String yearMonth, String whereOption);
+	public Commute getCommute(String whereOption);
 
 
 }
