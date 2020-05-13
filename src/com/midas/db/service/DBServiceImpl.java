@@ -575,7 +575,7 @@ public class DBServiceImpl implements DBService{
 	@Override
 	public boolean SaveInfo(Employee employee) {
 		String sql = "INSERT INTO Employee (사원번호,id,pw,이름,생년월일,주민번호뒷자리,부서,전화번호,입사일자,이메일,최종학력,주소,사원구분,연봉,직급,근무지,사진url,총연차,사용연차,잔여연차) " + 
-				"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
