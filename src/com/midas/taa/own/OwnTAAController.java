@@ -49,6 +49,7 @@ public class OwnTAAController extends Controller implements Initializable {
 		calServ = new CalendarServiceImpl(YearMonth.now());
 		CalPane.getChildren().add(calServ.getView());
 	}
+	
 	public void OwnTAASearchProc(ActionEvent e) {
 		Scene scene = ((Parent)e.getSource()).getScene();
 		String yearMonth = TAADatePicker.getValue().toString().substring(0, 7);  //0000-00월까지
@@ -65,6 +66,34 @@ public class OwnTAAController extends Controller implements Initializable {
 		CharSequence txt = yearMonth;
 		calServ = new CalendarServiceImpl(YearMonth.parse(txt.toString()), num, comLst);
 		CalPane.getChildren().add(calServ.getView());
+		
+		
+		
+//		public void SearchProc(ActionEvent e) {
+//			Scene scene = ((Parent)e.getSource()).getScene();
+//			String yearMonth = PersonalDatePicker.getValue().toString().substring(0, 7);  //0000-00월까지
+//			
+//			String num ="";
+//			num = "200401";
+//			
+//			if(!num.isEmpty()) {
+//			List<Commute> commuteLst = dbServ.CommuteCountAllList(yearMonth, "AND "+"\"사원번호\""+"="+num);
+//			comServ.ShowTableViewByList(scene, "#PersonalTAATableView", commuteLst);
+//			
+//			String option = "WHERE 사원번호=" + num; 
+//			List<Commute> comLst = dbServ.SelectTable("commute", option);
+//			CalPane.getChildren().clear();
+//			CharSequence txt = yearMonth;
+//			calServ = new CalendarServiceImpl(YearMonth.parse(txt.toString()), num, comLst);
+//			CalPane.getChildren().add(calServ.getView());
+//			}
+//			else {
+//				comServ.ErrorMsg("사원번호 찾기 실패", "", "다시 검색해주세요.");
+//			}
+//			
+////			calServ = new CalendarServiceImpl(YearMonth.now());
+//		}
+
 	}
 
 }

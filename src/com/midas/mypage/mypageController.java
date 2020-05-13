@@ -61,6 +61,13 @@ public class mypageController extends Controller implements Initializable{
 		
 		newPwOKTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
 		});
+		
+		nameTxt.setOnAction(e->newPwTxt.requestFocus());
+		newPwTxt.setOnAction(e->newPwOKTxt.requestFocus());
+		newPwOKTxt.setOnAction(e->emailTxt.requestFocus());
+		emailTxt.setOnAction(e->phoneNumTxt.requestFocus());
+		phoneNumTxt.setOnAction(e->addressTxt.requestFocus());
+		addressTxt.setOnAction(e->modifyBtn.requestFocus());
 		//System.out.println(root);
 //		setInfo();
 	}

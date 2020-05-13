@@ -44,7 +44,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="taaLstLbl" onMouseClicked="#OwnModifyHolidayView" prefHeight="28.0" prefWidth="235.0" text="근태/연차 수정 신청">
+                  <Label fx:id="taaLstLbl" onMouseClicked="#OwnModifyHolidayView" prefHeight="28.0" prefWidth="235.0" text="근태/연차 수정 신청" visible="false">
                      <font>
                         <Font size="23.0" />
                      </font>

@@ -23,7 +23,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Label>
-            <Label fx:id="IDLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="아이디" textFill="#484848">
+            <Label fx:id="IDLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="" textFill="#484848">
                <font>
                   <Font name="Sitka Banner" size="21.0" />
                </font>
@@ -31,7 +31,7 @@
                   <Insets top="20.0" />
                </padding>
             </Label>
-            <Label fx:id="helloLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="홍길동님 안녕하세요!" textFill="#484848">
+            <Label fx:id="helloLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="" textFill="#484848">
                <font>
                   <Font name="Sitka Banner" size="21.0" />
                </font>

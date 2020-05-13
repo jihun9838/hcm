@@ -347,6 +347,21 @@ public class DBServiceImpl implements DBService{
 					list.add(empTAAResult);
 				}
 			}
+			
+	         if(table.equals("commute")) {
+	             while(rs.next()) {
+	                Commute com = new Commute();
+	                
+
+	                com.setNum(rs.getString("사원번호"));
+	                com.setSortation(rs.getString("구분"));
+	                com.setDate(rs.getString("날짜"));
+	                com.setTime(rs.getString("시간"));
+	                
+	                list.add(com);
+	             }
+	          }
+	         
 //
 //			if(table.equals("TAA")) {
 //				while(rs.next()) {

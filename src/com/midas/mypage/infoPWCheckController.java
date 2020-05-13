@@ -52,6 +52,7 @@ public class infoPWCheckController extends Controller implements Initializable{
 		infoPwTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
 			disableButton();
 		});
+		infoPwTxt.setOnAction(e->pwCheckBtn.requestFocus());
 	}
 
 	public void pwCheckBtnProc(ActionEvent e) {
