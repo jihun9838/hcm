@@ -380,7 +380,7 @@ public class DBServiceImpl implements DBService{
 			//stmt.close();
 			pStmt.close();
 			rs.close();
-			//conn.close();
+			conn.close();
 
 			return list;
 
@@ -574,8 +574,8 @@ public class DBServiceImpl implements DBService{
 	}
 	@Override
 	public boolean SaveInfo(Employee employee) {
-		String sql = "INSERT INTO Employee (사원번호,id,pw,이름,생년월일,주민번호뒷자리,부서,전화번호,입사일자,이메일,최종학력,주소,사원구분,연봉,직급,근무지,사진url) " + 
-				"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO Employee (사원번호,id,pw,이름,생년월일,주민번호뒷자리,부서,전화번호,입사일자,이메일,최종학력,주소,사원구분,연봉,직급,근무지,사진url,총연차,사용연차,잔여연차) " + 
+				"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -597,6 +597,9 @@ public class DBServiceImpl implements DBService{
 			pStmt.setString(15, employee.getPosition());
 			pStmt.setString(16, employee.getPlace());
 			pStmt.setString(17, employee.getImage());
+			pStmt.setInt(18, 26);
+			pStmt.setInt(19, 0);
+			pStmt.setInt(20, 26);
 
 
 			pStmt.executeUpdate();
@@ -1104,6 +1107,7 @@ public class DBServiceImpl implements DBService{
 
 		return false;
 	}
+
 	
 	
 	
@@ -1136,7 +1140,7 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
-			//	conn.close();
+			conn.close();
 
 			return true;
 		} catch (SQLException e) {
@@ -1178,7 +1182,7 @@ public class DBServiceImpl implements DBService{
 			//stmt.close();
 			pStmt.close();
 			rs.close();
-			//conn.close();
+			conn.close();
 
 			return lstEmployee;
 
@@ -1243,7 +1247,7 @@ public class DBServiceImpl implements DBService{
 			//stmt.close();
 			pStmt.close();
 			rs.close();
-			//conn.close();
+			conn.close();
 
 			return list;
 
@@ -1286,7 +1290,7 @@ public class DBServiceImpl implements DBService{
 
 			stmt.close();
 			rs.close();
-			//			conn.close();
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1309,6 +1313,7 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
+			conn.close();
 			System.out.println("\n승인완료");
 			return true;
 
@@ -1330,6 +1335,7 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
+			conn.close();
 			System.out.println("\n승인완료");
 			return true;
 
@@ -1351,6 +1357,7 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
+			conn.close();
 			System.out.println("\n승인완료");
 			return true;
 
@@ -1376,6 +1383,7 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
+			conn.close();
 			System.out.println("\n반려완료");
 			return true;
 
@@ -1397,6 +1405,7 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
+			conn.close();
 			System.out.println("\n승인완료");
 			return true;
 
@@ -1418,6 +1427,7 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
+			conn.close();
 			System.out.println("\n승인완료");
 			return true;
 
@@ -1431,7 +1441,7 @@ public class DBServiceImpl implements DBService{
 	
 	@Override
 	public boolean SaveCommute(Commute commute) {
-		String sql = "INSERT INTO Commute (사원번호,구분,날짜,시간) " + 
+		String sql = "INSERT INTO commute (사원번호,구분,날짜,시간) " + 
 				"VALUES (?,?,?,?)";
 
 		try {
@@ -1444,8 +1454,9 @@ public class DBServiceImpl implements DBService{
 			
 			pStmt.executeUpdate();
 			pStmt.close();
-
+			conn.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;

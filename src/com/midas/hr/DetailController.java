@@ -7,8 +7,6 @@ import java.util.ResourceBundle;
 
 import com.midas.Controller;
 import com.midas.db.Employee;
-import com.midas.db.service.DBService;
-import com.midas.db.service.DBServiceImpl;
 import com.midas.hr.service.DetailInfoService;
 import com.midas.hr.service.DetailInfoServiceImpl;
 import com.midas.service.CommonService;
@@ -70,6 +68,8 @@ public class DetailController extends Controller implements Initializable{
 	CommonService comServ;
 	final private int BIRTH = 6;
 	private String selectedEmployee;
+	private int selectednum = -1;
+	private int maxemployeecount = 0;
 
 	@Override
 	public void setRoot(Parent root) {
@@ -102,7 +102,7 @@ public class DetailController extends Controller implements Initializable{
 		Employee_num.textProperty().addListener((obs, oldTxt, newTxt)->{
 			checkEscapeText(Employee_num);
 		});
-		
+
 		Employee_phone.textProperty().addListener((obs, oldTxt, newTxt)->{
 			checkEscapeText(Employee_phone);
 		});
@@ -164,13 +164,17 @@ public class DetailController extends Controller implements Initializable{
 	}
 
 	public void EmployeeEdit() {
+		boolean numcheck = true;
+		int i;
 		if(employee_editbtn.getText().contentEquals("정보수정")) {
-			for(int i = 0; !numColumn.getCellData(i).isEmpty(); i++) {
+			for(i = 0; !numColumn.getCellData(i).isEmpty(); i++) {
 				if(numColumn.getCellData(i).contentEquals(Employee_num.getText())) {
 					employee_simple_table.getSelectionModel().select(i);
+					selectednum = i;
 					break;
 				}
 			}
+			maxemployeecount = i;
 
 			Editable(true);
 			employee_editbtn.setText("저장");
@@ -185,12 +189,21 @@ public class DetailController extends Controller implements Initializable{
 				comServ.ErrorMsg("상세정보 알람", "정보수정 실패", "필수 입력 칸이 비어있습니다.");
 				return ;
 			}
-			if(comServ.numcheck(Employee_num.getText())) {
+
+			for(i = 0; i < maxemployeecount; i++) {
+				if(selectednum != i) {
+					if(numColumn.getCellData(i).contentEquals(Employee_num.getText())) {
+						numcheck = false;
+					}
+				}
+			}
+
+			if(numcheck) {
 				Editable(false);
 				employee_editbtn.setText("정보수정");
 				EditProc();
 				setTableView();
-				setInfo(selectedEmployee);
+				setInfo(numColumn.getCellData(selectednum));
 			}
 			else {
 				comServ.ErrorMsg("상세정보 알람", "정보수정 실패", "사원번호가 이미 존재합니다.");
@@ -274,11 +287,11 @@ public class DetailController extends Controller implements Initializable{
 		employee_editbtn.setText("정보수정");
 		setInfo(selectedEmployee);
 	}
-	
+
 	public void DeleteProc(ActionEvent event) {
 		if(detail.DeleteProc(root)) {
-	         CloseProc(event);
-	      }
+			CloseProc(event);
+		}
 	}
 
 	public void CloseProc(ActionEvent event) {

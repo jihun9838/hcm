@@ -5,7 +5,6 @@ import java.util.List;
 import com.midas.db.SalaryResult;
 import com.midas.service.CommonServiceImpl;
 
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
