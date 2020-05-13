@@ -35,18 +35,20 @@ public interface DBService {
 
 
 
+
 	// Eunji
 	public boolean MembershipProc(Employee employee);	// 회원가입시 개인정보를 DB에 저장
 	public boolean LoginProc(String id, String pw);	// ID와 PW로 개인인증
 	public List<Employee> getMember();
 	public boolean idcheck(String id);
+	public boolean numcheck(String num);
 
 	public boolean searchID(String name, String PhoneNum);
 	public boolean searchPW(String name, String id, String PhoneNum);
 	public String [] homepage(String id);
 	public Employee getMember(String num);
 	public boolean infopwCheck(String id, String pw);
-	public boolean mypage(String id, Employee employee);
+	public boolean mypage(String id, Employee employee, boolean n);
 	
 	
 	//jspark
