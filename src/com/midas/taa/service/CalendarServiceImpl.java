@@ -8,19 +8,13 @@ import java.util.Date;
 import java.util.List;
 
 import com.midas.db.Commute;
-import com.midas.db.service.DBService;
-import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
 
-import javafx.scene.Parent;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -29,7 +23,7 @@ public class CalendarServiceImpl implements CalendarService{
 	private VBox view;
 	private Text calendarTitle;
 	private YearMonth currentYearMonth;
-	private DBService dbServ;
+	//private DBService dbServ;
 
 	public CalendarServiceImpl() {
 	}

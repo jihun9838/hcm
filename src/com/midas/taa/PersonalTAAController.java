@@ -39,7 +39,7 @@ import javafx.scene.layout.Pane;
 public class PersonalTAAController extends Controller implements Initializable{
 	private Parent root;
 	private CalendarService calServ;
-	private DBService dbServ;
+//	private DBService dbServ;
 	private CommonService comServ;
 	@FXML private DatePicker PersonalDatePicker;
 	@FXML private BorderPane PerBP;
@@ -52,7 +52,7 @@ public class PersonalTAAController extends Controller implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {	
 		PersonalDatePicker.setValue(LocalDate.now());
 		comServ = new CommonServiceImpl();
-		dbServ = new DBServiceImpl();
+//		dbServ = new DBServiceImpl();
 		calServ = new CalendarServiceImpl(YearMonth.now());
 		CalPane.getChildren().add(calServ.getView());
 	}
@@ -69,11 +69,11 @@ public class PersonalTAAController extends Controller implements Initializable{
 		String num = searchTf.getText();
 		
 		if(!num.isEmpty()) {
-		List<Commute> commuteLst = dbServ.CommuteCountAllList(yearMonth, "AND "+"\"사원번호\""+"="+num);
+		List<Commute> commuteLst = new DBServiceImpl().CommuteCountAllList(yearMonth, "AND "+"\"사원번호\""+"="+num);
 		comServ.ShowTableViewByList(scene, "#PersonalTAATableView", commuteLst);
 		
 		String option = "WHERE 사원번호=" + num; 
-		List<Commute> comLst = dbServ.SelectTable("commute", option);
+		List<Commute> comLst = new DBServiceImpl().SelectTable("commute", option);
 		CalPane.getChildren().clear();
 		CharSequence txt = yearMonth;
 		calServ = new CalendarServiceImpl(YearMonth.parse(txt.toString()), num, comLst);

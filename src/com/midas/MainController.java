@@ -30,10 +30,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 public class MainController extends Controller implements Initializable {
 
@@ -231,7 +228,7 @@ public class MainController extends Controller implements Initializable {
 
 		Scene scene = ((Parent) e.getSource()).getScene();
 
-		List<HolidayRequest> requestList = dbServ.SelectTable("HolidayRequest",
+		List<HolidayRequest> requestList = new DBServiceImpl().SelectTable("HolidayRequest",
 				"WHERE " + "\"요청일\"" + " like " + "'%" + LocalDate.now().toString().substring(0, 7) + "%'");
 		comServ.ShowTableViewByList(scene, "#HoliAppTableView", requestList);
 	}
@@ -274,7 +271,7 @@ public class MainController extends Controller implements Initializable {
 		borderPane.setCenter(root);
 
 		Scene scene = ((Parent) e.getSource()).getScene();
-		List<Employee> OwnHolidayList = dbServ.SelectTableHoliday("WHERE 사원번호 = \"200401\""); // 로그인 한 사람의 아이디
+		List<Employee> OwnHolidayList = new DBServiceImpl().SelectTableHoliday("WHERE 사원번호 = \"200401\""); // 로그인 한 사람의 아이디
 		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
 	}
 

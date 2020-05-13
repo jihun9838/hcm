@@ -28,7 +28,7 @@ import javafx.scene.layout.Pane;
 public class OwnTAAController extends Controller implements Initializable {
 	private Parent root;
 	private CalendarService calServ;
-	private DBService dbServ;
+//	private DBService dbServ;
 	private CommonService comServ;
 	@FXML private DatePicker TAADatePicker;
 	@FXML private BorderPane OwnBP;
@@ -44,7 +44,7 @@ public class OwnTAAController extends Controller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		calServ = new CalendarServiceImpl(YearMonth.now());
 		comServ = new CommonServiceImpl();
-		dbServ = new DBServiceImpl();
+//		dbServ = new DBServiceImpl();
 		TAADatePicker.setValue(LocalDate.now());
 		calServ = new CalendarServiceImpl(YearMonth.now());
 		CalPane.getChildren().add(calServ.getView());
@@ -57,11 +57,11 @@ public class OwnTAAController extends Controller implements Initializable {
 		String num ="";
 		num = "200401";
 		
-		List<Commute> commuteLst = dbServ.CommuteCountAllList(yearMonth, "AND "+"\"사원번호\""+"="+num);
+		List<Commute> commuteLst = new DBServiceImpl().CommuteCountAllList(yearMonth, "AND "+"\"사원번호\""+"="+num);
 		comServ.ShowTableViewByList(scene, "#OwnTAATableView", commuteLst);
 		
 		String option = "WHERE 사원번호=" + num; 
-		List<Commute> comLst = dbServ.SelectTable("commute", option);
+		List<Commute> comLst = new DBServiceImpl().SelectTable("commute", option);
 		CalPane.getChildren().clear();
 		CharSequence txt = yearMonth;
 		calServ = new CalendarServiceImpl(YearMonth.parse(txt.toString()), num, comLst);

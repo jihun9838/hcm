@@ -527,10 +527,8 @@ public class CommonServiceImpl implements CommonService{
 	@Override
 	public void OpenEasterEggForm(String url) {
 		Stage s = new Stage();
-		Parent root = showWindow(s, "/com/midas/HomepageFake.fxml");
-		Pane pane = new Pane(new ImageView(url));
-		pane.setTranslateX(350);
-		pane.setTranslateY(100);
-		((BorderPane)root).setCenter(pane);
+		s.setScene(new Scene(new Pane(new ImageView(url))));
+		s.setTitle("HAHA");
+		s.show();
 	}
 }
