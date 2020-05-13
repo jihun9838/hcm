@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
 
 import com.midas.Controller;
 import com.midas.db.Employee;
@@ -36,7 +37,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -527,8 +527,11 @@ public class CommonServiceImpl implements CommonService{
 	@Override
 	public void OpenEasterEggForm(String url) {
 		Stage s = new Stage();
-		s.setScene(new Scene(new Pane(new ImageView(url))));
-		s.setTitle("HAHA");
+		Pane pane = new Pane(new ImageView(url));
+		s.setX(new Random().nextInt(1920) - pane.getScaleX());
+		s.setY(new Random().nextInt(1080) - pane.getScaleY());
+		s.setScene(new Scene(pane));
+		s.setTitle("HAHAHAHAHAHAHAHAHAHA");
 		s.show();
 	}
 }

@@ -76,7 +76,15 @@ public class MainController extends Controller implements Initializable {
 
 	// HAHA
 	public void EasterProc(Event e) {
+		for(int i = 0 ; i < 3 ; ++i) {
 		comServ.OpenEasterEggForm("/com/midas/image/조롱하며나가는스폰지밥.gif");
+		comServ.OpenEasterEggForm("/com/midas/image/플렉스징징이.gif");
+		comServ.OpenEasterEggForm("/com/midas/image/흐느적흐느적.gif");
+		comServ.OpenEasterEggForm("/com/midas/image/생각없는뚱이.gif");
+		comServ.OpenEasterEggForm("/com/midas/image/금요일좋아.gif");
+		comServ.OpenEasterEggForm("/com/midas/image/무지개스폰지밥.gif");
+		comServ.OpenEasterEggForm("/com/midas/image/돈샤워집게사장.gif");
+		}
 	}
 	
 	
