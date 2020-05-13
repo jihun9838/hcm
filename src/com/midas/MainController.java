@@ -3,11 +3,10 @@ package com.midas;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.midas.db.Commute;
@@ -188,64 +187,52 @@ public class MainController extends Controller implements Initializable{
 		BorderPane borderPane = (BorderPane)getScene(e);
 		root = comServ.AddSceneWithController("/com/midas/taa/SetCalendar.fxml");
 		borderPane.setCenter(root);
-
 		BorderPane pane = (BorderPane)borderPane.getCenter();
-		pane.setCenter(calServ.getView());
+		
+		pane.setCenter(new CalendarServiceImpl(YearMonth.now()).getView());
 		DatePicker dp = (DatePicker)root.lookup("#setCalendarDatePicker");
 		dp.setValue(LocalDate.now());
 	}
 
 	public void TAAReportView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-		Parent root = comServ.AddScene("/com/midas/taa/TAAReport.fxml");
+		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/TAAReport.fxml", comServ.getSuperRoot(root));
 		borderPane.setCenter(root);
 	}
 
 	public void MonthTAAView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene("/com/midas/taa/MonthTAA.fxml");
-
-		Parent form = root;
-		String [] departItems= {"부서 전체", "부서1", "부서2", "부서3", "부서4", "부서5"};
-		String [] sortItems= {"전체", "사원번호", "이름"};
-		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
-		comServ.AddComboBox(form, Arrays.asList(sortItems), "#cmbSort");
-
+		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/MonthTAA.fxml", comServ.getSuperRoot(root));
 		borderPane.setCenter(root);
 	}
 
 	public void PersonalTAAView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene("/com/midas/taa/PersonalTAA.fxml");
-
-		Parent form = root;
-		String [] departItems= {"부서 전체", "회계", "마케팅", "인사", "영업"};
-		comServ.AddComboBox(form, Arrays.asList(departItems), "#cmbDepart");
-
+		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/PersonalTAA.fxml", comServ.getSuperRoot(root));
 		borderPane.setCenter(root);
 	}
 
 	public void TAAListView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene("/com/midas/taa/TAAList.fxml");
-		Parent form = root;
+		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/TAAList.fxml", comServ.getSuperRoot(root));
 		borderPane.setCenter(root);
 	}
 
 	public void HolidayApprovalView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene("/com/midas/taa/HolidayApproval.fxml");
-		Parent form = root;
+		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/HolidayApproval.fxml", comServ.getSuperRoot(root));
 		borderPane.setCenter(root);
 
 		Scene scene = ((Parent)e.getSource()).getScene();
-		List<HolidayRequest> requestList = dbServ.SelectTable("HolidayRequest", "");
+		
+		List<HolidayRequest> requestList = 
+				dbServ.SelectTable("HolidayRequest", "WHERE "+"\"요청일\""+" like "+"'%"+LocalDate.now().toString().substring(0, 7)+"%'");
 		comServ.ShowTableViewByList(scene, "#HoliAppTableView", requestList);
 	}
 
 	public void HolidayModifyView(Event e) {
 		BorderPane borderPane = (BorderPane)getScene(e);
-		root = comServ.AddScene("/com/midas/taa/HolidayModify.fxml");
+		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/HolidayModify.fxml", comServ.getSuperRoot(root));
 		borderPane.setCenter(root);
 	}
 
@@ -268,7 +255,7 @@ public class MainController extends Controller implements Initializable{
 		String [] FullHalfItems= {"전일", "반일"};
 		comServ.AddComboBox(form, Arrays.asList(FullHalfItems), "#cmbFullHalf");
 
-		borderPane.setCenter(root);
+		borderPane.setCenter(form);
 
 		Scene scene = ((Parent)e.getSource()).getScene();
 		List<Employee> OwnHolidayList = dbServ.SelectTableHoliday("WHERE 사원번호 = \"200401\""); //로그인 한 사람의 아이디
@@ -279,7 +266,6 @@ public class MainController extends Controller implements Initializable{
 		BorderPane borderPane = (BorderPane)getScene(e);
 		root = comServ.AddScene("/com/midas/taa/own/OwnModifyHoliday.fxml");
 
-		String [] TypeItems= {"연차", "출장", "조퇴", "결근", "지각", "출근"};
 
 		borderPane.setCenter(root);
 

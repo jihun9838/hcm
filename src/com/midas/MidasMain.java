@@ -13,28 +13,17 @@ public class MidasMain extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		CommonService comServ = new CommonServiceImpl();
-		
+
 		BorderPane borderPane = (BorderPane)comServ.AddSceneWithController("/com/midas/Homepage.fxml");
-		System.out.println("Homepage");
-		
-		//Parent empMenuScene = comServ.AddScene("/com/midas/Employee.fxml");
-		//Parent manMenuScene = comServ.AddScene("/com/midas/Manager.fxml");
-		
-		//Parent s = comServ.AddScene("/com/midas/salary/SalaryMgmt.fxml");
+		Parent loginPage = comServ.AddSceneWithController("/com/midas/mainpage/login.fxml");
 
-		Parent ss = comServ.AddSceneWithController("/com/midas/mainpage/login.fxml");
-
-		
-		//borderPane.setLeft(empMenuScene);
-		//borderPane.setLeft(manMenuScene);
-//		borderPane.setCenter(s);
-		borderPane.setCenter(ss);
+		borderPane.setCenter(loginPage);
 		primaryStage.setScene(new Scene(borderPane));
 		primaryStage.setTitle("MIDAS-HCM");
 		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
