@@ -15,9 +15,9 @@ import javafx.stage.Stage;
 
 public interface CommonService {
 	public Parent getSuperRoot(Parent root);
-	public void setUserLabel(Parent root, String id);
-	public String getUserLabel(Parent root);
 	public void setPageLabel(Parent root, String id);
+	public String getUserLabel(Parent root);
+	public String setUserLabel(Parent root, String id);
 	
 	public void WindowClose(ActionEvent event);
 	public Parent showWindow(Stage s, String formPath);
@@ -51,4 +51,7 @@ public interface CommonService {
 	public int CalculateRequestedHoliday(LocalDate d1, LocalDate d2);
 	
 	public String CheckClassType(List o);
+	
+	public boolean idcheck(String id);
+	public boolean numcheck(String num);
 }

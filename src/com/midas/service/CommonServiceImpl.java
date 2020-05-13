@@ -2,7 +2,6 @@ package com.midas.service;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -47,31 +46,40 @@ public class CommonServiceImpl implements CommonService{
 		while(root.getParent() != null)	root = root.getParent();
 		return root;
 	}
-	
+
+	@Override
+	public void setPageLabel(Parent root, String text) {
+		((Label)getSuperRoot(root).lookup("#homepageLbl")).setText(text);
+	}
+
 	@Override
 	public String getUserLabel(Parent root) {		
 		return ((Label)getSuperRoot(root).lookup("#IDLbl")).getText();
 	}
 
 	@Override
-	public void setUserLabel(Parent root, String id) {
+	public String setUserLabel(Parent root, String id) {
 		Loginservice loginServ = new LoginserviceImp();
 		Label idlbl = (Label)root.lookup("#IDLbl");
 		Label hellolbl = (Label)root.lookup("#helloLbl");
 
 		String [] home = loginServ.homeProc(id);
 		idlbl.setText(home[0]);
-		hellolbl.setText(home[1]+"´Ô ¾È³çÇÏ¼¼¿ä.");
+		if("»ç¿ø".contentEquals(home[2])) {
+			hellolbl.setText(home[1]+"´Ô ¾È³çÇÏ¼¼¿ä.");
+		}
+		else {
+			hellolbl.setText("°ü¸®ÀÚ´Ô ¾È³çÇÏ¼¼¿ä.");
+		}
+
+		return home[2];
 	}
-	
-	@Override
-	public void setPageLabel(Parent root, String text) {
-		((Label)getSuperRoot(root).lookup("#homepageLbl")).setText(text);
-	}
-	
-	
-	
-	
+
+
+
+
+
+
 	@Override
 	public void WindowClose(ActionEvent event) {
 		Parent root = (Parent)event.getSource();
@@ -309,7 +317,7 @@ public class CommonServiceImpl implements CommonService{
 		alert.setTitle(title);
 		alert.setHeaderText(headerStr);
 		alert.setContentText(ContentTxt);
-		
+
 		Optional<ButtonType> result =  alert.showAndWait();
 		if(result.get() == ButtonType.OK) {
 			return true;
@@ -355,13 +363,13 @@ public class CommonServiceImpl implements CommonService{
 		if(CheckClassType(_list).equals("SalaryResult")) {
 			System.out.println("Checking LineChart by SalaryResult ");
 			List<SalaryResult> list = _list;
-			
+
 			Collections.sort(list, new Comparator<SalaryResult>() {
 				@Override
 				public int compare(SalaryResult o1, SalaryResult o2) {
 					return Integer.valueOf(o1.getYear() + o1.getMonth()).compareTo(Integer.valueOf(o2.getYear() + o2.getMonth()));  
 				}
-		    });
+			});
 			for(SalaryResult o : list) {
 				String id = o.getId();
 				if(!name.containsKey(id)) {
@@ -495,6 +503,22 @@ public class CommonServiceImpl implements CommonService{
 		if(className.contains("Employee")) 			return "Employee";
 
 		return className;
+	}
+
+
+
+
+
+	@Override
+	public boolean idcheck(String id) {
+		DBService dbServ = new DBServiceImpl();
+		return dbServ.idcheck(id);
+	}
+
+	@Override
+	public boolean numcheck(String num) {
+		DBService dbServ = new DBServiceImpl();
+		return dbServ.numcheck(num);
 	}
 
 
