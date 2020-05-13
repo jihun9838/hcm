@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:controller="com.midas.mypage.mypageController" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.midas.mypage.mypageController">
    <children>
       <Label layoutX="219.0" layoutY="62.0" text="사원번호" textFill="#080354">
          <font>
@@ -89,7 +89,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="160.0" fitWidth="130.0" layoutX="593.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="employeeImg" fitHeight="160.0" fitWidth="130.0" layoutX="593.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="departmemtLbl" layoutX="311.0" layoutY="428.0" text="departmemtLbl" textFill="#080354">
          <font>
             <Font size="18.0" />

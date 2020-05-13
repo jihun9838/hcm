@@ -102,6 +102,10 @@ public class DetailController extends Controller implements Initializable{
 		Employee_num.textProperty().addListener((obs, oldTxt, newTxt)->{
 			checkEscapeText(Employee_num);
 		});
+		
+		Employee_phone.textProperty().addListener((obs, oldTxt, newTxt)->{
+			checkEscapeText(Employee_phone);
+		});
 	}
 
 	private void setTableView() {
@@ -181,12 +185,16 @@ public class DetailController extends Controller implements Initializable{
 				comServ.ErrorMsg("상세정보 알람", "정보수정 실패", "필수 입력 칸이 비어있습니다.");
 				return ;
 			}
-
-			Editable(false);
-			employee_editbtn.setText("정보수정");
-			EditProc();
-			setTableView();
-			setInfo(selectedEmployee);
+			if(comServ.numcheck(Employee_num.getText())) {
+				Editable(false);
+				employee_editbtn.setText("정보수정");
+				EditProc();
+				setTableView();
+				setInfo(selectedEmployee);
+			}
+			else {
+				comServ.ErrorMsg("상세정보 알람", "정보수정 실패", "사원번호가 이미 존재합니다.");
+			}
 		}
 	}
 

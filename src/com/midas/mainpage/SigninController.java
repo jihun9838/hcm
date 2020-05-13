@@ -10,6 +10,7 @@ import com.midas.db.service.DBServiceImpl;
 import com.midas.service.CommonService;
 import com.midas.service.CommonServiceImpl;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -22,7 +23,6 @@ public class SigninController extends Controller implements Initializable{
 	
 	Parent root;
 	private CommonService comServ;
-	private DBService dbServ;
 	private Employee employee;
 
 	@FXML private TextField signEmployeeTxt;
@@ -50,7 +50,6 @@ public class SigninController extends Controller implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		comServ = new CommonServiceImpl();
-		dbServ = new DBServiceImpl();
 		employee = new Employee();
 
 		idCheckBtn.setOnAction(e->{			
@@ -59,7 +58,7 @@ public class SigninController extends Controller implements Initializable{
 		signinBtn.setDisable(true);			// 다 입력하면 활성화 되게
 
 		signinBtn.setOnAction(e->{
-			signinBtnProc();
+			signinBtnProc(e);
 		});
 
 		signEmployeeTxt.setOnAction(e->signNameTxt.requestFocus());
@@ -78,6 +77,7 @@ public class SigninController extends Controller implements Initializable{
 		signFinalEduCombobox.setOnAction(e->signinBtn.requestFocus());
 
 		signEmployeeTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
+			checkEscapeText(signEmployeeTxt);
 			signinBtn();
 		});
 		signPwTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
@@ -93,12 +93,15 @@ public class SigninController extends Controller implements Initializable{
 			signinBtn();			
 		});
 		SignBirthTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
+			checkEscapeText(SignBirthTxt);
 			signinBtn();
 		});		
 		signSecretTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
+			checkEscapeText(signSecretTxt);
 			signinBtn();
 		});
 		signPhoneNumTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
+			checkEscapeText(signPhoneNumTxt);
 			signinBtn();
 		});
 		signAddressTxt.textProperty().addListener((obs, oldTxt, newTxt)->{
@@ -116,30 +119,38 @@ public class SigninController extends Controller implements Initializable{
 
 	}
 
-	public void signinBtnProc() {
-
-		if(signPwTxt.getText().equals(signPwOKTxt.getText())) {
-
-			employee.setNum(signEmployeeTxt.getText());
-			employee.setName(signNameTxt.getText());
-			employee.setId(signIdTxt.getText());
-			employee.setPw(signPwTxt.getText());
-			employee.setBirth(SignBirthTxt.getText());
-			employee.setSocialNum(signSecretTxt.getText());
-			employee.setPhone(signPhoneNumTxt.getText());
-			employee.setAddress(signAddressTxt.getText());
-			employee.setDepartment(SignDepartmemtCombobox.getValue());
-			employee.setEmail(signEmailTxt.getText());
-			employee.setJoin(SignJoindate.getValue().toString());
-			employee.setEducation(signFinalEduCombobox.getValue());
-
-			dbServ.MembershipProc(employee);			
-			comServ.ErrorMsg("회원가입", "회원가입 성공", "회원가입이 완료 되었습니다!");
+	public void signinBtnProc(ActionEvent e) {
+		if(comServ.numcheck(signEmployeeTxt.getText())) {
+			if(signPwTxt.getText().equals(signPwOKTxt.getText())) {
+				DBService dbServ = new DBServiceImpl();
+	
+				employee.setNum(signEmployeeTxt.getText());
+				employee.setName(signNameTxt.getText());
+				employee.setId(signIdTxt.getText());
+				employee.setPw(signPwTxt.getText());
+				employee.setBirth(SignBirthTxt.getText());
+				employee.setSocialNum(signSecretTxt.getText());
+				employee.setPhone(signPhoneNumTxt.getText());
+				employee.setAddress(signAddressTxt.getText());
+				employee.setDepartment(SignDepartmemtCombobox.getValue());
+				employee.setEmail(signEmailTxt.getText());
+				employee.setJoin(SignJoindate.getValue().toString());
+				employee.setEducation(signFinalEduCombobox.getValue());
+	
+				dbServ.MembershipProc(employee);			
+				comServ.ErrorMsg("회원가입", "회원가입 성공", "회원가입이 완료 되었습니다!");
+				comServ.WindowClose(e);
+			}
+			else {
+				comServ.ErrorMsg("회원가입", "회원가입 실패","비밀번호가 맞지않습니다. 다시 입력해주세요!");
+				signPwOKTxt.requestFocus();
+				signPwOKTxt.clear();
+			}
 		}
 		else {
-			comServ.ErrorMsg("회원가입", "회원가입 실패","비밀번호가 맞지않습니다. 다시 입력해주세요!");
-			signPwOKTxt.requestFocus();
-			signPwOKTxt.clear();
+			comServ.ErrorMsg("회원가입", "사원번호가 이미 존재합니다.", "사원번호를 다시 입력해주세요.");
+			signEmployeeTxt.requestFocus();
+			signEmployeeTxt.clear();
 		}
 	}
 
@@ -156,15 +167,23 @@ public class SigninController extends Controller implements Initializable{
 	}
 
 	public void idCheckBtnProc() {
+		DBService dbServ = new DBServiceImpl();
 		String id = signIdTxt.getText();
 
 		if(dbServ.idcheck(id)==false) {
+			comServ.ErrorMsg("아이디 확인", "중복된 아이디가 있습니다.", "다시 입력해주세요.");
 			signIdTxt.clear();
 			signIdTxt.requestFocus();
 		}
-		else
+		else {
+			comServ.ErrorMsg("아이디 확인", "중복된 아이디가 없습니다.", "사용가능합니다.");
 			signPwTxt.requestFocus();
+		}
 
+	}
+	
+	private void checkEscapeText(TextField txt) {			//입력글자 제한
+		txt.setText(txt.getText().replaceAll("[^0-9_]", ""));
 	}
 }
 

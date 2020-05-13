@@ -39,7 +39,6 @@ public class mypageController extends Controller implements Initializable{
 	@FXML private TextField newPwTxt;
 	@FXML private TextField newPwOKTxt;
 
-	private DBService dbServ;
 	private CommonService comServ;
 	private MypageService myServ;
 	
@@ -54,7 +53,6 @@ public class mypageController extends Controller implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		dbServ = new DBServiceImpl();
 		comServ = new CommonServiceImpl();
 		myServ = new MypageServiceImpl();
 		
@@ -68,7 +66,7 @@ public class mypageController extends Controller implements Initializable{
 	}
 
 	public void modifyBtnProc(ActionEvent e) {
-		dbServ = new DBServiceImpl();
+		DBService dbServ = new DBServiceImpl();
 		Employee employee = new Employee();
 		
 		employee.setName(nameTxt.getText());
@@ -84,11 +82,11 @@ public class mypageController extends Controller implements Initializable{
 		}
 		else if(newPwTxt.getText().length()>0 && newPwOKTxt.getText().length()>0
 				&& newPwTxt.getText().equals(newPwOKTxt.getText())) {	
-			
+			dbServ = new DBServiceImpl();
 			employee.setPw(newPwTxt.getText());
-			dbServ.mypage("cat", employee);
+			dbServ.mypage(employeeLbl.getText(), employee, false);
 			comServ.ErrorMsg("내 정보 수정","새로운 비밀번호 확인","새로운 비밀번호로 변경되었습니다.");
-			comServ.WindowClose(e);
+			//comServ.WindowClose(e);
 		}
 		else if(newPwTxt.getText().length()>0 && newPwOKTxt.getText().length()>0
 				&& !newPwTxt.getText().equals(newPwOKTxt.getText())) {		
@@ -98,10 +96,10 @@ public class mypageController extends Controller implements Initializable{
 			newPwOKTxt.clear();		
 		}
 		else if(newPwTxt.getText().length()==0 && newPwOKTxt.getText().length()==0) {
-			
-			dbServ.mypage("cat", employee);
+			dbServ = new DBServiceImpl();
+			dbServ.mypage(employeeLbl.getText(), employee, true);
 			comServ.ErrorMsg("내 정보 수정","정보수정","새로운 정보로 정보로 저장되었습니다.");
-			comServ.WindowClose(e);
+			//comServ.WindowClose(e);
 			
 		}
 	}
