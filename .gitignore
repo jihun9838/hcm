@@ -10,6 +10,19 @@ build.fxbuild
 # Compiled class file
 *.class
 
+# excel file
+*.xlsx
+
+
+
+
+
+
+
+
+
+
+
 # Log file
 *.log
 
