@@ -347,35 +347,35 @@ public class DBServiceImpl implements DBService{
 					list.add(empTAAResult);
 				}
 			}
-
-			if(table.equals("TAA")) {
-				while(rs.next()) {
-					TAA empTAA = new TAA();
-
-					empTAA.setNum(rs.getString("사원번호"));
-					empTAA.setId(rs.getString("id"));
-					//				empTAA.setPw(rs.getString("pw"));
-					//				empTAA.setName(rs.getString("이름"));
-					//				empTAA.setBirth(rs.getString("생년월일"));
-					//				empTAA.setGender(rs.getString("주민번호뒷자리"));
-					//				empTAA.setCategory(rs.getString("사원구분"));
-					//				empTAA.setSalary(rs.getString("연봉"));
-					//				empTAA.setDepartment(rs.getString("부서"));
-					//				empTAA.setPosition(rs.getString("직급"));
-					//				empTAA.setPlace(rs.getString("근무지"));
-					//				empTAA.setPhone(rs.getString("전화번호"));
-					//				empTAA.setJoin(rs.getString("입사일자"));
-					//				empTAA.setEmail(rs.getString("이메일"));
-					//				empTAA.setEducation(rs.getString("최종학력"));
-					//				empTAA.setAddress(rs.getString("주소"));
-					//				empTAA.setImage(rs.getString("사진url"));
-					empTAA.setDate(rs.getString("date"));
-					empTAA.setTime(rs.getString("time"));
-					empTAA.setState(rs.getString("state"));
-
-					list.add(empTAA);
-				}
-			}
+//
+//			if(table.equals("TAA")) {
+//				while(rs.next()) {
+//					TAA empTAA = new TAA();
+//
+//					empTAA.setNum(rs.getString("사원번호"));
+//					empTAA.setId(rs.getString("id"));
+//					//				empTAA.setPw(rs.getString("pw"));
+//					//				empTAA.setName(rs.getString("이름"));
+//					//				empTAA.setBirth(rs.getString("생년월일"));
+//					//				empTAA.setGender(rs.getString("주민번호뒷자리"));
+//					//				empTAA.setCategory(rs.getString("사원구분"));
+//					//				empTAA.setSalary(rs.getString("연봉"));
+//					//				empTAA.setDepartment(rs.getString("부서"));
+//					//				empTAA.setPosition(rs.getString("직급"));
+//					//				empTAA.setPlace(rs.getString("근무지"));
+//					//				empTAA.setPhone(rs.getString("전화번호"));
+//					//					empTAA.setJoin(rs.getString("입사일자"));
+//					//				empTAA.setEmail(rs.getString("이메일"));
+//					//				empTAA.setEducation(rs.getString("최종학력"));
+//					//				empTAA.setAddress(rs.getString("주소"));
+//					//				empTAA.setImage(rs.getString("사진url"));
+//					empTAA.setDate(rs.getString("date"));
+//					empTAA.setTime(rs.getString("time"));
+//					empTAA.setState(rs.getString("state"));
+//
+//					list.add(empTAA);
+//				}
+//			}
 
 			//stmt.close();
 			pStmt.close();
