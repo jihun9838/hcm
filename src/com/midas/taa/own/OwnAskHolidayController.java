@@ -29,7 +29,7 @@ public class OwnAskHolidayController extends Controller implements Initializable
 	private Parent root;
 	private CommonService comServ;
 	private TAAService TAAServ;
-	private DBService dbServ;
+	//private DBService dbServ;
 	private static double CalcHoliday = 0;
 	@FXML private Label todayLbl, Holidays;
 	@FXML private DatePicker AskDatePicker, StartDatePicker, EndDatePicker;
@@ -46,7 +46,6 @@ public class OwnAskHolidayController extends Controller implements Initializable
 	public void initialize(URL location, ResourceBundle resources) {
 		comServ = new CommonServiceImpl();
 		TAAServ = new TAAServiceImpl();
-		dbServ = new DBServiceImpl();
 		AskDatePicker.setPromptText(LocalDate.now().getYear()+"."+LocalDate.now().getMonthValue());
 		todayLbl.setText(LocalDate.now().toString());
 		year = LocalDate.now().getYear();
@@ -60,6 +59,7 @@ public class OwnAskHolidayController extends Controller implements Initializable
 	
 	
 	public void SearchMyHolidayTable(ActionEvent e) {
+		DBService dbServ = new DBServiceImpl();
 		Scene scene = ((Parent)e.getSource()).getScene();
 		String requestYearMonth = Integer.toString(year)+"-0"+Integer.toString(month);
 		List<HolidayRequest> OwnHolidayAskList = dbServ.SelectTable("HolidayRequest", "WHERE " +"\"사원번호\"" + "=" + "\"200401\""+
@@ -145,6 +145,10 @@ public class OwnAskHolidayController extends Controller implements Initializable
 	}
 
 	public void requestHoliday(ActionEvent e) {
+		DBService dbServ = new DBServiceImpl();
+		System.out.println("RequestHoliday Function");
+		String num = comServ.getUserLabel(root);
+		System.out.println(num);
 		if(!isCheck(cmbFullHalf, StartDatePicker, EndDatePicker)) {
 			return;
 		}
@@ -161,13 +165,15 @@ public class OwnAskHolidayController extends Controller implements Initializable
 				reasonTf.setText("");
 			} 
 			
-
+			Employee emp = dbServ.getEmployee(num);
 			HolidayRequest hr = new HolidayRequest();
 			
-			hr.setId("200401");  //로그인 했을때 아이디                      //////////////멤버가져와서 넣기
-			hr.setName("강아지"); //이름
-			hr.setDepartment("회계"); //부서
-			hr.setAvailableDay("23"); //인 사람의 남은 연가
+			
+			
+			hr.setId(num);  //로그인 했을때 아이디
+			hr.setName(emp.getName()); //이름
+			hr.setDepartment(emp.getDepartment()); //부서
+			hr.setAvailableDay(emp.getAvailableHoliday()); //인 사람의 남은 연가
 		
 			hr.setRequestDay(String.valueOf(LocalDate.now()));
 			hr.setStartDay(StartDatePicker.getValue().toString());

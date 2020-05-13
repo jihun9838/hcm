@@ -66,8 +66,7 @@ public class PersonalTAAController extends Controller implements Initializable{
 		Scene scene = ((Parent)e.getSource()).getScene();
 		String yearMonth = PersonalDatePicker.getValue().toString().substring(0, 7);  //0000-00월까지
 		
-		String num ="";
-		num = "200401";
+		String num = searchTf.getText();
 		
 		if(!num.isEmpty()) {
 		List<Commute> commuteLst = dbServ.CommuteCountAllList(yearMonth, "AND "+"\"사원번호\""+"="+num);

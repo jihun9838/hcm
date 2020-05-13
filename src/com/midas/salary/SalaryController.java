@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import com.midas.Controller;
 import com.midas.db.SalaryResult;
 import com.midas.db.service.DB2ExcelExporter;
-import com.midas.db.service.DBService;
 import com.midas.db.service.DBServiceImpl;
 import com.midas.salary.service.SalaryService;
 import com.midas.salary.service.SalaryServiceImpl;
@@ -30,7 +29,7 @@ public class SalaryController extends Controller implements Initializable{
 
 	private Parent root;
 	private CommonService comServ;
-	private DBService dbServ;
+	//private DBService dbServ;
 	private SalaryService salServ;
 	
 	//salaryMgmt.fxml
@@ -61,7 +60,7 @@ public class SalaryController extends Controller implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		comServ = new CommonServiceImpl();
-		dbServ = new DBServiceImpl();
+//		dbServ = new DBServiceImpl();
 		salServ = new SalaryServiceImpl();
 		
 		m = new HashMap<String, String>(){{
@@ -88,7 +87,7 @@ public class SalaryController extends Controller implements Initializable{
 		if(salaryMgmtNameTextField.getText().length() > 0) {
 			option += "WHERE " + m.get(salaryMgmtComboBox.getValue()) + " like '%" + salaryMgmtNameTextField.getText() + "%'";
 		}
-		salaryResultList = dbServ.SelectTable("SalaryResult", option);
+		salaryResultList = new DBServiceImpl().SelectTable("SalaryResult", option);
 		
 		salServ.ShowTableViewByList(scene, "#salaryMgmtTableView", salaryResultList);
 	}
@@ -106,7 +105,7 @@ public class SalaryController extends Controller implements Initializable{
 		if(salaryReportNameTextField.getText().length() > 0) {
 			option += "WHERE " + m.get(salaryReportComboBox.getValue()) + " like '%" + salaryReportNameTextField.getText() + "%'";
 		}
-		salaryResultList = dbServ.SelectTable("SalaryResult", option);
+		salaryResultList = new DBServiceImpl().SelectTable("SalaryResult", option);
 		
 		salServ.ShowLineChartByList(scene, "#salaryReportLineChart", salaryResultList);
 	}
@@ -132,7 +131,7 @@ public class SalaryController extends Controller implements Initializable{
 //		}
 		
 		//List<SalaryResult> salaryResult = dbServ.SelectTable("SalaryResult", "WHERE id = " + id);
-		List<SalaryResult> salaryResultList = dbServ.SelectTable("SalaryResult", option);
+		List<SalaryResult> salaryResultList = new DBServiceImpl().SelectTable("SalaryResult", option);
 		
 		if(salaryResultList.isEmpty())
 			System.out.println("sad,.fj kahsdlfkjabdlgknbadflkgjnsbdfkjbsdkljsdlfjknlkjfnv");

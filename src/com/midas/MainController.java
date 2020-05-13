@@ -246,16 +246,16 @@ public class MainController extends Controller implements Initializable {
 
 	public void OwnAskHolidayView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
-		root = comServ.AddSceneWithController("/com/midas/taa/own/OwnAskHoliday.fxml");
+		Parent root = comServ.AddSceneWithController("/com/midas/taa/own/OwnAskHoliday.fxml");
 
-		Parent form = root;
 		String[] FullHalfItems = { "전일", "반일" };
-		comServ.AddComboBox(form, Arrays.asList(FullHalfItems), "#cmbFullHalf");
+		comServ.AddComboBox(root, Arrays.asList(FullHalfItems), "#cmbFullHalf");
 
 		borderPane.setCenter(root);
+		String num = comServ.getUserLabel(root);
 
 		Scene scene = ((Parent) e.getSource()).getScene();
-		List<Employee> OwnHolidayList = dbServ.SelectTableHoliday("WHERE 사원번호 = \"200401\""); // 로그인 한 사람의 아이디
+		List<Employee> OwnHolidayList = dbServ.SelectTableHoliday("WHERE 사원번호 = \""+ num + "\""); // 로그인 한 사람의 아이디
 		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
 	}
 

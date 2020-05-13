@@ -68,6 +68,7 @@ public class MonthTAAController extends Controller implements Initializable{
 		
 		String num = "";
 		num = "200401";
+		//num = searchTf.getText();
 		
 		List<Commute> commuteLst = dbServ.CommuteCountAllList(yearMonth, "AND "+"\"사원번호\""+"="+num);
 		comServ.ShowTableViewByList(scene, "#MonthTAATable", commuteLst);

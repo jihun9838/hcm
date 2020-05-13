@@ -1155,7 +1155,7 @@ public class DBServiceImpl implements DBService{
 
 			pStmt.executeUpdate();
 			pStmt.close();
-			//	conn.close();
+			conn.close();
 
 			return true;
 		} catch (SQLException e) {
