@@ -196,7 +196,7 @@ public class MainController extends Controller implements Initializable {
 	// TAA Manager
 	public void SetCalendarView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
-		root = comServ.AddSceneWithController("/com/midas/taa/SetCalendar.fxml");
+		root = comServ.AddSceneWithController("/com/midas/taa/_01/Calendar.fxml"); //휴일설정
 		borderPane.setCenter(root);
 		BorderPane pane = (BorderPane) borderPane.getCenter();
 
@@ -207,41 +207,41 @@ public class MainController extends Controller implements Initializable {
 
 	public void TAAReportView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
-		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/TAAReport.fxml", comServ.getSuperRoot(root));
+		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/_02/TAAReport.fxml", comServ.getSuperRoot(root)); //근태리포트
 		borderPane.setCenter(root);
 	}
 
 	public void MonthTAAView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
-		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/MonthTAA.fxml", comServ.getSuperRoot(root));
+		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/_03/MonthTAA.fxml", comServ.getSuperRoot(root)); //월간근태내역
 		borderPane.setCenter(root);
 	}
 
 	public void PersonalTAAView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
-		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/PersonalTAA.fxml", comServ.getSuperRoot(root));
+		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/_04/PersonalTAA.fxml", comServ.getSuperRoot(root)); //개인근태내역
 		borderPane.setCenter(root);
 	}
 
 	public void TAAListView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
-		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/TAAList.fxml", comServ.getSuperRoot(root));
+		root = comServ.AddSceneWithController("/com/midas/taa/_05/TAAList.fxml");
 		borderPane.setCenter(root);
 	}
 
 	public void HolidayApprovalView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
-		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/HolidayApproval.fxml", comServ.getSuperRoot(root));
+		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/_06/HolidayApproval.fxml", comServ.getSuperRoot(root)); //휴가승인
 		borderPane.setCenter(root);
 
 		Scene scene = ((Parent) e.getSource()).getScene();
-
+		@SuppressWarnings("unchecked")
 		List<HolidayRequest> requestList = new DBServiceImpl().SelectTable("HolidayRequest",
 				"WHERE " + "\"요청일\"" + " like " + "'%" + LocalDate.now().toString().substring(0, 7) + "%'");
 		comServ.ShowTableViewByList(scene, "#HoliAppTableView", requestList);
 	}
 
-	public void HolidayModifyView(Event e) {
+	public void HolidayModifyView(Event e) { //근태수정
 		BorderPane borderPane = (BorderPane) getScene(e);
 		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/HolidayModify.fxml", comServ.getSuperRoot(root));
 		borderPane.setCenter(root);
@@ -251,35 +251,31 @@ public class MainController extends Controller implements Initializable {
 	
 	
 	// TAA Employee
-	public void OwnTAAView(Event e) {
+	public void OwnTAAView(Event e) { //근태/연차내역
 		BorderPane borderPane = (BorderPane) getScene(e);
-		root = comServ.AddSceneWithController("/com/midas/taa/own/OwnTAA.fxml");
+		root = comServ.AddSceneWithController("/com/midas/taa/own/_01/OwnTAA.fxml");
 		borderPane.setCenter(root);
 	}
 
-	public void OwnAskHolidayView(Event e) {
+	public void OwnAskHolidayView(Event e) { //연차 신청
 		BorderPane borderPane = (BorderPane) getScene(e);
-		Parent root = comServ.AddSceneWithController("/com/midas/taa/own/OwnAskHoliday.fxml");
-
-		String[] FullHalfItems = { "전일", "반일" };
-		comServ.AddComboBox(root, Arrays.asList(FullHalfItems), "#cmbFullHalf");
-
+		Parent root = comServ.AddSceneWithController("/com/midas/taa/own/_02/OwnAskHoliday.fxml");
 		borderPane.setCenter(root);
-		String num = comServ.getUserLabel(root);
-
-		Scene scene = ((Parent) e.getSource()).getScene();
-		List<Employee> OwnHolidayList = new DBServiceImpl().SelectTableHoliday("WHERE 사원번호 = \""+ num + "\""); // 로그인 한 사람의 아이디
+		
+		String num = comServ.getUserLabel(root); // 로그인 한 사람의 아이디
+		Scene scene = ((Parent) e.getSource()).getScene(); 
+		List<Employee> OwnHolidayList = new DBServiceImpl().SelectTableHoliday("WHERE 사원번호 = \""+ num + "\""); 
 		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
 	}
 
 	public void OwnModifyHolidayView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
-		root = comServ.AddSceneWithController("/com/midas/taa/own/OwnModifyHoliday.fxml");
-
+		Parent root = comServ.AddSceneWithController("/com/midas/taa/own/_03/OwnModifyHoliday.fxml");
 		borderPane.setCenter(root);
-
+		
+		String num = comServ.getUserLabel(root); // 로그인 한 사람의 아이디
 		Scene scene = ((Parent) e.getSource()).getScene();
-		List<Employee> OwnHolidayList = new DBServiceImpl().SelectTableHoliday("WHERE 사원번호 = \"200401\""); // 로그인 한 사람의 아이디
+		List<Employee> OwnHolidayList = new DBServiceImpl().SelectTableHoliday("WHERE 사원번호 = \""+ num + "\""); 
 		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
 	}
 

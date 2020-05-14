@@ -1314,178 +1314,12 @@ public class DBServiceImpl implements DBService{
 		return requestList;
 	}
 	@Override
-	public boolean updateApprovalHoliday(String whereOption) {
-		String UPDATESQL = "UPDATE HolidayRequest "+
-				"SET "+
-				"승인여부="+
-				"\"승인\"";
-		if(!whereOption.isEmpty()) {
-			UPDATESQL +="\n" + whereOption;
-		}
-		//UPDATE HolidayRequest SET approval="승인" WHERE ROWID=1;
+	public boolean UpdateTableWitnSQL(String UPDATESQL) {
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
 
 			pStmt.executeUpdate();
 			pStmt.close();
-			System.out.println("\n승인완료");
-			return true;
-
-		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("\n실패");
-		return false;
-	}
-	@Override
-	public boolean updateRemainHoliday(String whereOption, String period) {
-		String UPDATESQL = "UPDATE HolidayRequest "+
-				"SET "+
-				"잔여연차=" + "\"잔여연차\"" + "-" + period;
-		if(!whereOption.isEmpty()) {
-			UPDATESQL +="\n" + whereOption;
-		}
-		//UPDATE HolidayRequest SET approval="승인" WHERE ROWID=1;
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
-
-			pStmt.executeUpdate();
-			pStmt.close();
-			System.out.println("\n승인완료");
-			return true;
-
-		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("\n실패");
-		return false;
-	}
-	@Override
-	public boolean updateRemainHolidayDe(String whereOption, String period) {
-		String UPDATESQL = "UPDATE HolidayRequest "+
-				"SET "+
-				"잔여연차=" + "\"잔여연차\"" + "+" + period;
-		if(!whereOption.isEmpty()) {
-			UPDATESQL +="\n" + whereOption;
-		}
-		//UPDATE HolidayRequest SET approval="승인" WHERE ROWID=1;
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
-
-			pStmt.executeUpdate();
-			pStmt.close();
-			System.out.println("\n승인완료");
-			return true;
-
-		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("\n실패");
-		return false;
-	}
-	@Override
-	public boolean updateEmployeeHoliday(String whereOption, String periodDay) {
-		String UPDATESQL = "UPDATE Employee "+
-				"SET "+
-				"\"사용연차\""+ "=" +
-				" \"사용연차\"" + "+" + periodDay +"\n" + whereOption;
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
-
-			pStmt.executeUpdate();
-			pStmt.close();
-			System.out.println("\n승인완료");
-			return true;
-
-		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("\n실패");
-		return false;
-	}
-	@Override
-	public boolean updateEmployeeHoliday2(String whereOption, String periodDay) {
-		String UPDATESQL = 	"UPDATE Employee "+
-				"SET "+
-				"\"잔여연차\""+ "=" +
-				" \"잔여연차\"" + "-" + periodDay +"\n" + whereOption +";";
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
-
-			pStmt.executeUpdate();
-			pStmt.close();
-			System.out.println("\n승인완료");
-			return true;
-
-		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("\n실패");
-		return false;
-	}
-	@Override
-	public boolean updateDeclineHoliday(String whereOption) {
-		String UPDATESQL = "UPDATE HolidayRequest "+
-				"SET "+
-				"승인여부="+
-				"\"반려\"";
-		if(!whereOption.isEmpty()) {
-			UPDATESQL +="\n" + whereOption;
-		}
-		//UPDATE HolidayRequest SET approval="승인" WHERE ROWID=1;
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
-
-			pStmt.executeUpdate();
-			pStmt.close();
-			System.out.println("\n반려완료");
-			return true;
-
-		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("\n실패");
-		return false;
-	}
-	@Override
-	public boolean updateEmployeeHolidayDe(String whereOption, String periodDay) {
-		String UPDATESQL = "UPDATE Employee "+
-				"SET "+
-				"\"사용연차\""+ "=" +
-				" \"사용연차\"" + "-" + periodDay +"\n" + whereOption;
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
-
-			pStmt.executeUpdate();
-			pStmt.close();
-			System.out.println("\n승인완료");
-			return true;
-
-		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("\n실패");
-		return false;
-	}
-	@Override
-	public boolean updateEmployeeHolidayDe2(String whereOption, String periodDay) {
-		String UPDATESQL = 	"UPDATE Employee "+
-				"SET "+
-				"\"잔여연차\""+ "=" +
-				" \"잔여연차\"" + "+" + periodDay +"\n" + whereOption +";";
-		try {
-			PreparedStatement pStmt = conn.prepareStatement(UPDATESQL);
-
-			pStmt.executeUpdate();
-			pStmt.close();
-			System.out.println("\n승인완료");
 			return true;
 
 		}catch (SQLException e) {
@@ -1581,7 +1415,7 @@ public class DBServiceImpl implements DBService{
 	}
 
 	@Override
-	public List<Commute> CommuteCountAllList(String yearMonth, String whereOption) {
+	public List<Commute> CommuteCountAllList(String whereOption) {
 		List<Commute> commuteLst = new ArrayList<Commute>();
 		String sql = "SELECT " + "\"사원번호\","+ 
 				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출근\"" + " AND "+ "\"시간\"" +"<" + "\"09:00:00\"" +") THEN 1 END)," +
@@ -1589,8 +1423,7 @@ public class DBServiceImpl implements DBService{
 				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출장\"" +") THEN 1 END)," +
 				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"조퇴\"" +") THEN 1 END)," +
 				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"결근\"" +") THEN 1 END)" + 
-				"FROM commute " +
-				"WHERE " + "\"날짜\""  + "like '%" + yearMonth + "%'";
+				"FROM commute";
 		if(!whereOption.isEmpty()) {
 			sql +="\n" + whereOption;
 		}

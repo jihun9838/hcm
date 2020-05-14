@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane
+	fx:controller="com.midas.taa._02.TAAReportController"
+	maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<padding>
+		<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+	</padding>
+	<top>
+		<HBox prefHeight="23.0" prefWidth="980.0" spacing="10.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<Label minHeight="23.0" minWidth="72.0" text="리포트 종류">
+					<font>
+						<Font size="18.0" />
+					</font>
+				</Label>
+				<ChoiceBox fx:id="cmbSort" prefHeight="23.0"
+					prefWidth="200.0" />
+				<Pane prefHeight="23.0" prefWidth="50.0" />
+				<Label prefHeight="23.0" text="기간">
+					<font>
+						<Font size="18.0" />
+					</font>
+				</Label>
+				<ChoiceBox fx:id="cmbPeriod" prefHeight="23.0"
+					prefWidth="200.0" />
+				<Pane prefHeight="23.0" prefWidth="50.0" />
+				<Button fx:id="searchBtn" mnemonicParsing="false"
+					onAction="#ReportProc" prefHeight="23.0" prefWidth="65.0" text="검색" />
+			</children>
+			<BorderPane.margin>
+				<Insets />
+			</BorderPane.margin>
+		</HBox>
+	</top>
+	<center>
+		<VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<LineChart fx:id="TAAReportLineChart" prefHeight="514.0"
+					prefWidth="980.0" title="휴가 추세">
+					<xAxis>
+						<CategoryAxis label="휴가시작일" side="BOTTOM" />
+					</xAxis>
+					<yAxis>
+						<NumberAxis label="휴가기간" side="LEFT" upperBound="10.0" />
+					</yAxis>
+				</LineChart>
+			</children>
+			<BorderPane.margin>
+				<Insets top="10.0" />
+			</BorderPane.margin>
+		</VBox>
+	</center>
+</BorderPane>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane
+	fx:controller="com.midas.taa._06.HolidayApprovalController"
+	maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<padding>
+		<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+	</padding>
+	<center>
+		<VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<Label minHeight="23.0" minWidth="72.0" text="신청 내역">
+					<font>
+						<Font size="18.0" />
+					</font>
+					<VBox.margin>
+						<Insets top="10.0" />
+					</VBox.margin>
+				</Label>
+				<TableView fx:id="HoliAppTableView" prefHeight="445.0"
+					prefWidth="980.0">
+					<columns>
+
+
+
+
+						<TableColumn prefWidth="75.0" text="사원번호">
+							<cellValueFactory>
+								<PropertyValueFactory property="id" />
+							</cellValueFactory>
+						</TableColumn>
+
+						<TableColumn prefWidth="75.0" text="이름">
+							<cellValueFactory>
+								<PropertyValueFactory property="name" />
+							</cellValueFactory>
+						</TableColumn>
+
+						<TableColumn prefWidth="75.0" text="부서">
+							<cellValueFactory>
+								<PropertyValueFactory property="department" />
+							</cellValueFactory>
+						</TableColumn>
+
+						<TableColumn prefWidth="65.0" text="잔여 연차">
+							<cellValueFactory>
+								<PropertyValueFactory
+									property="availableDay" />
+							</cellValueFactory>
+						</TableColumn>
+
+						<TableColumn prefWidth="95" text="요청일">
+							<cellValueFactory>
+								<PropertyValueFactory property="requestDay" />
+							</cellValueFactory>
+						</TableColumn>
+						<TableColumn prefWidth="95" text="시작일">
+							<cellValueFactory>
+								<PropertyValueFactory property="startDay" />
+							</cellValueFactory>
+						</TableColumn>
+						<TableColumn prefWidth="95" text="종료일">
+							<cellValueFactory>
+								<PropertyValueFactory property="endDay" />
+							</cellValueFactory>
+						</TableColumn>
+						<TableColumn prefWidth="40" text="기간">
+							<cellValueFactory>
+								<PropertyValueFactory property="periodDay" />
+							</cellValueFactory>
+						</TableColumn>
+						<TableColumn prefWidth="300.0" text="사유">
+							<cellValueFactory>
+								<PropertyValueFactory property="reason" />
+							</cellValueFactory>
+						</TableColumn>
+						<TableColumn prefWidth="65.0" text="승인여부">
+							<cellValueFactory>
+								<PropertyValueFactory property="approval" />
+							</cellValueFactory>
+						</TableColumn>
+
+
+
+
+
+					</columns>
+				</TableView>
+				<HBox prefHeight="23.0" prefWidth="980.0" spacing="10.0">
+					<children>
+						<Pane prefHeight="23.0" prefWidth="835.0" />
+						<Button mnemonicParsing="false" onAction="#declineBtn"
+							prefHeight="23.0" prefWidth="65.0" text="반려" />
+						<Button mnemonicParsing="false" onAction="#approvalBtn"
+							prefHeight="23.0" prefWidth="65.0" text="승인" />
+					</children>
+				</HBox>
+			</children>
+		</VBox>
+	</center>
+	<top>
+		<VBox prefHeight="56.0" prefWidth="980.0" spacing="10.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<HBox prefHeight="23.0" prefWidth="980.0" spacing="10.0">
+					<children>
+						<Label prefHeight="23.0" text="현재 연/월">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+						<Label fx:id="todayLbl" prefHeight="20.0" prefWidth="150.0"
+							style="-fx-background-color: #F3F3F3; -fx-text-fill: #0350CC;"
+							text="오늘" xmlns="http://javafx.com/javafx/8"
+							xmlns:fx="http://javafx.com/fxml/1">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+					</children>
+				</HBox>
+				<HBox prefHeight="23.0" prefWidth="200.0" spacing="10.0">
+					<children>
+						<Label prefHeight="23.0" prefWidth="59.0" text="검색어">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+						<ComboBox fx:id="cmbSort" prefWidth="100.0" />
+						<TextField fx:id="searchTf" prefHeight="23.0"
+							prefWidth="200.0" />
+						<Pane prefHeight="23.0" prefWidth="225.0" />
+						<Button mnemonicParsing="false"
+							onAction="#HoliAppTableShow" prefHeight="23.0" prefWidth="65.0"
+							text="조회" />
+					</children>
+				</HBox>
+			</children>
+		</VBox>
+	</top>
+</BorderPane>
