@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class OwnAskHolidayController extends Controller implements Initializable{
@@ -28,6 +29,7 @@ public class OwnAskHolidayController extends Controller implements Initializable
 	@FXML private DatePicker AskDatePicker, StartDatePicker, EndDatePicker;
 	@FXML private ComboBox<String> cmbFullHalf;
 	@FXML private TextField reasonTf;
+	@FXML private TableView<String> OwnRemainTable;
 	private String [] items = {"전일", "반일"};
 	private int year, month;
 	
@@ -53,7 +55,7 @@ public class OwnAskHolidayController extends Controller implements Initializable
 	}
 	
 	
-	public void SearchMyHolidayTable(ActionEvent e) {
+	public void SearchMyHolidayTableProc(ActionEvent e) {
 		String num = comServ.getUserLabel(root);
 		TAAServ.showTableEmployeeOwn(e, year, month, num);
 	}

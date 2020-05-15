@@ -206,8 +206,10 @@ public class TAAServiceImpl implements TAAService {
 		CommonService comServ = new CommonServiceImpl();
 		Scene scene = ((Parent)e.getSource()).getScene();
 		String requestYearMonth = Integer.toString(year)+"-0"+Integer.toString(month);
+		@SuppressWarnings("unchecked")
 		List<HolidayRequest> OwnHolidayAskList = dbServ.SelectTable("HolidayRequest", "WHERE " +"\"사원번호\"" + "=" + num+
-		"AND "+ "\"요청일\""+" like '%" + requestYearMonth + "%'");
+		" AND "+ "\"요청일\""+" like '%" + requestYearMonth + "%'");
+		System.out.println(OwnHolidayAskList.size());
 		comServ.ShowTableViewByList(scene, "#OwnAskTable", OwnHolidayAskList);
 	}
 	

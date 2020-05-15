@@ -100,7 +100,7 @@
 						</Label>
 						<DatePicker fx:id="AskDatePicker"
 							onAction="#checkAskDate" />
-						<Button fx:id="searchBtn" onAction="#SearchMyHolidayTable"
+						<Button fx:id="searchBtn" onAction="#SearchMyHolidayTableProc"
 							mnemonicParsing="false" prefHeight="23.0" prefWidth="65.0"
 							text="조회" />
 					</children>
