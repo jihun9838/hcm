@@ -211,7 +211,7 @@ public class TAAServiceImpl implements TAAService {
 		comServ.ShowTableViewByList(scene, "#OwnAskTable", OwnHolidayAskList);
 	}
 	
-	
+	@Override
 	public double FullAndHalfCheck(ComboBox<String> cmbFullHalf, DatePicker StartDatePicker, DatePicker EndDatePicker, TextField reasonTf) {
 		if(cmbFullHalf.getValue().contentEquals("반일")) {
 			StartDatePicker.setDisable(false); StartDatePicker.setValue(null);
@@ -231,6 +231,7 @@ public class TAAServiceImpl implements TAAService {
 		}
 	}
 	
+	@Override
 	public double StartRequestHoliday(ComboBox<String> cmbFullHalf, DatePicker StartDatePicker, DatePicker EndDatePicker, TextField reasonTf) {
 		CommonService comServ = new CommonServiceImpl();
 		if("반일".contentEquals(cmbFullHalf.getValue())) {
@@ -245,6 +246,7 @@ public class TAAServiceImpl implements TAAService {
 		}
 	}
 	
+	@Override
 	public double EndRequestHoliday(ComboBox<String> cmbFullHalf, DatePicker StartDatePicker, DatePicker EndDatePicker, TextField reasonTf, Label Holidays) {
 		CommonService comServ = new CommonServiceImpl();
 		Double CalcHoliday;
@@ -267,6 +269,7 @@ public class TAAServiceImpl implements TAAService {
 		return CalcHoliday;
 	}
 	
+	@Override
 	public boolean isCheck(ComboBox<String> cb, DatePicker startDP, DatePicker endDP) {
 		{	
 			if(cb.getValue() == null) {
@@ -286,6 +289,7 @@ public class TAAServiceImpl implements TAAService {
 		return true;
 	}
 	
+	@Override
 	public double successHolidayRequest(ComboBox<String> cmbFullHalf, Double calHoliday, DatePicker StartDatePicker, DatePicker EndDatePicker, TextField reasonTf, String num) {
 		CommonService comServ = new CommonServiceImpl();
 		double CalcHoliday = calHoliday;
@@ -312,7 +316,7 @@ public class TAAServiceImpl implements TAAService {
 		return CalcHoliday;
 	}
 	
-	
+	@Override
 	public HolidayRequest holyMem(String num, DatePicker StartDatePicker, DatePicker EndDatePicker, Double CalcHoliday, String reason) {
 		Employee emp = new DBServiceImpl().getEmployee(num);
 		HolidayRequest hr = new HolidayRequest();

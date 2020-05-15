@@ -10,7 +10,7 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="midasLbl" onMouseClicked="#EasterProc" prefHeight="100.0" prefWidth="261.0" text="  MIDAS-HCM" textAlignment="CENTER" textFill="#070c94">
+            <Label fx:id="midasLbl" onMouseClicked="#MainpageView" prefHeight="100.0" prefWidth="261.0" text="  MIDAS-HCM" textAlignment="CENTER" textFill="#070c94">
                <font>
                   <Font name="Gadugi" size="38.0" />
                </font>
@@ -23,7 +23,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </Label>
-            <Label fx:id="IDLbl" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="" textFill="#484848">
+            <Label fx:id="IDLbl" onMouseClicked="#EasterProc" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="81.0" prefWidth="226.0" text="" textFill="#484848">
                <font>
                   <Font name="Sitka Banner" size="21.0" />
                </font>

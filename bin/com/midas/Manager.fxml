@@ -32,14 +32,7 @@
                         <Font size="23.0" />
                      </font>
                   </Label>
-                  <Label fx:id="taaReportLbl" onMouseClicked="#TAAReportView" text="근태 리포트">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Label>
+
                   <Label fx:id="taaMgmtLbl" onMouseClicked="#MonthTAAView" text="월간 근태 내역">
                      <font>
                         <Font size="23.0" />
@@ -73,6 +66,14 @@
                      </VBox.margin>
                   </Label>
                   <Label fx:id="taaMgmtLbl1111" onMouseClicked="#HolidayModifyView" text="근태/연차 수정 승인" visible="false">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                                    <Label fx:id="taaReportLbl" onMouseClicked="#TAAReportView" text="근태 리포트" visible="false">
                      <font>
                         <Font size="23.0" />
                      </font>
