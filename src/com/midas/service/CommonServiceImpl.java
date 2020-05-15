@@ -82,7 +82,6 @@ public class CommonServiceImpl implements CommonService{
 
 
 
-
 	@Override
 	public void WindowClose(ActionEvent event) {
 		Parent root = (Parent)event.getSource();
