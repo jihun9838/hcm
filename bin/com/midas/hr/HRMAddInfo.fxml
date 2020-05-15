@@ -246,7 +246,7 @@
          <left>
             <HBox alignment="CENTER" prefHeight="47.0" prefWidth="463.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="253.0" text="사원 상세정보">
+                  <Label alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="253.0" text="사원 정보 추가">
                      <font>
                         <Font size="28.0" />
                      </font>

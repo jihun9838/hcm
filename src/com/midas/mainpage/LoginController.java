@@ -1,6 +1,7 @@
 package com.midas.mainpage;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import com.midas.Controller;
@@ -24,6 +25,7 @@ import javafx.stage.Stage;
 
 public class LoginController extends Controller implements Initializable{
 
+	
 	private Parent root;
 	private Loginservice loginServ;
 	private CommonService comServ;
@@ -102,9 +104,13 @@ public class LoginController extends Controller implements Initializable{
 			Button commuteBtn = (Button)getScene(e).lookup("#commuteBtn");
 			logoutBtn.setVisible(true);
 			commuteBtn.setVisible(true);
+			((Label)getScene(e).lookup("#IDLbl")).setVisible(true);;
+			((Label)getScene(e).lookup("#helloLbl")).setVisible(true);;
+			
 			
 			BorderPane borderPane = (BorderPane)getScene(e);
 			Parent mainpage = comServ.AddSceneWithController("/com/midas/mainpage.fxml");
+			//((Label)mainpage.lookup("#wiseSayingLabel")).setText(wiseSaying[new Random().nextInt(104)]);
 			borderPane.setCenter(mainpage);
 			
 			if("»ç¿ø".contentEquals(category)) {

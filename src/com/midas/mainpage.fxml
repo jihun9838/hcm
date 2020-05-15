@@ -6,8 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane fx:controller="com.midas.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.midas.MainController">
    <right>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </right>
@@ -17,7 +16,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="827.0" text="명언">
+            <Label fx:id="wiseSayingLabel" alignment="CENTER" prefHeight="50.0" prefWidth="827.0" text="명언" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
@@ -27,12 +26,47 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="50.0" prefWidth="827.0" text="공지사항">
+            <Label fx:id="noticeLabel1" prefHeight="50.0" prefWidth="827.0" text="공지사항">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="50.0" prefWidth="827.0" text="공지사항">
+            <Label fx:id="noticeLabel2" prefHeight="50.0" prefWidth="827.0" text="공지사항">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="noticeLabel3" prefHeight="50.0" prefWidth="827.0" text="공지사항" visible="false">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="noticeLabel4" prefHeight="50.0" prefWidth="827.0" text="공지사항" visible="false">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="noticeLabel5" prefHeight="50.0" prefWidth="827.0" text="공지사항" visible="false">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="noticeLabel6" prefHeight="50.0" prefWidth="827.0" text="공지사항" visible="false">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="noticeLabel7" prefHeight="50.0" prefWidth="827.0" text="공지사항" visible="false">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="noticeLabel8" prefHeight="50.0" prefWidth="827.0" text="공지사항" visible="false">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="noticeLabel9" prefHeight="50.0" prefWidth="827.0" text="공지사항" visible="false">
                <font>
                   <Font size="16.0" />
                </font>
