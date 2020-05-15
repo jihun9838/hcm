@@ -45,14 +45,14 @@ public class CalendarServiceImpl implements CalendarService{
 				while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY") ) {
 					calendarDate = calendarDate.minusDays(1);
 				}
-//				ap.setDate(calendarDate);
+				//				ap.setDate(calendarDate);
 				LocalDate actionDate = calendarDate;
 				ap.setOnMouseClicked(e->{
 					Stage s = new Stage();
-//					DatePicker dp = (DatePicker)s.getScene().getRoot().lookup("#setViewHolidayLbl");
-//					dp.setValue(actionDate);
-//					Label lbl = (Label)s.getScene().getRoot().lookup("#setCalendarHolidayLbl");
-//					lbl.setText(actionDate.toString());
+					//					DatePicker dp = (DatePicker)s.getScene().getRoot().lookup("#setViewHolidayLbl");
+					//					dp.setValue(actionDate);
+					//					Label lbl = (Label)s.getScene().getRoot().lookup("#setCalendarHolidayLbl");
+					//					lbl.setText(actionDate.toString());
 					new CommonServiceImpl().showWindow(s, "/com/midas/taa/_01/CalendarHoliday.fxml");
 				});
 				calendarDate = calendarDate.plusDays(1);
@@ -172,23 +172,22 @@ public class CalendarServiceImpl implements CalendarService{
 		// Create the calendar view
 		view = new VBox(dayLabels, calendar);
 	}
-	
+
 	public long diffOfTime(String first, String second) throws Exception
-	  {
-	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	    Date beginDate = formatter.parse(first);
-	    Date endDate = formatter.parse(second);
-	    
-	    return (endDate.getTime() - beginDate.getTime()) / (60 * 1000) ;
-	    
-	  }
+	{
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date beginDate = formatter.parse(first);
+		Date endDate = formatter.parse(second);
+
+		return (endDate.getTime() - beginDate.getTime()) / (60 * 1000) ;
+
+	}
 
 	//DB조회 칼렌더
 	public void populateCalendar(YearMonth yearMonth, String num, List<Commute> comLst) {
 		// Get the date we want to start with on the calendar
 		LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
-		System.out.println(calendarDate);
-		//		System.out.println(calendarDate);
+//		System.out.println(calendarDate);
 		// Dial back the day until it is SUNDAY (unless the month starts on a sunday)
 		while (!calendarDate.getDayOfWeek().toString().equals("SUNDAY") ) {
 			calendarDate = calendarDate.minusDays(1);
@@ -196,7 +195,7 @@ public class CalendarServiceImpl implements CalendarService{
 
 		// Populate the calendar with day numbers
 		for (CalendarAnchorPaneNode ap : allCalendarDays) {
-			
+
 
 			//DB Circle 색 변경
 			Circle circle= getCircle(Color.CORAL, 20, 8, 10);
@@ -213,7 +212,7 @@ public class CalendarServiceImpl implements CalendarService{
 							if(diffOfTime(LocalDate.now().toString()+" "+com.getTime(),LocalDate.now().toString()+" "+"09:00:00")<0) { //9시 - 출근시각 음수면 지각
 								circle.setFill(Color.YELLOW); //지각
 							}
-//							else circle.setFill(Color.GREEN); //출근
+							//							else circle.setFill(Color.GREEN); //출근
 						} catch (Exception er) {
 							// TODO Auto-generated catch block
 							er.printStackTrace();
@@ -234,20 +233,21 @@ public class CalendarServiceImpl implements CalendarService{
 					}
 				}
 				else{
-					 
+
 				}
 			}
 			if (ap.getChildren().size() != 0) {
 				ap.getChildren().remove(0);
 			}
-			
+
 			if(sort==1) {
 				ap.getChildren().add(circle2);
 			}
 			if (sort==2) {
 				ap.getChildren().add(circle3);
 			}
-			
+			ap.getChildren().add(circle4);
+
 			if(calendarDate.equals(LocalDate.now())&&calendarDate.getMonth().equals(LocalDate.now().getMonth())) {
 				ap.setStyle("-fx-background-color:#A6A6A6;");
 			}
@@ -255,16 +255,55 @@ public class CalendarServiceImpl implements CalendarService{
 				circle.setVisible(false);
 			}
 
+
+			String now = LocalDate.now().toString() +" 00:00:00";
+			String will = calendarDate + " 00:00:00";
+
+			try {
+				if(diffOfTime(now, will)>=0) {
+					circle4.setVisible(false);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			String min = calendarDate + " 00:00:00";
+			for(Commute com : comLst) {
+				String past = com.getDate() + " 00:00:00";
+				try {
+					if(diffOfTime(min, past)<=0)
+					 min = past; 
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+			System.out.println(min);
+			
+			try {
+				if(diffOfTime(min, will)<=0) {
+					circle4.setVisible(false);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+
 			Text txt = new Text(String.valueOf(calendarDate.getDayOfMonth()));
 			if(calendarDate.getDayOfWeek().toString().equals("SUNDAY")) {
 				txt.setFill(Color.RED);
 				if(circle.getFill().equals(Color.CORAL))
-				circle.setVisible(false);
+					circle.setVisible(false);
+				circle4.setVisible(false);
 			}
 			if(calendarDate.getDayOfWeek().toString().equals("SATURDAY")) {
 				txt.setFill(Color.BLUE);
 				if(circle.getFill().equals(Color.CORAL))
 					circle.setVisible(false);
+				circle4.setVisible(false);
 			}
 
 			ap.getChildren().add(circle);
