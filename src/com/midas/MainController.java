@@ -170,23 +170,22 @@ public class MainController extends Controller implements Initializable {
 
 	
 	
-	
+	// Mainpage
 	public void ModifyNoticeLabel1Proc(Event e) {
-		if(!comServ.getUserLabel(root).contains("관리자")) return;
+		if(!((Label)comServ.getSuperRoot(root).lookup("#helloLbl")).getText().contains("관리자")) return;
 		Stage s = new Stage();
 		Parent newScene = comServ.showWindow(s, "/com/midas/noticeModify.fxml");
 		
 	}
 	
 	public void ModifyNoticeLabel2Proc(Event e) {
-		if(!comServ.getUserLabel(root).contains("관리자")) return;
+		if(!((Label)comServ.getSuperRoot(root).lookup("#helloLbl")).getText().contains("관리자")) return;
 		Stage s = new Stage();
 		comServ.showWindow(new Stage(), "/com/midas/noticeModify.fxml");	
-		
 	}
 
 	public void SaveNoticeModifyProc(ActionEvent e) {
-		
+		// DB 구축 후 추후 개발
 	}
 	
 	
