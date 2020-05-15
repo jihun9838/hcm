@@ -50,6 +50,11 @@ public class mypageController extends Controller implements Initializable{
 //		setInfo();
 	}
 	
+	private Parent getScene(ActionEvent e) {
+		Parent btnObj = (Parent)e.getSource();
+		return btnObj.getScene().getRoot();
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -93,6 +98,7 @@ public class mypageController extends Controller implements Initializable{
 			employee.setPw(newPwTxt.getText());
 			dbServ.mypage(employeeLbl.getText(), employee, false);
 			comServ.ErrorMsg("내 정보 수정","새로운 비밀번호 확인","새로운 비밀번호로 변경되었습니다.");
+			setHelloLbl(e);
 			//comServ.WindowClose(e);
 		}
 		else if(newPwTxt.getText().length()>0 && newPwOKTxt.getText().length()>0
@@ -106,9 +112,15 @@ public class mypageController extends Controller implements Initializable{
 			dbServ = new DBServiceImpl();
 			dbServ.mypage(employeeLbl.getText(), employee, true);
 			comServ.ErrorMsg("내 정보 수정","정보수정","새로운 정보로 정보로 저장되었습니다.");
+			setHelloLbl(e);
 			//comServ.WindowClose(e);
 			
 		}
+	}
+	
+	private void setHelloLbl(ActionEvent e) {
+		Label helloLbl = (Label)getScene(e).lookup("#helloLbl");
+		helloLbl.setText(nameTxt.getText()+"님 안녕하세요");
 	}
 	
 //	public void setInfo() {
