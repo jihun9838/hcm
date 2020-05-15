@@ -75,6 +75,7 @@ public class infoPWCheckController extends Controller implements Initializable{
 		else {
 			//comServ.ErrorMsg("내정보 확인", "비밀번호가 다릅니다.", "비밀번호를 확인해주세요");
 			infoPwTxt.clear();
+			infoPwTxt.requestFocus();
 		}	
 		
 	}

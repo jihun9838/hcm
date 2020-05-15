@@ -43,5 +43,6 @@ public class SearchpwController extends Controller implements Initializable{
 		String id = pwSearchIdTxt.getText();
 
 		dbServ.searchPW(name, id, PhoneNum);
+		pwSearchNameTxt.requestFocus();
 	}
 }

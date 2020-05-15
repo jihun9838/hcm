@@ -1,7 +1,6 @@
 package com.midas.mypage.serivce;
 
 import javafx.scene.Parent;
-
 import javafx.scene.control.TextField;
 
 

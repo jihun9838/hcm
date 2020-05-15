@@ -41,9 +41,8 @@ public class SearchidController extends Controller implements Initializable{
 		String PhoneNum = idSearchNumTxt.getText();
 
 		dbServ.searchID(name, PhoneNum);
+		idSearchNameTxt.requestFocus();
 	}
-
-
 }
 
 
