@@ -273,7 +273,7 @@ public class CalendarServiceImpl implements CalendarService{
 				String past = com.getDate() + " 00:00:00";
 				try {
 					if(diffOfTime(min, past)<=0)
-					 min = past;
+					 min = past; 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
