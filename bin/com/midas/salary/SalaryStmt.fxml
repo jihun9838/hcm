@@ -7,7 +7,7 @@
 
 <BorderPane prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.midas.salary.SalaryController">
    <center>
-      <TextArea fx:id="salaryStmtTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" text="6월 급여 연봉 /12 만원&#10;실 수령액 연봉 / 12 - 4대 보험 만원&#10;4대 보험 : 건강보험, 국민연급, 고용보험, 산업재해&#10;&#10;지급총액 : 연봉 /12 만원&#10;공제총액 : 4대 보험&#10;실지급액 : 연봉 / 12 - 4대 보험 만원&#10;&#10;&#10;&#10;(주) 미다스 (직인)" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="salaryStmtTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" text="&#10;&#10;6월 급여 연봉 /12 만원&#10;실 수령액 연봉 / 12 - 4대 보험 만원&#10;4대 보험 : 건강보험, 국민연급, 고용보험, 산업재해&#10;&#10;지급총액 : 연봉 /12 만원&#10;공제총액 : 4대 보험&#10;실지급액 : 연봉 / 12 - 4대 보험 만원&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;(주) 미다스 (직인)" BorderPane.alignment="CENTER" />
    </center>
    <top>
       <HBox prefHeight="60.0" prefWidth="1020.0" spacing="20.0">

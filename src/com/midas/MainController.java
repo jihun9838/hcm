@@ -204,10 +204,12 @@ public class MainController extends Controller implements Initializable {
 
 	public void SalaryStmtView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/salary/SalaryStmt.fxml");
+		Parent scene = comServ.AddSceneWithController("/com/midas/salary/SalaryStmt.fxml");
 		borderPane.setCenter(scene);
 		
 		comServ.setPageLabel(scene, "급여 명세서");
+		
+		((DatePicker)scene.lookup("#salaryStmtDatePicker")).setValue(LocalDate.now());
 	}
 
 	

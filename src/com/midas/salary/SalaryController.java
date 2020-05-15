@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class SalaryController extends Controller implements Initializable{
@@ -46,7 +47,7 @@ public class SalaryController extends Controller implements Initializable{
 	
 	//salaryStmt.fxml
 	@FXML private DatePicker salaryStmtDatePicker;
-	
+	@FXML private TextArea salaryStmtTextArea;
 	
 	private List<SalaryResult> salaryResultList;
 	private Map<String, String> m;
@@ -117,33 +118,17 @@ public class SalaryController extends Controller implements Initializable{
 	
 	public void ShowStmtProc(ActionEvent e) {
 		Scene scene = ((Parent)e.getSource()).getScene();
+		String option = "WHERE num = '" + comServ.getUserLabel(root) + "' " + 
+						"AND month = " + String.valueOf(salaryStmtDatePicker.getValue().getMonthValue());
 		
-		String option = "WHERE id = '" + comServ.getUserLabel(root) + "' ";
-		option += "AND month = '" + salaryStmtDatePicker.getValue().getMonth().toString() + "'";
-		
-//		LocalDate date; // = comServ.getDatePickerInfo(root, "#salaryStmtDatePicker");
-//		
-//		for(SalaryResult salaryResult : lilililist) {
-//			if(date.getMonth().equals(salaryResult.getMonth())) {
-//				
-//				salServ.ShowSalaryStmt(root, "#salaryStmtTextTf", salaryResult);
-//				break;
-//			}
-//		}
-		
-		//List<SalaryResult> salaryResult = dbServ.SelectTable("SalaryResult", "WHERE id = " + id);
 		List<SalaryResult> salaryResultList = new DBServiceImpl().SelectTable("SalaryResult", option);
 		
-		if(salaryResultList.isEmpty())
-			System.out.println("sad,.fj kahsdlfkjabdlgknbadflkgjnsbdfkjbsdkljsdlfjknlkjfnv");
-		
-		SalaryResult salaryResult = salaryResultList.get(0); 
-		System.out.println(salaryResultList.size());
-		
-		salServ.ShowSalaryStmt(scene, "#salaryStmtTa", salaryResult);
+		if(salaryResultList.isEmpty()) return;
+
+		salServ.ShowSalaryStmt(scene, "#salaryStmtTextArea", salaryResultList.get(0));
 	}
 	
-	public void SalaryStmtExportToExcel() {
-		//new DB2ExcelExporter().export(salaryResultList);
+	public void SalaryStmtExportToExcel(ActionEvent e) {
+		new DB2ExcelExporter().export(salaryStmtTextArea.getText());
 	}
 }
