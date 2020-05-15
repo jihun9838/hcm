@@ -107,6 +107,7 @@ public class MainController extends Controller implements Initializable {
 		borderPane.setLeft(scene);
 	}
 
+	
 	public void logoutBtnProc(ActionEvent e) {
 		comServ.ErrorMsg("로그아웃", "로그아웃 됩니다.", "로그아웃이 실행됩니다.");
 		
@@ -116,9 +117,22 @@ public class MainController extends Controller implements Initializable {
 		borderPane.setLeft(null);
 		borderPane.setCenter(loginPage);
 		
+		
+		((Label)borderPane.lookup("#IDLbl")).setVisible(false);;
+		((Label)borderPane.lookup("#helloLbl")).setVisible(false);;
+		((Button)borderPane.lookup("#logoutBtn")).setVisible(false);;
+		((Button)borderPane.lookup("#commuteBtn")).setVisible(false);;
+		
 		//comServ.WindowClose(e);
 	}
 
+	
+	public void MainpageView(Event e) {
+		BorderPane borderPane = (BorderPane) getScene(e);
+		Parent scene = comServ.AddScene("/com/midas/mainpage.fxml");
+		borderPane.setCenter(scene);
+	}
+	
 	public void commuteBtnProc(ActionEvent e) {
 		DBService dbServ = new DBServiceImpl();
 		String num = IDLbl.getText();
@@ -149,13 +163,16 @@ public class MainController extends Controller implements Initializable {
 		comServ.setUserLabel(root, id);
 	}
 
+
+
+	
+	
+	// Mypage
 	public void MyPageView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
 		root = comServ.AddSceneWithController("/com/midas/mypage/infoPwCheck.fxml");
 		borderPane.setCenter(root);
 	}
-
-	
 	
 	
 	
