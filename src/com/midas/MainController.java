@@ -32,6 +32,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class MainController extends Controller implements Initializable {
 
@@ -111,10 +112,12 @@ public class MainController extends Controller implements Initializable {
 
 	public void MainpageView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
-		Parent scene = comServ.AddScene("/com/midas/mainpage.fxml");
+		Parent scene = comServ.AddSceneWithController("/com/midas/mainpage.fxml");
 		borderPane.setCenter(scene);
 		
 		((Label)scene.lookup("#wiseSayingLabel")).setText(wiseSaying[new Random().nextInt(wiseSaying.length)]);
+		
+		comServ.setPageLabel(root, "Homepage");
 	}
 	
 	public void commuteBtnProc(ActionEvent e) {
@@ -152,10 +155,11 @@ public class MainController extends Controller implements Initializable {
 		borderPane.setLeft(null);
 		borderPane.setCenter(loginPage);
 		
-		((Label)borderPane.lookup("#IDLbl")).setVisible(false);;
-		((Label)borderPane.lookup("#helloLbl")).setVisible(false);;
-		((Button)borderPane.lookup("#logoutBtn")).setVisible(false);;
-		((Button)borderPane.lookup("#commuteBtn")).setVisible(false);;
+		((Label)borderPane.lookup("#homepageLbl")).setVisible(false);
+		((Label)borderPane.lookup("#IDLbl")).setVisible(false);
+		((Label)borderPane.lookup("#helloLbl")).setVisible(false);
+		((Button)borderPane.lookup("#logoutBtn")).setVisible(false);
+		((Button)borderPane.lookup("#commuteBtn")).setVisible(false);
 		
 		//comServ.WindowClose(e);
 	}
@@ -164,9 +168,26 @@ public class MainController extends Controller implements Initializable {
 		comServ.setUserLabel(root, id);
 	}
 
-
-
 	
+	
+	
+	public void ModifyNoticeLabel1Proc(Event e) {
+		if(!comServ.getUserLabel(root).contains("관리자")) return;
+		Stage s = new Stage();
+		Parent newScene = comServ.showWindow(s, "/com/midas/noticeModify.fxml");
+		
+	}
+	
+	public void ModifyNoticeLabel2Proc(Event e) {
+		if(!comServ.getUserLabel(root).contains("관리자")) return;
+		Stage s = new Stage();
+		comServ.showWindow(new Stage(), "/com/midas/noticeModify.fxml");	
+		
+	}
+
+	public void SaveNoticeModifyProc(ActionEvent e) {
+		
+	}
 	
 	
 	// Mypage
@@ -174,6 +195,8 @@ public class MainController extends Controller implements Initializable {
 		BorderPane borderPane = (BorderPane) getScene(e);
 		root = comServ.AddSceneWithController("/com/midas/mypage/infoPwCheck.fxml");
 		borderPane.setCenter(root);
+		
+		comServ.setPageLabel(root, "정보 수정");
 	}
 	
 	
@@ -225,30 +248,39 @@ public class MainController extends Controller implements Initializable {
 		pane.setCenter(new CalendarServiceImpl(YearMonth.now()).getView());
 		DatePicker dp = (DatePicker) root.lookup("#setCalendarDatePicker");
 		dp.setValue(LocalDate.now());
+		comServ.setPageLabel(root, "휴일 설정");
 	}
 
 	public void TAAReportView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
 		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/_02/TAAReport.fxml", comServ.getSuperRoot(root)); //근태리포트
 		borderPane.setCenter(root);
+		
+		//comServ.setPageLabel(root, "근태 리포트");
 	}
 
 	public void MonthTAAView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
 		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/_03/MonthTAA.fxml", comServ.getSuperRoot(root)); //월간근태내역
 		borderPane.setCenter(root);
+		
+		comServ.setPageLabel(root, "월간 근태 내역");
 	}
 
 	public void PersonalTAAView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
 		root = comServ.AddSceneWithControllerOnRoot("/com/midas/taa/_04/PersonalTAA.fxml", comServ.getSuperRoot(root)); //개인근태내역
 		borderPane.setCenter(root);
+		
+		comServ.setPageLabel(root, "개인 근태 내역");
 	}
 
 	public void TAAListView(Event e) {
 		BorderPane borderPane = (BorderPane) getScene(e);
 		root = comServ.AddSceneWithController("/com/midas/taa/_05/TAAList.fxml");
 		borderPane.setCenter(root);
+		
+		comServ.setPageLabel(root, "연차 내역");
 	}
 
 	public void HolidayApprovalView(Event e) {
@@ -261,6 +293,8 @@ public class MainController extends Controller implements Initializable {
 		List<HolidayRequest> requestList = new DBServiceImpl().SelectTable("HolidayRequest",
 				"WHERE " + "\"요청일\"" + " like " + "'%" + LocalDate.now().toString().substring(0, 7) + "%'");
 		comServ.ShowTableViewByList(scene, "#HoliAppTableView", requestList);
+		
+		comServ.setPageLabel(root, "연차 승인");
 	}
 
 	public void HolidayModifyView(Event e) { //근태수정
@@ -279,6 +313,8 @@ public class MainController extends Controller implements Initializable {
 		BorderPane borderPane = (BorderPane) getScene(e);
 		root = comServ.AddSceneWithController("/com/midas/taa/own/_01/OwnTAA.fxml");
 		borderPane.setCenter(root);
+		
+		comServ.setPageLabel(root, "근태/연차 내역");
 	}
 
 	public void OwnAskHolidayView(Event e) { //연차 신청
@@ -290,6 +326,8 @@ public class MainController extends Controller implements Initializable {
 		Scene scene = ((Parent) e.getSource()).getScene(); 
 		List<Employee> OwnHolidayList = new DBServiceImpl().SelectTableHoliday("WHERE 사원번호 = \""+ num + "\""); 
 		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
+		
+		comServ.setPageLabel(root, "연차 신청");
 	}
 
 	public void OwnModifyHolidayView(Event e) {
@@ -301,6 +339,8 @@ public class MainController extends Controller implements Initializable {
 		Scene scene = ((Parent) e.getSource()).getScene();
 		List<Employee> OwnHolidayList = new DBServiceImpl().SelectTableHoliday("WHERE 사원번호 = \""+ num + "\""); 
 		comServ.ShowTableViewByList(scene, "#OwnRemainTable", OwnHolidayList);
+		
+		//comServ.setPageLabel(root, "근태/연차 수정 신청");
 	}
 
 	
@@ -314,6 +354,8 @@ public class MainController extends Controller implements Initializable {
 		BorderPane borderPane = (BorderPane) getScene(e);
 		root = comServ.AddSceneWithController("/com/midas/hr/HRMpage.fxml");
 		borderPane.setCenter(root);
+		
+		comServ.setPageLabel(root, "인사 관리");
 	}
 
 }

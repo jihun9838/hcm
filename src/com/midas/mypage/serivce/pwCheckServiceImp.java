@@ -10,12 +10,12 @@ public class pwCheckServiceImp implements pwCheckService{
 
 	@Override
 	public void pwCheck(Parent root,String id) {
-		
+
 		TextField infoPwTxt = (TextField)root.lookup("#infoPwTxt");
-		
-		 pwCheckServ.pwCheck(root, id);
-		 infoPwTxt.getText();	
-		
+
+		pwCheckServ.pwCheck(root, id);
+		infoPwTxt.getText();	
+
 	}
 
 }

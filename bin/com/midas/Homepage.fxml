@@ -15,7 +15,7 @@
                   <Font name="Gadugi" size="38.0" />
                </font>
             </Label>
-            <Label fx:id="homepageLbl" prefHeight="100.0" prefWidth="170.0" text="Homepage">
+            <Label fx:id="homepageLbl" prefHeight="100.0" prefWidth="230.0" text="Homepage" visible="false">
                <font>
                   <Font size="20.0" />
                </font>

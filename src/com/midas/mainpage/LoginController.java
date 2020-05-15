@@ -104,8 +104,9 @@ public class LoginController extends Controller implements Initializable{
 			Button commuteBtn = (Button)getScene(e).lookup("#commuteBtn");
 			logoutBtn.setVisible(true);
 			commuteBtn.setVisible(true);
-			((Label)getScene(e).lookup("#IDLbl")).setVisible(true);;
-			((Label)getScene(e).lookup("#helloLbl")).setVisible(true);;
+			((Label)getScene(e).lookup("#homepageLbl")).setVisible(true);
+			((Label)getScene(e).lookup("#IDLbl")).setVisible(true);
+			((Label)getScene(e).lookup("#helloLbl")).setVisible(true);
 			
 			
 			BorderPane borderPane = (BorderPane)getScene(e);
