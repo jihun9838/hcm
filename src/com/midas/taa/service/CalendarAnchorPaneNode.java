@@ -20,7 +20,7 @@ public class CalendarAnchorPaneNode extends AnchorPane {
 	 */
 	public CalendarAnchorPaneNode(Node... children) {
 		super(children);
-		
+		this.setOnMouseClicked(e -> System.out.println("This pane's date is: " + date));
 	}
 
 	public LocalDate getDate() {

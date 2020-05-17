@@ -79,22 +79,15 @@
 							</cellValueFactory>
 						</TableColumn>
 
-						<TableColumn prefWidth="100.0" text="출장">
+						<TableColumn prefWidth="100.0" text="퇴근">
 							<cellValueFactory>
-								<PropertyValueFactory
-									property="businessTrip" />
+								<PropertyValueFactory property="leave" />
 							</cellValueFactory>
 						</TableColumn>
 
 						<TableColumn prefWidth="100.0" text="조퇴">
 							<cellValueFactory>
 								<PropertyValueFactory property="earlyLeave" />
-							</cellValueFactory>
-						</TableColumn>
-
-						<TableColumn prefWidth="100.0" text="결근">
-							<cellValueFactory>
-								<PropertyValueFactory property="absence" />
 							</cellValueFactory>
 						</TableColumn>
 

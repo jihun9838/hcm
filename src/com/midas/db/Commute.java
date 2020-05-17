@@ -14,6 +14,7 @@ public class Commute {
 	private SimpleStringProperty goToWork;
 	private SimpleStringProperty lateness;
 	private SimpleStringProperty businessTrip;
+	private SimpleStringProperty leave;
 	private SimpleStringProperty earlyLeave;
 	private SimpleStringProperty absence;
 	private StringProperty[] value;
@@ -29,6 +30,7 @@ public class Commute {
 		this.goToWork = new SimpleStringProperty();
 		this.lateness = new SimpleStringProperty();
 		this.businessTrip = new SimpleStringProperty();
+		this.leave = new SimpleStringProperty();
 		this.earlyLeave = new SimpleStringProperty();
 		this.absence = new SimpleStringProperty();
 		this.value = new StringProperty[3];
@@ -42,7 +44,7 @@ public class Commute {
 	}
 
 	public Commute(String num, String sortation, String date, String time, String yearMonth, String goToWork, String lateness, 
-			String businessTrip, String earlyLeave, String absence, String [] value) {
+			String businessTrip, String leave, String earlyLeave, String absence, String [] value) {
 		this.num = new SimpleStringProperty(num);
 		this.sortation = new SimpleStringProperty(sortation);
 		this.date = new SimpleStringProperty(date);
@@ -53,11 +55,12 @@ public class Commute {
 		this.goToWork = new SimpleStringProperty(goToWork);
 		this.lateness = new SimpleStringProperty(lateness);
 		this.businessTrip = new SimpleStringProperty(businessTrip);
+		this.leave = new SimpleStringProperty(leave);
 		this.earlyLeave = new SimpleStringProperty(earlyLeave);
 		this.absence = new SimpleStringProperty(absence);
 		this.value = new StringProperty[]{
 				num(), sortation(), date(), time(), 
-				yearMonth(), goToWork(), lateness(), businessTrip(), earlyLeave(), absence()};
+				yearMonth(), goToWork(), lateness(), businessTrip(), leave(), earlyLeave(), absence()};
 	}
 
 	public String getNum() {
@@ -149,6 +152,15 @@ public class Commute {
 	}
 	public StringProperty businessTrip() {
 		return businessTrip;
+	}
+	public String getLeave() {
+		return leave.get();
+	}
+	public void setLeave(String leave) {
+		this.leave.set(leave);
+	}
+	public StringProperty leave() {
+		return leave;
 	}
 	public String getEarlyLeave() {
 		return earlyLeave.get();

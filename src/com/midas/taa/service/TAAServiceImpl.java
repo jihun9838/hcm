@@ -129,7 +129,9 @@ public class TAAServiceImpl implements TAAService {
 		CommonService comServ = new CommonServiceImpl();
 		String option = "WHERE " + "\"날짜\""  + "like '%" + getYearMonth(datePicker) + "%'"
 				+" AND "+"\"사원번호\""+"=";
-		List<Commute> commuteLst = new DBServiceImpl().CommuteCountAllList(option+num);
+		
+		
+		List<Commute> commuteLst = new DBServiceImpl().CommuteCountAllList(option+num); //option+num
 		comServ.ShowTableViewByList(scene, tableId, commuteLst);
 	}
 

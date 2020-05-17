@@ -10,6 +10,8 @@ import java.util.List;
 import com.midas.db.Commute;
 import com.midas.service.CommonServiceImpl;
 
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -23,6 +25,7 @@ public class CalendarServiceImpl implements CalendarService{
 	private VBox view;
 	private Text calendarTitle;
 	private YearMonth currentYearMonth;
+	private static LocalDate actionDate;
 	//private DBService dbServ;
 
 	public CalendarServiceImpl() {
@@ -46,14 +49,15 @@ public class CalendarServiceImpl implements CalendarService{
 					calendarDate = calendarDate.minusDays(1);
 				}
 				//				ap.setDate(calendarDate);
-				LocalDate actionDate = calendarDate;
+				actionDate = calendarDate;
 				ap.setOnMouseClicked(e->{
 					Stage s = new Stage();
-					//					DatePicker dp = (DatePicker)s.getScene().getRoot().lookup("#setViewHolidayLbl");
-					//					dp.setValue(actionDate);
 					//					Label lbl = (Label)s.getScene().getRoot().lookup("#setCalendarHolidayLbl");
 					//					lbl.setText(actionDate.toString());
 					new CommonServiceImpl().showWindow(s, "/com/midas/taa/_01/CalendarHoliday.fxml");
+					Label lb = (Label)s.getScene().lookup("#setViewHolidayLbl");
+					lb.setText(ap.getDate().toString());
+					
 				});
 				calendarDate = calendarDate.plusDays(1);
 				allCalendarDays.add(ap);

@@ -1420,9 +1420,8 @@ public class DBServiceImpl implements DBService{
 		String sql = "SELECT " + "\"사원번호\","+ 
 				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출근\"" + " AND "+ "\"시간\"" +"<" + "\"09:00:00\"" +") THEN 1 END)," +
 				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출근\"" + " AND "+ "\"시간\"" +">=" + "\"09:00:00\"" +") THEN 1 END)," +
-				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출장\"" +") THEN 1 END)," +
-				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"조퇴\"" +") THEN 1 END)," +
-				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"결근\"" +") THEN 1 END)" + 
+				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"퇴근\"" + " AND "+ "\"시간\"" +">=" + "\"18:00:00\"" +") THEN 1 END)," +
+				"COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"퇴근\"" + " AND "+ "\"시간\"" +"<" + "\"18:00:00\"" +") THEN 1 END)" +
 				"FROM commute";
 		if(!whereOption.isEmpty()) {
 			sql +="\n" + whereOption;
@@ -1435,9 +1434,8 @@ public class DBServiceImpl implements DBService{
 				com.setNum(rs.getString("사원번호"));
 				com.setGoToWork(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출근\"" + " AND "+ "\"시간\"" +"<" + "\"09:00:00\"" +") THEN 1 END)"));
 				com.setLateness(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출근\"" + " AND "+ "\"시간\"" +">=" + "\"09:00:00\"" +") THEN 1 END)"));
-				com.setBusinessTrip(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"출장\"" +") THEN 1 END)"));
-				com.setEarlyLeave(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"조퇴\"" +") THEN 1 END)"));
-				com.setAbsence(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"결근\"" +") THEN 1 END)"));
+				com.setLeave(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"퇴근\"" + " AND "+ "\"시간\"" +">=" + "\"18:00:00\"" +") THEN 1 END)"));
+				com.setEarlyLeave(rs.getString("COUNT(CASE WHEN ("+"\"구분\"" +"=" + "\"퇴근\"" + " AND "+ "\"시간\"" +"<" + "\"18:00:00\"" +") THEN 1 END)"));
 				commuteLst.add(com);
 			}
 			stmt.close();
@@ -1450,6 +1448,42 @@ public class DBServiceImpl implements DBService{
 		}
 		return null;
 	}
+	
+//	@Override
+//	public List<Commute> CommuteCountAllList2(String num) {
+//		List<Commute> commuteLst = new ArrayList<Commute>();
+//		String sql = "SELECT " + "\"사원번호\", " + "SUBSTR" + "(" + "\"날짜\"" + ", 0, 8)"+
+//		         "COUNT(CASE WHEN(" + "\"구분\"" + "=" + "\"출근\"" + " AND " + "\"시간\"" +" <= " + "\"09:01:00\"" + ") THEN 1 ELSE NULL END), " +
+//		            "COUNT(CASE WHEN(" + "\"구분\"" + "=" + "\"출근\"" + " AND " + "\"시간\"" + " > " + "\"09:00:00\"" + ") THEN 1 ELSE NULL END), " +
+//		         "COUNT(CASE WHEN(" + "\"구분\"" + " = " + " \"퇴근\"" + ") THEN 1 ELSE NULL END), " +
+//					"COUNT(CASE WHEN(" + "\"구분\""  + " = " + "\"퇴근\"" +" AND " + "\"시간\"" +" < "  +"\"18:00:00\"" + ") THEN 1 ELSE NULL END) " +
+//		"FROM commute " +
+//		"WHERE " + "\"사원번호\"" + "=" + num +
+//		" GROUP BY SUBSTR(" + "\"날짜\"" + ", 0, 8)";
+//		
+//		try {
+//			Statement stmt = conn.createStatement();
+//			ResultSet rs = stmt.executeQuery(sql);
+//			while(rs.next()) {
+//				Commute com = new Commute();
+//				com.setNum(rs.getString("사원번호"));
+//				com.setYearMonth(rs.getString("SUBSTR" + "(" + "\"날짜\"" + ", 0, 8)"));
+//				com.setGoToWork(rs.getString("COUNT(CASE WHEN(" + "\"구분\"" + "=" + "\"출근\"" + " AND " + "\"시간\"" +" <= " + "\"09:01:00\"" + ") THEN 1 ELSE NULL END)"));
+//				com.setLateness(rs.getString("COUNT(CASE WHEN(" + "\"구분\"" + "=" + "\"출근\"" + " AND " + "\"시간\"" + " > " + "\"09:00:00\"" + ") THEN 1 ELSE NULL END)"));
+//				com.setLeave(rs.getString( "COUNT(CASE WHEN(" + "\"구분\"" + " = " + " \"퇴근\"" + ") THEN 1 ELSE NULL END)"));
+//				com.setEarlyLeave(rs.getString("COUNT(CASE WHEN(" + "\"구분\""  + " = " + "\"퇴근\"" +" AND " + "\"시간\"" +" < "  +"\"18:00:00\"" + ") THEN 1 ELSE NULL END)"));
+//				commuteLst.add(com);
+//			}
+//			stmt.close();
+//			rs.close();
+//			return commuteLst;
+//			//conn.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 	@Override
 	public Commute getCommute(String whereOption) {

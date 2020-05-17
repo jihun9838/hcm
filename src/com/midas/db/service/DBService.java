@@ -63,6 +63,7 @@ public interface DBService {
 	public boolean SaveTAA(TAA TAA);
 	public boolean UpdateTAA(TAA TAA, String num);
 	public List<Commute> CommuteCountAllList(String whereOption);
+	//public List<Commute> CommuteCountAllList2(String whereOption);
 	public Commute getCommute(String whereOption);
 
 

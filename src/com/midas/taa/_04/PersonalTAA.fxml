@@ -10,7 +10,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane  fx:controller="com.midas.taa._04.PersonalTAAController" fx:id="PerBP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="PerBP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.midas.taa._04.PersonalTAAController">
 	<padding>
 		<Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
 	</padding>
@@ -26,7 +26,7 @@
 					</VBox.margin>
 				</Label>
 				<TableView fx:id="PersonalTAATableView" prefHeight="50.0" prefWidth="980.0">
-					
+
 					<columns>
 						<TableColumn prefWidth="100.0" text="사원번호">
 							<cellValueFactory>
@@ -46,9 +46,9 @@
 							</cellValueFactory>
 						</TableColumn>
 
-						<TableColumn prefWidth="100.0" text="출장">
+						<TableColumn prefWidth="100.0" text="퇴근">
 							<cellValueFactory>
-								<PropertyValueFactory property="businessTrip" />
+								<PropertyValueFactory property="leave" />
 							</cellValueFactory>
 						</TableColumn>
 
@@ -58,18 +58,13 @@
 							</cellValueFactory>
 						</TableColumn>
 
-						<TableColumn prefWidth="100.0" text="결근">
-							<cellValueFactory>
-								<PropertyValueFactory property="absence" />
-							</cellValueFactory>
-						</TableColumn>
-						
+
 					</columns>
 				</TableView>
 				<HBox prefHeight="24.0" prefWidth="980.0" spacing="10.0">
 					<children>
-						<Pane prefHeight="35.0" prefWidth="380.0" />
-                  <Circle fill="GREEN" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+						<Pane prefHeight="24.0" prefWidth="602.0" />
+						<Circle fill="GREEN" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
 						<Label prefHeight="35.0" prefWidth="36.0" text="출근">
 							<font>
 								<Font size="18.0" />
@@ -78,7 +73,7 @@
 								<Insets right="10.0" />
 							</HBox.margin>
 						</Label>
-                  <Circle fill="YELLOW" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+						<Circle fill="YELLOW" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
 						<Label prefHeight="35.0" text="지각">
 							<font>
 								<Font size="18.0" />
@@ -87,7 +82,7 @@
 								<Insets right="10.0" />
 							</HBox.margin>
 						</Label>
-                  <Circle fill="DARKCYAN" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+						<Circle fill="DARKCYAN" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
 						<Label prefHeight="35.0" text="조퇴">
 							<font>
 								<Font size="18.0" />
@@ -96,16 +91,7 @@
 								<Insets right="10.0" />
 							</HBox.margin>
 						</Label>
-                  <Circle fill="AQUA" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-						<Label prefHeight="35.0" text="출장">
-							<font>
-								<Font size="18.0" />
-							</font>
-							<HBox.margin>
-								<Insets right="10.0" />
-							</HBox.margin>
-						</Label>
-                  <Circle fill="RED" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+						<Circle fill="RED" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
 						<Label prefHeight="35.0" text="결근">
 							<font>
 								<Font size="18.0" />
