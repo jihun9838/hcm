@@ -68,7 +68,7 @@ public class OwnAskHolidayController extends Controller implements Initializable
 
 	public void StartRequestHoliday(ActionEvent e) {
 		CalcHoliday = TAAServ.StartRequestHoliday(cmbFullHalf, StartDatePicker, EndDatePicker, reasonTf);
-		if(CalcHoliday ==1) Holidays.setText("1");
+		if(CalcHoliday ==0.5) Holidays.setText("0.5");
 	}
 
 	public void EndRequestHoliday(ActionEvent e) {
