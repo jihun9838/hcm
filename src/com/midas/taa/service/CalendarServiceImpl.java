@@ -31,10 +31,10 @@ public class CalendarServiceImpl implements CalendarService{
 	public CalendarServiceImpl() {
 	}
 
-
+	
 	public CalendarServiceImpl(YearMonth yearMonth) {
 		currentYearMonth = yearMonth;
-		// Create the calendar grid pane
+		// Create the calebndar grid pane
 		GridPane calendar = new GridPane();
 		calendar.setPrefSize(1000, 400);
 		calendar.setGridLinesVisible(true);
