@@ -8,9 +8,6 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 
 <BorderPane prefHeight="620.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.midas.salary.SalaryController">
-	<bottom>
-		<Pagination prefHeight="60.0" prefWidth="1020.0" BorderPane.alignment="CENTER" />
-	</bottom>
 	<top>
 		<HBox prefHeight="60.0" prefWidth="1020.0" spacing="20.0">
 			<children>
