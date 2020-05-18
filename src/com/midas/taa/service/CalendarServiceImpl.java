@@ -284,7 +284,7 @@ public class CalendarServiceImpl implements CalendarService{
 				}
 
 			}
-			System.out.println(min);
+			//System.out.println(min);
 			
 			try {
 				if(diffOfTime(min, will)<=0) {

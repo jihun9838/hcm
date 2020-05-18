@@ -187,7 +187,7 @@ public class TAAServiceImpl implements TAAService {
 		int row = tableView.getSelectionModel().getSelectedIndex()+1;
 		String num = requestList.get(row-1).getId();
 		String periodDay = requestList.get(row-1).getPeriodDay();
-		System.out.println(row+" "+num+" "+periodDay);
+		//System.out.println(row+" "+num+" "+periodDay);
 
 		if("미승인".contentEquals(requestList.get(row-1).getApproval())) {
 			DeclineHolidayRequestOnlyRowControl(row);
@@ -211,7 +211,7 @@ public class TAAServiceImpl implements TAAService {
 		@SuppressWarnings("unchecked")
 		List<HolidayRequest> OwnHolidayAskList = dbServ.SelectTable("HolidayRequest", "WHERE " +"\"사원번호\"" + "=" + num+
 		" AND "+ "\"요청일\""+" like '%" + requestYearMonth + "%'");
-		System.out.println(OwnHolidayAskList.size());
+		//System.out.println(OwnHolidayAskList.size());
 		comServ.ShowTableViewByList(scene, "#OwnAskTable", OwnHolidayAskList);
 	}
 	
@@ -278,15 +278,15 @@ public class TAAServiceImpl implements TAAService {
 		{	
 			if(cb.getValue() == null) {
 				cb.requestFocus();
-				System.out.println("비어 있어요");
+				//System.out.println("비어 있어요");
 				return false;
 			}
 			if(cb.getValue().toString().contentEquals("반일")&&isEmptyCont(cb, startDP)) {
-				System.out.println("비어 있어요");
+				//System.out.println("비어 있어요");
 				return false;
 			}
 			if(cb.getValue().toString().contentEquals("전일")&&isEmptyCont(cb, startDP, endDP)){
-				System.out.println("비어 있어요");
+				//System.out.println("비어 있어요");
 				return false;
 			}
 		}
