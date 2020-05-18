@@ -327,7 +327,7 @@ public class TAAServiceImpl implements TAAService {
 		hr.setId(num);  //로그인 했을때 아이디
 		hr.setName(emp.getName()); //이름
 		hr.setDepartment(emp.getDepartment()); //부서
-		hr.setAvailableDay(emp.getAvailableHoliday()); //인 사람의 남은 연가
+		hr.setAvailableDay(emp.getRemainHoliday()); //인 사람의 남은 연가
 		hr.setRequestDay(String.valueOf(LocalDate.now()));
 		hr.setStartDay(StartDatePicker.getValue().toString());
 		hr.setEndDay(EndDatePicker.getValue().toString());

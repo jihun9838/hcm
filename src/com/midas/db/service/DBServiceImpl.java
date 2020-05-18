@@ -446,6 +446,9 @@ public class DBServiceImpl implements DBService{
 				employee.setEducation(rs.getString("최종학력"));
 				employee.setAddress(rs.getString("주소"));
 				employee.setImage(rs.getString("사진url"));
+				employee.setAvailableHoliday(rs.getString("총연차"));
+				employee.setUsedHoliday(rs.getString("사용연차"));
+				employee.setRemainHoliday(rs.getString("잔여연차"));
 
 				stmt.close();
 				rs.close();
